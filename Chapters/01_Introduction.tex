@@ -1,0 +1,327 @@
+% Theorem numbers for Efimov_Large_Categories refer to arXiv:2405.12169v4.
+	\chapter{Introduction and overview}
+	\label[chapter]{chap:Introduction_And_Overview}
+
+	% Source: Clausen, Lecture 1 (17.07.2023); Talk 1 (Marc Hoyois, 13.10.2026)
+	These notes are about a recent extension, due to Efimov \cite{Efimov_Large_Categories}, of the domain of definition of algebraic K-theory: from small stable categories to a class of \emph{large} stable categories, the \emph{dualizable} ones. The history of algebraic K-theory can be read as a sequence of such extensions,
+	\[
+		\begin{tikzcd}[column sep=large, row sep=0pt]
+			\Vect(X) \rar[squiggly] & \Perf(X) \rar[squiggly] & \Nuc(X) \\
+			\text{exact categories} & \text{small stable categories} & \text{dualizable categories,}
+		\end{tikzcd}
+	\]
+	and the guiding principle behind each of them is the same:
+	\begin{center}
+		\emph{the input of K-theory should already have the properties that K-theory is supposed to have.}
+	\end{center}
+	In this introductory chapter we explain this principle, motivate why one would want to go beyond small stable categories, and give an overview of the main definitions and results that will be developed in detail in the remaining chapters. Nothing in this chapter will be proved here; we give forward references to the places in the notes where the proofs can be found.
+
+	\begin{convention}
+		\label[convention]{con:Categories_And_K_Theory}
+		Throughout, \emph{category} means $\infty$-category, and $K$ denotes \emph{nonconnective} algebraic K-theory, regarded as a functor $K\colon \Cat_{\perf} \to \Sp$ on small idempotent complete stable categories. If $C$ is a compactly generated stable category, we often abuse notation and write $K(C) := K(C^{\omega})$.
+	\end{convention}
+
+	\section{Why change the input of K-theory?}
+	\label[section]{sec:Why_Change_Input}
+
+	% Source: Clausen, Lecture 1 (17.07.2023)
+	To illustrate the guiding principle, let us look at the first expansion: from vector bundles to perfect complexes.
+
+	\subsection*{Pushforwards and the Riemann--Roch theorem}
+	A crucial ingredient in Grothendieck's relative version of the Riemann--Roch theorem \cite{Borel_Serre_Riemann_Roch} is that, for every proper map $f\colon X \to Y$ of smooth quasi-projective varieties, there is a pushforward map
+	\[
+		f_*\colon K(\Vect(X)) \to K(\Vect(Y)).
+	\]
+	At the level of vector bundles, however, it is not at all obvious where such a map should come from: the pushforward $f_*\mathcal{E}$ of a vector bundle is in general neither a vector bundle nor concentrated in a single degree, and one is forced to use the \emph{derived} pushforward together with resolutions. If instead we allow perfect complexes as input, the map simply comes from the functor
+	\[
+		f_*\colon \Perf(X) \to \Perf(Y),
+	\]
+	and in this generality also the annoying assumption of quasi-projectivity disappears. In other words: K-theory admits proper pushforwards because the \emph{categories} $\Perf(-)$ admit proper pushforwards.
+
+	\subsection*{Further examples}
+	The same pattern appears everywhere once one works with stable categories:
+	\begin{itemize}
+		\item \emph{Descent.} The functor $X \mapsto K(\Perf(X))$ satisfies Zariski (and even Nisnevich) descent by the work of Thomason--Trobaugh \cite{Thomason_Trobaugh}, which fails for $X \mapsto K(\Vect(X))$ in general. The categorical reason is that for a quasi-compact open $U \subseteq X$ with closed complement $Z$, the restriction functor $\Perf(X) \to \Perf(U)$ is a localization (up to idempotent completion) with kernel $\Perf_Z(X)$, the perfect complexes supported on $Z$. K-theory sends such sequences to fiber sequences, and descent follows formally.
+		\item \emph{Group completion is automatic.} The suspension functor $\Sigma$ on a stable category $C$ induces multiplication by $-1$ on $K(C)$: from the cofiber sequence $x \to 0 \to \Sigma x$ we get $[x] + [\Sigma x] = 0$. So the inverses that one has to formally adjoin in the group completion are already present in the category.
+		\item \emph{Projective bundle formulas.} For a commutative ring $R$, there is a semiorthogonal decomposition (in the sense of \Cref{sec:Semiorthogonal_Decompositions})
+		\[
+			\Perf(\P^1_R) \simeq \lra{\Perf(R) \otimes \Oo(-1),\; \Perf(R) \otimes \Oo},
+		\]
+		and K-theory turns this into a splitting $K(\P^1_R) \simeq K(R) \oplus K(R)$.
+	\end{itemize}
+	In each of these cases, a property of K-theory that is hard to establish by hand becomes a formal consequence of a structural property of the input category, combined with the single fundamental property of K-theory: it is a \emph{localizing invariant}, i.e.\ it sends short exact sequences of small stable categories to fiber sequences of spectra (\Cref{def:Localizing_Invariant}).
+
+	\section{Where small stable categories fall short}
+	\label[section]{sec:Small_Categories_Fall_Short}
+
+	% Source: Clausen, Lecture 1 (17.07.2023)
+	Why should one want to go further, beyond small stable categories? Let us give two reasons, which we will see resolved by Efimov's theory later in this chapter.
+
+	\subsection*{K-theory of analytic spaces}
+	Suppose we want to develop a theory of algebraic K-theory for \emph{analytic} spaces, such as formal schemes, rigid analytic varieties, or complex analytic spaces, with good descent properties and a Grothendieck--Riemann--Roch theorem. Then the naive approach of taking $K(\Perf(-))$ does not work. The basic reason is that in analytic geometry, restriction to an open subset does not give rise to a localization in the categorical sense: for instance, if $U \subseteq X$ is a rational open subset of an affinoid adic space, the restriction functor on perfect complexes is not a Verdier quotient. Hence the Thomason--Trobaugh argument sketched above breaks down at its very first step.
+
+	\subsection*{The K-theory of the compact operators}
+	Let $\Hh$ be a separable infinite-dimensional Hilbert space, let $B = B(\Hh)$ be the C$^*$-algebra of bounded operators, and let $\Kk = \Kk(\Hh) \subseteq B$ be the closed two-sided ideal of compact operators. Since $\Kk$ is a non-unital ring, its algebraic K-theory is \emph{defined} using excision:
+	\[
+		K(\Kk) := \fib\big(K(B) \to K(B/\Kk)\big).
+	\]
+	A theorem of Suslin--Wodzicki \cite{Suslin_Wodzicki_Excision} shows that this is independent of the choice of $B$: we have $K(\Kk) \simeq \fib(K(R) \to K(R/\Kk))$ for every unital ring $R$ containing $\Kk$ as a two-sided ideal. They also proved \emph{Karoubi's conjecture}, which in particular implies that
+	\[
+		K(\Kk) \simeq \KU
+	\]
+	is the periodic complex topological K-theory spectrum. This is a beautiful statement, but it raises a question: K-theory is supposed to be an invariant of categories, so \emph{where is the category} whose K-theory is $K(\Kk)$? We will answer this question in \Cref{ex:Compact_Operators_Intro} below.
+
+	\section{From small to large categories}
+	\label[section]{sec:Small_To_Large}
+
+	% Source: Clausen, Lecture 1 (17.07.2023); Talk 1 (Marc Hoyois, 13.10.2026)
+	The first step is to reformulate K-theory of small categories in terms of large categories. Every small stable category $C_0$ gives rise to a compactly generated presentable stable category $\Ind(C_0)$, and if $C_0$ is idempotent complete, we can recover it as $C_0 \simeq \Ind(C_0)^{\omega}$. (Restricting to idempotent complete categories is harmless: these have the best behaved (co)fiber sequences, and passing to the idempotent completion only affects $K_0$, and does not affect nonconnective K-theory at all.) This gives an equivalence of categories
+	\[
+		\Cat_{\perf} \iso \PrL_{\omega,\st} = \left\{
+		\begin{array}{c}
+			\text{compactly generated categories in $\PrLst$,} \\
+			\text{strongly continuous functors}
+		\end{array}
+		\right\},
+		\qquad C_0 \mapsto \Ind(C_0),
+	\]
+	where a functor $F\colon C \to D$ in $\PrLst$ is called \emph{strongly continuous} if its right adjoint again preserves colimits. Between compactly generated stable categories, this is equivalent to $F$ preserving compact objects. So K-theory may equally well be regarded as a functor on compactly generated categories and strongly continuous functors.
+
+	From this perspective, the obvious next question is: \emph{which presentable stable categories, beyond the compactly generated ones, admit a reasonable K-theory?} The answer is given by the following theorem, which provides many equivalent characterizations of a single class of categories.
+
+	\begin{theorem}[{Lurie, \cite[Proposition~D.7.3.1]{SAG}}]
+		\label[theorem]{thm:Dualizable_Characterizations}
+		Consider $C \in \PrLst$. The following are equivalent:
+		\begin{enumerate}
+			\item There exists a localization $\phi\colon D \to E$ in $\PrL_{\omega,\st}$ such that $C = \ker(\phi)$;
+			\item $C$ is dualizable in $(\PrLst,\otimes)$;
+			\item The functor $\colim\colon \Ind(C) \to C$ has a left adjoint (``compactly assembled'');
+			\item $C$ is a retract in $\PrLst$ of a compactly generated category;
+			\item (Efimov, \cite[Theorem~5.2]{Efimov_Large_Categories}) $C \otimes (-)\colon \PrLst \to \PrLst$ preserves fully faithful functors (``flat'');
+			\item (Clausen--Scholze, see \cite[Proposition~2.51]{Efimov_Large_Categories}) arbitrary products distribute over filtered colimits (``AB6'').
+		\end{enumerate}
+	\end{theorem}
+
+	The equivalence of (1)--(4) will be proved in \Cref{thm:Lurie_Dualizable_Characterization}, the axiom (AB6) is discussed in \Cref{chap:Compact_Morphisms_AB6}, and flatness in \Cref{chap:Flatness}. Characterization (1) is the one most relevant for K-theory: a dualizable category is precisely something that can be described as the ``difference'' of two compactly generated categories. Characterization (3) is the one that is easiest to work with in practice. In a compactly generated category, the presentation of an object $x$ as the formal colimit of all compact objects mapping to it is the \emph{finest} presentation of $x$: it maps uniquely into every ind-object $X \in \Ind(C)$ with $\colim X \simeq x$, and as a consequence maps out of $x$ into filtered colimits can be computed at the level of ind-objects. Characterization (3) says precisely that every object $x$ of $C$ still admits such a finest presentation $\hat{y}(x) \in \Ind(C)$, whose terms are however no longer required to be compact. This heuristic is explained in more detail at the beginning of \Cref{chap:Compactly_Assembled_Dualizable}.
+
+	In particular, compactly generated categories are dualizable, with dual
+	\[
+		\Ind(C_0)^{\vee} = \Ind(C_0\catop).
+	\]
+	But there are many more examples.
+
+	\begin{example}
+		\label[example]{ex:Dualizable_Categories}
+		The following categories are dualizable but in general not compactly generated:
+		\begin{itemize}
+			\item Keller's example of a localization of a compactly generated category with a non-compactly generated kernel (\Cref{ex:Keller});
+			\item the category $\Shv(X;\Sp)$ of sheaves of spectra on a locally compact Hausdorff space $X$ (see \Cref{chap:Sheaves}); for instance $\Shv(\R^n;\Sp)$ with $n \geq 1$ has no nonzero compact objects at all (for sheaves of abelian groups on a non-compact connected manifold this is due to Neeman \cite[Theorem~0.1]{Neeman_Sheaves_Manifold}; for sheaves of spectra it follows from Efimov's description of the compact objects \cite[Proposition~10.17]{Efimov_Large_Categories});
+			\item the categories of nuclear modules arising in analytic geometry: $\Nuc(\Z_p^{\square})$, $\Nuc(\R^{p\text{-}\mathrm{liq}})$, $\Nuc(\C^{\mathrm{gas}})$ \cite{Scholze_Analytic_Geometry, Clausen_Scholze_Complex_Geometry}.
+		\end{itemize}
+		All of the latter examples are actually self-dual. The reason is: they are even \emph{rigid}.
+	\end{example}
+
+	\begin{definition}[{cf.\ \cite[Chapter~1, Definition~9.1.2]{GaitsgoryRozenbluym2017StudyDAG}}]
+		\label[definition]{def:Rigid_Category}
+		A \emph{rigid category} is $C \in \CAlg(\PrLst)$ such that for every finite set $I$, the multiplication functor $\mu\colon C^{\otimes I} \to C$ admits a right adjoint in $\Mod_{C^{\otimes I}}(\PrLst)$.
+	\end{definition}
+
+	\begin{example}
+		\label[example]{ex:Rigid_Ind_Categories_Intro}
+		Let $C_0$ be a small idempotent complete symmetric monoidal stable category in which every object is dualizable. Then $\Ind(C_0)$ is rigid. For instance, $\D(R) = \Ind(\Perf(R))$ is rigid for every commutative ring $R$.
+	\end{example}
+
+	\begin{proposition}[{\cite[Chapter~1, Section~9.2.1]{GaitsgoryRozenbluym2017StudyDAG}}]
+		\label[proposition]{prop:Rigid_Self_Dual}
+		If $C$ is rigid, then $C$ is self-dual via
+		\[
+			C \otimes C \xrightarrow{\mu} C \xrightarrow{\Gamma} \Sp,
+		\]
+		where $\Gamma = \hom_C(\unit,-)$.
+	\end{proposition}
+
+	Rigid categories, trace-class morphisms and nuclear modules are discussed in detail in \Cref{sec:Rigid_Categories,sec:Nuclear_Modules}.
+
+	\begin{remark}
+		\label[remark]{rem:Compact_Objects_And_Morphisms_Intro}
+		There is a useful dictionary between the compactly generated and the dualizable world, which will be developed in \Cref{chap:Compact_Morphisms_AB6}: compact \emph{objects} are replaced by compact \emph{morphisms}. A dualizable category is generated under colimits by sequential colimits $\colim(x_0 \to x_1 \to x_2 \to \cdots)$ along compact morphisms, and in fact its $\omega_1$-compact objects are precisely of this form. In a symmetric monoidal setting, the analogy continues: just as a compactly generated category with compact unit is rigid if its compact objects are precisely its dualizable objects, a dualizable symmetric monoidal category is rigid if its compact morphisms are precisely its trace-class morphisms.
+	\end{remark}
+
+	The morphisms between dualizable categories which we will consider are the strongly continuous functors.
+
+	\begin{definition}
+		\label[definition]{def:Cat_Dual}
+		We denote by
+		\[
+			\Pr^{\dual} \subseteq \PrLst
+		\]
+		the subcategory consisting of the dualizable categories and the strongly continuous functors, i.e.\ those functors whose right adjoint again preserves colimits (see \Cref{def:Dualizable_Category}).
+	\end{definition}
+
+	By the above discussion, Ind-completion defines a fully faithful functor
+	\[
+		\Ind\colon \Cat_{\perf} \hookrightarrow \Pr^{\dual}.
+	\]
+	The category $\Pr^{\dual}$ has excellent formal properties: it is closed under tensor products in $\PrLst$, the inclusion into $\PrLst$ creates colimits, and $\Pr^{\dual}$ admits all limits and internal homs, although these are more subtle (see \Cref{chap:Calkin_Limits_Colimits}).
+
+	\section{Continuous K-theory}
+	\label[section]{sec:Continuous_K_Theory_Intro}
+
+	% Source: Talk 1 (Marc Hoyois, 13.10.2026); Clausen, Lecture 1 (17.07.2023)
+	We would now like to extend the K-theory functor from $\Cat_{\perf}$ to $\Pr^{\dual}$. Characterization (1) of \Cref{thm:Dualizable_Characterizations} suggests the following: if $C$ is dualizable, write it as the kernel of a localization $D \to E$ of compactly generated categories along strongly continuous functors, and define
+	\[
+		K^{\cont}(C) := \fib\big(K(D^{\omega}) \to K(E^{\omega})\big).
+	\]
+	If $C$ is itself compactly generated, then $C^{\omega} \to D^{\omega} \to E^{\omega}$ is a short exact sequence of small stable categories by the Thomason--Neeman localization theorem (\Cref{thm:Thomason_Neeman}), so this gives back $K(C^{\omega})$. But it is not clear that this is well-defined in general: we would like to have a \emph{canonical} way of writing $C$ as the fiber of a map between compactly generated categories.
+
+	Such a canonical presentation is provided by characterization (3). Let $C \in \Pr^{\dual}$ and let $\kappa$ be a regular cardinal which is large enough for the left adjoint $\hat{y}$ of $\colim\colon \Ind(C^{\kappa}) \to C$ to exist; in fact, $\kappa = \omega_1$ always suffices (\Cref{thm:Compactly_Assembled_Omega_1}). We get a localization sequence in $\PrLst$ with strongly continuous functors
+	\[
+		C \xhookrightarrow{\hat{y}} \Ind(C^{\kappa}) \to \Ind(\Calk^{\cont}_{\kappa}(C)),
+	\]
+	where the \emph{(continuous) Calkin category} $\Calk^{\cont}_{\kappa}(C)$ is defined as the category of compact objects of the quotient $\Ind(C^{\kappa})/\hat{y}(C)$.
+
+	\begin{definition}
+		\label[definition]{def:Continuous_Extension}
+		Let $F$ be a localizing invariant. Then we define
+		\[
+			F^{\cont}(C) := \fib\big(F(C^{\kappa}) \to F(\Calk^{\cont}_{\kappa}(C))\big)
+		\]
+		for $\kappa = \omega_1$. When $F$ is K-theory, $K^{\cont}(C)$ is called the \emph{continuous K-theory} of $C$.
+	\end{definition}
+
+	For many localizing invariants, such as K-theory, the category $C^{\omega_1}$ is invisible: it admits countable coproducts, so by an Eilenberg swindle we have $K(C^{\omega_1}) = 0$, and hence
+	\[
+		K^{\cont}(C) \simeq \Omega K(\Calk^{\cont}_{\omega_1}(C)).
+	\]
+
+	At first sight this looks rather crazy: in order to compute $K^{\cont}_0(C)$, we have to compute $K_1$ of a huge and inexplicit category. Fortunately, this is not how one should think about continuous K-theory in practice. The following theorem gives a more conceptual characterization, which also makes much more flexible computational techniques available.
+
+	\begin{theorem}[{Efimov, \cite[Theorem~8.10]{Efimov_Large_Categories}}]
+		\label[theorem]{thm:Efimov_Continuous_Extension}
+		Restriction along $\Ind$ induces an equivalence of categories
+		\[
+			\Fun_{\loc}(\Pr^{\dual},\Sp) \iso \Fun_{\loc}(\Cat_{\perf},\Sp),
+		\]
+		with inverse given by $F \mapsto F^{\cont}$. Moreover, $F$ commutes with filtered colimits if and only if $F^{\cont}$ does.
+	\end{theorem}
+
+	Here, on the left-hand side, a localizing invariant is a functor $\Pr^{\dual} \to \Sp$ that sends short exact sequences of dualizable categories, i.e.\ localization sequences in $\PrLst$ whose functors are strongly continuous, to fiber sequences. The key input in the proof is that the construction $C \mapsto \Calk^{\cont}_{\omega_1}(C)$ sends short exact sequences of dualizable categories to short exact sequences of small categories. In particular, $K^{\cont}$ is the \emph{unique} localizing invariant of dualizable categories extending K-theory, which makes the definition independent of all choices involved. This theorem will be proved in \Cref{chap:Localizing_Invariants_Dualizable}.
+
+	\begin{example}
+		\label[example]{ex:THH_Categorical_Trace}
+		The continuous extension of $\THH$ admits a very clean description: it is the \emph{categorical trace}
+		\[
+			\THH\colon \Pr^{\dual} \to \Sp, \qquad C \mapsto \tr(\id_C) \in \End_{\PrLst}(\Sp) = \Sp,
+		\]
+		also known as the dimension of $C$ as a dualizable object of $\PrLst$. That this is a localizing invariant is a formal property of traces.
+	\end{example}
+
+	\section{First computations}
+	\label[section]{sec:First_Computations}
+
+	% Source: Clausen, Lectures 1--3 (17.--19.07.2023); Talk 1 (Marc Hoyois, 13.10.2026)
+	Let us now see Efimov's theory in action, and in particular come back to the two problems raised in \Cref{sec:Small_Categories_Fall_Short}.
+
+	\subsection*{Sheaves on locally compact Hausdorff spaces}
+	The first computation shows that continuous K-theory is a genuinely new invariant: the category $\Shv(\R^n;\Sp)$ has no nonzero compact objects, so the only K-theory one could have assigned to it naively is zero.
+
+	\begin{theorem}[{Efimov, \cite[Theorem~10.10]{Efimov_Large_Categories}}]
+		\label[theorem]{thm:Kcont_Sheaves}
+		Let $C$ be dualizable and $X$ a locally compact Hausdorff space. Then
+		\[
+			K^{\cont}(\Shv(X;C)) \simeq \Gamma_c(X;K^{\cont}(C)).
+		\]
+	\end{theorem}
+
+	The idea of the proof is as follows. For $X$ compact, the functor $X \mapsto K^{\cont}(\Shv(X;C))$ commutes with cofiltered limits of compact Hausdorff spaces, sends $\emptyset$ to $0$, and sends a cover of $X$ by two closed subsets $Y,Z \subseteq X$ to a pullback square
+	\[
+		K^{\cont}(\Shv(X;C)) \iso K^{\cont}(\Shv(Y;C)) \times_{K^{\cont}(\Shv(Y \cap Z;C))} K^{\cont}(\Shv(Z;C)),
+	\]
+	both of which follow from the fact that $K^{\cont}$ is a localizing invariant commuting with filtered colimits. But every such functor is of the form $X \mapsto \Gamma(X;A)$ for the spectrum $A$ given by its value on the point. The case of general $X$ follows by passing to the one-point compactification. See \Cref{chap:Sheaves} for details.
+
+	\begin{example}
+		\label[example]{ex:Kcont_Euclidean_Sheaves}
+		Taking $X = \R^n$, we get $K^{\cont}(\Shv(\R^n;C)) \simeq \Omega^n K^{\cont}(C)$. In particular, the higher K-groups of $C$ can be recovered as Grothendieck groups:
+		\[
+			K^{\cont}_n(C) \cong K^{\cont}_0(\Shv(\R^n;C)).
+		\]
+	\end{example}
+
+	\subsection*{Idempotent algebras and the compact operators}
+	A large supply of dualizable categories comes from \emph{idempotent} maps of ring spectra $A \to B$, i.e.\ maps for which $B \otimes_A B \to B$ is an equivalence. Equivalently, the base change functor $- \otimes_A B\colon \D(A) \to \D(B)$ is a localization (a \emph{homological epimorphism}, see \Cref{def:Homological_Epimorphism}). Its kernel
+	\[
+		\D(A \to B) := \ker\big(\D(A) \to \D(B)\big)
+	\]
+	is then dualizable by \Cref{thm:Dualizable_Characterizations}(1), and
+	\[
+		K^{\cont}(\D(A \to B)) \simeq \fib\big(K(A) \to K(B)\big).
+	\]
+	In fact, \emph{every} dualizable category is of this form (\Cref{prop:Every_Dualizable_Kernel}): the Calkin sequence above exhibits $C$ as the kernel of $\Ind(C^{\kappa}) \to \Ind(\Calk^{\cont}_{\kappa}(C))$, and for $\kappa$ large enough one can replace $C^{\kappa}$ by a subcategory with a single generator.
+
+	\begin{example}
+		\label[example]{ex:Compact_Operators_Intro}
+		By a theorem of Wodzicki, if $A$ is a unital C$^*$-algebra and $I \subseteq A$ a closed two-sided ideal, then $A \to A/I$ is idempotent. Applying this to $A = B(\Hh)$ and $I = \Kk$, we get a dualizable category $\D(\Kk) := \D(B(\Hh) \to B(\Hh)/\Kk)$, and
+		\[
+			K^{\cont}(\D(\Kk)) \simeq \fib\big(K(B(\Hh)) \to K(B(\Hh)/\Kk)\big) = K(\Kk) \simeq \KU.
+		\]
+		So this is the category we were looking for in \Cref{sec:Small_Categories_Fall_Short}! Since $K(B(\Hh)) = 0$ by an Eilenberg swindle, $K^{\cont}(\D(\Kk))$ is the loop space of the K-theory of the \emph{Calkin algebra} $B(\Hh)/\Kk$; this is the origin of the name ``Calkin category''.
+
+		The category $\D(\Kk)$ also admits an intrinsic description, without choosing $\Hh$: it is the full subcategory of $\Ind(\D^b(\text{separable Hilbert spaces}))$ generated under colimits by sequential colimits $\colim(\Hh_0 \to \Hh_1 \to \Hh_2 \to \cdots)$ along compact operators. Since the tensor product of two compact operators is again compact, the tensor product of Hilbert spaces makes $\D(\Kk)$ into a commutative algebra in $\Pr^{\dual}$. This gives an $\mathbb{E}_{\infty}$-ring structure on $K^{\cont}(\D(\Kk)) \simeq \KU$ which comes from evident categorical structure, but which is quite hard to see from the non-unital ring perspective.
+	\end{example}
+
+	\subsection*{Nuclear modules and K-theory of analytic spaces}
+	There is a non-archimedean analogue of the previous example. Let $R$ be a commutative ring, $I = (f_1,\dots,f_m) \subseteq R$ a finitely generated ideal, and let $P := (\bigoplus_{\N} R)^{\wedge}_I$ be the $I$-completed countable direct sum, which plays the role of a separable Hilbert space. In place of $B(\Hh)$ we take the endomorphism ring $\End_R(P)$, and in place of the Calkin algebra $B(\Hh)/\Kk$ the $I$-adically completed endomorphism ring
+	\[
+		\Calk^{\mathrm{top}}_R(P) := \End_{\Calk(R)}(P)^{\wedge}_I
+	\]
+	of $P$ in the Calkin category of $\Perf(R)$. The fiber of $\End_R(P) \to \Calk^{\mathrm{top}}_R(P)$ is $\big(\prod_{\N}R \otimes_R \bigoplus_{\N}R\big)^{\wedge}_I$, which one may think of as the $I$-adic completion of the endomorphisms of finite rank, just as $\Kk$ is the norm closure of the operators of finite rank. Efimov shows that $\End_R(P) \to \Calk^{\mathrm{top}}_R(P)$ is a homological epimorphism, whose kernel is the category of \emph{nuclear} modules over $R^{\wedge}_I$ in the sense of Clausen--Scholze \cite[Corollary~7.7]{Efimov_Inverse_Limits}:
+	\[
+		\Nuc^{CS}(R^{\wedge}_I) \simeq \D\big(\End_R(P) \to \Calk^{\mathrm{top}}_R(P)\big).
+	\]
+	Alternatively, $\Nuc^{CS}(R^{\wedge}_I)$ can be obtained from the category of solid $R^{\wedge}_I$-modules by a ``rigidification'' procedure, see \Cref{sec:Nuclear_Modules}. Efimov also introduced a variant $\Nuc(R^{\wedge}_I)$, which contains $\Nuc^{CS}(R^{\wedge}_I)$ as a full subcategory with the same compact objects \cite[Corollary~7.6]{Efimov_Inverse_Limits}. In this introduction we will not distinguish between the two, and for $R$ itself $I$-adically complete we simply write $\Nuc(R)$. Efimov computed the continuous K-theory:
+
+	\begin{theorem}[{Efimov, \cite[Corollary~6.3]{Efimov_Inverse_Limits}}]
+		\label[theorem]{thm:Kcont_Nuclear}
+		Let $R$ be a commutative ring, and $I = (f_1, \dots, f_m) \subseteq R$. Then
+		\[
+			K^{\cont}(\Nuc(R^{\wedge}_I)) = \lim_{n \to \infty} K(R \quot (f_1^n, \dots,f^n_m)).
+		\]
+	\end{theorem}
+	The same formula holds for $\Nuc^{CS}(R^{\wedge}_I)$ \cite[Corollary~7.10]{Efimov_Inverse_Limits}, and if $R$ is Noetherian, the right-hand side is $\lim_n K(R/I^n)$.
+
+	These categories are exactly what is needed to fix the problem with analytic spaces from \Cref{sec:Small_Categories_Fall_Short}. If $\operatorname{Spa}(A,A^+) \subseteq \operatorname{Spa}(R,R)$ is a rational open subset, then $A$ is an \emph{idempotent} commutative algebra in $\Nuc(R)$, and $\Nuc(A) \simeq \Mod_A(\Nuc(R))$. Tensor products of such algebras correspond to intersections of rational opens, and covers by rational opens give pullback squares of algebras. So from the point of view of nuclear modules, rational open subsets behave exactly like Zariski open subsets of schemes, and the Thomason--Trobaugh argument goes through verbatim. This leads to the following result of Andreychev:
+
+	\begin{theorem}[{Andreychev, \cite[Satz~4.2 and Satz~5.12]{Andreychev_Thesis}}]
+		\label[theorem]{thm:Nuclear_Analytic_Descent}
+		Let $(A,A^+)$ be a complete sheafy analytic Huber pair. The assignments $U \mapsto \Nuc(\mathcal{O}(U))$ and $U \mapsto K^{\cont}(\Nuc(\mathcal{O}(U)))$, for $U \subseteq \operatorname{Spa}(A,A^+)$ rational open, satisfy descent for covers by rational open subsets.
+	\end{theorem}
+
+	As an application, one recovers a theorem of Kerz--Strunk--Tamme \cite{Kerz_Strunk_Tamme_Blowups} in a conceptual way: if $f\colon X \to Y$ is a proper map of Noetherian schemes which is an isomorphism outside a closed subscheme $Z \subseteq Y$, then the square
+	\[
+		\begin{tikzcd}
+			K(Y) \rar \dar["f^*"'] & \lim_n K(Z_n) \dar["f^*"] \\
+			K(X) \rar & \lim_n K((f^{-1}Z)_n)
+		\end{tikzcd}
+	\]
+	is a pullback, where $Z_n$ and $(f^{-1}Z)_n$ denote the $n$-th infinitesimal thickenings. Indeed, using the localization sequences for K-theory with supports, one may replace $K(Y)$ and $K(X)$ by $K_Z(Y)$ and $K_{f^{-1}Z}(X)$. The theory of nuclear modules then identifies the cofibers of the horizontal maps with the K-theory of the generic fibers $(Y^{\wedge}_Z)_{\eta}$ and $(X^{\wedge}_{f^{-1}Z})_{\eta}$ of the formal completions, and these generic fibers agree because $f$ is an isomorphism away from $Z$.
+
+	\subsection*{Outlook: archimedean analytic geometry}
+	% Source: Clausen, Lecture 3 (19.07.2023)
+	The same ideas apply in archimedean functional analysis. There is a canonical rigid category $\D^{\mathrm{an}}(\C)$ (obtained for instance by rigidifying the category of liquid $\C$-modules, independently of the choice of $p$), and Clausen--Scholze have announced results relating the continuous K-theory of complex analytic spaces built from it to topological K-theory and to (Hodge-filtered) de Rham cohomology. We will not discuss this further in these notes.
+
+	\section{Overview of the notes}
+	\label[section]{sec:Overview}
+
+	The remaining chapters develop the theory sketched above in detail.
+	\begin{itemize}
+		\item \Cref{chap:Localization_Sequences} recalls the necessary background on stable categories: Verdier quotients, short exact sequences, localization sequences in $\PrLst$, the Thomason--Neeman theorem, semiorthogonal decompositions, and localizing invariants.
+		\item \Cref{chap:Compactly_Assembled_Dualizable} introduces compactly assembled and dualizable categories and proves Lurie's characterization (\Cref{thm:Lurie_Dualizable_Characterization}), as well as the fact that dualizable categories are $\omega_1$-presentable.
+		\item \Cref{chap:Examples} discusses examples of dualizable categories, including Keller's example, categories of the form $\D(A \to B)$, and nuclear modules.
+		\item \Cref{chap:Compact_Morphisms_AB6} develops the internal point of view through compact morphisms, and relates dualizability to the axiom (AB6).
+		\item \Cref{chap:Calkin_Limits_Colimits} studies Calkin categories and constructs colimits and limits in $\Pr^{\dual}$.
+		\item \Cref{chap:Flatness} proves Efimov's characterization of dualizable categories as the flat objects of $\PrLst$.
+		\item \Cref{chap:Localizing_Invariants_Dualizable} constructs the continuous extension of localizing invariants and proves \Cref{thm:Efimov_Continuous_Extension}.
+		\item \Cref{chap:Sheaves} computes the continuous K-theory of categories of sheaves on continuous posets and locally compact Hausdorff spaces, proving \Cref{thm:Kcont_Sheaves}.
+		\item \Cref{chap:Aleph_1_Presentability} shows that $\Pr^{\dual}$ is itself $\aleph_1$-presentable.
+	\end{itemize}
+	Background on filtered categories, presentability, idempotent completeness, mates, and tensor products of presentable categories is collected in \Cref{app:Categorical_Background}.

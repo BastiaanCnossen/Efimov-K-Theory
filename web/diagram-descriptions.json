@@ -1,0 +1,19 @@
+{
+  "5f773ee77961bddbc0e5": "Commutative square with A mapping to B by f, C mapping to D by g, and vertical maps from A to C and B to D.",
+  "cec2bd25bc9f44d600bb": "Pullback square of rings with A and A-prime on top and B and B-prime below.",
+  "cee4cacfb89ba533dcce": "Square of module categories induced by the ring square: modules over A and A-prime on top, modules over B and B-prime below.",
+  "602d6f68805ba0d4cb34": "Pullback square in algebraic K-theory with K(A) and K(A-prime) on top and K(B) and K(B-prime) below.",
+  "450898ef7268fed69f5a": "Pullback square of rings with A mapping to A/I, B mapping to B/IB, and vertical maps induced by A to B.",
+  "32b29d19a40d90809572": "The successive inputs of K-theory: vector bundles on X in exact categories, perfect complexes on X in small stable categories, and nuclear modules on X in dualizable categories.",
+  "e6f0ef96e5a785ece8fb": "Pullback square comparing K-theory of Y and X with the inverse limits of the K-theories of the infinitesimal thickenings of Z and its inverse image; the vertical maps are pullback along f.",
+  "a9a8cf3517e79efc9697": "Retract diagram with colimit functors from Ind(C) to C and from Ind(Ind(D)) to Ind(D); the vertical retraction pairs are Ind(u), Ind(v) and u, v.",
+  "a90ff033b83f7f91585e": "Square with horizontal colimit functors from Ind(C) to C and from Ind(D) to D, and vertical functors Ind(f) and f.",
+  "d52634812b65a5e471e2": "Lifting problem for a functor from C to E along a localization from D to E; the proposed lift from C to D is dashed.",
+  "4b466f8c290e52bb3856": "Two rows of sequential diagrams y(x_n) and the finest presentations of x_n, with vertical comparison maps and a diagonal factorization from y(x_n) through the next finest presentation.",
+  "434048b107f7f2c9fd90": "Commutative square with x_n mapping to x_(n+1) in both rows and identity maps vertically.",
+  "316ef0c458f250b5d2f4": "Adjoint triple between the derived categories of A and A/I: L and R point from D(A) to D(A/I), while restriction of scalars points back.",
+  "abb1700940394b440666": "Square comparing the n-th and next objects in two sequences, with vertical components eta_n and eta_(n+1) of a natural transformation.",
+  "b35d5e4c2b5b5d268e95": "Retract diagram with rows C to C-prime to C and D to D-prime to D, horizontal functors u, v and their hatted counterparts, and vertical functors g, g-prime, g.",
+  "6a07f00d570f5b7980c7": "Square of categories with G from A to B, G-prime from A-prime to B-prime, and vertical functors U and V.",
+  "0404ab2500573f428033": "Square defining conjugate transformations: precomposition by phi on mapping animae in B corresponds under the adjunction isomorphisms to postcomposition by phi-dual on mapping animae in A."
+}

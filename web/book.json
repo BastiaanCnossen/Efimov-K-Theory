@@ -1,0 +1,1043 @@
+{
+  "workId": "efimov-k-theory",
+  "title": "Efimov K-theory",
+  "root": "Efimov K-theory Notes.tex",
+  "pdfBase": "tmp/web/pdf/Efimov K-theory Notes",
+  "output": "output/web",
+  "mathMacros": "preamble.sty",
+  "entries": [
+    [
+      "thm:Verdier_Quotient",
+      "verdier-quotients",
+      "Verdier quotients"
+    ],
+    [
+      "lem:Kernel_Verdier_Quotient",
+      "kernel-of-a-verdier-quotient",
+      "The kernel of a Verdier quotient"
+    ],
+    [
+      "rem:Nullhomotopies_Property",
+      "nullhomotopies-as-a-property",
+      "Nullhomotopies as a property"
+    ],
+    [
+      "def:Verdier_Sequence",
+      "verdier-sequences",
+      "Verdier sequences"
+    ],
+    [
+      "def:Short_Exact_Sequence",
+      "short-exact-sequences",
+      "Short exact sequences"
+    ],
+    [
+      "lem:Characterization_Short_Exact",
+      "characterizing-short-exact-sequences",
+      "Characterizing short exact sequences"
+    ],
+    [
+      "rem:Verdier_Vs_Karoubi",
+      "verdier-and-karoubi-quotients",
+      "Verdier and Karoubi quotients"
+    ],
+    [
+      "rem:Mapping_Spectra_Quotient",
+      "mapping-spectra-in-verdier-quotients",
+      "Mapping spectra in Verdier quotients"
+    ],
+    [
+      "rem:Lifting_Objects_Quotient",
+      "lifting-objects-from-quotients",
+      "Lifting objects from quotients"
+    ],
+    [
+      "ex:Thomason_Trobaugh_Sequence",
+      "thomason-trobaugh-localization",
+      "Thomason–Trobaugh localization"
+    ],
+    [
+      "def:Localization_Sequence_PrL",
+      "presentable-localization-sequences",
+      "Localization sequences of presentable categories"
+    ],
+    [
+      "prop:Localization_Sequences_PrL",
+      "constructing-presentable-localization-sequences",
+      "Constructing presentable localization sequences"
+    ],
+    [
+      "lem:Strong_Continuity_Localization_Sequence",
+      "strong-continuity-in-localization-sequences",
+      "Strong continuity in localization sequences"
+    ],
+    [
+      "lem:Compact_Generators_Thick_Closure",
+      "compact-generators-and-thick-closure",
+      "Compact generators and thick closure"
+    ],
+    [
+      "lem:Compact_Objects_Localization_Sequence",
+      "compact-objects-in-localization-sequences",
+      "Compact objects in localization sequences"
+    ],
+    [
+      "def:Homological_Epimorphism",
+      "homological-epimorphisms",
+      "Homological epimorphisms"
+    ],
+    [
+      "thm:Thomason_Neeman",
+      "thomason-neeman-theorem",
+      "The Thomason–Neeman theorem"
+    ],
+    [
+      "cor:Karoubi_Quotient_Via_Ind",
+      "karoubi-quotients-via-ind-categories",
+      "Karoubi quotients via ind-categories"
+    ],
+    [
+      "rem:Ind_Fully_Faithful_Localization",
+      "ind-completion-and-localization",
+      "Ind-completion and localization"
+    ],
+    [
+      "ex:Keller",
+      "kellers-smashing-localization",
+      "Keller’s smashing localization"
+    ],
+    [
+      "def:Semiorthogonal_Decomposition",
+      "semiorthogonal-decompositions",
+      "Semiorthogonal decompositions"
+    ],
+    [
+      "prop:Two_Term_SOD",
+      "two-term-semiorthogonal-decompositions",
+      "Two-term semiorthogonal decompositions"
+    ],
+    [
+      "rem:SOD_Small",
+      "small-semiorthogonal-decompositions",
+      "Semiorthogonal decompositions of small categories"
+    ],
+    [
+      "prop:SOD_From_Short_Exact",
+      "adjoints-and-split-exact-sequences",
+      "Adjoints and split exact sequences"
+    ],
+    [
+      "def:Calkin_Small",
+      "calkin-categories",
+      "Calkin categories"
+    ],
+    [
+      "rem:Calkin_Mapping_Spectra",
+      "mapping-spectra-in-calkin-categories",
+      "Mapping spectra in Calkin categories"
+    ],
+    [
+      "ex:Calkin_Perf",
+      "calkin-category-of-perfect-complexes",
+      "The Calkin category of perfect complexes"
+    ],
+    [
+      "rem:Calkin_Small_Vs_Continuous",
+      "small-and-continuous-calkin-categories",
+      "Small and continuous Calkin categories"
+    ],
+    [
+      "def:K_0",
+      "grothendieck-groups",
+      "Grothendieck groups"
+    ],
+    [
+      "def:Localizing_Invariant",
+      "localizing-invariants",
+      "Localizing invariants"
+    ],
+    [
+      "lem:Localizing_Invariants_Verdier",
+      "localizing-invariants-and-verdier-sequences",
+      "Localizing invariants and Verdier sequences"
+    ],
+    [
+      "rem:Verdier_Localizing_Not_Karoubi",
+      "verdier-versus-karoubi-invariants",
+      "Verdier versus Karoubi invariants"
+    ],
+    [
+      "rem:Finitary_Localizing_Invariants",
+      "finitary-localizing-invariants",
+      "Finitary localizing invariants"
+    ],
+    [
+      "ex:Localizing_Additive",
+      "localizing-invariants-are-additive",
+      "Localizing invariants are additive"
+    ],
+    [
+      "ex:Localizing_Calkin",
+      "calkin-delooping",
+      "Delooping through Calkin categories"
+    ],
+    [
+      "thm:K_Universal_Property",
+      "universal-property-of-algebraic-k-theory",
+      "The universal property of algebraic K-theory"
+    ],
+    [
+      "rem:K_Universal_Property_Literature",
+      "filtered-colimits-in-the-universal-property",
+      "Filtered colimits in the universal property"
+    ],
+    [
+      "def:Mot_Loc",
+      "localizing-motives",
+      "Localizing motives"
+    ],
+    [
+      "thm:K_Corepresentable",
+      "corepresentability-of-k-theory",
+      "Corepresentability of K-theory"
+    ],
+    [
+      "thm:K_Unit_Day_Convolution",
+      "k-theory-as-the-day-convolution-unit",
+      "K-theory as the Day convolution unit"
+    ],
+    [
+      "thm:Tamme_Excision",
+      "tammes-excision-theorem",
+      "Tamme’s excision theorem"
+    ],
+    [
+      "warn:Excision_Requires_Ind_Localizations",
+      "localization-after-ind-completion",
+      "Localization after ind-completion"
+    ],
+    [
+      "rem:Tamme_Lax_Pullback_Proof",
+      "tammes-lax-pullback-proof",
+      "Tamme’s proof through lax pullbacks"
+    ],
+    [
+      "ex:Milnor_Patching",
+      "milnor-patching",
+      "Milnor patching"
+    ],
+    [
+      "thm:Milnor_Patching_K_Theory",
+      "milnor-patching-in-k-theory",
+      "Milnor patching in K-theory"
+    ],
+    [
+      "ex:Milnor_Square_Of_Rings",
+      "milnor-squares-of-rings",
+      "Milnor squares of rings"
+    ],
+    [
+      "con:Categories_And_K_Theory",
+      "conventions-for-categories-and-k-theory",
+      "Conventions for categories and K-theory"
+    ],
+    [
+      "thm:Dualizable_Characterizations",
+      "dualizable-categories-an-overview",
+      "Characterizations of dualizable categories"
+    ],
+    [
+      "ex:Dualizable_Categories",
+      "examples-of-dualizable-categories",
+      "Examples of dualizable categories"
+    ],
+    [
+      "def:Rigid_Category",
+      "rigid-categories-an-overview",
+      "Rigid categories"
+    ],
+    [
+      "ex:Rigid_Ind_Categories_Intro",
+      "rigidity-of-ind-categories",
+      "Rigidity of ind-categories"
+    ],
+    [
+      "prop:Rigid_Self_Dual",
+      "self-duality-of-rigid-categories-an-overview",
+      "Self-duality of rigid categories"
+    ],
+    [
+      "rem:Compact_Objects_And_Morphisms_Intro",
+      "compact-objects-and-compact-morphisms",
+      "Compact objects and compact morphisms"
+    ],
+    [
+      "def:Cat_Dual",
+      "dualizable-categories-and-strongly-continuous-functors",
+      "Dualizable categories and strongly continuous functors"
+    ],
+    [
+      "def:Continuous_Extension",
+      "continuous-extensions-of-localizing-invariants",
+      "Continuous extensions of localizing invariants"
+    ],
+    [
+      "thm:Efimov_Continuous_Extension",
+      "efimovs-continuous-extension-theorem",
+      "Efimov’s continuous extension theorem"
+    ],
+    [
+      "ex:THH_Categorical_Trace",
+      "topological-hochschild-homology-as-a-trace",
+      "Topological Hochschild homology as a trace"
+    ],
+    [
+      "thm:Kcont_Sheaves",
+      "continuous-k-theory-of-sheaves",
+      "Continuous K-theory of sheaves"
+    ],
+    [
+      "ex:Kcont_Euclidean_Sheaves",
+      "continuous-k-theory-of-euclidean-sheaves",
+      "Continuous K-theory of sheaves on Euclidean spaces"
+    ],
+    [
+      "ex:Compact_Operators_Intro",
+      "continuous-k-theory-of-compact-operators",
+      "Continuous K-theory of compact operators"
+    ],
+    [
+      "thm:Kcont_Nuclear",
+      "continuous-k-theory-of-nuclear-modules",
+      "Continuous K-theory of nuclear modules"
+    ],
+    [
+      "thm:Nuclear_Analytic_Descent",
+      "analytic-descent-for-nuclear-modules",
+      "Analytic descent for nuclear modules"
+    ],
+    [
+      "def:Compactly_Assembled",
+      "compactly-assembled-categories",
+      "Compactly assembled categories"
+    ],
+    [
+      "lem:Compact_Iff_Yhat_Is_Y",
+      "compact-objects-and-the-finest-presentation",
+      "Compact objects and the finest presentation"
+    ],
+    [
+      "def:Compact_Morphism",
+      "compact-morphisms",
+      "Compact morphisms"
+    ],
+    [
+      "rem:Compact_Morphisms_Ideal",
+      "the-ideal-of-compact-morphisms",
+      "The ideal of compact morphisms"
+    ],
+    [
+      "lem:Compact_Morphisms_Yhat",
+      "compact-morphisms-via-the-finest-presentation",
+      "Compact morphisms via the finest presentation"
+    ],
+    [
+      "rem:Compact_Morphisms_Other_Definitions",
+      "alternative-definitions-of-compact-morphisms",
+      "Alternative definitions of compact morphisms"
+    ],
+    [
+      "ex:Compactly_Generated_Compactly_Assembled",
+      "compact-generation-implies-compact-assembly",
+      "Compact generation implies compact assembly"
+    ],
+    [
+      "ex:Continuous_Posets",
+      "continuous-posets-an-overview",
+      "Continuous posets"
+    ],
+    [
+      "thm:Compactly_Assembled_Retract",
+      "compactly-assembled-categories-as-retracts",
+      "Compactly assembled categories as retracts"
+    ],
+    [
+      "def:Strongly_Continuous_Compactly_Assembled",
+      "strongly-continuous-functors-between-compactly-assembled-categories",
+      "Strongly continuous functors between compactly assembled categories"
+    ],
+    [
+      "rem:Strongly_Continuous_Right_Adjoint",
+      "right-adjoints-and-strong-continuity",
+      "Right adjoints and strong continuity"
+    ],
+    [
+      "def:Dualizable_Category",
+      "dualizable-categories",
+      "Dualizable categories"
+    ],
+    [
+      "ex:Dual_Of_Modules",
+      "duality-for-module-categories",
+      "Duality for module categories"
+    ],
+    [
+      "rem:Strongly_Continuous_Stable",
+      "strong-continuity-in-stable-categories",
+      "Strong continuity in stable categories"
+    ],
+    [
+      "rem:Compactly_Generated_In_Prdual",
+      "compactly-generated-categories-in-pr-dual",
+      "Compactly generated categories in Prᵈᵘᵃˡ"
+    ],
+    [
+      "rem:Prdual_Formal_Properties",
+      "formal-properties-of-pr-dual",
+      "Formal properties of Prᵈᵘᵃˡ"
+    ],
+    [
+      "thm:Lurie_Dualizable_Characterization",
+      "luries-characterization-of-dualizable-categories",
+      "Lurie’s characterization of dualizable categories"
+    ],
+    [
+      "prop:Dualizable_Further_Characterizations",
+      "further-characterizations-of-dualizable-categories",
+      "Further characterizations of dualizable categories"
+    ],
+    [
+      "rem:Further_Characterizations_Later",
+      "compact-morphisms-and-flatness-characterizations",
+      "Compact morphisms and flatness characterizations"
+    ],
+    [
+      "prop:Localization_Sequence_Dualizable",
+      "localization-sequences-preserve-dualizability",
+      "Localization sequences preserve dualizability"
+    ],
+    [
+      "warn:Extensions_Not_Dualizable",
+      "extensions-need-not-be-dualizable",
+      "Extensions need not be dualizable"
+    ],
+    [
+      "prop:Extension_Dualizable_Tate",
+      "extensions-and-tate-objects",
+      "Extensions and Tate objects"
+    ],
+    [
+      "rem:Tate_Classification_Of_Extensions",
+      "classifying-exact-sequences-with-tate-objects",
+      "Classifying exact sequences with Tate objects"
+    ],
+    [
+      "ex:Extension_Not_Dualizable",
+      "efimovs-nondualizable-extension",
+      "Efimov’s nondualizable extension"
+    ],
+    [
+      "thm:Compactly_Assembled_Omega_1",
+      "omega-one-presentability-of-compactly-assembled-categories",
+      "ω₁-presentability of compactly assembled categories"
+    ],
+    [
+      "rem:Omega_1_Compact_Compact_Morphisms",
+      "sequential-colimits-of-compact-morphisms",
+      "Sequential colimits of compact morphisms"
+    ],
+    [
+      "prop:Strongly_Continuous_Compact_Morphisms",
+      "strong-continuity-via-compact-morphisms",
+      "Strong continuity via compact morphisms"
+    ],
+    [
+      "prop:Kernel_Homological_Epi",
+      "kernels-of-homological-epimorphisms",
+      "Kernels of homological epimorphisms"
+    ],
+    [
+      "prop:Every_Dualizable_Kernel",
+      "every-dualizable-category-is-a-kernel",
+      "Every dualizable category is a kernel"
+    ],
+    [
+      "thm:H_Unital",
+      "h-unitality-and-homological-epimorphisms",
+      "H-unitality and homological epimorphisms"
+    ],
+    [
+      "ex:Homological_Epis",
+      "examples-of-homological-epimorphisms",
+      "Examples of homological epimorphisms"
+    ],
+    [
+      "def:Almost_Modules",
+      "almost-modules",
+      "Almost modules"
+    ],
+    [
+      "ex:Almost_Modules",
+      "examples-of-almost-modules",
+      "Examples of almost modules"
+    ],
+    [
+      "lem:Almost_Restriction_FF",
+      "derived-restriction-for-almost-modules",
+      "Derived restriction for almost modules"
+    ],
+    [
+      "lem:Almost_Essential_Image",
+      "essential-image-of-almost-restriction",
+      "The essential image of almost restriction"
+    ],
+    [
+      "prop:Almost_Derived_Category",
+      "derived-categories-of-almost-modules",
+      "Derived categories of almost modules"
+    ],
+    [
+      "rem:Almost_General",
+      "almost-modules-without-flatness",
+      "Almost modules without flatness"
+    ],
+    [
+      "prop:Almost_No_Compacts",
+      "almost-categories-without-compact-objects",
+      "Almost categories without nonzero compact objects"
+    ],
+    [
+      "ex:Almost_Modules_Over_Cp",
+      "almost-modules-over-the-completed-algebraic-closure",
+      "Almost modules over the completed algebraic closure"
+    ],
+    [
+      "lem:Ind_Of_Poset",
+      "ind-completion-of-a-poset",
+      "Ind-completion of a poset"
+    ],
+    [
+      "lem:Posets_Accessible",
+      "accessibility-of-small-posets",
+      "Accessibility of small posets"
+    ],
+    [
+      "def:Continuous_Poset",
+      "continuous-posets",
+      "Continuous posets"
+    ],
+    [
+      "def:Way_Below",
+      "way-below-relation",
+      "The way-below relation"
+    ],
+    [
+      "rem:Way_Below_Basics",
+      "properties-of-the-way-below-relation",
+      "Properties of the way-below relation"
+    ],
+    [
+      "prop:Continuous_Poset_Characterization",
+      "characterizing-continuous-posets",
+      "Characterizing continuous posets"
+    ],
+    [
+      "ex:Continuous_Poset_Reals",
+      "the-extended-real-line-as-a-continuous-poset",
+      "The extended real line as a continuous poset"
+    ],
+    [
+      "ex:Continuous_Poset_Opens",
+      "open-subsets-as-a-continuous-poset",
+      "Open subsets as a continuous poset"
+    ],
+    [
+      "rem:Continuous_Posets_Sheaves",
+      "continuous-posets-and-sheaf-categories",
+      "Continuous posets and sheaf categories"
+    ],
+    [
+      "def:Rigid_Category_Detailed",
+      "rigid-symmetric-monoidal-categories",
+      "Rigid symmetric monoidal categories"
+    ],
+    [
+      "rem:Equivalent_Rigidity_Definitions",
+      "equivalent-definitions-of-rigidity",
+      "Equivalent definitions of rigidity"
+    ],
+    [
+      "prop:Rigid_Self_Dual_Detailed",
+      "self-duality-of-rigid-categories",
+      "Self-duality of rigid categories"
+    ],
+    [
+      "def:Trace_Class",
+      "trace-class-morphisms",
+      "Trace-class morphisms"
+    ],
+    [
+      "rem:Trace_Class_Basics",
+      "properties-of-trace-class-morphisms",
+      "Properties of trace-class morphisms"
+    ],
+    [
+      "lem:Identity_Trace_Class",
+      "trace-class-identities-and-dualizability",
+      "Trace-class identities and dualizability"
+    ],
+    [
+      "lem:Trace_Class_Compact",
+      "trace-class-morphisms-are-compact",
+      "Trace-class morphisms are compact"
+    ],
+    [
+      "thm:Rigid_Trace_Class",
+      "rigidity-via-trace-class-morphisms",
+      "Rigidity via trace-class morphisms"
+    ],
+    [
+      "cor:Rigid_Functors_Strongly_Continuous",
+      "strong-continuity-of-rigid-monoidal-functors",
+      "Strong continuity of rigid monoidal functors"
+    ],
+    [
+      "rem:Strong_Continuity_From_Rigid_Source",
+      "strong-continuity-from-a-rigid-source",
+      "Strong continuity from a rigid source"
+    ],
+    [
+      "ex:Rigid_Compactly_Generated",
+      "compactly-generated-rigid-categories",
+      "Compactly generated rigid categories"
+    ],
+    [
+      "ex:Shv_Compact_Hausdorff_Rigid",
+      "rigidity-of-sheaves-on-compact-hausdorff-spaces",
+      "Rigidity of sheaves on compact Hausdorff spaces"
+    ],
+    [
+      "ex:Locally_Rigid_Sheaf_Categories",
+      "local-rigidity-of-sheaf-categories",
+      "Local rigidity of sheaf categories"
+    ],
+    [
+      "def:Nuclear",
+      "nuclear-and-basic-nuclear-objects",
+      "Nuclear and basic nuclear objects"
+    ],
+    [
+      "prop:Nuclear_Basics",
+      "basic-properties-of-nuclear-objects",
+      "Basic properties of nuclear objects"
+    ],
+    [
+      "prop:Nuclear_Rigid",
+      "nuclear-objects-and-rigidification",
+      "Nuclear objects and rigidification"
+    ],
+    [
+      "rem:Rigidification_Via_Idempotent_Ideals",
+      "rigidification-via-idempotent-ideals",
+      "Rigidification via idempotent ideals"
+    ],
+    [
+      "ex:Nuclear_Solid",
+      "nuclear-solid-modules-and-formal-schemes",
+      "Nuclear solid modules and formal schemes"
+    ],
+    [
+      "ex:Nuclear_Banach",
+      "banach-spaces-as-nuclear-modules",
+      "Banach spaces as nuclear modules"
+    ],
+    [
+      "ex:Nuclear_Liquid_Gaseous",
+      "liquid-and-gaseous-modules",
+      "Liquid and gaseous modules"
+    ],
+    [
+      "rem:Nuclear_Descent",
+      "descent-for-nuclear-modules",
+      "Descent for nuclear modules"
+    ],
+    [
+      "def:Kappa_Filtered",
+      "kappa-filtered-categories",
+      "κ-filtered categories"
+    ],
+    [
+      "def:Kappa_Compact",
+      "kappa-compact-objects",
+      "κ-compact objects"
+    ],
+    [
+      "thm:Filtered_Colimits_Commute_With_Small_Limits",
+      "commuting-filtered-colimits-and-small-limits",
+      "Commuting filtered colimits and small limits"
+    ],
+    [
+      "cor:Kappa_Small_Colimits_Of_Kappa_Compacts",
+      "closure-properties-of-kappa-compact-objects",
+      "Closure properties of κ-compact objects"
+    ],
+    [
+      "lem:Kappa_Filtered_Posets",
+      "kappa-filtered-posets",
+      "κ-filtered posets"
+    ],
+    [
+      "lem:Omega_1_Filtered_Via_Chains",
+      "omega-one-filtered-posets-via-chains",
+      "ω₁-filtered posets via chains"
+    ],
+    [
+      "lem:Cofinality_Posets",
+      "cofinal-maps-of-posets",
+      "Cofinal maps of posets"
+    ],
+    [
+      "thm:Filtered_Posets_Cofinal",
+      "cofinal-filtered-posets",
+      "Cofinal filtered posets"
+    ],
+    [
+      "prop:Colimits_Over_Countable_Subposets",
+      "colimits-over-countable-subposets",
+      "Colimits over countable subposets"
+    ],
+    [
+      "rem:Sequential_Diagrams",
+      "sequential-diagrams-and-their-coherences",
+      "Sequential diagrams and their coherences"
+    ],
+    [
+      "lem:Retract_As_Telescope",
+      "retracts-as-telescopes",
+      "Retracts as telescopes"
+    ],
+    [
+      "lem:Strictification_Sequential_Maps",
+      "strictifying-maps-of-sequential-ind-objects",
+      "Strictifying maps of sequential ind-objects"
+    ],
+    [
+      "prop:Omega_1_Compact_In_Ind",
+      "omega-one-compact-ind-objects",
+      "ω₁-compact ind-objects"
+    ],
+    [
+      "def:Ind_Kappa",
+      "kappa-ind-completion",
+      "κ-ind-completion"
+    ],
+    [
+      "thm:Ind_Kappa_Universal_Property",
+      "universal-property-of-kappa-ind-completion",
+      "The universal property of κ-ind-completion"
+    ],
+    [
+      "def:Accessible",
+      "accessible-and-presentable-categories",
+      "Accessible and presentable categories"
+    ],
+    [
+      "thm:Accessible_Recollections",
+      "recollections-on-accessible-categories",
+      "Recollections on accessible categories"
+    ],
+    [
+      "thm:Limits_Of_Accessible_Categories",
+      "limits-of-accessible-categories",
+      "Limits of accessible categories"
+    ],
+    [
+      "thm:Adjoint_Functor_Theorem",
+      "adjoint-functor-theorem",
+      "The adjoint functor theorem"
+    ],
+    [
+      "lem:Accessible_Objects_Lambda_Compact",
+      "every-object-is-eventually-compact",
+      "Every object is eventually compact"
+    ],
+    [
+      "constr:Ind_Large",
+      "ind-completion-of-large-categories",
+      "Ind-completion of large categories"
+    ],
+    [
+      "lem:Retract_Left_Adjoint",
+      "retracts-of-right-adjoints",
+      "Retracts of right adjoints"
+    ],
+    [
+      "constr:Mates",
+      "mates-of-natural-transformations",
+      "Mates of natural transformations"
+    ],
+    [
+      "lem:Conjugate_Transformations",
+      "conjugate-natural-transformations",
+      "Conjugate natural transformations"
+    ],
+    [
+      "lem:Mates_Conjugates",
+      "mates-and-conjugate-transformations",
+      "Mates and conjugate transformations"
+    ],
+    [
+      "lem:Adjoint_Triples",
+      "adjoint-triples",
+      "Adjoint triples"
+    ],
+    [
+      "prop:Strongly_Continuous_Via_Right_Adjoint",
+      "strong-continuity-via-right-adjoints",
+      "Strong continuity via right adjoints"
+    ],
+    [
+      "thm:Lurie_Tensor_Product",
+      "luries-tensor-product-of-presentable-categories",
+      "Lurie’s tensor product of presentable categories"
+    ],
+    [
+      "rem:Tensor_Product_Description",
+      "describing-the-presentable-tensor-product",
+      "Describing the presentable tensor product"
+    ],
+    [
+      "prop:Tensor_With_Ind",
+      "tensoring-with-ind-categories",
+      "Tensoring with ind-categories"
+    ],
+    [
+      "cor:Ind_As_Exact_Functors",
+      "ind-categories-as-exact-functors",
+      "Ind-categories as exact functors"
+    ],
+    [
+      "cor:Compactly_Generated_Dualizable",
+      "duality-of-compactly-generated-stable-categories",
+      "Duality of compactly generated stable categories"
+    ],
+    [
+      "rem:Tensor_With_Compactly_Generated",
+      "tensoring-with-a-compactly-generated-category",
+      "Tensoring with a compactly generated category"
+    ]
+  ],
+  "overview": "These notes study dualizable categories and Efimov’s extension of algebraic K-theory to large stable categories. They grew out of the research seminar at the University of Regensburg in the winter term 2026/27, with further material from lectures by Dustin Clausen and the Bonn workshop on dualizable categories and continuous K-theory.",
+  "chapters": [
+    {
+      "id": "introduction-and-overview",
+      "label": "chap:Introduction_And_Overview",
+      "source": "Chapters/01_Introduction.tex",
+      "title": "Introduction and overview",
+      "description": "The motivation for continuous K-theory, dualizable categories, and first computations.",
+      "sections": [
+        [
+          "sec:Why_Change_Input",
+          "why-change-the-input-of-k-theory",
+          "Structural explanations for pushforwards, descent, and additivity in K-theory."
+        ],
+        [
+          "sec:Small_Categories_Fall_Short",
+          "where-small-stable-categories-fall-short",
+          "Analytic spaces and compact operators as motivations for extending K-theory."
+        ],
+        [
+          "sec:Small_To_Large",
+          "from-small-to-large-categories",
+          "Dualizable categories as a replacement for compactly generated categories."
+        ],
+        [
+          "sec:Continuous_K_Theory_Intro",
+          "continuous-k-theory",
+          "Continuous extensions of localizing invariants and their universal property."
+        ],
+        [
+          "sec:First_Computations",
+          "first-computations",
+          "Continuous K-theory of sheaves, compact operators, and nuclear modules."
+        ],
+        [
+          "sec:Overview",
+          "overview-of-the-notes",
+          "The topics developed in the remaining chapters."
+        ]
+      ]
+    },
+    {
+      "id": "stable-categories-and-localization-sequences",
+      "label": "chap:Localization_Sequences",
+      "source": "Chapters/02_Localization_Sequences.tex",
+      "description": "Verdier quotients, localization sequences, semiorthogonal decompositions, and localizing invariants.",
+      "sections": [
+        [
+          "sec:Verdier_Sequences",
+          "verdier-sequences",
+          "Verdier quotients and their kernels."
+        ],
+        [
+          "sec:Karoubi_Sequences",
+          "idempotent-completion-and-short-exact-sequences",
+          "Idempotent completion, Karoubi quotients, and short exact sequences."
+        ],
+        [
+          "sec:Localization_Sequences_PrL",
+          "presentable-localization-sequences",
+          "Localization sequences of presentable stable categories and the Thomason–Neeman theorem."
+        ],
+        [
+          "sec:Semiorthogonal_Decompositions",
+          "semiorthogonal-decompositions",
+          "Semiorthogonal decompositions and split localization sequences."
+        ],
+        [
+          "sec:Calkin_Small",
+          "calkin-categories",
+          "Calkin categories and their mapping spectra."
+        ],
+        [
+          "sec:Localizing_Invariants",
+          "localizing-invariants",
+          "Localizing invariants, algebraic K-theory, and excision."
+        ]
+      ],
+      "title": "Stable categories and localization sequences"
+    },
+    {
+      "id": "compactly-assembled-and-dualizable-categories",
+      "label": "chap:Compactly_Assembled_Dualizable",
+      "source": "Chapters/03_Dualizable_Categories.tex",
+      "title": "Compactly assembled and dualizable categories",
+      "description": "Compact assembly, compact morphisms, Lurie’s characterization, and ω₁-presentability.",
+      "sections": [
+        [
+          "sec:Compactly_Assembled",
+          "compactly-assembled-categories",
+          "Finest presentations, compact morphisms, and retracts of compactly generated categories."
+        ],
+        [
+          "sec:Dualizable_Categories",
+          "dualizable-categories",
+          "Duality for presentable stable categories and Lurie’s characterization."
+        ],
+        [
+          "sec:Localization_Sequences_Dualizable",
+          "localization-sequences-of-dualizable-categories",
+          "Dualizability in localization sequences and the role of Tate objects in extensions."
+        ],
+        [
+          "sec:Omega_1_Presentability",
+          "omega-one-presentability",
+          "ω₁-compact objects as sequential colimits along compact morphisms.",
+          "ω₁-presentability"
+        ]
+      ]
+    },
+    {
+      "id": "examples-of-dualizable-categories",
+      "label": "chap:Examples",
+      "source": "Chapters/04_Examples.tex",
+      "title": "Examples of dualizable categories",
+      "description": "Homological epimorphisms, almost modules, continuous posets, rigid categories, and nuclear modules.",
+      "sections": [
+        [
+          "sec:Homological_Epimorphisms",
+          "kernels-of-homological-epimorphisms",
+          "Kernels of homological epimorphisms and their continuous K-theory."
+        ],
+        [
+          "sec:Almost_Ring_Theory",
+          "almost-ring-theory",
+          "Derived almost module categories and examples without nonzero compact objects."
+        ],
+        [
+          "sec:Continuous_Posets",
+          "continuous-posets",
+          "Ind-completion, the way-below relation, and examples of continuous posets."
+        ],
+        [
+          "sec:Rigid_Categories",
+          "rigid-symmetric-monoidal-categories",
+          "Rigidity, self-duality, and trace-class morphisms."
+        ],
+        [
+          "sec:Nuclear_Modules",
+          "nuclear-modules-and-condensed-mathematics",
+          "Nuclear objects, rigidification, and solid, liquid, and gaseous modules."
+        ]
+      ]
+    },
+    {
+      "id": "categorical-background",
+      "label": "app:Categorical_Background",
+      "source": "Chapters/A_Categorical_Background.tex",
+      "appendix": true,
+      "title": "Categorical background",
+      "description": "Filtered categories, accessibility, idempotent completeness, mates, and presentable tensor products.",
+      "sections": [
+        [
+          "sec:Filtered_Categories",
+          "filtered-categories",
+          "Filtered colimits, compactness, cofinal posets, and sequential ind-objects.",
+          "Filtered and κ-filtered categories"
+        ],
+        [
+          "sec:Accessible_Presentable",
+          "accessible-and-presentable-categories",
+          "Ind-completion, accessibility, presentability, and the adjoint functor theorem."
+        ],
+        [
+          "sec:Idempotent_Completeness",
+          "idempotent-completeness",
+          "Idempotent completion and retracts of right adjoints."
+        ],
+        [
+          "sec:Mates",
+          "mates",
+          "Mates, conjugate transformations, adjoint triples, and strong continuity."
+        ],
+        [
+          "sec:PrL_Tensor_Products",
+          "tensor-products-of-presentable-categories",
+          "Lurie’s tensor product and duality for compactly generated stable categories."
+        ]
+      ]
+    }
+  ],
+  "plannedChapters": [
+    [
+      "chap:Compact_Morphisms_AB6",
+      "Compact morphisms and the axiom (AB6)",
+      "Chapters/05_Compact_Morphisms.tex"
+    ],
+    [
+      "chap:Calkin_Limits_Colimits",
+      "Calkin categories, colimits and limits of dualizable categories",
+      "Chapters/06_Calkin_Limits_Colimits.tex"
+    ],
+    [
+      "chap:Flatness",
+      "Dualizability and flatness",
+      "Chapters/07_Flatness.tex"
+    ],
+    [
+      "chap:Localizing_Invariants_Dualizable",
+      "Localizing invariants of dualizable categories",
+      "Chapters/08_Localizing_Invariants.tex"
+    ],
+    [
+      "chap:Sheaves",
+      "Sheaves on continuous posets and locally compact Hausdorff spaces",
+      "Chapters/09_Sheaves.tex"
+    ],
+    [
+      "chap:Aleph_1_Presentability",
+      "ℵ₁-presentability of Prᵈᵘᵃˡ",
+      "Chapters/10_Aleph_1_Presentability.tex"
+    ]
+  ]
+}

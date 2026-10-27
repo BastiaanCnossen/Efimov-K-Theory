@@ -1,0 +1,113 @@
+\documentclass[11pt]{book}
+
+\input{preamble}
+\input{web/proof-ownership}
+
+\usepackage{float}
+\usepackage{etoolbox}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+	\pagenumbering{roman}
+
+	\title{Efimov K-theory\\ \vspace{10pt}
+	\Large University of Regensburg, Winter term 2026/27}
+	\author{\large Lecturer: Marc Hoyois \\ Note-taker: Bastiaan Cnossen}
+
+	\maketitle
+
+	%	\newgeometry{top=1in,bottom=1in,left=1.5in,right=1.5in,headsep=1.5cm,marginparwidth=1.25in}
+	\newgeometry{left=1.3in,right=1.2in, top=3.8cm, headsep=1.3cm}
+
+
+
+	\begin{KeepFromToc}
+		\tableofcontents
+	\end{KeepFromToc}
+
+	\titlespacing*{\chapter}{0pt}{20pt}{15pt}
+
+	\chapter*{Preface}
+
+	These notes grew out of the research seminar on Efimov K-theory organized by Marc Hoyois at the University of Regensburg in the winter term 2026/27. They are organized by topic rather than by talk, and will also incorporate material from the workshop \emph{Dualizable categories and continuous K-theory} (MPIM Bonn, September 2024) and from lectures by Dustin Clausen (July 2023). The following table records the sources of the individual chapters. Material listed under ``literature'' was not covered in any of the lectures; it was drafted with the help of generative AI based on the references indicated. Moreover, proofs that were only sketched or omitted in the lectures have frequently been completed in the same way. See the section on the use of generative AI below for details.
+
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{p{0.15\textwidth}p{0.42\textwidth}p{0.33\textwidth}}
+			\toprule
+			Chapter & Lectures & Literature \\
+			\midrule
+			\Cref{chap:Introduction_And_Overview} & Talk 1 (Marc Hoyois, 13.10.2026); Dustin Clausen, Lectures 1--3 (17.--19.07.2023) & -- \\
+			\addlinespace
+			\Cref{chap:Localization_Sequences} & Talk 1 (Marc Hoyois, 13.10.2026): parts of \Cref{sec:Localization_Sequences_PrL,sec:Localizing_Invariants}; Akhil Mathew, Lecture 1, MPIM Bonn (09.09.2024): \Cref{sec:Calkin_Small}, and parts of \Cref{sec:Karoubi_Sequences,sec:Localization_Sequences_PrL,sec:Semiorthogonal_Decompositions,sec:Localizing_Invariants} & \Cref{sec:Verdier_Sequences}, and most of \Cref{sec:Karoubi_Sequences,sec:Localization_Sequences_PrL,sec:Semiorthogonal_Decompositions} \cite{NikolausScholze2018Cyclic, Hermitian_II, lurie2009HTT, Efimov_Large_Categories}; proof of \Cref{thm:Tamme_Excision} \\
+			\addlinespace
+			\Cref{chap:Compactly_Assembled_Dualizable} & Talk 2 (Marc Hoyois, 20.10.2026); Akhil Mathew, Lecture 2, MPIM Bonn (09.09.2024): parts of \Cref{sec:Dualizable_Categories,sec:Omega_1_Presentability}; Dustin Clausen, Lectures 1--2 (17.--18.07.2023): parts of \Cref{sec:Localization_Sequences_Dualizable,sec:Omega_1_Presentability}; Alexander Efimov, Lecture 4, MPIM Bonn (10.09.2024): parts of \Cref{sec:Localization_Sequences_Dualizable} & \Cref{ex:Continuous_Posets} \cite{Johnstone_Joyal_Continuous_Categories, Gierz_Continuous_Lattices}; proofs of \Cref{prop:Strongly_Continuous_Compact_Morphisms,prop:Extension_Dualizable_Tate} and of \Cref{ex:Extension_Not_Dualizable} \cite{Efimov_Large_Categories, Hennion_Tate} \\
+			\addlinespace
+			\Cref{chap:Examples} & Talk 3 (Max Glaser, 27.10.2026); Dustin Clausen, Lectures 2--3 (18.--19.07.2023): parts of \Cref{sec:Homological_Epimorphisms,sec:Rigid_Categories,sec:Nuclear_Modules}; Akhil Mathew, Lecture 3, MPIM Bonn (10.09.2024): parts of \Cref{sec:Homological_Epimorphisms,sec:Continuous_Posets} & \Cref{prop:Every_Dualizable_Kernel}; proofs in \Cref{sec:Almost_Ring_Theory,sec:Continuous_Posets}, and most of \Cref{sec:Rigid_Categories,sec:Nuclear_Modules} \cite{GaitsgoryRozenbluym2017StudyDAG, Ramzi_Locally_Rigid, Efimov_Inverse_Limits, Scholze_Analytic_Geometry, Andreychev_Thesis} \\
+			\addlinespace
+			\Cref{app:Categorical_Background} & Talk 2 (Marc Hoyois, 20.10.2026): parts of \Cref{sec:Idempotent_Completeness,sec:PrL_Tensor_Products} & \Cref{sec:Filtered_Categories,sec:Accessible_Presentable,sec:Mates}, and most of \Cref{sec:Idempotent_Completeness,sec:PrL_Tensor_Products} \cite{lurie2009HTT, lurie2016HA, KellyStreet1974Mates, Riehl_Verity} \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+
+	\chapter*{Acknowledgments}
+	% \addcontentsline{toc}{chapter}{Acknowledgments}
+	% \addtocontents{toc}{\vskip 15pt}
+
+	% TODO
+
+	\begingroup
+	\let\clearpage\relax
+	\let\cleardoublepage\relax
+	\chapter*{Use of generative AI}
+	% TODO
+	\endgroup
+
+	\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+
+	\restoregeometry
+	\openany
+
+	\mainmatter
+	\pagestyle{plain}
+	\setcounter{secnumdepth}{2}
+	\input{Chapters/01_Introduction}
+
+	\input{Chapters/02_Localization_Sequences}
+
+	\input{Chapters/03_Dualizable_Categories}
+
+	\input{Chapters/04_Examples}
+
+	\input{Chapters/05_Compact_Morphisms}
+
+	\input{Chapters/06_Calkin_Limits_Colimits}
+
+	\input{Chapters/07_Flatness}
+
+	\input{Chapters/08_Localizing_Invariants}
+
+	\input{Chapters/09_Sheaves}
+
+	\input{Chapters/10_Aleph_1_Presentability}
+
+	\appendix
+
+	\titleformat{\chapter}{\normalfont\huge\bfseries}{\Alph{chapter}}{20pt}{\Huge}
+	\titleformat{\section}{\Large\bfseries}{\Alph{chapter}.\arabic{section}}{10pt}{\Large}
+	\titleformat{\subsection}{\large\bfseries}{\Alph{chapter}.\arabic{section}.\arabic{subsection}}{6pt}{\large}
+	\titleformat{\subsubsection}{\large\bfseries}{}{6pt}{\large}
+	\addtocontents{toc}{\vskip 15pt}
+	\renewcommand{\thechapter}{\Alph{chapter}}
+	\renewcommand{\thesection}{\Alph{chapter}.\arabic{section}}
+	\renewcommand{\thesubsection}{\Alph{chapter}.\arabic{section}.\arabic{subsection}}
+	\renewcommand{\thetheorem}{\Alph{chapter}.\arabic{theorem}}
+
+	\input{Chapters/A_Categorical_Background}
+
+	\addtocontents{toc}{\vskip 10pt}
+%	\addcontentsline{toc}{chapter}{Bibliography}
+	\printbibliography[heading=bibintoc]
+
+\end{document}

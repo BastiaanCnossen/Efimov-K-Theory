@@ -1,0 +1,540 @@
+% Theorem numbers for Efimov_Large_Categories refer to arXiv:2405.12169v4.
+	\chapter{Stable categories and localization sequences}
+	\label[chapter]{chap:Localization_Sequences}
+
+	In this chapter we collect the basic theory of localization sequences, both for small stable categories and for presentable stable categories, and introduce localizing invariants. Throughout, we denote by $\Cat_{\st}$ the category of small stable categories and exact functors, and by $\Cat_{\perf} \subseteq \Cat_{\st}$ the full subcategory of idempotent complete ones (this category is denoted $\Cat^{\perf}$ in \cite{BGT2013Universal, Efimov_Large_Categories}). For a stable category $B$ we write $\hom_B(x,y) \in \Sp$ for the mapping spectra. A full subcategory of a stable category is called \emph{stable} if it contains $0$ and is closed under fibers and cofibers, and \emph{thick} if it is moreover closed under retracts.
+
+	\section{Verdier sequences}
+	\label[section]{sec:Verdier_Sequences}
+
+	% Source: written from the literature (Nikolaus--Scholze, Hermitian K-theory II)
+
+	The basic construction of this chapter is the quotient of a small stable category $B$ by a stable subcategory $A$, obtained by forcing the objects of $A$ to become zero. In the setting of stable categories this is simply a localization in the sense of Dwyer--Kan, and the following theorem shows that it behaves just like Verdier's classical quotient of triangulated categories: it is again stable, it has the expected universal property, and its mapping spectra are computed by a colimit over $A$. We then introduce the corresponding notion of exact sequence, the Verdier sequences.
+
+	\begin{theorem}[{\cite[Theorem~I.3.3]{NikolausScholze2018Cyclic}}]
+		\label[theorem]{thm:Verdier_Quotient}
+		Let $B$ be a small stable category and $A \subseteq B$ a full stable subcategory. Let $W_A$ be the class of morphisms of $B$ whose cofiber lies in $A$, and let $q\colon B \to B/A := B[W_A^{-1}]$ be the localization. Then:
+		\begin{enumerate}
+			\item The category $B/A$ is stable and $q$ is exact.
+			\item For every stable category $E$, restriction along $q$ induces an equivalence between $\Fun^{\ex}(B/A,E)$ and the full subcategory of $\Fun^{\ex}(B,E)$ spanned by the functors that vanish on $A$.
+			\item For $x,y \in B$, the category $A_{/y}$ is filtered and
+			\[
+				\Map_{B/A}(qx,qy) \simeq \colim_{(a \to y) \in A_{/y}} \Map_B\big(x,\cofib(a \to y)\big).
+			\]
+		\end{enumerate}
+		The category $B/A$ is called the \emph{Verdier quotient} of $B$ by $A$.
+	\end{theorem}
+
+	Note that $q$ is essentially surjective, being a localization. Moreover, part (2) says that $B \to B/A$ is the cofiber of $A \hookrightarrow B$ in $\Cat_{\st}$. Indeed, for a stable category $E$, exact functors out of the pushout $0 \sqcup_A B$ in $\Cat_{\st}$ are given by
+	\[
+		\Fun^{\ex}(B,E) \times_{\Fun^{\ex}(A,E)} \{0\},
+	\]
+	the category of exact functors $F\colon B \to E$ together with an equivalence $F|_A \simeq 0$. Since $0$ is a zero object of $\Fun^{\ex}(A,E)$, the space of such equivalences is either empty or contractible, so this is the full subcategory of $\Fun^{\ex}(B,E)$ spanned by the functors vanishing on $A$.
+
+	\begin{lemma}
+		\label[lemma]{lem:Kernel_Verdier_Quotient}
+		In the situation of \Cref{thm:Verdier_Quotient}, the kernel of $q\colon B \to B/A$ is the thick closure of $A$ in $B$, i.e.\ the full subcategory of retracts of objects of $A$. In particular, $B/A \simeq B/\bar{A}$, where $\bar{A}$ is the thick closure of $A$.
+	\end{lemma}
+	\prooffor{lem:Kernel_Verdier_Quotient}
+	\begin{proof}
+		Since $q$ is exact, its kernel is a thick subcategory of $B$, and it contains $A$ since $0 \to a$ lies in $W_A$ for $a \in A$. Conversely, let $x \in B$ with $q(x) \simeq 0$. Then $\id_{qx}$ is nullhomotopic, so by \Cref{thm:Verdier_Quotient}(3) (applied with $y = x$) there exists $a \to x$ with $a \in A$ such that the canonical map $x \to c := \cofib(a \to x)$ is nullhomotopic. Since $a \simeq \fib(x \to c)$ and the fiber of a nullhomotopic map $x \to c$ is $x \oplus \Omega c$, it follows that $x$ is a retract of $a$. This shows that the kernel of $q$ consists of retracts of objects of $A$, and every retract of an object of $A$ lies in the thick subcategory $\ker(q)$. The last statement follows from the universal property \Cref{thm:Verdier_Quotient}(2), since an exact functor vanishes on $A$ if and only if it vanishes on $\bar{A}$.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Nullhomotopies_Property}
+		Let $F\colon B \to C$ be a functor into a pointed category $C$. Since the constant functor $0$ with value a zero object is a terminal object of $\Fun(B,C)$, the space of natural transformations $F \to 0$ is contractible. Hence the space of equivalences $F \simeq 0$ is either empty or contractible, and it is non-empty if and only if $F$ sends every object to a zero object. So for a composable pair $A \xrightarrow{i} B \xrightarrow{p} C$ of functors between pointed categories, a nullhomotopy $pi \simeq 0$ is unique if it exists, and its existence is a \emph{property} of the pair $(i,p)$. We will therefore write ``$pi \simeq 0$'' as a condition throughout, without specifying a nullhomotopy.
+	\end{remark}
+
+	\begin{definition}
+		\label[definition]{def:Verdier_Sequence}
+		A sequence $A \xrightarrow{i} B \xrightarrow{p} C$ in $\Cat_{\st}$ with $pi \simeq 0$ is called a \emph{Verdier sequence} if it is both a fiber sequence and a cofiber sequence in $\Cat_{\st}$. Explicitly, this means that $i$ is fully faithful with essential image $\ker(p)$, and that the induced functor $B/A \to C$ is an equivalence. In this case $p$ is called a \emph{Verdier projection}.
+	\end{definition}
+
+	By \Cref{lem:Kernel_Verdier_Quotient}, for every full stable subcategory $A \subseteq B$ the sequence $\bar{A} \hookrightarrow B \to B/A$ is a Verdier sequence. See \cite[Lemma~A.1.8 and Proposition~A.1.9]{Hermitian_II} for a detailed discussion of Verdier sequences.
+
+	\section{Idempotent completion and short exact sequences}
+	\label[section]{sec:Karoubi_Sequences}
+
+	% Source: written from the literature (Lurie HA, Efimov, Hermitian K-theory II); Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+
+	Every small stable category $A$ admits an idempotent completion $A \hookrightarrow A^{\idem}$, which is again stable \cite[Corollary~1.1.3.7]{lurie2016HA}; it is fully faithful and every object of $A^{\idem}$ is a retract of an object of $A$, and $A \mapsto A^{\idem}$ is left adjoint to the inclusion $\Cat_{\perf} \subseteq \Cat_{\st}$ (see \Cref{sec:Idempotent_Completeness}). In particular, cofibers in $\Cat_{\perf}$ are computed as $(B/A)^{\idem}$.
+
+	\begin{definition}
+		\label[definition]{def:Short_Exact_Sequence}
+		A sequence $A \xrightarrow{i} B \xrightarrow{p} C$ in $\Cat_{\perf}$ with $pi \simeq 0$ is called a \emph{short exact sequence} (or \emph{Karoubi sequence}) if it is both a fiber sequence and a cofiber sequence in $\Cat_{\perf}$. Explicitly, this means that $i$ is fully faithful with essential image $\ker(p)$, and that the induced functor $(B/A)^{\idem} \to C$ is an equivalence. In this case $p$ is called a \emph{Karoubi projection}.
+	\end{definition}
+
+	We follow \cite{Efimov_Large_Categories} in calling these short exact sequences; the term Karoubi sequence is used in \cite{Hermitian_II}.
+
+	\begin{lemma}
+		\label[lemma]{lem:Characterization_Short_Exact}
+		A sequence $A \xrightarrow{i} B \xrightarrow{p} C$ in $\Cat_{\perf}$ with $pi \simeq 0$ is short exact if and only if $i$ is fully faithful with essential image $\ker(p)$, the induced functor $B/A \to C$ is fully faithful, and every object of $C$ is a retract of an object in the image of $p$.
+	\end{lemma}
+	\prooffor{lem:Characterization_Short_Exact}
+	\begin{proof}
+		The functor $\bar{p}\colon B/A \to C$ factors as $B/A \hookrightarrow (B/A)^{\idem} \to C$. If $\bar{p}$ is fully faithful, then so is $(B/A)^{\idem} \to C$, since mapping spaces between retracts of objects are retracts of mapping spaces between those objects. If moreover every object of $C$ is a retract of an object $p(b) = \bar{p}(qb)$, then $(B/A)^{\idem} \to C$ is essentially surjective since $(B/A)^{\idem}$ is idempotent complete. Conversely, if $(B/A)^{\idem} \to C$ is an equivalence, then $\bar{p}$ is fully faithful and every object of $C$ is a retract of an object of $B/A$, and hence of an object $p(b)$, as $q$ is essentially surjective.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Verdier_Vs_Karoubi}
+		Every Verdier sequence between idempotent complete categories is short exact. The converse fails whenever $A \subseteq B$ is a thick subcategory such that the Verdier quotient $B/A$ is not idempotent complete: then $A \to B \to (B/A)^{\idem}$ is short exact but not a Verdier sequence.
+	\end{remark}
+
+	% Source: Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+	\begin{remark}
+		\label[remark]{rem:Mapping_Spectra_Quotient}
+		Let $A \subseteq B$ be a full stable subcategory with quotient functor $q\colon B \to B/A$. Applying \Cref{thm:Verdier_Quotient}(3) to all shifts of $x$, and using that the colimit is filtered and hence commutes with cofibers, we obtain the following formula for the mapping spectra:
+		\begin{align*}
+			\hom_{B/A}(qx,qy) &\simeq \colim_{(a \to y) \in A_{/y}} \hom_B\big(x,\cofib(a \to y)\big) \\
+			&\simeq \cofib\Big(\colim_{(a \to y) \in A_{/y}} \hom_B(x,a) \to \hom_B(x,y)\Big).
+		\end{align*}
+		Since $B/A \to (B/A)^{\idem}$ is fully faithful, the same formula computes mapping spectra in the idempotent complete quotient.
+	\end{remark}
+
+	\begin{remark}
+		\label[remark]{rem:Lifting_Objects_Quotient}
+		In a short exact sequence $A \to B \xrightarrow{p} C$, the functor $p$ need not be essentially surjective: in general, objects of $C$ are only retracts of objects in the image of $p$. It is possible to say precisely which objects lift. By Thomason's classification of dense subcategories \cite{Thomason_Classification}, the essential image of the dense subcategory $B/A \subseteq C$ consists precisely of those objects $c \in C$ whose class $[c] \in K_0(C)$ lies in the image of $K_0(B) \to K_0(C)$. For example, $c \oplus \Sigma c$ always lifts to $B$, since $[c \oplus \Sigma c] = [c] - [c] = 0$.
+	\end{remark}
+
+	\begin{example}[{Thomason--Trobaugh, \cite{Thomason_Trobaugh}}]
+		\label[example]{ex:Thomason_Trobaugh_Sequence}
+		Let $X$ be a qcqs scheme and $U \subseteq X$ a quasi-compact open subscheme with closed complement $Z$. Then
+		\[
+			\Perf_Z(X) \hookrightarrow \Perf(X) \to \Perf(U)
+		\]
+		is a short exact sequence, where $\Perf_Z(X)$ denotes the perfect complexes on $X$ whose restriction to $U$ vanishes. In general, the restriction functor $\Perf(X) \to \Perf(U)$ is not essentially surjective; by \Cref{rem:Lifting_Objects_Quotient}, a perfect complex on $U$ extends to $X$ if and only if its class in $K_0(U)$ extends.
+	\end{example}
+
+	\section{Localization sequences of presentable stable categories}
+	\label[section]{sec:Localization_Sequences_PrL}
+
+	% Source: written from the literature (Lurie HTT, Efimov, Thomason--Neeman); Mathew, Lecture 1 (MPIM Bonn, 09.09.2024); Talk 1 (Marc Hoyois, 13.10.2026)
+
+	We now turn to large categories. Recall that $\PrL_{\st}$ denotes the category of presentable stable categories and colimit-preserving functors. A colimit-preserving functor $F\colon D \to E$ between presentable categories has a right adjoint $F^R$ (\Cref{thm:Adjoint_Functor_Theorem}); recall that $F$ is called \emph{strongly continuous} if $F^R$ again preserves colimits. We denote by $\Pr^{\mathrm{LL}}_{\st} \subseteq \PrL_{\st}$ the subcategory with the same objects and strongly continuous functors.
+
+	\begin{definition}
+		\label[definition]{def:Localization_Sequence_PrL}
+		A sequence $K \xrightarrow{i} D \xrightarrow{p} E$ in $\PrL_{\st}$ with $pi \simeq 0$ is called a \emph{localization sequence} if $i$ is fully faithful with essential image $\ker(p)$ and $p$ is a \emph{localization}, i.e.\ its right adjoint $p^R$ is fully faithful. It is called \emph{strongly continuous} if moreover $i$ and $p$ are strongly continuous.
+	\end{definition}
+
+	For a full subcategory $K \subseteq D$ we write $K^{\perp} = \{x \in D \mid \Map_D(k,x) \simeq * \text{ for all } k \in K\}$ for its right orthogonal.
+
+	\begin{proposition}
+		\label[proposition]{prop:Localization_Sequences_PrL}
+		\leavevmode
+		\begin{enumerate}
+			\item Let $D$ be a presentable stable category and $K \subseteq D$ a full stable subcategory which is closed under colimits and presentable. Then the inclusion $i\colon K \hookrightarrow D$ has a right adjoint $i^R$, the full subcategory $K^{\perp} \subseteq D$ is presentable, its inclusion admits a left adjoint $L\colon D \to K^{\perp}$ given by
+			\[
+				L(x) = \cofib(ii^R x \to x),
+			\]
+			and $K \xrightarrow{i} D \xrightarrow{L} K^{\perp}$ is a localization sequence. It is both a fiber sequence and a cofiber sequence in $\PrL_{\st}$.
+			\item Conversely, let $K \xrightarrow{i} D \xrightarrow{p} E$ be a localization sequence. Then $p^R$ induces an equivalence $E \simeq K^{\perp}$ under which $p$ corresponds to $L$, and there is a natural cofiber sequence
+			\[
+				ii^R \to \id_D \to p^Rp.
+			\]
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Localization_Sequences_PrL}
+	\begin{proof}
+		(1) The inclusion $i$ preserves colimits, so it has a right adjoint by \Cref{thm:Adjoint_Functor_Theorem}. Define $L(x) = \cofib(ii^Rx \to x)$, using the counit. For $k \in K$, the map $\hom_D(k,ii^Rx) \to \hom_D(k,x)$ is an equivalence since $i$ is fully faithful, so $\hom_D(k,L(x)) \simeq 0$; that is, $L(x) \in K^{\perp}$. For $y \in K^{\perp}$, applying $\hom_D(-,y)$ to the cofiber sequence $ii^Rx \to x \to L(x)$ shows that $\hom_D(L(x),y) \to \hom_D(x,y)$ is an equivalence, since $\hom_D(ii^Rx,y) \simeq 0$. Hence $L\colon D \to K^{\perp}$ is left adjoint to the inclusion $K^{\perp} \subseteq D$, with unit $x \to L(x)$. The functor $L$ is accessible since $i^R$ is (being a right adjoint between presentable categories), so $K^{\perp}$ is presentable \cite[Section~5.5.4]{lurie2009HTT}. Since its right adjoint is fully faithful, $L$ is a localization, and $L(x) \simeq 0$ if and only if $ii^Rx \to x$ is an equivalence, if and only if $x \in K$. This shows that $K \to D \to K^{\perp}$ is a localization sequence. It is a fiber sequence in $\PrL_{\st}$ since limits in $\PrL$ are computed in $\widehat{\Cat}$. For the cofiber sequence, let $F\colon D \to E$ be a colimit-preserving functor to a presentable stable category $E$. Since $L$ is a localization, restriction along $L$ identifies $\Fun^{\colim}(K^{\perp},E)$ with the full subcategory of $\Fun^{\colim}(D,E)$ of functors inverting the maps $x \to x'$ with $L(x) \simeq L(x')$. Since $L$ is exact, these are precisely the maps whose fiber lies in $\ker(L) = K$, and an exact functor inverts all such maps if and only if it vanishes on $K$. This is precisely the universal property of the cofiber of $i$ in $\PrL_{\st}$.
+
+		(2) Since $p^R$ is fully faithful and $\Map_D(k,p^Re) \simeq \Map_E(pk,e) \simeq *$ for $k \in K$, the functor $p^R$ lands in $K^{\perp}$. Conversely, let $x \in K^{\perp}$ and let $f \to x \to p^Rp(x)$ be the fiber sequence of the unit. As $pp^R \simeq \id$, we have $p(f) \simeq 0$, so $f \in K$. Then $\hom_D(f,x) \simeq 0$ and $\hom_D(f,p^Rpx) \simeq \hom_E(pf,px) \simeq 0$, so $\hom_D(f,f) \simeq 0$ and hence $f \simeq 0$. So $x \simeq p^Rp(x)$, which shows that $p^R$ induces an equivalence $E \simeq K^{\perp}$. Under this equivalence, $p$ is identified with the left adjoint $L$ of the inclusion $K^{\perp} \subseteq D$, and the unit $x \to p^Rp(x) = L(x)$ is the cofiber of $ii^Rx \to x$ by (1).
+	\end{proof}
+
+	\begin{lemma}
+		\label[lemma]{lem:Strong_Continuity_Localization_Sequence}
+		Let $K \xrightarrow{i} D \xrightarrow{p} E$ be a localization sequence. Then $i^R$ preserves colimits if and only if $p^R$ preserves colimits. In particular, the sequence is strongly continuous as soon as $i$ or $p$ is strongly continuous.
+	\end{lemma}
+	\prooffor{lem:Strong_Continuity_Localization_Sequence}
+	\begin{proof}
+		Since $i$ is fully faithful and preserves colimits, $i^R$ preserves colimits if and only if $ii^R$ does: indeed, for a diagram $(x_j)$ the map $i(\colim_j i^Rx_j) \simeq \colim_j ii^Rx_j \to ii^R(\colim_j x_j)$ is the image under $i$ of the comparison map for $i^R$. Similarly, $p^R$ preserves colimits if and only if $p^Rp$ does: if $p^Rp$ preserves colimits and $(e_j)$ is a diagram in $E$, then $\colim_j e_j \simeq p(\colim_j p^Re_j)$, so $p^R(\colim_j e_j) \simeq p^Rp(\colim_j p^Re_j) \simeq \colim_j p^Rpp^Re_j \simeq \colim_j p^Re_j$. Finally, by \Cref{prop:Localization_Sequences_PrL}(2) there is a cofiber sequence of exact functors $ii^R \to \id \to p^Rp$, so $ii^R$ preserves colimits if and only if $p^Rp$ does.
+	\end{proof}
+
+	Recall that a presentable stable category $E$ is \emph{compactly generated} if $E \simeq \Ind(E^{\omega})$, equivalently if there is a set $G$ of compact objects of $E$ such that an object $e \in E$ with $\hom_E(g,e) \simeq 0$ for all $g \in G$ is zero.
+
+	\begin{lemma}
+		\label[lemma]{lem:Compact_Generators_Thick_Closure}
+		Let $E$ be a presentable stable category and $G \subseteq E^{\omega}$ a set of compact objects such that $\hom_E(g,e) \simeq 0$ for all $g \in G$ implies $e \simeq 0$. Then $E^{\omega}$ is the thick closure of $G$, and $E \simeq \Ind(E^{\omega})$.
+	\end{lemma}
+	\prooffor{lem:Compact_Generators_Thick_Closure}
+	\begin{proof}
+		Let $T \subseteq E^{\omega}$ be the thick closure of $G$; it is essentially small. The functor $\Ind(T) \to E$ extending the inclusion is fully faithful since $T$ consists of compact objects, and its essential image is closed under colimits since $T$ is closed under finite colimits \cite[Section~5.3.5]{lurie2009HTT}. Its right adjoint is conservative: if $\hom_E(t,e) \simeq 0$ for all $t \in T$ then $e \simeq 0$ by assumption. Hence $\Ind(T) \simeq E$. Since $T$ is idempotent complete, the compact objects of $\Ind(T)$ are precisely the objects of $T$ (\Cref{thm:Accessible_Recollections}(1)), so $E^{\omega} = T$.
+	\end{proof}
+
+	\begin{lemma}
+		\label[lemma]{lem:Compact_Objects_Localization_Sequence}
+		Let $K \xrightarrow{i} D \xrightarrow{p} E$ be a strongly continuous localization sequence. Then $i$ and $p$ preserve compact objects, and $K^{\omega} = K \cap D^{\omega}$. If $D$ is compactly generated, then so is $E$, and $E^{\omega}$ is the thick closure of $p(D^{\omega})$.
+	\end{lemma}
+	\prooffor{lem:Compact_Objects_Localization_Sequence}
+	\begin{proof}
+		A colimit-preserving functor whose right adjoint preserves filtered colimits preserves compact objects. If $k \in K$ is compact in $D$, then it is compact in $K$ since $i$ is fully faithful and preserves colimits. If $D$ is compactly generated and $e \in E$ satisfies $\hom_E(p(d),e) \simeq \hom_D(d,p^Re) \simeq 0$ for all $d \in D^{\omega}$, then $p^Re \simeq 0$ and hence $e \simeq pp^Re \simeq 0$. The claim follows from \Cref{lem:Compact_Generators_Thick_Closure}.
+	\end{proof}
+
+	\begin{definition}[{\cite[Definition~1.9]{Efimov_Large_Categories}}]
+		\label[definition]{def:Homological_Epimorphism}
+		A functor $f\colon A \to B$ in $\Cat_{\perf}$ is called a \emph{homological epimorphism} if $\Ind(f)\colon \Ind(A) \to \Ind(B)$ is a localization, i.e.\ its right adjoint is fully faithful.
+	\end{definition}
+
+	\begin{theorem}[Thomason--Neeman]
+		\label[theorem]{thm:Thomason_Neeman}
+		\leavevmode
+		\begin{enumerate}
+			\item If $A \xrightarrow{i} B \xrightarrow{p} C$ is a short exact sequence in $\Cat_{\perf}$, then $\Ind(A) \to \Ind(B) \to \Ind(C)$ is a strongly continuous localization sequence. In particular, every Karoubi projection is a homological epimorphism.
+			\item Conversely, if $K \xrightarrow{i} D \xrightarrow{p} E$ is a strongly continuous localization sequence in which $K$ and $D$ are compactly generated, then $E$ is compactly generated and $K^{\omega} \to D^{\omega} \to E^{\omega}$ is a short exact sequence.
+		\end{enumerate}
+	\end{theorem}
+	\prooffor{thm:Thomason_Neeman}
+	\begin{proof}
+		(1) The functor $\Ind(i)$ is fully faithful, as mapping spaces between ind-objects are computed by the formula of \Cref{constr:Ind_Large}. Its essential image $K \subseteq \Ind(B)$ is closed under colimits and presentable, so by \Cref{prop:Localization_Sequences_PrL}(1) we obtain a localization sequence $K \to \Ind(B) \xrightarrow{L} K^{\perp}$ which is a cofiber sequence in $\PrL_{\st}$. For every presentable stable category $E$, we have natural equivalences
+		\[
+			\begin{aligned}
+				\Fun^{\colim}(K^{\perp},E) &\simeq \Fun^{\colim}_{K \mapsto 0}(\Ind(B),E) \simeq \Fun^{\ex}_{A \mapsto 0}(B,E) \\
+				&\simeq \Fun^{\ex}(B/A,E) \simeq \Fun^{\ex}((B/A)^{\idem},E) \simeq \Fun^{\colim}(\Ind(C),E),
+			\end{aligned}
+		\]
+		using \Cref{thm:Ind_Kappa_Universal_Property}(3), \Cref{thm:Verdier_Quotient}(2), the fact that $E$ is idempotent complete, and $(B/A)^{\idem} \simeq C$. Under these equivalences, precomposition with $L$ corresponds to precomposition with $\Ind(p)$. By the Yoneda lemma there is an equivalence $K^{\perp} \simeq \Ind(C)$ under which $L$ corresponds to $\Ind(p)$. Hence $\Ind(A) \to \Ind(B) \to \Ind(C)$ is a localization sequence. Since $\Ind(i)$ preserves compact objects, its right adjoint preserves filtered colimits, hence all colimits; so the sequence is strongly continuous by \Cref{lem:Strong_Continuity_Localization_Sequence}.
+
+		(2) Put $A = K^{\omega}$ and $B = D^{\omega}$. By \Cref{lem:Compact_Objects_Localization_Sequence}, $i$ restricts to a fully faithful functor $A \to B$ whose image $A = K \cap B$ is a thick subcategory of $B$. By \Cref{lem:Kernel_Verdier_Quotient}, the sequence $A \to B \to (B/A)^{\idem}$ is short exact, so by (1) we obtain a localization sequence $\Ind(A) \to \Ind(B) \to \Ind((B/A)^{\idem})$. As $K \simeq \Ind(A)$ and $D \simeq \Ind(B)$, both $E$ and $\Ind((B/A)^{\idem})$ are identified with $K^{\perp}$ compatibly with the functors from $D$, by \Cref{prop:Localization_Sequences_PrL}(2). Hence $E \simeq \Ind((B/A)^{\idem})$ is compactly generated with $E^{\omega} \simeq (B/A)^{\idem}$, and the claim follows.
+	\end{proof}
+
+	In the language of \Cref{def:Homological_Epimorphism}: a functor $f\colon A \to B$ in $\Cat_{\perf}$ is a homological epimorphism if and only if $\ker(\Ind(f)) \to \Ind(A) \to \Ind(B)$ is a strongly continuous localization sequence, and it is a Karoubi projection if and only if moreover $\ker(\Ind(f))$ is compactly generated by objects of $A$. In general, the kernel of a homological epimorphism need not be compactly generated, see \Cref{ex:Keller} below; it is, however, always a dualizable category (\Cref{chap:Compactly_Assembled_Dualizable}).
+
+	% Source: Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+	\Cref{thm:Thomason_Neeman} gives a description of idempotent complete quotients in terms of large categories. Recall from \Cref{cor:Ind_As_Exact_Functors} that $\Ind(B) \simeq \Fun^{\ex}(B\catop,\Sp)$ for $B \in \Cat_{\perf}$.
+
+	\begin{corollary}
+		\label[corollary]{cor:Karoubi_Quotient_Via_Ind}
+		Let $i\colon A \hookrightarrow B$ be a fully faithful functor in $\Cat_{\perf}$. Under the identification $\Ind(-) \simeq \Fun^{\ex}((-)\catop,\Sp)$, the right adjoint $\Ind(i)^R\colon \Ind(B) \to \Ind(A)$ is given by restriction along $i$, and
+		\[
+			(B/A)^{\idem} \simeq \ker\big(\Ind(i)^R\big)^{\omega},
+		\]
+		where $\ker(\Ind(i)^R) \subseteq \Fun^{\ex}(B\catop,\Sp)$ is the full subcategory of exact functors vanishing on $A$.
+	\end{corollary}
+	\prooffor{cor:Karoubi_Quotient_Via_Ind}
+	\begin{proof}
+		For $a \in A$ and $F \in \Ind(B)$ we have $\hom_{\Ind(A)}(a,\Ind(i)^RF) \simeq \hom_{\Ind(B)}(ia,F) \simeq F(ia)$ by the Yoneda lemma, so $\Ind(i)^R(F) \simeq F \circ i\catop$. Since $A$ is idempotent complete and $i$ is fully faithful, the essential image of $i$ is a thick subcategory, so $A \to B \to (B/A)^{\idem}$ is short exact by \Cref{lem:Kernel_Verdier_Quotient}. By \Cref{thm:Thomason_Neeman}(1), $\Ind(A) \to \Ind(B) \to \Ind((B/A)^{\idem})$ is a localization sequence, so by \Cref{prop:Localization_Sequences_PrL}(2) we have $\Ind((B/A)^{\idem}) \simeq \Ind(A)^{\perp}$. Finally, $F \in \Ind(A)^{\perp}$ if and only if $\hom(a,\Ind(i)^RF) \simeq \hom(ia,F) \simeq 0$ for all $a \in A$, if and only if $\Ind(i)^RF \simeq 0$. Taking compact objects gives the claim.
+	\end{proof}
+
+	% Source: Talk 1 (Marc Hoyois, 13.10.2026)
+	\begin{remark}
+		\label[remark]{rem:Ind_Fully_Faithful_Localization}
+		The functor $\Ind$ induces an equivalence of categories
+		\[
+			\Ind\colon \Cat_{\perf} \rightleftarrows \PrL_{\omega,\st}\noloc (-)^{\omega},
+		\]
+		where $\PrL_{\omega,\st}$ denotes the category of compactly generated presentable stable categories and colimit-preserving functors that preserve compact objects (equivalently, strongly continuous functors), see \Cref{thm:Accessible_Recollections} and \Cref{lem:Compact_Generators_Thick_Closure}. For a functor $f\colon A \to B$ in $\Cat_{\perf}$:
+		\begin{itemize}
+			\item $f$ is fully faithful if and only if $\Ind(f)$ is fully faithful (by the formula for mapping spaces in \Cref{constr:Ind_Large}), if and only if $\Ind(f)$ is a monomorphism \cite[Proposition~1.13]{Efimov_Large_Categories};
+			\item If $f$ is a Karoubi projection, then $\Ind(f)$ is a localization (\Cref{thm:Thomason_Neeman}), or equivalently $\Ind(f)$ is an epimorphism \cite[Proposition~1.13]{Efimov_Large_Categories}. The converse does not hold, see \Cref{ex:Keller}.
+		\end{itemize}
+	\end{remark}
+
+	% Source: Talk 1 (Marc Hoyois, 13.10.2026)
+	\begin{example}[{Keller, \cite{Keller_Smashing}}]
+		\label[example]{ex:Keller}
+		Let $A$ be a ring and let $I \subseteq \mathrm{Jac}(A)$ be a Tor-unital ideal. Then $A/I \otimes^L_A A/I \simeq A/I$, so the restriction functor $\Mod_{A/I} \to \Mod_A$ is fully faithful and $f\colon \Perf_A \to \Perf_{A/I}$ is a homological epimorphism. The category
+		\[
+			\ker(\Mod_A \to \Mod_{A/I})
+		\]
+		contains no nonzero compact objects. Note that $\Mod_A \simeq \Ind(\Perf_A)$ and $\Mod_{A/I} \simeq \Ind(\Perf_{A/I})$. So the kernel of $f$ is zero. This gives a counterexample to the converse of the second statement of \Cref{rem:Ind_Fully_Faithful_Localization}: $\Ind(f)$ is a localization, but $f$ is not a Karoubi projection.
+
+		For example, consider $A = k[t,t^{1/2},t^{1/4}, \dots]_{(t,t^{1/2}, t^{1/4}, \dots)}$, for $k$ a field. Let $\mm$ be the maximal ideal. Then the map $A \to A/\mm$ is an example.
+	\end{example}
+
+	\section{Semiorthogonal decompositions}
+	\label[section]{sec:Semiorthogonal_Decompositions}
+
+	% Source: written from the literature (Efimov, Section 2.11); Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+
+	The simplest localization sequences are the split ones. In this case the middle category $E$ is glued from two subcategories $C$ and $D$ between which there are no maps in one direction, and every object of $E$ is uniquely an extension of an object of $C$ by an object of $D$. Such a splitting is called a semiorthogonal decomposition. We follow Efimov's convention: in $E = \lra{C_1,\dots,C_n}$ there are no nonzero maps from $C_i$ to $C_j$ for $i > j$. We first treat the presentable setting, which is the one relevant for dualizable categories, and then explain the analogous notion for small stable categories and its relation to short exact sequences.
+
+	\begin{definition}[{\cite[Definition~2.74]{Efimov_Large_Categories}}]
+		\label[definition]{def:Semiorthogonal_Decomposition}
+		A \emph{semiorthogonal decomposition} of a presentable stable category $E$ is a collection of full presentable stable subcategories $C_1,\dots,C_n \subseteq E$ such that
+		\begin{enumerate}
+			\item the inclusion functors $C_i \hookrightarrow E$ are strongly continuous;
+			\item for $i > j$, $x \in C_i$ and $y \in C_j$ we have $\hom_E(x,y) \simeq 0$;
+			\item the smallest full stable subcategory of $E$ containing $C_1,\dots,C_n$ is $E$ itself.
+		\end{enumerate}
+		In this case we write $E = \lra{C_1,\dots,C_n}$.
+	\end{definition}
+
+	\begin{proposition}
+		\label[proposition]{prop:Two_Term_SOD}
+		Let $E = \lra{C,D}$ be a semiorthogonal decomposition, with inclusions $i_C\colon C \hookrightarrow E$ and $i_D\colon D \hookrightarrow E$. Then:
+		\begin{enumerate}
+			\item Every $x \in E$ fits into a cofiber sequence $d \to x \to c$ with $d \in D$ and $c \in C$, which is unique up to unique equivalence and functorial in $x$.
+			\item The functor $i_C$ admits a left adjoint $i_C^L$ and $i_D$ admits a right adjoint $i_D^R$, given by $x \mapsto c$ and $x \mapsto d$ respectively; there is a natural cofiber sequence $i_Di_D^R \to \id_E \to i_Ci_C^L$, and $i_C^Li_D \simeq 0$.
+			\item The sequence $D \xrightarrow{i_D} E \xrightarrow{i_C^L} C$ is a strongly continuous localization sequence, split by $i_C$.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Two_Term_SOD}
+	\begin{proof}
+		Note first that $\hom_E(d,c) \simeq 0$ for $d \in D$ and $c \in C$. Suppose $d \to x \to c$ is a cofiber sequence with $d \in D$ and $c \in C$. For $d' \in D$ we then have $\hom_E(d',d) \xrightarrow{\simeq} \hom_E(d',x)$, since $\hom_E(d',c) \simeq 0$; so $d \to x$ exhibits $d$ as the value at $x$ of a right adjoint to $i_D$. Dually, for $c' \in C$ we have $\hom_E(c,c') \xrightarrow{\simeq} \hom_E(x,c')$, so $x \to c$ exhibits $c$ as the value at $x$ of a left adjoint of $i_C$. In particular, such a sequence is unique up to unique equivalence and functorial in $x$, wherever it exists.
+
+		Let $E' \subseteq E$ be the full subcategory of those $x$ that admit such a cofiber sequence. It contains $C$ (take $0 \to c \to c$) and $D$ (take $d \to d \to 0$) and is closed under shifts. It is closed under cofibers: a map $x \to x'$ in $E'$ induces, by the universal properties above, a map of cofiber sequences, and passing to cofibers gives a cofiber sequence $\cofib(d \to d') \to \cofib(x \to x') \to \cofib(c \to c')$ with first term in $D$ and last term in $C$, as these are stable subcategories. Hence $E'$ is a stable subcategory containing $C$ and $D$, so $E' = E$ by assumption (3). This proves (1), and by \cite[Proposition~5.2.4.2]{lurie2009HTT} also the existence of the adjoints in (2), together with the cofiber sequence $i_Di_D^R \to \id \to i_Ci_C^L$. Applying it to $x = i_D(d)$ gives $i_C^Li_D(d) \simeq 0$.
+
+		For (3), $i_C^L$ is a localization since its right adjoint $i_C$ is fully faithful, and $i_C^L(x) \simeq 0$ if and only if $i_Di_D^R x \to x$ is an equivalence, if and only if $x$ lies in the essential image of $D$. The right adjoints $i_D^R$ and $i_C$ preserve colimits by assumption (1) and since $C \subseteq E$ is closed under colimits, so the sequence is strongly continuous. Finally, $i_C^L i_C \simeq \id_C$ as $i_C$ is fully faithful, so $i_C$ splits $i_C^L$.
+	\end{proof}
+
+	% Source: Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+	\begin{remark}
+		\label[remark]{rem:SOD_Small}
+		\Cref{def:Semiorthogonal_Decomposition} makes sense verbatim for a small stable category $E$ and full stable subcategories $C_1,\dots,C_n \subseteq E$, omitting condition (1). Parts (1) and (2) of \Cref{prop:Two_Term_SOD} hold in this setting with the same proof, and the sequence $D \xrightarrow{i_D} E \xrightarrow{i_C^L} C$ is a Verdier sequence: $i_C^L$ is a localization with kernel $D$, and it inverts precisely the maps whose cofiber lies in $D$. If $E$ is idempotent complete, then so are $C$ and $D$, being thick subcategories of $E$ (as kernels of the exact functors $i_D^R$ and $i_C^L$), and the sequence is short exact.
+	\end{remark}
+
+	Conversely, short exact sequences admitting adjoints give rise to semiorthogonal decompositions.
+
+	\begin{proposition}
+		\label[proposition]{prop:SOD_From_Short_Exact}
+		Let $A \xrightarrow{i} B \xrightarrow{p} C$ be a short exact sequence in $\Cat_{\perf}$. Then $i$ admits a right adjoint $i^R$ if and only if $p$ admits a right adjoint $p^R$. In this case:
+		\begin{enumerate}
+			\item The functor $p^R$ is fully faithful, with essential image the right orthogonal $A^{\perp} = \{x \in B \mid \hom_B(ia,x) \simeq 0 \text{ for all } a \in A\}$;
+			\item There is a semiorthogonal decomposition $B = \lra{p^R(C),\, i(A)}$;
+			\item The sequence $C \xrightarrow{p^R} B \xrightarrow{i^R} A$ is again short exact.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:SOD_From_Short_Exact}
+	\begin{proof}
+		Assume first that $i^R$ exists, and for $b \in B$ let $L(b) := \cofib(ii^Rb \to b)$. As in the proof of \Cref{prop:Localization_Sequences_PrL}(1), $L(b) \in A^{\perp}$ and $L\colon B \to A^{\perp}$ is left adjoint to the inclusion. Moreover, $L(b) \simeq 0$ if and only if $b \simeq ii^Rb$ lies in $A$, so $L$ inverts precisely the maps whose cofiber lies in $A$. Since $L$ is a reflective localization, it exhibits $A^{\perp}$ as the localization of $B$ at these maps \cite[Proposition~5.2.7.12]{lurie2009HTT}, so $B/A \simeq A^{\perp}$. As $A^{\perp}$ is closed under retracts in the idempotent complete category $B$, it is idempotent complete, so $C \simeq (B/A)^{\idem} \simeq A^{\perp}$, with $p$ corresponding to $L$. Hence $p$ admits the fully faithful right adjoint $A^{\perp} \hookrightarrow B$.
+
+		Conversely, assume that $p^R$ exists. For $a \in A$ and $c \in C$ we have $\hom_B(ia,p^Rc) \simeq \hom_C(pia,c) \simeq 0$, so $p^R$ lands in $A^{\perp}$. Every $x \in A^{\perp}$ is local with respect to the maps $s\colon b' \to b$ with $\cofib(s) \in A$, i.e.\ $s^*\colon \hom_B(b,x) \to \hom_B(b',x)$ is an equivalence. Hence $\hom_{B/A}(qb,qx) \simeq \hom_B(b,x)$ for all $b \in B$ and $x \in A^{\perp}$ (for instance by \Cref{rem:Mapping_Spectra_Quotient}, applied to $B\catop$). Applying this to $x = p^Rc$, we find that the composite
+		\[
+			\hom_B(b,p^Rc) \to \hom_C(pb,pp^Rc) \to \hom_C(pb,c),
+		\]
+		whose second map is induced by the counit, is the adjunction equivalence. Its first map is an equivalence as well: since the functor $B/A \to C$ induced by $p$ is fully faithful, it is identified with the equivalence $\hom_B(b,p^Rc) \simeq \hom_{B/A}(qb,qp^Rc)$. Hence so is the second map, i.e.\ the counit $pp^Rc \to c$ induces an equivalence on $\hom_C(pb,-)$ for all $b \in B$. Since every object of $C$ is a retract of an object of the form $pb$, the counit is an equivalence, i.e.\ $p^R$ is fully faithful. For $b \in B$, let $f \to b \to p^Rpb$ be the fiber sequence of the unit. Then $p(f) \simeq 0$, so $f$ lies in $A$, and for $a \in A$ we get $\hom_B(ia,f) \simeq \hom_B(ia,b)$ since $\hom_B(ia,p^Rpb) \simeq 0$. Hence $b \mapsto f$ is right adjoint to $i$.
+
+		It remains to prove (1)--(3). For (1), it remains to show that every $x \in A^{\perp}$ lies in the image of $p^R$. The fiber $f$ of the unit $x \to p^Rpx$ lies in $A$, so $\hom_B(f,x) \simeq 0$ and $\hom_B(f,p^Rpx) \simeq 0$, whence $\hom_B(f,f) \simeq 0$ and $f \simeq 0$. For (2), we have $\hom_B(ia,p^Rc) \simeq 0$, and every $b \in B$ fits into the cofiber sequence $ii^Rb \to b \to p^Rpb$. For (3), the kernel of $i^R$ is $A^{\perp} = p^R(C)$ by (1), and $i^R$ is a localization since its left adjoint $i$ is fully faithful; arguing as in the first paragraph (with the roles of left and right adjoints interchanged), $i^R$ exhibits $A$ as the Verdier quotient $B/p^R(C)$.
+	\end{proof}
+
+	% TODO: gluing of presentable stable categories along a functor, and semiorthogonal decompositions of dualizable categories (Talk 6)
+
+	\section{Calkin categories}
+	\label[section]{sec:Calkin_Small}
+
+	% Source: Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+	For $A \in \Cat_{\perf}$ and a regular cardinal $\kappa$, we write $\Ind(A)^{\kappa}$ for the full subcategory of $\kappa$-compact objects of $\Ind(A)$. It is essentially small and stable, and it contains $A = \Ind(A)^{\omega}$ as a thick subcategory.
+
+	\begin{definition}[{\cite[Section~2.9]{Efimov_Large_Categories}}]
+		\label[definition]{def:Calkin_Small}
+		Let $A \in \Cat_{\perf}$ and let $\kappa$ be an uncountable regular cardinal. The \emph{$\kappa$-Calkin category} of $A$ is
+		\[
+			\Calk_{\kappa}(A) := \big(\Ind(A)^{\kappa}/A\big)^{\idem},
+		\]
+		so that there is a short exact sequence $A \hookrightarrow \Ind(A)^{\kappa} \to \Calk_{\kappa}(A)$.
+	\end{definition}
+
+	\begin{remark}
+		\label[remark]{rem:Calkin_Mapping_Spectra}
+		The mapping spectra in $\Calk_{\kappa}(A)$ can be computed using \Cref{rem:Mapping_Spectra_Quotient}. Let $x = \quotcolim_{i \in I} x_i$ and $y = \quotcolim_{j \in J} y_j$ be objects of $\Ind(A)^{\kappa}$, with $I$ and $J$ filtered. The functor $J \to A_{/y}$ sending $j$ to $y_j \to y$ is cofinal, and $\hom_{\Ind(A)}(x,y_j) \simeq \lim_i \hom_A(x_i,y_j)$. Hence
+		\[
+			\hom_{\Calk_{\kappa}(A)}(x,y) \simeq \cofib\Big(\colim_{j}\lim_{i}\hom_A(x_i,y_j) \to \lim_{i}\colim_{j}\hom_A(x_i,y_j)\Big).
+		\]
+		So the Calkin category measures the failure of the limit over $i$ to commute with the filtered colimit over $j$.
+	\end{remark}
+
+	\begin{example}
+		\label[example]{ex:Calkin_Perf}
+		Let $R$ be an $\bbE_{\infty}$-ring and $A = \Perf_R$, so that $\Ind(A) \simeq \Mod_R$. For $M \in \Mod_R$ and a perfect $R$-module $P$ we have $\hom_R(M,P) \simeq \hom_R(M,R) \otimes_R P$, since $P$ is dualizable. Writing $M' \in \Mod_R$ as a filtered colimit of perfect modules, \Cref{rem:Mapping_Spectra_Quotient} gives
+		\[
+			\hom_{\Calk_{\kappa}(\Perf_R)}(M,M') \simeq \cofib\big(\hom_R(M,R) \otimes_R M' \to \hom_R(M,M')\big)
+		\]
+		for $M,M' \in \Mod_R^{\kappa}$. For instance, if $R = k$ is a field and $V$ is a $k$-vector space of dimension $< \kappa$, the map $V^{\vee} \otimes_k V \to \End_k(V)$ is injective with image the finite rank endomorphisms, so
+		\[
+			\End_{\Calk_{\kappa}(\Perf_k)}(V) \simeq \End_k(V)/\{\text{finite rank endomorphisms}\}.
+		\]
+		This is the algebraic analogue of the Calkin algebra $B(\Hh)/\Kk(\Hh)$ of bounded operators modulo compact operators on a Hilbert space, which explains the name.
+	\end{example}
+
+	\begin{remark}
+		\label[remark]{rem:Calkin_Small_Vs_Continuous}
+		If $C = \Ind(A)$ is compactly generated, the continuous Calkin category $\Calk^{\cont}_{\kappa}(C)$ from \Cref{chap:Introduction_And_Overview} agrees with $\Calk_{\kappa}(A)$. Indeed, by \Cref{ex:Compactly_Generated_Compactly_Assembled}, the functor $\hat{y}\colon C \to \Ind(C^{\kappa})$ is $\Ind(j)$ for the inclusion $j\colon A \hookrightarrow C^{\kappa} = \Ind(A)^{\kappa}$, so by \Cref{thm:Thomason_Neeman}(1) its cofiber is $\Ind\big((\Ind(A)^{\kappa}/A)^{\idem}\big) = \Ind(\Calk_{\kappa}(A))$.
+	\end{remark}
+
+	\section{Localizing invariants}
+	\label[section]{sec:Localizing_Invariants}
+
+	% Source: Mathew, Lecture 1 (MPIM Bonn, 09.09.2024); Talk 1 (Marc Hoyois, 13.10.2026)
+	We start with some recollections on the functor $K\colon \Cat_{\st} \to \Sp$.
+
+	\begin{definition}
+		\label[definition]{def:K_0}
+		The \emph{Grothendieck group} $K_0(A)$ of a small stable category $A$ is the free abelian group on the equivalence classes $[x]$ of objects $x \in A$, modulo the relations $[x] = [x'] + [x'']$ for every cofiber sequence $x' \to x \to x''$ in $A$.
+	\end{definition}
+
+	Nonconnective algebraic K-theory is a spectrum-valued refinement $K\colon \Cat_{\st} \to \Sp$ of this construction, satisfying $\pi_0K(A) \cong K_0(A)$ for $A$ idempotent complete. Its fundamental property is that it is a localizing invariant in the following sense.
+
+	\begin{definition}
+		\label[definition]{def:Localizing_Invariant}
+		Let $\Ee$ be a stable category. A functor $F\colon \Cat_{\perf} \to \Ee$ is called a \emph{localizing invariant} if $F(0) \simeq 0$ and $F$ sends short exact sequences (\Cref{def:Short_Exact_Sequence}) to fiber sequences. We extend $F$ to $\Cat_{\st}$ by setting $F(A) := F(A^{\idem})$. We denote by $\Fun_{\loc}(\Cat_{\st},\Ee)$ the full subcategory of localizing invariants.
+	\end{definition}
+
+	By \Cref{thm:Thomason_Neeman}, a sequence $A \to B \to C$ in $\Cat_{\perf}$ is short exact if and only if $\Ind(A) \to \Ind(B) \to \Ind(C)$ is a strongly continuous localization sequence in $\PrL_{\st}$.
+
+	\begin{lemma}
+		\label[lemma]{lem:Localizing_Invariants_Verdier}
+		Consider a functor $F\colon \Cat_{\st} \to \Ee$ and the following conditions:
+		\begin{enumerate}
+			\item For each fully faithful exact functor $A \hookrightarrow B$, $F$ takes the sequence $A \hookrightarrow B \to B/A$ to a fiber sequence.
+			\item Each sequence $A \hookrightarrow B \to C$ with $A \to B$ fully faithful and inducing an equivalence $(B/A)^{\idem} \iso C^{\idem}$ is sent to a fiber sequence under $F$.
+		\end{enumerate}
+		Then (2) implies (1), and (2) holds if and only if $F$ satisfies (1) and inverts the maps $A \to A^{\idem}$. In this case, $F$ is (the extension of) a localizing invariant in the sense of \Cref{def:Localizing_Invariant}.
+	\end{lemma}
+	\prooffor{lem:Localizing_Invariants_Verdier}
+	\begin{proof}
+		The sequences in (1) are among those of (2). If $F$ satisfies (1) and inverts idempotent completions, then for a sequence as in (2) we have $F(C) \simeq F(C^{\idem}) \simeq F((B/A)^{\idem}) \simeq F(B/A)$, so (2) follows from (1). Conversely, (2) applied to $0 \to A \to A^{\idem}$ shows that $F(A) \to F(A^{\idem})$ is an equivalence.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Verdier_Localizing_Not_Karoubi}
+		Condition (1) of \Cref{lem:Localizing_Invariants_Verdier} alone does not imply that $F$ inverts $A \to A^{\idem}$. For instance, connective algebraic K-theory satisfies (1) (see \cite{Hermitian_II}), but $K_0(A) \to K_0(A^{\idem})$ is in general not surjective. This is why localizing invariants are defined on idempotent complete categories.
+	\end{remark}
+
+	% Source: Mathew, Lecture 1 (MPIM Bonn, 09.09.2024)
+	\begin{remark}
+		\label[remark]{rem:Finitary_Localizing_Invariants}
+		One frequently additionally requires that $\Ee$ is presentable and that $F$ preserves filtered colimits (or at least $\kappa$-filtered colimits for some regular cardinal $\kappa$). Algebraic K-theory, $\THH$ and $\mathrm{TC}$ are examples of localizing invariants preserving filtered colimits.
+	\end{remark}
+
+	\begin{example}
+		\label[example]{ex:Localizing_Additive}
+		Let $B = \lra{C,D}$ be a semiorthogonal decomposition in $\Cat_{\perf}$ (\Cref{rem:SOD_Small}). Then every localizing invariant $F$ sends the short exact sequence $D \to B \to C$ to a fiber sequence $F(D) \to F(B) \to F(C)$, which is split by $F(i_C)$. Hence
+		\[
+			F(B) \simeq F(C) \oplus F(D).
+		\]
+		Functors $F\colon \Cat_{\perf} \to \Ee$ with this property are called \emph{additive}.
+	\end{example}
+
+	\begin{example}
+		\label[example]{ex:Localizing_Calkin}
+		Let $A \in \Cat_{\perf}$ and let $F$ be a localizing invariant. The short exact sequence $A \to \Ind(A)^{\omega_1} \to \Calk_{\omega_1}(A)$ of \Cref{def:Calkin_Small} gives a fiber sequence
+		\[
+			F(A) \to F(\Ind(A)^{\omega_1}) \to F(\Calk_{\omega_1}(A)).
+		\]
+		Since $\Ind(A)^{\omega_1}$ admits countable coproducts, the middle term vanishes by an Eilenberg swindle: for $T = \bigoplus_{\N}\colon \Ind(A)^{\omega_1} \to \Ind(A)^{\omega_1}$ we have $\id \oplus T \simeq T$, and additivity gives $F(\id) + F(T) = F(T)$, so $F(\id) = 0$. Hence
+		\[
+			F(A) \simeq \Omega F(\Calk_{\omega_1}(A)).
+		\]
+		This is the formula that will be used to extend $F$ to dualizable categories, see \Cref{def:Continuous_Extension}.
+	\end{example}
+
+	The most fundamental localizing invariant is nonconnective algebraic K-theory, as made precise by the following universal property.
+
+	\begin{theorem}
+		\label[theorem]{thm:K_Universal_Property}
+		Nonconnective algebraic K-theory $K\colon \Cat_{\perf} \to \Sp$ is the initial localizing invariant equipped with a natural transformation $(-)^{\simeq} \to \Omega^{\infty}K(-)$.
+	\end{theorem}
+
+	\begin{remark}
+		\label[remark]{rem:K_Universal_Property_Literature}
+		In the literature, \Cref{thm:K_Universal_Property} is usually stated for localizing invariants preserving filtered colimits, see \cite{BGT2013Universal} and also \cite{Barwick_Higher_K_Theory}. The condition that $F$ preserves filtered colimits is in fact unnecessary, but we do not know a reference for this more general statement.
+	\end{remark}
+
+	\begin{definition}[{\cite{BGT2013Universal}}]
+		\label[definition]{def:Mot_Loc}
+		The category of \emph{localizing motives} $\mathrm{Mot}_{\loc}$ is the initial presentable stable category equipped with a localizing invariant
+		\[
+			U_{\loc}\colon \Cat_{\perf} \to \mathrm{Mot}_{\loc}
+		\]
+		preserving filtered colimits.
+	\end{definition}
+
+	Although $\mathrm{Mot}_{\loc}$ is defined by a universal property, it can be constructed explicitly as a localization of a category of spectral presheaves on (a small subcategory of) $\Cat_{\perf}$.
+
+	\begin{theorem}[{\cite{BGT2013Universal}}]
+		\label[theorem]{thm:K_Corepresentable}
+		For all $A \in \Cat_{\perf}$ there is a natural equivalence
+		\[
+			\hom_{\mathrm{Mot}_{\loc}}\big(U_{\loc}(\Sp^{\omega}),U_{\loc}(A)\big) \simeq K(A).
+		\]
+	\end{theorem}
+
+	% Source: Talk 1 (Marc Hoyois, 13.10.2026)
+	Marc formulated the universal property of K-theory as follows.
+
+
+	\begin{theorem}[{Theorem/definition, cf.\ \cite{BGT2013Universal}}]
+		\label[theorem]{thm:K_Unit_Day_Convolution}
+		$K$ is the unit for the Day convolution operad structure on $\Fun_{\loc}(\Cat_{\st},\Sp)$.
+	\end{theorem}
+
+	Concretely, consider
+	\[
+		\Fun_{\loc}(\Cat_{\st},\Sp) \subseteq \Fun(\Cat_{\st},\Sp) \subseteq \Fun(\Cat_{\st},\widehat{\Sp}).
+	\]
+	There is a suspended Yoneda functor
+	\[
+		(\Cat_{\st})\catop \to \Fun(\Cat_{\st},\Sp), \qquad C \mapsto \Sigma^{\infty}_+\Map(C,-).
+	\]
+	The unit for Day convolution on $\Fun(\Cat_{\st},\Sp)$ is $\Sigma^{\infty}_+\Map(\Sp^{\fin},-)$, which is $\Sigma^{\infty}_+$ of the core functor. The universal property of $K$ now says that for every localizing invariant $F$, any map $\Sigma^{\infty}_+\mathrm{core} \to F$ extends uniquely to a map $K \to F$.
+
+	\begin{theorem}[{Tamme, before Efimov, \cite[Theorem~18]{Tamme_Excision}}]
+		\label[theorem]{thm:Tamme_Excision}
+		Consider a square $Q$ in $\Cat_{\st}$ of the form
+		\[
+			\begin{tikzcd}
+				A \rar["f"] \dar & B \dar \\
+				C \rar["g"'] & D.
+			\end{tikzcd}
+		\]
+		Assume that $\Ind(Q)$ is cartesian, and that $\Ind(f)$ and $\Ind(g)$ are localizations. Then every localizing invariant $F$ sends $Q$ to a cartesian square.
+	\end{theorem}
+
+	\emph{Wrong proof:} Without loss of generality, $A$ is idempotent complete, so $Q$ is cartesian. Therefore, we get an equivalence $\fib(f) \simeq \fib(g)$. Applying our localizing invariant, we obtain fiber sequences, and so $F(Q)$ is a pullback square.
+
+	\begin{warning}
+		\label[warning]{warn:Excision_Requires_Ind_Localizations}
+		This proof doesn't work: the fact that $\Ind(f)$ and $\Ind(g)$ are localizations does \emph{not} mean that $f$ and $g$ themselves are localizations.
+	\end{warning}
+
+	\prooffor{thm:Tamme_Excision}
+	\begin{proof}[Proof using continuous K-theory]
+		Let $F^{\cont}$ be the extension of $F$ to $\Pr^{\dual}$ from \Cref{thm:Efimov_Continuous_Extension}, so that $F^{\cont}(\Ind(A)) \simeq F(A)$. Since $\Ind(f)$ is a localization which preserves compact objects, its right adjoint preserves colimits, so $\ker(\Ind(f)) \hookrightarrow \Ind(A) \to \Ind(B)$ is a strongly continuous localization sequence (\Cref{lem:Strong_Continuity_Localization_Sequence}), and hence a short exact sequence in $\Pr^{\dual}$ (\Cref{prop:Localization_Sequence_Dualizable}); similarly for $g$. Since $\Ind(Q)$ is cartesian, the functor $\Ind(A) \to \Ind(C)$ restricts to an equivalence $\ker(\Ind(f)) \simeq \ker(\Ind(g))$. Applying $F^{\cont}$, we obtain a map of fiber sequences which is an equivalence on fibers, so $F(Q)$ is cartesian.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Tamme_Lax_Pullback_Proof}
+		Tamme's original proof \cite[Section~1]{Tamme_Excision} predates Efimov's work and avoids large categories; it also only needs $\Ind(g)$ to be a localization \cite[Definition~14]{Tamme_Excision}. Writing $h\colon B \to D$ for the right vertical functor, one considers the \emph{lax pullback} $B \times^{\to}_D C$, whose objects are triples $(b,c,\phi)$ with $b \in B$, $c \in C$ and $\phi\colon h(b) \to g(c)$. On the one hand, there is a split exact sequence $C \to B \times^{\to}_D C \to B$ \cite[Proposition~10]{Tamme_Excision}, so that $F(B \times^{\to}_D C) \simeq F(B) \oplus F(C)$. On the other hand, for a square as in \Cref{thm:Tamme_Excision} the sequence $A \to B \times^{\to}_D C \to D$, where the second functor sends $(b,c,\phi)$ to $\cofib(\phi)$, is exact \cite[Theorem~15]{Tamme_Excision}. Applying $F$ to both sequences shows that $F(Q)$ is cartesian \cite[Theorem~18]{Tamme_Excision}. See \cite{Land_Tamme_Pullbacks} for a generalization to arbitrary pullbacks of ring spectra.
+	\end{remark}
+
+	\begin{example}[{Milnor patching, \cite{Milnor_Intro_K_Theory}}]
+		\label[example]{ex:Milnor_Patching}
+		Consider a pullback square of $\bbE_1$-rings:
+		\[
+			\begin{tikzcd}
+				A \rar \dar & A' \dar \\
+				B \rar & B'
+			\end{tikzcd}
+		\]
+		and assume that $A' \otimes_A A' \iso A'$. Then the induced square
+		\[
+			\begin{tikzcd}
+				\Mod_A \rar \dar & \Mod_{A'} \dar \\
+				\Mod_B \rar & \Mod_{B'}
+			\end{tikzcd}
+		\]
+		is also a pullback square, and $\Mod_B \to \Mod_{B'}$ is a localization \cite[Lemma~23 and Theorem~26]{Tamme_Excision}. In particular, we deduce:
+	\end{example}
+
+	\begin{theorem}[{\cite[Theorem~28]{Tamme_Excision}; see also \cite{Land_Tamme_Pullbacks}}]
+		\label[theorem]{thm:Milnor_Patching_K_Theory}
+		In the above situation, there is a pullback square
+		\[
+			\begin{tikzcd}
+				K(A) \rar \dar & K(A') \dar \\
+				K(B) \rar & K(B').
+			\end{tikzcd}
+		\]
+	\end{theorem}
+
+	\begin{example}
+		\label[example]{ex:Milnor_Square_Of_Rings}
+		Given a map of rings $A \to B$ that sends an ideal $I \subseteq A$ isomorphically to the induced ideal $IB \subseteq B$, the induced square
+		\[
+			\begin{tikzcd}
+				A \rar \dar & A/I \dar \\
+				B \rar & B/IB
+			\end{tikzcd}
+		\]
+		is a pullback of $\bbE_1$-rings.
+	\end{example}

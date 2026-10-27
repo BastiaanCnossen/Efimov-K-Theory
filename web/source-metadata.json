@@ -1,0 +1,133 @@
+{
+  "SchemaVersion": 1,
+  "Files": [
+    {
+      "Source": "Efimov K-theory Notes.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Efimov K-theory Notes.tex",
+      "Sha256": "7aacf1c82de8ef6844ce67c37c80eb737a9cfb6684b784402ef38c42303cb2ba",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/01_Introduction.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/01_Introduction.tex",
+      "Sha256": "e75bab2f93f3e3eba151f43552c4469c8ad1f5a5b90492edd53169c445b9367d",
+      "AddedMetadata": [
+        "\\label[convention]{con:Categories_And_K_Theory}\n\t\t",
+        "\\label[example]{ex:Rigid_Ind_Categories_Intro}\n\t\t",
+        "\\label[remark]{rem:Compact_Objects_And_Morphisms_Intro}\n\t\t",
+        "\\label[example]{ex:THH_Categorical_Trace}\n\t\t",
+        "\\label[example]{ex:Kcont_Euclidean_Sheaves}\n\t\t",
+        "\\label[theorem]{thm:Nuclear_Analytic_Descent}\n\t\t"
+      ]
+    },
+    {
+      "Source": "Chapters/02_Localization_Sequences.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/02_Localization_Sequences.tex",
+      "Sha256": "f8e788ab1ff469a5749b7380182c514612e7afb6d38251303fc221425410688f",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/03_Dualizable_Categories.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/03_Dualizable_Categories.tex",
+      "Sha256": "05d6acd872af0dfa3616df7ce1f725523faf42747437578fb3685ebe56f01fcb",
+      "AddedMetadata": [
+        "\\label[remark]{rem:Tate_Classification_Of_Extensions}\n\t\t",
+        "\t\\prooffor{lem:Compact_Iff_Yhat_Is_Y}\n",
+        "\t\\prooffor{lem:Compact_Morphisms_Yhat}\n",
+        "\t\\prooffor{thm:Compactly_Assembled_Retract}\n",
+        "\t\\prooffor{thm:Lurie_Dualizable_Characterization}\n",
+        "\t\\prooffor{prop:Dualizable_Further_Characterizations}\n",
+        "\t\\prooffor{prop:Localization_Sequence_Dualizable}\n",
+        "\t\\prooffor{prop:Extension_Dualizable_Tate}\n",
+        "\t\\prooffor{thm:Compactly_Assembled_Omega_1}[main-proof]\n",
+        "\t\\prooffor{thm:Compactly_Assembled_Omega_1}[kernel-proof]\n",
+        "\t\\prooffor{prop:Strongly_Continuous_Compact_Morphisms}\n"
+      ]
+    },
+    {
+      "Source": "Chapters/04_Examples.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/04_Examples.tex",
+      "Sha256": "496fb45b4d10bdfa8c570ffe4a700054299f07b71eebf4a0f04c9df255c52aba",
+      "AddedMetadata": [
+        "\\label[example]{ex:Almost_Modules_Over_Cp}\n\t\t",
+        "\\label[remark]{rem:Equivalent_Rigidity_Definitions}\n\t\t",
+        "\\label[remark]{rem:Strong_Continuity_From_Rigid_Source}\n\t\t",
+        "\\label[example]{ex:Locally_Rigid_Sheaf_Categories}\n\t\t",
+        "\\label[remark]{rem:Rigidification_Via_Idempotent_Ideals}\n\t\t",
+        "\t\\prooffor{prop:Kernel_Homological_Epi}\n",
+        "\t\\prooffor{prop:Every_Dualizable_Kernel}\n",
+        "\t\\prooffor{lem:Almost_Restriction_FF}\n",
+        "\t\\prooffor{lem:Almost_Essential_Image}\n",
+        "\t\\prooffor{prop:Almost_Derived_Category}\n",
+        "\t\\prooffor{prop:Almost_No_Compacts}\n",
+        "\t\\prooffor{lem:Ind_Of_Poset}\n",
+        "\t\\prooffor{lem:Posets_Accessible}\n",
+        "\t\\prooffor{prop:Continuous_Poset_Characterization}\n",
+        "\t\\prooffor{prop:Rigid_Self_Dual_Detailed}\n",
+        "\t\\prooffor{lem:Identity_Trace_Class}\n",
+        "\t\\prooffor{lem:Trace_Class_Compact}\n",
+        "\t\\prooffor{cor:Rigid_Functors_Strongly_Continuous}\n",
+        "\t\\prooffor{prop:Nuclear_Rigid}\n"
+      ]
+    },
+    {
+      "Source": "Chapters/05_Compact_Morphisms.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/05_Compact_Morphisms.tex",
+      "Sha256": "cf4dec3068222eeee38e7d974d8d26012e11d8ea4cd63b47e6f540b0d8e9405e",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/06_Calkin_Limits_Colimits.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/06_Calkin_Limits_Colimits.tex",
+      "Sha256": "b373ac4421a6b35e4c2f56ba495e80d45324c899f7ee21bc78e74d6cd9b02793",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/07_Flatness.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/07_Flatness.tex",
+      "Sha256": "ef635bcb4c31c32c9288fd9b9983a130b8c8c09a8c595d7d9a85b25bb4acc90a",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/08_Localizing_Invariants.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/08_Localizing_Invariants.tex",
+      "Sha256": "8ea5df30ac3b8accc6c695e546c022f92cf70ec82e9ebbb491229bb9571c6723",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/09_Sheaves.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/09_Sheaves.tex",
+      "Sha256": "22a10726308bba1c0376de22142f63a06f0554deb5cdb38d8dce69dd612b8e0a",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/10_Aleph_1_Presentability.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/10_Aleph_1_Presentability.tex",
+      "Sha256": "3b136aa38dc7febd5a460ec2182faa331a0acffd1c9c5c6762f2602888878e6c",
+      "AddedMetadata": []
+    },
+    {
+      "Source": "Chapters/A_Categorical_Background.tex",
+      "Backup": "Backup before complete web edition 2026-10-27/Chapters/A_Categorical_Background.tex",
+      "Sha256": "79b7eab88be4a8adcd990b273901570626e96d1f2d0a2e430edaf1852ad47ed1",
+      "AddedMetadata": [
+        "\t\\prooffor{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}\n",
+        "\t\\prooffor{lem:Kappa_Filtered_Posets}\n",
+        "\t\\prooffor{lem:Omega_1_Filtered_Via_Chains}\n",
+        "\t\\prooffor{lem:Cofinality_Posets}\n",
+        "\t\\prooffor{prop:Colimits_Over_Countable_Subposets}\n",
+        "\t\\prooffor{lem:Retract_As_Telescope}\n",
+        "\t\\prooffor{lem:Strictification_Sequential_Maps}\n",
+        "\t\\prooffor{prop:Omega_1_Compact_In_Ind}\n",
+        "\t\\prooffor{lem:Accessible_Objects_Lambda_Compact}\n",
+        "\t\\prooffor{lem:Retract_Left_Adjoint}\n",
+        "\t\\prooffor{lem:Conjugate_Transformations}\n",
+        "\t\\prooffor{lem:Adjoint_Triples}\n",
+        "\t\\prooffor{prop:Strongly_Continuous_Via_Right_Adjoint}\n",
+        "\t\\prooffor{prop:Tensor_With_Ind}\n",
+        "\t\\prooffor{cor:Ind_As_Exact_Functors}\n",
+        "\t\\prooffor{cor:Compactly_Generated_Dualizable}\n"
+      ]
+    }
+  ]
+}

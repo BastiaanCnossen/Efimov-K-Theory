@@ -1,0 +1,438 @@
+	\chapter{Categorical background}
+	\label[appendix]{app:Categorical_Background}
+
+	In this appendix we collect background material on accessible and presentable categories that is used throughout the notes. Most of this material is standard, see \cite{lurie2009HTT,lurie2016HA}, and much of it is also treated in \cite{Cnossen_StableHomotopy,CCNW_Formalization}. We give complete proofs of the statements that are less easy to find in the literature or that are used in a specific form in the main text, and we refer to the literature for the foundational results on accessible categories.
+
+	Throughout, \emph{category} means $\infty$-category, and $\An$ denotes the category of animae. We fix a regular cardinal $\kappa$ whenever it appears. For a small category $C$ we write $\PSh(C) = \Fun(C\catop,\An)$ and $y\colon C \hookrightarrow \PSh(C)$ for the Yoneda embedding.
+
+	\section{Filtered and \texorpdfstring{$\kappa$}{kappa}-filtered categories}
+	\label[section]{sec:Filtered_Categories}
+
+	Filtered colimits are the basic tool throughout these notes: compactness, Ind-categories and accessibility are all defined in terms of them. We recall the relevant definitions, and prove some technical results on $\kappa$-filtered partially ordered sets and sequential diagrams, which are used in the study of $\omega_1$-presentability in \Cref{sec:Omega_1_Presentability}.
+
+	\begin{definition}
+		\label[definition]{def:Kappa_Filtered}
+		A category $K$ is \emph{$\kappa$-small} if it is equivalent to (the nerve of) a simplicial set with fewer than $\kappa$ non-degenerate simplices. A category $I$ is \emph{$\kappa$-filtered} if every functor $K \to I$ with $K$ a $\kappa$-small category admits a cocone. We say \emph{filtered} for $\omega$-filtered. A colimit indexed by a (small) $\kappa$-filtered category is called a \emph{$\kappa$-filtered colimit}.
+	\end{definition}
+
+	\begin{definition}
+		\label[definition]{def:Kappa_Compact}
+		Let $C$ be a category which admits $\kappa$-filtered colimits. An object $x \in C$ is called \emph{$\kappa$-compact} if the functor $\Map_C(x,-)\colon C \to \An$ preserves $\kappa$-filtered colimits. We write $C^{\kappa} \subseteq C$ for the full subcategory of $\kappa$-compact objects, and say \emph{compact} for $\omega$-compact.
+	\end{definition}
+
+	We will freely use the following fundamental fact.
+
+	\begin{theorem}[{\cite[Proposition~5.3.3.3]{lurie2009HTT}}]
+		\label[theorem]{thm:Filtered_Colimits_Commute_With_Small_Limits}
+		In $\An$, $\kappa$-filtered colimits commute with $\kappa$-small limits.
+	\end{theorem}
+
+	\begin{corollary}
+		\label[corollary]{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}
+		Let $C$ be a category with $\kappa$-filtered colimits.
+		\begin{enumerate}
+			\item If $\kappa \leq \lambda$, then every $\kappa$-compact object of $C$ is $\lambda$-compact.
+			\item If $C$ admits $\kappa$-small colimits, then $C^{\kappa} \subseteq C$ is closed under $\kappa$-small colimits.
+			\item Let $x \in C$ and let $u\colon \Map_C(x,-) \to \Map_C(x',-)$ exhibit $\Map_C(x,-)$ as a retract of $\Map_C(x',-)$ in $\Fun(C,\An)$. If $x'$ is $\kappa$-compact, then so is $x$. In particular, $C^{\kappa}$ is closed under retracts.
+		\end{enumerate}
+	\end{corollary}
+	\prooffor{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}
+	\begin{proof}
+		(1) A $\lambda$-filtered category is $\kappa$-filtered.
+
+		(2) If $x = \colim_{k \in K} x_k$ with $K$ $\kappa$-small and each $x_k$ $\kappa$-compact, then $\Map_C(x,-) = \lim_{k \in K\catop} \Map_C(x_k,-)$ is a $\kappa$-small limit of functors preserving $\kappa$-filtered colimits, hence preserves $\kappa$-filtered colimits by \Cref{thm:Filtered_Colimits_Commute_With_Small_Limits}.
+
+		(3) A retract of a functor preserving $\kappa$-filtered colimits again preserves them, since a retract of an equivalence in $\An$ (namely the comparison map from the colimit) is an equivalence.
+	\end{proof}
+
+	For partially ordered sets, $\kappa$-filteredness admits the expected elementary description.
+
+	\begin{lemma}
+		\label[lemma]{lem:Kappa_Filtered_Posets}
+		A partially ordered set $P$ is $\kappa$-filtered if and only if every subset $S \subseteq P$ of cardinality $< \kappa$ admits an upper bound in $P$. In particular, $P$ is filtered if and only if it is non-empty and every two elements admit a common upper bound.
+	\end{lemma}
+	\prooffor{lem:Kappa_Filtered_Posets}
+	\begin{proof}
+		Suppose $P$ is $\kappa$-filtered and let $S \subseteq P$ have cardinality $< \kappa$. Regarding $S$ as a discrete category, the inclusion $S \to P$ is a $\kappa$-small diagram, and a cocone on it is precisely an upper bound of $S$.
+
+		Conversely, let $F\colon K \to P$ be a functor with $K$ $\kappa$-small. Then $K$ has fewer than $\kappa$ objects up to equivalence, so the image $S$ of $F$ on objects has cardinality $< \kappa$. Choose an upper bound $u$ of $S$. Since $\Fun(K,P)$ is again a partially ordered set, in which $F \leq G$ if and only if $F(k) \leq G(k)$ for all $k$, there is a (unique) natural transformation from $F$ to the constant functor with value $u$, i.e.\ a cocone on $F$.
+
+		For the last statement, note that every finite subset of $P$ has an upper bound if and only if $P$ is non-empty and every two elements have an upper bound, by induction on the size of the subset.
+	\end{proof}
+
+	\begin{lemma}
+		\label[lemma]{lem:Omega_1_Filtered_Via_Chains}
+		A filtered partially ordered set $P$ is $\omega_1$-filtered if and only if every increasing sequence $p_0 \leq p_1 \leq p_2 \leq \dots$ in $P$ admits an upper bound.
+	\end{lemma}
+	\prooffor{lem:Omega_1_Filtered_Via_Chains}
+	\begin{proof}
+		The condition is clearly necessary. Conversely, let $S = \{s_0,s_1,s_2,\dots\} \subseteq P$ be a countable subset (a finite subset has an upper bound since $P$ is filtered). Using that $P$ is filtered, choose inductively $p_0 \geq s_0$ and $p_n \geq p_{n-1}, s_n$ for $n \geq 1$. Then an upper bound for the increasing sequence $(p_n)_n$ is an upper bound for $S$. We conclude by \Cref{lem:Kappa_Filtered_Posets}.
+	\end{proof}
+
+	We will often use the following criterion for cofinality, see \cite[Theorem~4.1.3.1]{lurie2009HTT}: a functor $f\colon A \to B$ is cofinal if and only if for every $b \in B$ the category $A \times_B B_{b/}$ is weakly contractible. If $A$ and $B$ are partially ordered sets, then $A \times_B B_{b/}$ is the partially ordered set $\{a \in A \mid b \leq f(a)\}$. Since filtered categories are weakly contractible \cite[Lemma~5.3.1.20]{lurie2009HTT}, we obtain:
+
+	\begin{lemma}
+		\label[lemma]{lem:Cofinality_Posets}
+		Let $f\colon A \to B$ be a map of partially ordered sets such that for every $b \in B$ the subset $\{a \in A \mid b \leq f(a)\} \subseteq A$ is non-empty and filtered. Then $f$ is cofinal. In particular:
+		\begin{enumerate}
+			\item A map $f\colon \N \to B$ into a partially ordered set is cofinal if for every $b \in B$ there exists $n$ with $b \leq f(n)$.
+			\item Every countable filtered partially ordered set $Q$ admits a cofinal map $\N \to Q$.
+			\item The diagonal $\N \to \N \times \N$ is cofinal, and so is every map $f\colon \N \to \N$ with $f(n) \geq n$ for all $n$.
+		\end{enumerate}
+	\end{lemma}
+	\prooffor{lem:Cofinality_Posets}
+	\begin{proof}
+		The first statement was explained above. For (1), the subset $\{n \mid b \leq f(n)\}$ is non-empty and upwards closed in $\N$ (as $f$ is order preserving), hence of the form $\{n \geq n_0\}$, which is filtered. For (2), if $Q$ is finite it has a largest element (\Cref{lem:Kappa_Filtered_Posets}) and we may take the constant map. Otherwise enumerate $Q = \{q_0,q_1,\dots\}$ and choose inductively $f(0) = q_0$ and $f(n) \geq f(n-1), q_n$; then $f$ is order preserving and cofinal by (1). Statement (3) follows directly from (1).
+	\end{proof}
+
+	\begin{theorem}[{\cite[Proposition~5.3.1.18]{lurie2009HTT}}]
+		\label[theorem]{thm:Filtered_Posets_Cofinal}
+		For every $\kappa$-filtered category $I$ there exist a $\kappa$-filtered partially ordered set $P$ and a cofinal functor $P \to I$.
+	\end{theorem}
+
+	\begin{proposition}
+		\label[proposition]{prop:Colimits_Over_Countable_Subposets}
+		Let $P$ be a filtered partially ordered set, and let $\Sigma$ be the set of countable filtered subsets $Q \subseteq P$, ordered by inclusion. Then $\Sigma$ is $\omega_1$-filtered and $P = \bigcup_{Q \in \Sigma} Q$. Moreover, for every functor $F\colon P \to D$ into a category with small colimits, there is a natural equivalence
+		\[
+			\colim_{p \in P} F(p) \simeq \colim_{Q \in \Sigma} \colim_{q \in Q} F(q).
+		\]
+	\end{proposition}
+	\prooffor{prop:Colimits_Over_Countable_Subposets}
+	\begin{proof}
+		Every $p \in P$ lies in the countable filtered subset $\{p\}$. Let $Q_0,Q_1,\dots \in \Sigma$ be countably many elements. Put $U_0 = \bigcup_n Q_n$, and inductively let $U_{k+1} \supseteq U_k$ be obtained by adding a chosen common upper bound in $P$ for every pair of elements of $U_k$. Then $U = \bigcup_k U_k$ is countable, and any two elements of $U$ have an upper bound in $U$; hence $U \in \Sigma$ by \Cref{lem:Kappa_Filtered_Posets}, and $U$ is an upper bound of the $Q_n$. So $\Sigma$ is $\omega_1$-filtered by \Cref{lem:Kappa_Filtered_Posets}.
+
+		Consider the partially ordered set $E = \{(Q,q) \mid Q \in \Sigma, q \in Q\}$, with $(Q,q) \leq (Q',q')$ if $Q \subseteq Q'$ and $q \leq q'$, together with the projections $\pi\colon E \to \Sigma$ and $\rho\colon E \to P$. The map $\rho$ is cofinal by \Cref{lem:Cofinality_Posets}: for $p \in P$, the subset $\{(Q,q) \mid p \leq q\}$ is non-empty, and it is filtered since two elements $(Q,q),(Q',q')$ are bounded by $(Q'',q'')$ where $q''$ is an upper bound of $q,q'$ and $Q'' \in \Sigma$ contains $Q \cup Q' \cup \{q''\}$. Hence $\colim_P F \simeq \colim_E F\rho \simeq \colim_{\Sigma} \pi_!(F\rho)$, where $\pi_!$ denotes left Kan extension along $\pi$. For $Q \in \Sigma$ we have $\pi_!(F\rho)(Q) = \colim_{(Q',q') \in E,\, Q' \subseteq Q} F(q')$, and the map $Q \to \{(Q',q') \in E \mid Q' \subseteq Q\}$, $q \mapsto (Q,q)$, is cofinal by \Cref{lem:Cofinality_Posets}: for $(Q',q')$ with $Q' \subseteq Q$, the subset $\{q \in Q \mid q' \leq q\}$ is non-empty and filtered. Hence $\pi_!(F\rho)(Q) \simeq \colim_{q \in Q} F(q)$, which proves the claim.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Sequential_Diagrams}
+		Since the nerve of $\N$ contains the simplicial subset $\bigcup_n \Delta^{\{n,n+1\}}$ via an inner anodyne map, a functor $\N \to D$ amounts to a sequence of objects and morphisms $x_0 \to x_1 \to x_2 \to \dots$ in $D$, without further coherence data. Similarly, since $\Delta^1 \times \bigcup_n \Delta^{\{n,n+1\}} \subseteq \Delta^1 \times \N$ is inner anodyne \cite[Corollary~2.3.2.4]{lurie2009HTT}, a natural transformation $\eta\colon x_{\bullet} \to x'_{\bullet}$ of sequences amounts to morphisms $\eta_n\colon x_n \to x'_n$ together with homotopies witnessing the commutativity of each square
+		\[
+			\begin{tikzcd}
+				x_n \rar \dar["\eta_n"'] & x_{n+1} \dar["\eta_{n+1}"] \\
+				x'_n \rar & x'_{n+1}.
+			\end{tikzcd}
+		\]
+		We will use this freely.
+	\end{remark}
+
+	\begin{lemma}[Telescopes]
+		\label[lemma]{lem:Retract_As_Telescope}
+		Let $D$ be a category with sequential colimits, and let $X \xrightarrow{s} Y \xrightarrow{r} X$ be maps with $rs \simeq \id_X$. Then $X \simeq \colim(Y \xrightarrow{e} Y \xrightarrow{e} Y \to \dots)$, where $e = sr$.
+	\end{lemma}
+	\prooffor{lem:Retract_As_Telescope}
+	\begin{proof}
+		Consider the sequence $Y \xrightarrow{r} X \xrightarrow{s} Y \xrightarrow{r} X \xrightarrow{s} \dots$. The maps $\N \to \N$ given by $n \mapsto 2n$ and $n \mapsto 2n+1$ are cofinal by \Cref{lem:Cofinality_Posets}. Restricting along the first gives the sequence $Y \xrightarrow{e} Y \xrightarrow{e} \dots$, and restricting along the second gives a sequence $X \to X \to \dots$ all of whose maps are equivalences $rs \simeq \id_X$; the colimit of the latter is $X$. Hence both colimits agree with the colimit of the interleaved sequence.
+	\end{proof}
+
+	We now describe the $\omega_1$-compact objects of $\Ind(C)$. Recall that for a small category $C$, the category $\Ind(C) \subseteq \PSh(C)$ is the full subcategory spanned by the filtered colimits of representable presheaves. It admits filtered colimits, computed in $\PSh(C)$, and the representable presheaves are compact in $\Ind(C)$ \cite[Section~5.3.5]{lurie2009HTT}. We usually suppress the Yoneda embedding $y$ when no confusion can arise, and write $\quotcolim_i c_i$ for the colimit in $\Ind(C)$ of a diagram of representables when we want to stress that it is a formal colimit.
+
+	\begin{lemma}[Strictification of maps between sequential ind-objects]
+		\label[lemma]{lem:Strictification_Sequential_Maps}
+		Let $C$ be a small category, let $a_{\bullet}, b_{\bullet}\colon \N \to C$ be sequences, and put $Y = \colim_n y(a_n)$ and $Z = \colim_n y(b_n)$ in $\Ind(C)$. For every map $g\colon Y \to Z$ there exist a strictly increasing map $f\colon \N \to \N$ with $f(n) \geq n$ and a natural transformation $\eta\colon a_{\bullet} \to b_{f(\bullet)}$ of functors $\N \to C$ such that the induced map
+		\[
+			Y = \colim_n y(a_n) \xrightarrow{\colim \eta} \colim_n y(b_{f(n)}) \simeq Z
+		\]
+		is homotopic to $g$. Here the last equivalence comes from cofinality of $f$ (\Cref{lem:Cofinality_Posets}).
+	\end{lemma}
+	\prooffor{lem:Strictification_Sequential_Maps}
+	\begin{proof}
+		Denote by $\alpha_n\colon a_n \to a_{n+1}$ and $\beta_{m,m'}\colon b_m \to b_{m'}$ the transition maps, and by $\iota_m\colon b_m \to Z$ the canonical maps. Since $\Map(Y,Z) \simeq \lim_n \Map(a_n,Z)$, the map $g$ amounts to maps $g_n\colon a_n \to Z$ together with paths $\gamma_n\colon g_{n+1}\alpha_n \simeq g_n$ in $\Map(a_n,Z)$. Since $a_n$ is compact in $\Ind(C)$, we have $\Map(a_n,Z) \simeq \colim_m \Map(a_n,b_m)$. By \Cref{thm:Filtered_Colimits_Commute_With_Small_Limits}, path spaces in this filtered colimit are computed as filtered colimits of path spaces; in particular every point and every path in $\Map(a_n,Z)$ between images of points of $\Map(a_n,b_m)$ lifts, up to homotopy, to some stage $m' \geq m$.
+
+		By \Cref{rem:Sequential_Diagrams}, the data of $f$ and $\eta$ amount to maps $\eta_n\colon a_n \to b_{f(n)}$ and homotopies $\theta_n\colon \eta_{n+1}\alpha_n \simeq \beta_{f(n),f(n+1)}\eta_n$. The induced map $\colim \eta$ corresponds to the point $(\iota_{f(n)}\eta_n)_n$ of $\lim_n \Map(a_n,Z)$, with the paths $\iota_{f(n+1)}\eta_{n+1}\alpha_n \simeq \iota_{f(n+1)}\beta_{f(n),f(n+1)}\eta_n \simeq \iota_{f(n)}\eta_n$ induced by $\theta_n$. To exhibit a homotopy $\colim\eta \simeq g$, it therefore suffices to choose paths $\sigma_n\colon \iota_{f(n)}\eta_n \simeq g_n$ in $\Map(a_n,Z)$ such that for each $n$ the two resulting paths from $\iota_{f(n+1)}\eta_{n+1}\alpha_n$ to $g_n$, namely $\sigma_n \circ \iota\theta_n$ and $\gamma_n \circ \sigma_{n+1}\alpha_n$, are homotopic.
+
+		We construct these data inductively. First choose $f(0)$, $\eta_0\colon a_0 \to b_{f(0)}$ and $\sigma_0\colon \iota_{f(0)}\eta_0 \simeq g_0$. Suppose $f(0),\dots,f(n)$, $\eta_0,\dots,\eta_n$, $\theta_0,\dots,\theta_{n-1}$ and $\sigma_0,\dots,\sigma_n$ have been constructed. Choose $m > f(n)$, a map $\eta'\colon a_{n+1} \to b_m$ and a path $\sigma'\colon \iota_m\eta' \simeq g_{n+1}$. The maps $\eta'\alpha_n$ and $\beta_{f(n),m}\eta_n$ in $\Map(a_n,b_m)$ have images in $\Map(a_n,Z)$ connected by the path
+		\[
+			\iota_m\eta'\alpha_n \overset{\sigma'\alpha_n}{\simeq} g_{n+1}\alpha_n \overset{\gamma_n}{\simeq} g_n \overset{\sigma_n^{-1}}{\simeq} \iota_{f(n)}\eta_n.
+		\]
+		Hence there exist $m' \geq m$ and a path $\theta$ from $\beta_{m,m'}\eta'\alpha_n$ to $\beta_{f(n),m'}\eta_n$ in $\Map(a_n,b_{m'})$ whose image in $\Map(a_n,Z)$ is homotopic to this path. Put $f(n+1) = \max(m',n+1)$, $\eta_{n+1} = \beta_{m,f(n+1)}\eta'$, let $\theta_n$ be the image of $\theta$, and let $\sigma_{n+1}$ be the path $\iota_{f(n+1)}\eta_{n+1} \simeq \iota_m\eta' \overset{\sigma'}{\simeq} g_{n+1}$. By construction, the compatibility condition above holds. This completes the induction.
+	\end{proof}
+
+	\begin{proposition}
+		\label[proposition]{prop:Omega_1_Compact_In_Ind}
+		Let $C$ be a small category and let $X \in \Ind(C)$. Then $X$ is $\omega_1$-compact if and only if $X \simeq \colim_n y(c_n)$ for some sequence $c_0 \to c_1 \to c_2 \to \dots$ in $C$.
+	\end{proposition}
+	\prooffor{prop:Omega_1_Compact_In_Ind}
+	\begin{proof}
+		If $X$ is a sequential colimit of representables, then $X$ is a countable colimit of compact objects, hence $\omega_1$-compact by \Cref{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}.
+
+		Conversely, let $X$ be $\omega_1$-compact. By definition of $\Ind(C)$ and \Cref{thm:Filtered_Posets_Cofinal}, we may write $X = \colim_{p \in P} y(c_p)$ for a filtered partially ordered set $P$. By \Cref{prop:Colimits_Over_Countable_Subposets}, we have $X \simeq \colim_{Q \in \Sigma} X_Q$ with $X_Q = \colim_{q \in Q} y(c_q)$ and $\Sigma$ $\omega_1$-filtered. As $X$ is $\omega_1$-compact, $\Map(X,X) \simeq \colim_{Q} \Map(X,X_Q)$, so the identity of $X$ factors as $X \xrightarrow{s} X_Q \xrightarrow{r} X$ for some $Q \in \Sigma$. By \Cref{lem:Cofinality_Posets}(2), $X_Q$ is a sequential colimit $Y = \colim_n y(a_n)$ of representables. By \Cref{lem:Retract_As_Telescope}, $X \simeq \colim(Y \xrightarrow{e} Y \xrightarrow{e} \dots)$ with $e = sr$.
+
+		By \Cref{lem:Strictification_Sequential_Maps}, there exist $f\colon \N \to \N$ with $f(n) \geq n$ and a natural transformation $\eta\colon a_{\bullet} \to a_{f(\bullet)}$ inducing $e$ on colimits. Define a functor $\Phi\colon \N \times \N \to C$ by $\Phi(k,n) = a_{f^k(n)}$, with horizontal maps the transition maps of $a_{\bullet}$ and vertical maps $\eta_{f^k(n)}\colon a_{f^k(n)} \to a_{f^{k+1}(n)}$; by \Cref{rem:Sequential_Diagrams} this is the functor $\N \to \Fun(\N,C)$ given by the sequence $a_{\bullet} \to a_{f(\bullet)} \to a_{f^2(\bullet)} \to \dots$ of whiskerings of $\eta$. Since each $f^k$ is cofinal, $\colim_n y\Phi(k,n) \simeq Y$, and under these identifications the induced map in the $k$-direction is $\colim\eta \simeq e$. Hence
+		\[
+			X \simeq \colim_k \colim_n y\Phi(k,n) \simeq \colim_{(k,n) \in \N\times\N} y\Phi(k,n) \simeq \colim_n y\Phi(n,n),
+		\]
+		where the last equivalence uses cofinality of the diagonal (\Cref{lem:Cofinality_Posets}(3)). So $X$ is a sequential colimit of representables.
+	\end{proof}
+
+	\section{Accessible and presentable categories}
+	\label[section]{sec:Accessible_Presentable}
+
+	We recall the basic notions; see \cite[Chapter~5]{lurie2009HTT} for proofs of the results quoted in this section.
+
+	\begin{definition}
+		\label[definition]{def:Ind_Kappa}
+		For a small category $C_0$, we let $\Ind_{\kappa}(C_0) \subseteq \PSh(C_0)$ denote the full subcategory spanned by the $\kappa$-filtered colimits of representable presheaves. We write $\Ind = \Ind_{\omega}$.
+	\end{definition}
+
+	\begin{theorem}[{\cite[Section~5.3.5]{lurie2009HTT}}]
+		\label[theorem]{thm:Ind_Kappa_Universal_Property}
+		Let $C_0$ be a small category.
+		\begin{enumerate}
+			\item The category $\Ind_{\kappa}(C_0)$ admits $\kappa$-filtered colimits, computed in $\PSh(C_0)$, and the Yoneda embedding $y\colon C_0 \hookrightarrow \Ind_{\kappa}(C_0)$ lands in $\kappa$-compact objects.
+			\item For every category $D$ admitting $\kappa$-filtered colimits, restriction along $y$ induces an equivalence between the category of functors $\Ind_{\kappa}(C_0) \to D$ preserving $\kappa$-filtered colimits and $\Fun(C_0,D)$. The inverse is given by left Kan extension along $y$.
+			\item If $C_0$ admits $\kappa$-small colimits, then $\Ind_{\kappa}(C_0)$ admits all small colimits, $y$ preserves $\kappa$-small colimits, and for every category $D$ admitting small colimits, restriction along $y$ induces an equivalence between colimit-preserving functors $\Ind_{\kappa}(C_0) \to D$ and functors $C_0 \to D$ preserving $\kappa$-small colimits.
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{definition}
+		\label[definition]{def:Accessible}
+		A category $C$ is \emph{$\kappa$-accessible} if it is locally small, admits $\kappa$-filtered colimits, the full subcategory $C^{\kappa}$ is essentially small, and every object of $C$ is a $\kappa$-filtered colimit of $\kappa$-compact objects. It is \emph{accessible} if it is $\kappa$-accessible for some $\kappa$. A functor between accessible categories is \emph{accessible} if it preserves $\kappa$-filtered colimits for some $\kappa$. A category is \emph{presentable} if it is accessible and admits all small colimits.
+	\end{definition}
+
+	\begin{theorem}[{\cite[Section~5.4.2]{lurie2009HTT}}]
+		\label[theorem]{thm:Accessible_Recollections}
+		\leavevmode
+		\begin{enumerate}
+			\item A category $C$ is $\kappa$-accessible if and only if $C \simeq \Ind_{\kappa}(C_0)$ for some small category $C_0$. In this case, the inclusion $C^{\kappa} \subseteq C$ induces an equivalence $\Ind_{\kappa}(C^{\kappa}) \simeq C$, and $C^{\kappa}$ is the idempotent completion of $C_0$.
+			\item If $C$ is $\kappa$-accessible, then $C^{\lambda}$ is essentially small for every regular cardinal $\lambda$, and $C$ is $\lambda$-accessible for arbitrarily large $\lambda$.
+		\end{enumerate}
+	\end{theorem}
+
+	\begin{theorem}[{\cite[Proposition~5.4.7.3]{lurie2009HTT}}]
+		\label[theorem]{thm:Limits_Of_Accessible_Categories}
+		The subcategory $\mathrm{Acc} \subseteq \widehat{\Cat}$ of accessible categories and accessible functors admits small limits, and the inclusion $\mathrm{Acc} \subseteq \widehat{\Cat}$ preserves them.
+	\end{theorem}
+
+	\begin{theorem}[Adjoint functor theorem, {\cite[Corollary~5.5.2.9]{lurie2009HTT}}]
+		\label[theorem]{thm:Adjoint_Functor_Theorem}
+		Let $F\colon C \to D$ be a functor between presentable categories. Then $F$ admits a right adjoint if and only if it preserves small colimits, and $F$ admits a left adjoint if and only if it is accessible and preserves small limits.
+	\end{theorem}
+
+	\begin{lemma}
+		\label[lemma]{lem:Accessible_Objects_Lambda_Compact}
+		Let $C$ be an accessible category. Then every object of $C$ is $\lambda$-compact for some regular cardinal $\lambda$. Consequently, $C = \bigcup_{\lambda} C^{\lambda}$, where each $C^{\lambda}$ is essentially small.
+	\end{lemma}
+	\prooffor{lem:Accessible_Objects_Lambda_Compact}
+	\begin{proof}
+		Let $C$ be $\kappa$-accessible and $x \in C$. Write $x = \colim_{i \in I} x_i$ with $I$ small and $\kappa$-filtered and each $x_i$ $\kappa$-compact. Choose a regular cardinal $\lambda \geq \kappa$ such that $I$ is $\lambda$-small. Each $x_i$ is $\lambda$-compact by \Cref{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}(1). Moreover $\Map(x,-) \simeq \lim_{i \in I\catop}\Map(x_i,-)$ is a $\lambda$-small limit of functors preserving $\lambda$-filtered colimits, hence preserves them by \Cref{thm:Filtered_Colimits_Commute_With_Small_Limits}. The last statement follows from \Cref{thm:Accessible_Recollections}(2).
+	\end{proof}
+
+	\begin{construction}
+		\label[construction]{constr:Ind_Large}
+		Let $C$ be a locally small, possibly large, category. We let $\Ind(C) \subseteq \Fun(C\catop,\widehat{\An})$ denote the full subcategory spanned by the small filtered colimits of representable functors, where $\widehat{\An}$ denotes the category of large animae. If $C' \subseteq C$ is a small full subcategory, then left Kan extension along $C' \subseteq C$ restricts to a fully faithful functor $\Ind(C') \hookrightarrow \Ind(C)$ which preserves filtered colimits: indeed, for filtered diagrams $(c_i)$ and $(d_j)$ in $C'$ both categories compute
+		\[
+			\Map(\quotcolim_i c_i, \quotcolim_j d_j) \simeq \lim_i \colim_j \Map_C(c_i,d_j).
+		\]
+		If $C$ is accessible, then \Cref{lem:Accessible_Objects_Lambda_Compact} shows that
+		\[
+			\Ind(C) = \bigcup_{\lambda} \Ind(C^{\lambda}),
+		\]
+		since a small filtered diagram in $C$ takes values in $C^{\lambda}$ for $\lambda$ large enough.
+
+		If $C$ admits filtered colimits, then the functor $\colim\colon \Ind(C) \to C$ sending $\quotcolim_i c_i$ to $\colim_i c_i$ (the unique filtered-colimit-preserving extension of $\id_C$, by the analogue of \Cref{thm:Ind_Kappa_Universal_Property}(2)) is left adjoint to the Yoneda embedding $y\colon C \hookrightarrow \Ind(C)$, since
+		\[
+			\Map_C(\colim_i c_i, c) \simeq \lim_i \Map_C(c_i,c) \simeq \Map_{\Ind(C)}(\quotcolim_i c_i, y(c)).
+		\]
+	\end{construction}
+
+	\section{Idempotent completeness}
+	\label[section]{sec:Idempotent_Completeness}
+
+	Recall from \cite[Section~4.4.5]{lurie2009HTT} that a category $C$ is \emph{idempotent complete} if every idempotent in $C$ splits. We will use the following characterization, see \cite[Section~5.1.4]{lurie2009HTT}: a locally small category $C$ is idempotent complete if and only if the essential image of the Yoneda embedding $C \hookrightarrow \Fun(C\catop,\widehat{\An})$ is closed under retracts, if and only if the essential image of $C\catop \hookrightarrow \Fun(C,\widehat{\An})$ is closed under retracts. Every category admitting sequential colimits is idempotent complete \cite[Section~4.4.5]{lurie2009HTT} (compare \Cref{lem:Retract_As_Telescope}); this applies in particular to presentable categories and to all categories admitting filtered colimits. Moreover, every accessible category is idempotent complete \cite[Chapter~5]{lurie2009HTT}, and every small category $C_0$ admits an idempotent completion $C_0 \hookrightarrow C_0^{\idem}$, which may be computed as the full subcategory of $\PSh(C_0)$ spanned by retracts of representables.
+
+
+	% Source: Talk 2 (Marc Hoyois, 20.10.2026)
+	\begin{lemma}
+		\label[lemma]{lem:Retract_Left_Adjoint}
+		Let $g\colon C \to D$ be a retract of $g'\colon C' \to D'$ in $\Fun(\Delta^1,\widehat{\Cat})$, where $C,C',D,D'$ are locally small. Suppose that $g'$ has a left adjoint $f'$ and that $C$ is idempotent complete. Then $g$ has a left adjoint.
+	\end{lemma}
+	\prooffor{lem:Retract_Left_Adjoint}
+	\begin{proof}
+		Consider a retract diagram
+		\[
+			\begin{tikzcd}
+				C \rar["u"] \dar["g"'] & C' \rar["v"] \dar["g'"] & C \dar["g"] \\
+				D \rar["\hat{u}"] & D' \rar["\hat{v}"] & D,
+			\end{tikzcd}
+		\]
+		with $vu \simeq \id_C$ and $\hat{v}\hat{u} \simeq \id_D$, compatibly with the squares. By \cite[Proposition~5.2.4.2]{lurie2009HTT}, it suffices to show that for every $d \in D$ the functor $F_d = \Map_D(d,g(-))\colon C \to \An$ is corepresentable. Since $C$ is idempotent complete, it suffices to exhibit $F_d$ as a retract of the corepresentable functor $\Map_C(x,-)$, where $x = vf'\hat{u}(d)$. Denote by $\eta$ the unit of the adjunction $f' \dashv g'$ and by $\phi \mapsto \phi^{\flat}$ the adjunction bijection $\Map_{D'}(e,g'(c')) \simeq \Map_{C'}(f'(e),c')$. We define natural transformations
+		\[
+			F_d \xrightarrow{\;i\;} \Map_C(x,-) \xrightarrow{\;p\;} F_d
+		\]
+		as follows. For $c \in C$ and $\phi\colon d \to g(c)$, let $i(\phi)$ be the composite
+		\[
+			x = vf'\hat{u}(d) \xrightarrow{v((\hat{u}\phi)^{\flat})} vu(c) \simeq c,
+		\]
+		where $\hat{u}\phi\colon \hat{u}(d) \to \hat{u}g(c) \simeq g'u(c)$. For $\chi\colon x \to c$, let $p(\chi)$ be the composite
+		\[
+			d \simeq \hat{v}\hat{u}(d) \xrightarrow{\hat{v}(\eta_{\hat{u}d})} \hat{v}g'f'\hat{u}(d) \simeq gvf'\hat{u}(d) = g(x) \xrightarrow{g(\chi)} g(c).
+		\]
+		Both constructions are natural in $c$. Using $gv \simeq \hat{v}g'$ and the triangle identity $g'((\hat u \phi)^{\flat}) \circ \eta_{\hat{u}d} = \hat{u}\phi$, we compute
+		\[
+			p(i(\phi)) = gv((\hat u\phi)^{\flat}) \circ \hat{v}(\eta_{\hat u d}) \simeq \hat{v}\big(g'((\hat u\phi)^{\flat})\circ \eta_{\hat u d}\big) = \hat{v}\hat{u}(\phi) \simeq \phi,
+		\]
+		so $pi \simeq \id$. Hence $F_d$ is a retract of $\Map_C(x,-)$, as desired.
+	\end{proof}
+
+	\section{Mates}
+	\label[section]{sec:Mates}
+
+	We freely use the calculus of mates in the homotopy $2$-category of categories, see \cite{KellyStreet1974Mates} and \cite{Riehl_Verity}. Since invertibility of a natural transformation can be checked objectwise in homotopy categories, all statements in this section only concern natural transformations up to homotopy.
+
+	\begin{construction}
+		\label[construction]{constr:Mates}
+		Consider a square of categories
+		\[
+			\begin{tikzcd}
+				A \rar["G"] \dar["U"'] & B \dar["V"] \\
+				A' \rar["G'"'] & B'
+			\end{tikzcd}
+		\]
+		commuting via a natural isomorphism $\alpha\colon VG \simeq G'U$, and suppose that $G$ and $G'$ admit left adjoints $F$ and $F'$, with units $\eta,\eta'$ and counits $\varepsilon,\varepsilon'$. The \emph{mate} of $\alpha$ is the natural transformation $\beta\colon F'V \to UF$ given by the composite
+		\[
+			F'V \xrightarrow{F'V\eta} F'VGF \overset{\alpha}{\simeq} F'G'UF \xrightarrow{\varepsilon' UF} UF.
+		\]
+		If instead $U$ and $V$ admit right adjoints $U^R$ and $V^R$, the \emph{vertical mate} of $\alpha$ is the natural transformation $\gamma\colon GU^R \to V^RG'$ given by
+		\[
+			GU^R \to V^RVGU^R \overset{\alpha}{\simeq} V^RG'UU^R \to V^RG'.
+		\]
+	\end{construction}
+
+	\begin{lemma}[Conjugate transformations]
+		\label[lemma]{lem:Conjugate_Transformations}
+		Let $F_1 \dashv G_1$ and $F_2 \dashv G_2$ be adjunctions between categories $A$ and $B$, with $F_i\colon A \to B$. For every natural transformation $\phi\colon F_1 \to F_2$ there is a unique (up to homotopy) natural transformation $\phi^{\vee}\colon G_2 \to G_1$, its \emph{conjugate}, such that the square
+		\[
+			\begin{tikzcd}
+				\Map_B(F_2a,b) \rar["\phi^*"] \dar["\simeq"'] & \Map_B(F_1a,b) \dar["\simeq"] \\
+				\Map_A(a,G_2b) \rar["(\phi^{\vee})_*"] & \Map_A(a,G_1b)
+			\end{tikzcd}
+		\]
+		commutes naturally in $a$ and $b$. Moreover, $\phi$ is an equivalence if and only if $\phi^{\vee}$ is.
+	\end{lemma}
+	\prooffor{lem:Conjugate_Transformations}
+	\begin{proof}
+		The composite of the top map with the vertical equivalences is a natural transformation $\Map_A(-,G_2(-)) \to \Map_A(-,G_1(-))$, which by the Yoneda lemma is induced by a unique natural transformation $\phi^{\vee}\colon G_2 \to G_1$. Again by the Yoneda lemma, $\phi$ is an equivalence if and only if $\phi^*$ is an equivalence for all $a,b$, if and only if $(\phi^{\vee})_*$ is an equivalence for all $a,b$, if and only if $\phi^{\vee}$ is an equivalence.
+	\end{proof}
+
+	\begin{lemma}[{\cite[Section~2.2, Propositions~2.1 and~2.2]{KellyStreet1974Mates}}]
+		\label[lemma]{lem:Mates_Conjugates}
+		In the situation of \Cref{constr:Mates}, assume that $G,G'$ admit left adjoints $F,F'$ and that $U,V$ admit right adjoints $U^R,V^R$. Then the mate $\beta\colon F'V \to UF$ (a transformation between left adjoints of $V^RG'$ and $GU^R$) is conjugate to the vertical mate $\gamma\colon GU^R \to V^RG'$. In particular, $\beta$ is an equivalence if and only if $\gamma$ is.
+	\end{lemma}
+
+	\begin{lemma}[Adjoint triples]
+		\label[lemma]{lem:Adjoint_Triples}
+		Let $F \dashv G \dashv H$ be an adjoint triple, with $F,H\colon A \to B$ and $G\colon B \to A$. Then $F$ is fully faithful if and only if $H$ is fully faithful.
+	\end{lemma}
+	\prooffor{lem:Adjoint_Triples}
+	\begin{proof}
+		We have adjunctions $GF \dashv GH$ and $\id_A \dashv \id_A$. The unit $\eta\colon \id_A \to GF$ of $F \dashv G$ is a transformation between the left adjoints, and its conjugate is the counit $\varepsilon\colon GH \to \id_A$ of $G \dashv H$: indeed, under the identifications $\Map_A(GFa,a') \simeq \Map_B(Fa,Ha') \simeq \Map_A(a,GHa')$, precomposition with $\eta_a$ corresponds to postcomposition with $\varepsilon_{a'}$, by the triangle identities. Now $F$ is fully faithful if and only if $\eta$ is an equivalence, and $H$ is fully faithful if and only if $\varepsilon$ is an equivalence, so the claim follows from \Cref{lem:Conjugate_Transformations}.
+	\end{proof}
+
+	The following was used in the definition of strongly continuous functors between compactly assembled categories, see \Cref{def:Strongly_Continuous_Compactly_Assembled} and \Cref{rem:Strongly_Continuous_Right_Adjoint}.
+
+	\begin{proposition}
+		\label[proposition]{prop:Strongly_Continuous_Via_Right_Adjoint}
+		Let $C$ and $D$ be compactly assembled categories, with left adjoints $\hat{y}_C$ and $\hat{y}_D$ of the colimit functors, and let $f\colon C \to D$ be a functor with a right adjoint $g$. Then the mate
+		\[
+			\beta\colon \hat{y}_D f \to \Ind(f)\hat{y}_C
+		\]
+		of the commutative square $\colim_D \circ \Ind(f) \simeq f \circ \colim_C$ is an equivalence if and only if $g$ preserves filtered colimits.
+	\end{proposition}
+	\prooffor{prop:Strongly_Continuous_Via_Right_Adjoint}
+	\begin{proof}
+		Applying $\Ind$ to the unit and counit of $f \dashv g$ shows that $\Ind(f) \dashv \Ind(g)$. By \Cref{lem:Mates_Conjugates}, $\beta$ is an equivalence if and only if the vertical mate
+		\[
+			\gamma\colon \colim_C\Ind(g) \to gf\colim_C\Ind(g) \simeq g\colim_D\Ind(f)\Ind(g) \to g\colim_D
+		\]
+		is an equivalence. Evaluating at an object $\quotcolim_i d_i \in \Ind(D)$, the map $\gamma$ becomes
+		\[
+			\colim_i g(d_i) \to gf\big(\colim_i g(d_i)\big) \simeq g\big(\colim_i fg(d_i)\big) \to g\big(\colim_i d_i\big),
+		\]
+		whose restriction to each $g(d_j)$ is $g(d_j) \to gfg(d_j) \to g(d_j)$ followed by the canonical map $g(d_j) \to g(\colim_i d_i)$. By the triangle identity, $\gamma$ is therefore the canonical comparison map $\colim_i g(d_i) \to g(\colim_i d_i)$. Hence $\gamma$ is an equivalence if and only if $g$ preserves filtered colimits.
+	\end{proof}
+
+	\section{Tensor products of presentable categories}
+	\label[section]{sec:PrL_Tensor_Products}
+
+	We denote by $\PrL \subseteq \widehat{\Cat}$ the subcategory of presentable categories and colimit-preserving functors, and by $\PrR \subseteq \widehat{\Cat}$ the subcategory of presentable categories and accessible limit-preserving functors. By \Cref{thm:Adjoint_Functor_Theorem}, passing to adjoints gives an equivalence $(\PrL)\catop \simeq \PrR$ \cite[Corollary~5.5.3.4]{lurie2009HTT}. Both $\PrL$ and $\PrR$ admit small limits, computed in $\widehat{\Cat}$ \cite[Proposition~5.5.3.13 and Theorem~5.5.3.18]{lurie2009HTT}; in particular, colimits in $\PrL$ may be computed as limits in $\widehat{\Cat}$ along the right adjoints.
+
+	% Source: Talk 2 (Marc Hoyois, 20.10.2026)
+	\begin{theorem}[{\cite[Section~4.8.1]{lurie2016HA}}]
+		\label[theorem]{thm:Lurie_Tensor_Product}
+		The category $\PrL$ admits a symmetric monoidal structure $- \otimes -$ with unit $\An$, characterized by the property that colimit-preserving functors $C \otimes D \to E$ correspond to functors $C \times D \to E$ preserving colimits in each variable separately:
+		\[
+			\Fun^{\colim}(C \otimes D, E) \simeq \Fun^{\colim}(C,\Fun^{\colim}(D,E)).
+		\]
+		In particular, $\PrL$ is closed, with internal hom given by $\Fun^{\colim}(-,-)$. Moreover, there is a natural equivalence
+		\[
+			C \otimes D \simeq \Fun^{\lim}(C\catop,D),
+		\]
+		where the right-hand side denotes the full subcategory of $\Fun(C\catop,D)$ spanned by the functors preserving small limits.
+	\end{theorem}
+
+	\begin{remark}
+		\label[remark]{rem:Tensor_Product_Description}
+		The second description arises as follows: one first shows that $\Fun^{\lim}(C\catop,D)$ is presentable, and then one computes that
+		\[
+			\Fun^{\colim}(\Fun^{\lim}(C\catop,D),E) \simeq \Fun^{\colim}(C,\Fun^{\colim}(D,E))
+		\]
+		for every presentable $E$.
+	\end{remark}
+
+	The full subcategory $\PrL_{\st} \subseteq \PrL$ of stable presentable categories is closed under the tensor product, and becomes a symmetric monoidal category with unit $\Sp$; moreover, a presentable category $C$ is stable if and only if the map $C \to \Sp \otimes C$ is an equivalence \cite[Section~4.8.2]{lurie2016HA}.
+
+	\begin{proposition}
+		\label[proposition]{prop:Tensor_With_Ind}
+		Let $C_0$ be a small category with finite colimits and let $D$ be a presentable category. There is an equivalence, natural in $D$,
+		\[
+			\Ind(C_0) \otimes D \simeq \Fun^{\lex}(C_0\catop,D),
+		\]
+		where the right-hand side denotes the full subcategory of $\Fun(C_0\catop,D)$ spanned by the functors preserving finite limits. If $C_0$ and $D$ are stable, this gives natural equivalences
+		\[
+			\Ind(C_0) \otimes D \simeq \Fun^{\ex}(C_0\catop,D) \simeq \Fun^{\colim}(\Ind(C_0\catop),D).
+		\]
+	\end{proposition}
+	\prooffor{prop:Tensor_With_Ind}
+	\begin{proof}
+		By \Cref{thm:Lurie_Tensor_Product}, we have
+		\[
+			\Ind(C_0) \otimes D \simeq \Fun^{\lim}(\Ind(C_0)\catop,D) \simeq \Fun^{\colim}(\Ind(C_0),D\catop)\catop.
+		\] Since $D$ admits small limits, $D\catop$ admits small colimits, so by \Cref{thm:Ind_Kappa_Universal_Property}(3) restriction along $y$ gives an equivalence
+		\[
+			\Fun^{\colim}(\Ind(C_0),D\catop) \simeq \Fun^{\rex}(C_0,D\catop) = \Fun^{\lex}(C_0\catop,D)\catop.
+		\] This proves the first claim. In the stable case, a functor between stable categories preserves finite limits if and only if it is exact, and applying \Cref{thm:Ind_Kappa_Universal_Property}(3) to $C_0\catop$ (which again has finite colimits) and the cocomplete category $D$ gives $\Fun^{\ex}(C_0\catop,D) \simeq \Fun^{\colim}(\Ind(C_0\catop),D)$.
+	\end{proof}
+
+	\begin{corollary}
+		\label[corollary]{cor:Ind_As_Exact_Functors}
+		For a small stable category $A$, the restricted Yoneda functor induces an equivalence $\Ind(A) \simeq \Fun^{\ex}(A\catop,\Sp)$.
+	\end{corollary}
+	\prooffor{cor:Ind_As_Exact_Functors}
+	\begin{proof}
+		Apply \Cref{prop:Tensor_With_Ind} with $D = \Sp$, using that $\Ind(A) \otimes \Sp \simeq \Ind(A)$ since $\Ind(A)$ is stable.
+	\end{proof}
+
+	% Source: Talk 2 (Marc Hoyois, 20.10.2026)
+	\begin{corollary}
+		\label[corollary]{cor:Compactly_Generated_Dualizable}
+		Let $C_0$ be a small stable category. Then $C = \Ind(C_0)$ is dualizable in $\PrL_{\st}$, with dual
+		\[
+			C^{\vee} = \Ind(C_0\catop).
+		\]
+		The evaluation map $\Ind(C_0\catop) \otimes \Ind(C_0) \to \Sp$ is the colimit-preserving functor which restricts to the mapping spectrum functor
+		\[
+			\hom_{C_0}\colon C_0\catop \times C_0 \to \Sp,
+		\]
+		and the coevaluation $\Sp \to \Ind(C_0) \otimes \Ind(C_0\catop) \simeq \Fun^{\ex}(C_0,\Ind(C_0))$ sends the sphere spectrum to the Yoneda embedding $C_0 \hookrightarrow \Ind(C_0)$.
+	\end{corollary}
+	\prooffor{cor:Compactly_Generated_Dualizable}
+	\begin{proof}
+		We use the criterion \cite[Section~``Symmetric monoidal duality'']{Cnossen_StableHomotopy}: an object $X$ of a closed symmetric monoidal category is dualizable if and only if for every $Z$ the canonical map $Z \otimes \iHom(X,\unit) \to \iHom(X,Z)$, adjoint to $Z \otimes \iHom(X,\unit) \otimes X \xrightarrow{\id \otimes \ev} Z$, is an equivalence. For $X = \Ind(C_0)$ we have $\iHom(X,Z) = \Fun^{\colim}(\Ind(C_0),Z) \simeq \Fun^{\ex}(C_0,Z)$ by \Cref{thm:Ind_Kappa_Universal_Property}(3), and in particular $\iHom(X,\Sp) \simeq \Fun^{\ex}(C_0,\Sp) \simeq \Ind(C_0\catop)$ by \Cref{cor:Ind_As_Exact_Functors}. Under these identifications, $\ev\colon \Ind(C_0\catop) \otimes \Ind(C_0) \to \Sp$ is the colimit-preserving functor restricting on $C_0\catop \times C_0$ to $(a,c) \mapsto \hom_{C_0}(a,c)$, and the canonical map $Z \otimes \Ind(C_0\catop) \to \Fun^{\ex}(C_0,Z)$ agrees with the equivalence of \Cref{prop:Tensor_With_Ind}. Indeed, both are colimit-preserving functors out of $Z \otimes \Ind(C_0\catop)$, hence determined by their restrictions to $Z \times C_0\catop$ by \Cref{thm:Lurie_Tensor_Product} and \Cref{thm:Ind_Kappa_Universal_Property}(3); the canonical map sends $(z,a)$ to $z \otimes \ev(a,-) = z \otimes \hom_{C_0}(a,-)$, and so does the equivalence of \Cref{prop:Tensor_With_Ind}, since the equivalence $C \otimes D \simeq \Fun^{\lim}(C\catop,D)$ of \Cref{thm:Lurie_Tensor_Product} sends an elementary tensor $c \otimes d$ to the functor $c' \mapsto \Map_C(c',c) \otimes d$ \cite[Proof of Proposition~4.8.1.17]{lurie2016HA}.
+		Hence $X$ is dualizable with dual $\Ind(C_0\catop)$ and evaluation as stated. The coevaluation corresponds, under $\iHom(X,X) \simeq X \otimes X^{\vee}$, to the identity of $X$, which under $\Fun^{\colim}(\Ind(C_0),\Ind(C_0)) \simeq \Fun^{\ex}(C_0,\Ind(C_0))$ corresponds to the Yoneda embedding.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Tensor_With_Compactly_Generated}
+		In other words, tensoring with $\Ind(C_0)$ in $\PrL_{\st}$ is equivalent to forming the internal hom out of $\Ind(C_0\catop)$.
+	\end{remark}
