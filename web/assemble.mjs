@@ -132,7 +132,7 @@ function write(page,title,kind,content,{chapter=null,section=null,entry=null}={}
  if(chapter)breadcrumbs.push({label:chapter.heading,href:kind==='chapter'?'':relative(page,chapterPage(chapter))});
  if(section)breadcrumbs.push({label:`Section ${section.number}`,href:kind==='section'?'':relative(page,sectionPage(section))});
  if(entry)breadcrumbs.push({label:`${entry.kind[0].toUpperCase()+entry.kind.slice(1)} ${entry.number}`});
- const header=reader.renderReaderHeader({collectionHref:'http://127.0.0.1:8765/books.html',homeHref:kind==='work'?'':relative(page,'index.html'),workTitle:book.title,breadcrumbs,title});
+ const header=reader.renderReaderHeader({collectionHref:book.collectionPage,homeHref:kind==='work'?'':relative(page,'index.html'),workTitle:book.title,breadcrumbs,title});
  const list=items=>`<ol class="context-entry-list">${items.map(item=>`<li>${item.page?`<a href="${relative(page,item.page)}"${item.current?' aria-current="page"':''}>`:'<span class="planned-navigation-item">'}<span class="context-entry-heading">${esc(item.heading)}</span><span class="context-entry-title">${esc(item.title)}</span>${item.page?'</a>':'</span>'}</li>`).join('')}</ol>`;
  const outline=[...chapters.filter(chapter=>!chapter.appendix).map(item=>({page:chapterPage(item),title:item.title,heading:item.heading,current:item.id===chapter?.id})),...inventory.planned.map(item=>({heading:`Chapter ${item.number}`,title:item.title})),...chapters.filter(chapter=>chapter.appendix).map(item=>({page:chapterPage(item),title:item.title,heading:item.heading,current:item.id===chapter?.id}))];
  const ledgers=[{key:'chapters',title:'Chapters',collapsed:kind!=='work',content:list(outline)}];

@@ -5,6 +5,7 @@
   "pdfBase": "tmp/web/pdf/Efimov K-theory Notes",
   "output": "output/web",
   "mathMacros": "preamble.sty",
+  "collectionPage": "/notes.html",
   "entries": [
     [
       "thm:Verdier_Quotient",

@@ -52,6 +52,7 @@ for (const file of pages) {
   if (/\\HCode|diagram-source|proof-owner|\?\?/.test(html)) throw new Error(`Conversion residue on ${file}`);
   if (!html.includes('name="description"')) throw new Error(`Missing description: ${file}`);
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    if(match[1]===book.collectionPage)continue;
     if (/^(?:https?:|mailto:|data:)/.test(match[1])) continue;
     const [url,fragment]=match[1].split('#');
     const target=path.resolve(path.dirname(file),decodeURIComponent(url || 'index.html'));
