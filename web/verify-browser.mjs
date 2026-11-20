@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {launchBrowser} from '../../../Website/publication/reader-shell-v1/browser-harness.mjs';
+import {launchBrowser} from '../../../Animarium/publication/reader-shell-v1/browser-harness.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const contract=JSON.parse(fs.readFileSync(path.join(root,'output/web/_meta/public-contract.json'),'utf8'));
 const origin=process.argv[2] || 'http://127.0.0.1:8881';

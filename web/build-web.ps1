@@ -1,7 +1,7 @@
 param([switch]$SkipPdf, [switch]$VerifySourcePreservation)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
-$sharedRoot = Join-Path $PSScriptRoot '../../../Website/publication/latex-web-v1'
+$sharedRoot = Join-Path $PSScriptRoot '../../../Animarium/publication/latex-web-v1'
 Push-Location $projectRoot
 try {
     New-Item -ItemType Directory -Path 'tmp/web/pdf' -Force | Out-Null

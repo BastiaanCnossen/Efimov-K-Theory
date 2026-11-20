@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {validateReaderShell} from '../../../Website/publication/reader-shell-v1/install.mjs';
+import {validateReaderShell} from '../../../Animarium/publication/reader-shell-v1/install.mjs';
 import crypto from 'node:crypto';
-import {parseAux} from '../../../Website/publication/latex-web-v1/source.mjs';
+import {parseAux} from '../../../Animarium/publication/latex-web-v1/source.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output=path.resolve(process.argv[2] || path.join(root,'output/web'));

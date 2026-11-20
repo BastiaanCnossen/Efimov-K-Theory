@@ -3,7 +3,7 @@
 The local web edition converts the written material in Chapters 1–4 and
 Appendix A. Chapters 5–10 currently contain headings only: they remain visible
 in the outline as material in preparation, without empty reading pages.
-The edition is not published on the Website. The candidate work ID is
+The edition is not published on the Animarium. The candidate work ID is
 `efimov-k-theory`; public routes have not been frozen.
 
 ## Build and preview
@@ -20,8 +20,8 @@ replaces `output/web/`; the previous local bundle is retained in a timestamped
 preview. This is a local preview transaction, not public publication.
 
 The complete static bundle includes the current full PDF, local MathJax and
-fonts, and SVG diagrams. Reading needs no external services. The Books & notes
-return link points to the local Website preview.
+fonts, and SVG diagrams. Reading needs no external services. The Animarium
+return link points to the local Animarium preview.
 
 The preview is at `http://127.0.0.1:8881/`. To start it yourself:
 
@@ -32,7 +32,7 @@ python -m http.server 8881 --bind 127.0.0.1 --directory output/web
 Run `node web/verify-browser.mjs` while that preview is running to audit every
 chapter, section and bibliography formula in headless Edge/Chrome. The audit
 also loads every diagram and detects undefined commands that MathJax renders
-as red text. Run the Website's
+as red text. Run the Animarium's
 `publication/reader-shell-v1/test-browser.mjs` with this bundle as its argument
 for settings, navigation, proof and formula-copy acceptance tests.
 
@@ -77,10 +77,10 @@ choices, not numbering-based names invented by the converter.
 
 ## Shared infrastructure
 
-The canonical reader is `Website/publication/reader-shell-v1`, including its
+The canonical reader is `Animarium/publication/reader-shell-v1`, including its
 styles, settings, ledgers, formula copying and four navigation controls. Its
 revision receipt is installed and validated in every bundle. The shared
-conversion helpers in `Website/publication/latex-web-v1` supply AUX parsing,
+conversion helpers in `Animarium/publication/latex-web-v1` supply AUX parsing,
 bibliography rendering, macro extraction, ordinary proofs, content styles and
 the pinned MathJax runtime. These are build-time dependencies; the generated
 bundle is self-contained. The other editions retain their own source adapters.
@@ -111,5 +111,5 @@ environments and displayed tikz-cd diagrams. It should be extended explicitly
 if the notes gain narrative figures, nested theorem environments, or other new
 source constructs. Front matter remains available in the PDF; this extension
 covers the chapters and appendix. Before public publication, review the
-candidate identities and register the work with the Website publisher and its
+candidate identities and register the work with the Animarium publisher and its
 permanent route ledger.

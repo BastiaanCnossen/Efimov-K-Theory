@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml as esc, group, parseAux, uncomment, readManifest, mathMacros} from '../../../Website/publication/latex-web-v1/source.mjs';
-import {parseBbl, citationName, citationYear} from '../../../Website/publication/latex-web-v1/bibliography.mjs';
+import {escapeHtml as esc, group, parseAux, uncomment, readManifest, mathMacros} from '../../../Animarium/publication/latex-web-v1/source.mjs';
+import {parseBbl, citationName, citationYear} from '../../../Animarium/publication/latex-web-v1/bibliography.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const book=readManifest(path.join(root,'web/book.json'));
 const labels=parseAux(fs.readFileSync(path.join(root,`${book.pdfBase}.aux`),'utf8'));
