@@ -153,7 +153,7 @@ for(const chapter of convertedChapters){
  for(const section of chapter.bodies)write(sectionPage(section),section.title,'section',section.html,{chapter,section});
  for(const entry of chapter.entries){const section=chapter.sections.find(section=>section.id===entry.sectionId);write(entryPage(entry),entry.title,'entry',statementBlocks.get(entry.label)+(proofBlocks.get(entry.label)||[]).map(proof=>proof.html).join(''),{chapter,section,entry});}
 }
-write('references/index.html','References','references',`<ol class="reference-list">${[...cited].sort().map(key=>`<li id="bib-${key}"><span class="reference-label">[${esc(alphabeticLabel(bibliography.get(key)))}]</span> ${renderReferenceHtml(bibliography.get(key))}</li>`).join('')}</ol>`);
+write('references/index.html','References','references',`<ol class="reference-list">${[...cited].sort().map(key=>`<li id="bib-${key}"><span class="reference-label">[${esc(alphabeticLabel(bibliography.get(key)))}]</span><div class="reference-body">${renderReferenceHtml(bibliography.get(key))}</div></li>`).join('')}</ol>`);
 for(const name of ['style.css','proofs.js'])fs.copyFileSync(path.join(shared,'latex-web-v1',name),path.join(output,'_assets',name==='style.css'?'content.css':name));
 fs.copyFileSync(path.join(root,`${book.pdfBase}.pdf`),path.join(output,'book.pdf'));reader.installReaderShell(output,'_assets');
 fs.writeFileSync(path.join(output,'_meta/public-contract.json'),JSON.stringify({SchemaVersion:1,WorkId:book.workId,Routes:routes},null,2));
