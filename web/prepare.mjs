@@ -1,17 +1,38 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {escapeHtml as esc, group, parseAux, uncomment, readManifest, mathMacros} from '../../../Animarium/publication/latex-web-v1/source.mjs';
+import {escapeHtml as esc, group, parseAux, uncomment, readManifest, mathMacros, linearizeTabular} from '../../../Animarium/publication/latex-web-v1/source.mjs';
 import {parseBbl, citationName, citationYear} from '../../../Animarium/publication/latex-web-v1/bibliography.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const tagRoutes = new Map(JSON.parse(fs.readFileSync(
+ path.join(root, '../../Animarium/publication/entry-tags.json'), 'utf8'
+)).Tags);
+const workAbbreviations = new Map([
+ ['synthetic-category-theory', 'SCT'],
+ ['stable-homotopy-higher-algebra', 'SHT'],
+ ['topos-theory', 'Topos'],
+ ['efimov-k-theory', 'Efimov'],
+]);
+
+function shortenWorkCitations(source) {
+ const citation = /\\href\{https:\/\/animarium\.org\/tag\/([0-9A-Z]{4})\/\}\{(?:\\emph\{[^{}]+\},\s*)?([A-Z][a-z]+)~([A-Z0-9]+(?:\.[0-9]+)+)\}/g;
+ return source.replace(citation, (_, tag, kind, number) => {
+  const route = tagRoutes.get(tag);
+  const abbreviation = typeof route === 'string' && workAbbreviations.get(route.split('/')[1]);
+  if (!abbreviation) throw new Error('Unknown work for Animarium citation ' + tag);
+  return '\\href{https://animarium.org/tag/' + tag + '/}{[' + abbreviation + ', ' + kind + '~' + number + ']}';
+ });
+}
 const book=readManifest(path.join(root,'web/book.json'));
 const labels=parseAux(fs.readFileSync(path.join(root,`${book.pdfBase}.aux`),'utf8'));
 const bibliography=parseBbl(fs.readFileSync(path.join(root,`${book.pdfBase}.bbl`),'utf8'));
 const temporary=path.join(root,'tmp/web');
 fs.mkdirSync(temporary,{recursive:true});
 const chapters=[];
+const frontMatter=[];
 const kinds='theorem|lemma|proposition|corollary|definition|remark|example|warning|observation|construction|claim|convention|notation|exercise|fact|question';
 function sourceReferences(text) {
+ text = shortenWorkCitations(text);
  return text.replace(/\\(?:Cref|cref|eqref|ref)\{([^}]+)\}/g,(match,keys)=>keys.split(',').map(label=>{
   label=label.trim();const ref=labels.get(label);
   if(!ref?.anchor||!ref.number||ref.number.includes('?'))throw new Error(`Unresolved source reference ${label}`);
@@ -67,6 +88,8 @@ for(const descriptor of book.chapters){
  const htmlName=`chapter-${descriptor.id}`;
  chapters.push({...descriptor,number,heading:`${descriptor.appendix?'Appendix':'Chapter'} ${number}`,sections,entries,proofs,htmlName});
  let converted=citations(sourceReferences(source));
+ // Use the same inert table markers as the Preface; raw paragraph columns can stall TeX4ht.
+ converted=converted.replace(/\\begin\{tabular\}[\s\S]*?\\end\{tabular\}/g,table=>linearizeTabular(table.replace(/\\hline\b/g,'')));
  converted=converted.replace(/\\begin\{tikzcd\}[\s\S]*?\\end\{tikzcd\}/g,diagram=>`\\ifmmode\\hbox{\\HCode{<span class="diagram-source" data-source="${Buffer.from(diagram).toString('base64')}"></span>}}\\else\\HCode{<span class="diagram-source" data-source="${Buffer.from(diagram).toString('base64')}"></span>}\\fi`);
  // Place equation anchors outside preserved mathematics.
  converted=converted.replace(/\\begin\{(equation\*?|align\*?|gather\*?)\}[\s\S]*?\\end\{\1\}/g,equation=>[...equation.matchAll(/\\label\{([^}]+)\}/g)].map(match=>`\\HCode{<span id="${esc(match[1])}"></span>}`).join('')+equation);
@@ -76,6 +99,23 @@ for(const descriptor of book.chapters){
  fs.writeFileSync(path.join(temporary,`${htmlName}.tex`),`\\documentclass[11pt]{book}\n\\makeatletter\\def\\input@path{{../../}}\\makeatother\n\\input{preamble-web}\n\\begin{document}\n${setup}\n${converted}\n\\end{document}\n`);
  console.log(`Prepared ${descriptor.appendix?'Appendix':'Chapter'} ${number}: ${sections.length} sections, ${entries.length} entries, ${proofs.length} proofs.`);
 }
+for(const descriptor of book.frontMatter||[]){
+ const source=uncomment(fs.readFileSync(path.join(root,descriptor.source),'utf8'));
+ const opening=`\\chapter*{${descriptor.startHeading}}`;
+ const closing=descriptor.endCommand?`\\${descriptor.endCommand}`:`\\chapter*{${descriptor.endHeading}}`;
+ const start=source.indexOf(opening),end=source.indexOf(closing,start+opening.length);
+ if(start<0||end<0)throw new Error(`Missing front-matter boundaries for ${descriptor.id}`);
+ const htmlName=`frontmatter-${descriptor.id}`;
+ // Keep the semantic boundary at mainmatter while omitting the print layout
+ // reset that follows the authored preface in the root document.
+ const content=source.slice(start,end)
+  .replace(/\\titlespacing\*?\s*\{\\chapter\}\s*\{[^{}]*\}\s*\{[^{}]*\}\s*\{[^{}]*\}/g,'')
+  .replace(/\\(?:restoregeometry|openany)\b/g,'');
+ const converted=linearizeTabular(citations(sourceReferences(content))).replace(/\\footnotesize\b/g,'');
+ fs.writeFileSync(path.join(temporary,`${htmlName}.tex`),`\\documentclass[11pt]{book}\n\\makeatletter\\def\\input@path{{../../}}\\makeatother\n\\input{preamble-web}\n\\begin{document}\n\\frontmatter\n${converted}\n\\end{document}\n`);
+ frontMatter.push({...descriptor,htmlName,heading:descriptor.title});
+ console.log(`Prepared ${descriptor.title} from ${descriptor.source}.`);
+}
 const entries=chapters.flatMap(chapter=>chapter.entries);
 if(entries.length!==book.entries.length||new Set(entries.map(entry=>entry.label)).size!==entries.length)throw new Error('Entry registry and manuscript differ.');
 const planned=(book.plannedChapters||[]).map(([label,title,source])=>{
@@ -84,6 +124,6 @@ const planned=(book.plannedChapters||[]).map(([label,title,source])=>{
  if(actual.slice(end).replace(/\\label\[chapter\]\{[^}]+\}/,'').trim())throw new Error(`Planned chapter now has content; register it: ${source}`);
  return {label,title,source,number:labels.get(label)?.number};
 });
-fs.writeFileSync(path.join(temporary,'inventory.json'),JSON.stringify({chapters,entries,planned},null,2));
+fs.writeFileSync(path.join(temporary,'inventory.json'),JSON.stringify({chapters,entries,planned,frontMatter},null,2));
 fs.writeFileSync(path.join(temporary,'mathjax-macros.json'),JSON.stringify(mathMacros(fs.readFileSync(path.join(root,book.mathMacros),'utf8')),null,2));
 fs.writeFileSync(path.join(temporary,'preamble-web.tex'),fs.readFileSync(path.join(root,'preamble.tex'),'utf8'));

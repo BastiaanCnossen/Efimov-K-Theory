@@ -7,7 +7,97 @@
   "mathMacros": "preamble.sty",
   "canonicalBase": "https://animarium.org/efimov-k-theory/",
   "collectionPage": "/",
+  "frontMatter": [
+    {
+      "id": "preface",
+      "title": "Preface",
+      "source": "Efimov K-theory Notes.tex",
+      "startHeading": "Preface",
+      "endCommand": "mainmatter",
+      "description": "The origins, acknowledgments, AI assistance, and chapter-by-chapter sources of these working notes."
+    }
+  ],
   "entries": [
+    [
+      "con:Categories_And_K_Theory",
+      "conventions-for-categories-and-k-theory",
+      "Conventions for categories and K-theory"
+    ],
+    [
+      "thm:Dualizable_Characterizations",
+      "dualizable-categories-an-overview",
+      "Characterizations of dualizable categories"
+    ],
+    [
+      "ex:Dualizable_Categories",
+      "examples-of-dualizable-categories",
+      "Examples of dualizable categories"
+    ],
+    [
+      "def:Rigid_Category",
+      "rigid-categories-an-overview",
+      "Rigid categories"
+    ],
+    [
+      "ex:Rigid_Ind_Categories_Intro",
+      "rigidity-of-ind-categories",
+      "Rigidity of ind-categories"
+    ],
+    [
+      "prop:Rigid_Self_Dual",
+      "self-duality-of-rigid-categories-an-overview",
+      "Self-duality of rigid categories"
+    ],
+    [
+      "rem:Compact_Objects_And_Morphisms_Intro",
+      "compact-objects-and-compact-morphisms",
+      "Compact objects and compact morphisms"
+    ],
+    [
+      "def:Cat_Dual",
+      "dualizable-categories-and-strongly-continuous-functors",
+      "Dualizable categories and strongly continuous functors"
+    ],
+    [
+      "def:Continuous_Extension",
+      "continuous-extensions-of-localizing-invariants",
+      "Continuous extensions of localizing invariants"
+    ],
+    [
+      "thm:Efimov_Continuous_Extension",
+      "efimovs-continuous-extension-theorem",
+      "Efimov’s continuous extension theorem"
+    ],
+    [
+      "ex:THH_Categorical_Trace",
+      "topological-hochschild-homology-as-a-trace",
+      "Topological Hochschild homology as a trace"
+    ],
+    [
+      "thm:Kcont_Sheaves",
+      "continuous-k-theory-of-sheaves",
+      "Continuous K-theory of sheaves"
+    ],
+    [
+      "ex:Kcont_Euclidean_Sheaves",
+      "continuous-k-theory-of-euclidean-sheaves",
+      "Continuous K-theory of sheaves on Euclidean spaces"
+    ],
+    [
+      "ex:Compact_Operators_Intro",
+      "continuous-k-theory-of-compact-operators",
+      "Continuous K-theory of compact operators"
+    ],
+    [
+      "thm:Kcont_Nuclear",
+      "continuous-k-theory-of-nuclear-modules",
+      "Continuous K-theory of nuclear modules"
+    ],
+    [
+      "thm:Nuclear_Analytic_Descent",
+      "analytic-descent-for-nuclear-modules",
+      "Analytic descent for nuclear modules"
+    ],
     [
       "thm:Verdier_Quotient",
       "verdier-quotients",
@@ -119,6 +209,11 @@
       "Two-term semiorthogonal decompositions"
     ],
     [
+      "prop:SOD_Characterization",
+      "recognizing-semiorthogonal-decompositions",
+      "Recognizing semiorthogonal decompositions by adjoints"
+    ],
+    [
       "rem:SOD_Small",
       "small-semiorthogonal-decompositions",
       "Semiorthogonal decompositions of small categories"
@@ -142,11 +237,6 @@
       "ex:Calkin_Perf",
       "calkin-category-of-perfect-complexes",
       "The Calkin category of perfect complexes"
-    ],
-    [
-      "rem:Calkin_Small_Vs_Continuous",
-      "small-and-continuous-calkin-categories",
-      "Small and continuous Calkin categories"
     ],
     [
       "def:K_0",
@@ -239,86 +329,6 @@
       "Milnor squares of rings"
     ],
     [
-      "con:Categories_And_K_Theory",
-      "conventions-for-categories-and-k-theory",
-      "Conventions for categories and K-theory"
-    ],
-    [
-      "thm:Dualizable_Characterizations",
-      "dualizable-categories-an-overview",
-      "Characterizations of dualizable categories"
-    ],
-    [
-      "ex:Dualizable_Categories",
-      "examples-of-dualizable-categories",
-      "Examples of dualizable categories"
-    ],
-    [
-      "def:Rigid_Category",
-      "rigid-categories-an-overview",
-      "Rigid categories"
-    ],
-    [
-      "ex:Rigid_Ind_Categories_Intro",
-      "rigidity-of-ind-categories",
-      "Rigidity of ind-categories"
-    ],
-    [
-      "prop:Rigid_Self_Dual",
-      "self-duality-of-rigid-categories-an-overview",
-      "Self-duality of rigid categories"
-    ],
-    [
-      "rem:Compact_Objects_And_Morphisms_Intro",
-      "compact-objects-and-compact-morphisms",
-      "Compact objects and compact morphisms"
-    ],
-    [
-      "def:Cat_Dual",
-      "dualizable-categories-and-strongly-continuous-functors",
-      "Dualizable categories and strongly continuous functors"
-    ],
-    [
-      "def:Continuous_Extension",
-      "continuous-extensions-of-localizing-invariants",
-      "Continuous extensions of localizing invariants"
-    ],
-    [
-      "thm:Efimov_Continuous_Extension",
-      "efimovs-continuous-extension-theorem",
-      "Efimov’s continuous extension theorem"
-    ],
-    [
-      "ex:THH_Categorical_Trace",
-      "topological-hochschild-homology-as-a-trace",
-      "Topological Hochschild homology as a trace"
-    ],
-    [
-      "thm:Kcont_Sheaves",
-      "continuous-k-theory-of-sheaves",
-      "Continuous K-theory of sheaves"
-    ],
-    [
-      "ex:Kcont_Euclidean_Sheaves",
-      "continuous-k-theory-of-euclidean-sheaves",
-      "Continuous K-theory of sheaves on Euclidean spaces"
-    ],
-    [
-      "ex:Compact_Operators_Intro",
-      "continuous-k-theory-of-compact-operators",
-      "Continuous K-theory of compact operators"
-    ],
-    [
-      "thm:Kcont_Nuclear",
-      "continuous-k-theory-of-nuclear-modules",
-      "Continuous K-theory of nuclear modules"
-    ],
-    [
-      "thm:Nuclear_Analytic_Descent",
-      "analytic-descent-for-nuclear-modules",
-      "Analytic descent for nuclear modules"
-    ],
-    [
       "def:Compactly_Assembled",
       "compactly-assembled-categories",
       "Compactly assembled categories"
@@ -342,11 +352,6 @@
       "lem:Compact_Morphisms_Yhat",
       "compact-morphisms-via-the-finest-presentation",
       "Compact morphisms via the finest presentation"
-    ],
-    [
-      "rem:Compact_Morphisms_Other_Definitions",
-      "alternative-definitions-of-compact-morphisms",
-      "Alternative definitions of compact morphisms"
     ],
     [
       "ex:Compactly_Generated_Compactly_Assembled",
@@ -419,26 +424,6 @@
       "Localization sequences preserve dualizability"
     ],
     [
-      "warn:Extensions_Not_Dualizable",
-      "extensions-need-not-be-dualizable",
-      "Extensions need not be dualizable"
-    ],
-    [
-      "prop:Extension_Dualizable_Tate",
-      "extensions-and-tate-objects",
-      "Extensions and Tate objects"
-    ],
-    [
-      "rem:Tate_Classification_Of_Extensions",
-      "classifying-exact-sequences-with-tate-objects",
-      "Classifying exact sequences with Tate objects"
-    ],
-    [
-      "ex:Extension_Not_Dualizable",
-      "efimovs-nondualizable-extension",
-      "Efimov’s nondualizable extension"
-    ],
-    [
       "thm:Compactly_Assembled_Omega_1",
       "omega-one-presentability-of-compactly-assembled-categories",
       "ω₁-presentability of compactly assembled categories"
@@ -452,6 +437,146 @@
       "prop:Strongly_Continuous_Compact_Morphisms",
       "strong-continuity-via-compact-morphisms",
       "Strong continuity via compact morphisms"
+    ],
+    [
+      "def:Weakly_Compact_Morphism",
+      "weakly-compact-morphisms",
+      "Weakly compact morphisms"
+    ],
+    [
+      "rem:Weakly_Compact_Lifting",
+      "lifting-criterion-for-weakly-compact-morphisms",
+      "A lifting criterion for weakly compact morphisms"
+    ],
+    [
+      "ex:Weakly_Compact_Basic",
+      "examples-of-weakly-compact-morphisms",
+      "Examples of weakly compact morphisms"
+    ],
+    [
+      "prop:Compact_Morphism_Characterizations",
+      "characterizations-of-compact-morphisms",
+      "Characterizations of compact morphisms"
+    ],
+    [
+      "rem:Weak_Compactness_In_Small_Ind_Categories",
+      "weak-compactness-in-small-ind-completions",
+      "Weak compactness in small Ind-completions"
+    ],
+    [
+      "cor:Compact_Morphism_Factorization",
+      "factorization-of-compact-morphisms",
+      "Factorization of compact morphisms"
+    ],
+    [
+      "lem:Interpolation",
+      "rational-interpolation-of-morphisms",
+      "Rational interpolation of morphisms"
+    ],
+    [
+      "prop:Compact_Interpolation",
+      "compact-interpolation-and-omega-one-compactness",
+      "Compact interpolation and ω₁-compactness"
+    ],
+    [
+      "prop:Compact_Morphisms_Stable",
+      "stable-criterion-for-weak-compactness",
+      "A stable criterion for weak compactness"
+    ],
+    [
+      "rem:Compact_Morphisms_Other_Definitions",
+      "alternative-definitions-of-compact-morphisms",
+      "Alternative definitions of compact morphisms"
+    ],
+    [
+      "rem:Stable_Compact_Morphism_Definitions",
+      "comparing-stable-compactness-definitions",
+      "Comparing stable compactness definitions"
+    ],
+    [
+      "cor:Compact_Iff_Identity_Weakly_Compact",
+      "compact-objects-via-weakly-compact-identities",
+      "Compact objects via weakly compact identities"
+    ],
+    [
+      "def:Compactly_Exhaustible",
+      "compactly-exhaustible-objects",
+      "Compactly exhaustible objects"
+    ],
+    [
+      "prop:Dualizable_Compactly_Exhaustible",
+      "dualizability-via-compact-exhaustions",
+      "Dualizability via compact exhaustions"
+    ],
+    [
+      "rem:Compact_Exhaustions_In_Presentable_Categories",
+      "compact-exhaustions-without-stability",
+      "Compact exhaustions without stability"
+    ],
+    [
+      "prop:Filtered_Coreflection",
+      "coreflection-onto-filtered-colimit-preserving-functors",
+      "Coreflection onto filtered-colimit-preserving functors"
+    ],
+    [
+      "cor:Yhat_Universal_Property",
+      "universal-property-of-the-finest-presentation",
+      "The universal property of the finest presentation"
+    ],
+    [
+      "def:AB6",
+      "the-ab6-axiom",
+      "The axiom (AB6)"
+    ],
+    [
+      "ex:AB6_Sets_And_Animae",
+      "ab6-for-sets-and-animae",
+      "(AB6) for sets and animae"
+    ],
+    [
+      "lem:Products_In_Ind",
+      "products-in-ind-categories",
+      "Products in Ind-categories"
+    ],
+    [
+      "prop:Dualizable_AB6",
+      "dualizability-and-ab6",
+      "Dualizability and (AB6)"
+    ],
+    [
+      "rem:AB6_And_Small_Ind_Completions",
+      "ab6-and-small-ind-completions",
+      "(AB6) and small Ind-completions"
+    ],
+    [
+      "rem:AB6_And_Compact_Assembly",
+      "ab6-and-compact-assembly",
+      "(AB6) and compact assembly"
+    ],
+    [
+      "lem:Automatic_Strong_Continuity",
+      "automatic-strong-continuity",
+      "Automatic strong continuity"
+    ],
+    [
+      "prop:Generation_Dualizable",
+      "dualizability-from-generating-functors",
+      "Dualizability from generating strongly continuous functors"
+    ],
+    [
+      "rem:Products_Dualizable",
+      "products-of-dualizable-categories",
+      "Products of dualizable categories"
+    ],
+    [
+      "def:Image_Functor",
+      "image-of-a-functor",
+      "The image of a colimit-preserving functor"
+    ],
+    [
+      "cor:Image_Dualizable",
+      "images-are-dualizable",
+      "Images of strongly continuous functors are dualizable"
     ],
     [
       "prop:Kernel_Homological_Epi",
@@ -514,6 +639,11 @@
       "Almost modules over the completed algebraic closure"
     ],
     [
+      "prop:Operator_Ideal_Models",
+      "hilbert-space-models-for-operator-ideals",
+      "Hilbert-space models for operator ideals"
+    ],
+    [
       "lem:Ind_Of_Poset",
       "ind-completion-of-a-poset",
       "Ind-completion of a poset"
@@ -559,6 +689,46 @@
       "Continuous posets and sheaf categories"
     ],
     [
+      "prop:SOD_Dualizable",
+      "dualizability-and-semiorthogonal-decompositions",
+      "Dualizability and semiorthogonal decompositions"
+    ],
+    [
+      "constr:Semiorthogonal_Gluing",
+      "semiorthogonal-gluing",
+      "Semiorthogonal gluing"
+    ],
+    [
+      "prop:Gluing_Dualizable",
+      "dualizability-of-gluings",
+      "Dualizability of gluings"
+    ],
+    [
+      "prop:SOD_Functor_Categories",
+      "semiorthogonal-decompositions-of-functor-categories",
+      "Semiorthogonal decompositions of categories of strongly continuous functors"
+    ],
+    [
+      "warn:Extensions_Not_Dualizable",
+      "extensions-need-not-be-dualizable",
+      "Extensions need not be dualizable"
+    ],
+    [
+      "prop:Extension_Dualizable_Tate",
+      "extensions-and-tate-objects",
+      "Extensions and Tate objects"
+    ],
+    [
+      "rem:Tate_Classification_Of_Extensions",
+      "classifying-exact-sequences-with-tate-objects",
+      "Classifying exact sequences with Tate objects"
+    ],
+    [
+      "ex:Extension_Not_Dualizable",
+      "efimovs-nondualizable-extension",
+      "Efimov’s nondualizable extension"
+    ],
+    [
       "def:Rigid_Category_Detailed",
       "rigid-symmetric-monoidal-categories",
       "Rigid symmetric monoidal categories"
@@ -579,14 +749,14 @@
       "Trace-class morphisms"
     ],
     [
-      "rem:Trace_Class_Basics",
-      "properties-of-trace-class-morphisms",
-      "Properties of trace-class morphisms"
-    ],
-    [
       "lem:Identity_Trace_Class",
       "trace-class-identities-and-dualizability",
       "Trace-class identities and dualizability"
+    ],
+    [
+      "rem:Trace_Class_Basics",
+      "properties-of-trace-class-morphisms",
+      "Properties of trace-class morphisms"
     ],
     [
       "lem:Trace_Class_Compact",
@@ -629,9 +799,24 @@
       "Nuclear and basic nuclear objects"
     ],
     [
+      "lem:Trace_Class_Interleaving",
+      "interleaving-for-trace-class-morphisms",
+      "Interleaving for trace-class morphisms"
+    ],
+    [
+      "lem:Nuclear_Colimit_Interleaving",
+      "interleaving-in-nuclear-colimits",
+      "Interleaving in nuclear colimits"
+    ],
+    [
       "prop:Nuclear_Basics",
       "basic-properties-of-nuclear-objects",
       "Basic properties of nuclear objects"
+    ],
+    [
+      "rem:Nuclear_Definition_Pi0",
+      "comparing-definitions-of-nuclearity",
+      "Comparing definitions of nuclearity"
     ],
     [
       "prop:Nuclear_Rigid",
@@ -662,6 +847,146 @@
       "rem:Nuclear_Descent",
       "descent-for-nuclear-modules",
       "Descent for nuclear modules"
+    ],
+    [
+      "prop:PrLL_Colimits",
+      "colimits-of-strongly-continuous-functors",
+      "Colimits along strongly continuous functors"
+    ],
+    [
+      "prop:Prdual_Colimits",
+      "colimits-of-dualizable-categories",
+      "Colimits of dualizable categories"
+    ],
+    [
+      "prop:Epimorphisms_Localizations",
+      "epimorphisms-are-localizations",
+      "Epimorphisms are localizations"
+    ],
+    [
+      "rem:Monomorphisms_Fully_Faithful",
+      "monomorphisms-are-fully-faithful",
+      "Monomorphisms are fully faithful functors"
+    ],
+    [
+      "def:Calkin_Continuous",
+      "continuous-calkin-category",
+      "The continuous Calkin category"
+    ],
+    [
+      "rem:Calkin_Small_Vs_Continuous",
+      "small-and-continuous-calkin-categories",
+      "Small and continuous Calkin categories"
+    ],
+    [
+      "constr:Calkin_Functoriality",
+      "functoriality-of-continuous-calkin-categories",
+      "Functoriality of continuous Calkin categories"
+    ],
+    [
+      "def:Short_Exact_Sequence_Dualizable",
+      "short-exact-sequences-of-dualizable-categories",
+      "Short exact sequences of dualizable categories"
+    ],
+    [
+      "prop:Calkin_Short_Exact",
+      "calkin-categories-preserve-short-exact-sequences",
+      "Continuous Calkin categories preserve short exact sequences"
+    ],
+    [
+      "lem:Filtered_Colimits_PrL",
+      "right-adjoints-and-filtered-colimits",
+      "Right adjoints of structure functors of filtered colimits"
+    ],
+    [
+      "prop:Filtered_Colimits_Fully_Faithful",
+      "filtered-colimits-preserve-fully-faithful-functors",
+      "Filtered colimits preserve fully faithful functors"
+    ],
+    [
+      "cor:Filtered_Union_Subcategories",
+      "filtered-unions-of-subcategories",
+      "Filtered unions of subcategories"
+    ],
+    [
+      "rem:Filtered_Colimits_Fail_PrL",
+      "filtered-colimits-in-presentable-categories",
+      "Failure for presentable stable categories"
+    ],
+    [
+      "prop:Compact_Objects_Filtered_Colimits",
+      "compact-objects-and-filtered-colimits",
+      "Compact objects commute with filtered colimits"
+    ],
+    [
+      "prop:Q_Exhaustion",
+      "rational-exhaustions",
+      "Exhaustions indexed by the rational numbers"
+    ],
+    [
+      "lem:Largest_Dualizable_Subcategory",
+      "largest-dualizable-subcategory",
+      "The largest dualizable subcategory"
+    ],
+    [
+      "rem:Dualizable_Coreflection",
+      "dualizable-coreflection",
+      "The right adjoint to the inclusion of dualizable categories"
+    ],
+    [
+      "def:Dualizable_Kernel",
+      "dualizable-kernel",
+      "The dualizable kernel"
+    ],
+    [
+      "prop:Dualizable_Kernel",
+      "kernels-of-dualizable-categories",
+      "Kernels of dualizable categories"
+    ],
+    [
+      "ex:Dualizable_Kernel_DVR",
+      "dualizable-kernel-over-a-dvr",
+      "A vanishing dualizable kernel"
+    ],
+    [
+      "prop:Dualizable_Pullbacks",
+      "pullbacks-of-dualizable-categories",
+      "Pullbacks of dualizable categories"
+    ],
+    [
+      "cor:Monomorphisms_Prdual",
+      "monomorphisms-of-dualizable-categories",
+      "Monomorphisms of dualizable categories"
+    ],
+    [
+      "rem:Short_Exact_Fiber_Cofiber",
+      "short-exact-sequences-are-fiber-and-cofiber-sequences",
+      "Short exact sequences are fiber and cofiber sequences"
+    ],
+    [
+      "prop:Dualizable_Ind_Adjunction",
+      "right-adjoint-to-the-inclusion-of-dualizable-categories",
+      "The right adjoint given by Ind-completion"
+    ],
+    [
+      "thm:General_Limits_Dualizable",
+      "general-limits-by-calkin-categories",
+      "General limits as dualizable kernels"
+    ],
+    [
+      "prop:Products_Small_Projections",
+      "products-of-karoubi-projections-and-homological-epimorphisms",
+      "Products of Karoubi projections and homological epimorphisms"
+    ],
+    [
+      "cor:Products_Dualizable_Calkin",
+      "products-by-calkin-categories",
+      "The Calkin sequence for an infinite product"
+    ],
+    [
+      "prop:Exact_Products_AB6_Dualizable",
+      "exactness-of-products-and-ab6",
+      "Exactness of products and (AB6)"
     ],
     [
       "def:Kappa_Filtered",
@@ -827,6 +1152,26 @@
       "rem:Tensor_With_Compactly_Generated",
       "tensoring-with-a-compactly-generated-category",
       "Tensoring with a compactly generated category"
+    ],
+    [
+      "lem:Products_Ind_Comparison",
+      "ind-objects-in-products",
+      "Ind-objects in products of small categories"
+    ],
+    [
+      "lem:Duality_Localizations",
+      "duality-and-localizations",
+      "Localizations and fully faithful duals"
+    ],
+    [
+      "lem:Dual_Product_Embedding",
+      "dual-of-a-dualizable-product",
+      "The dual of a product of dualizable categories"
+    ],
+    [
+      "rem:AB6_Versus_Naive_Commutation",
+      "ab6-versus-naive-commutation",
+      "(AB6) versus naive commutation of products and filtered colimits"
     ]
   ],
   "overview": "These notes study dualizable categories and Efimov’s extension of algebraic K-theory to large stable categories. They grew out of the research seminar at the University of Regensburg in the winter term 2026/27, with further material from lectures by Dustin Clausen and the Bonn workshop on dualizable categories and continuous K-theory.",
@@ -929,7 +1274,7 @@
         [
           "sec:Localization_Sequences_Dualizable",
           "localization-sequences-of-dualizable-categories",
-          "Dualizability in localization sequences and the role of Tate objects in extensions."
+          "Dualizability of the outer terms in strongly continuous localization sequences."
         ],
         [
           "sec:Omega_1_Presentability",
@@ -940,11 +1285,46 @@
       ]
     },
     {
+      "id": "compact-morphisms-and-ab6",
+      "label": "chap:Compact_Morphisms_AB6",
+      "source": "Chapters/04_Compact_Morphisms.tex",
+      "title": "Compact morphisms and the axiom (AB6)",
+      "description": "Weak compactness, compact exhaustions, the finest-presentation functor, and the axiom (AB6).",
+      "sections": [
+        [
+          "sec:Weakly_Compact_Morphisms",
+          "weakly-compact-morphisms",
+          "Elementwise compactness, interpolation, and the stable compactness criterion."
+        ],
+        [
+          "sec:Compactly_Exhaustible",
+          "compactly-exhaustible-objects",
+          "Compact exhaustions and a characterization of dualizable categories."
+        ],
+        [
+          "sec:Universal_Property_Yhat",
+          "universal-property-of-the-finest-presentation",
+          "Filtered-colimit-preserving approximations and the universal property of the finest presentation.",
+          "A universal property of ŷ"
+        ],
+        [
+          "sec:AB6",
+          "the-ab6-axiom",
+          "Products of ind-objects and the Clausen–Scholze characterization of dualizability."
+        ],
+        [
+          "sec:Automatic_Dualizability",
+          "automatic-dualizability-and-images",
+          "Dualizability via generating strongly continuous functors, and images of functors."
+        ]
+      ]
+    },
+    {
       "id": "examples-of-dualizable-categories",
       "label": "chap:Examples",
-      "source": "Chapters/04_Examples.tex",
+      "source": "Chapters/05_Examples.tex",
       "title": "Examples of dualizable categories",
-      "description": "Homological epimorphisms, almost modules, continuous posets, rigid categories, and nuclear modules.",
+      "description": "Homological epimorphisms, almost modules, continuous posets, semiorthogonal gluing and Tate extensions.",
       "sections": [
         [
           "sec:Homological_Epimorphisms",
@@ -962,6 +1342,20 @@
           "Ind-completion, the way-below relation, and examples of continuous posets."
         ],
         [
+          "sec:Extensions_And_Gluing",
+          "extensions-and-semiorthogonal-gluing",
+          "Dualizable gluing and the Tate-object obstruction for general extensions."
+        ]
+      ]
+    },
+    {
+      "id": "rigidity-and-nuclear-objects",
+      "label": "chap:Rigidity_And_Nuclear_Objects",
+      "source": "Chapters/06_Rigidity_Nuclear.tex",
+      "title": "Rigidity and nuclear objects",
+      "description": "Rigid categories, trace-class morphisms, nuclearity and analytic examples.",
+      "sections": [
+        [
           "sec:Rigid_Categories",
           "rigid-symmetric-monoidal-categories",
           "Rigidity, self-duality, and trace-class morphisms."
@@ -972,6 +1366,45 @@
           "Nuclear objects, rigidification, and solid, liquid, and gaseous modules."
         ]
       ]
+    },
+    {
+      "id": "calkin-categories-colimits-and-limits",
+      "label": "chap:Calkin_Limits_Colimits",
+      "source": "Chapters/07_Calkin_Limits_Colimits.tex",
+      "description": "Colimits, general limits via continuous Calkin categories, and exactness of infinite products.",
+      "sections": [
+        [
+          "sec:Colimits_Dualizable",
+          "colimits-of-dualizable-categories",
+          "Colimits along strongly continuous functors are computed in presentable stable categories."
+        ],
+        [
+          "sec:Continuous_Calkin",
+          "continuous-calkin-categories",
+          "The continuous Calkin category and its exactness."
+        ],
+        [
+          "sec:Filtered_Colimits_Dualizable",
+          "filtered-colimits-of-dualizable-categories",
+          "Filtered colimits preserve fully faithful functors, short exact sequences and compact objects."
+        ],
+        [
+          "sec:Finite_Limits_Dualizable",
+          "finite-limits-of-dualizable-categories",
+          "Dualizable kernels and pullbacks."
+        ],
+        [
+          "sec:General_Limits_Dualizable",
+          "general-limits-of-dualizable-categories",
+          "Arbitrary limits via the dualizable kernel of a functor between Ind-categories."
+        ],
+        [
+          "sec:Infinite_Products_Dualizable",
+          "infinite-products-and-exactness",
+          "Products of localizations, compactly generated categories, and the axiom (AB6)."
+        ]
+      ],
+      "title": "Calkin categories, colimits and limits of dualizable categories"
     },
     {
       "id": "categorical-background",
@@ -1012,21 +1445,6 @@
   ],
   "plannedChapters": [
     [
-      "chap:Compact_Morphisms_AB6",
-      "Compact morphisms and the axiom (AB6)",
-      "Chapters/05_Compact_Morphisms.tex"
-    ],
-    [
-      "chap:Calkin_Limits_Colimits",
-      "Calkin categories, colimits and limits of dualizable categories",
-      "Chapters/06_Calkin_Limits_Colimits.tex"
-    ],
-    [
-      "chap:Flatness",
-      "Dualizability and flatness",
-      "Chapters/07_Flatness.tex"
-    ],
-    [
       "chap:Localizing_Invariants_Dualizable",
       "Localizing invariants of dualizable categories",
       "Chapters/08_Localizing_Invariants.tex"
@@ -1037,9 +1455,14 @@
       "Chapters/09_Sheaves.tex"
     ],
     [
+      "chap:Flatness",
+      "Dualizability and flatness",
+      "Chapters/10_Flatness.tex"
+    ],
+    [
       "chap:Aleph_1_Presentability",
       "ℵ₁-presentability of Prᵈᵘᵃˡ",
-      "Chapters/10_Aleph_1_Presentability.tex"
+      "Chapters/11_Aleph_1_Presentability.tex"
     ]
   ]
 }

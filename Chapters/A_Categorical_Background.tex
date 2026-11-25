@@ -1,7 +1,7 @@
 	\chapter{Categorical background}
 	\label[appendix]{app:Categorical_Background}
 
-	In this appendix we collect background material on accessible and presentable categories that is used throughout the notes. Most of this material is standard, see \cite{lurie2009HTT,lurie2016HA}, and much of it is also treated in \cite{Cnossen_StableHomotopy,CCNW_Formalization}. We give complete proofs of the statements that are less easy to find in the literature or that are used in a specific form in the main text, and we refer to the literature for the foundational results on accessible categories.
+	In this appendix we collect background material on accessible and presentable categories that is used throughout the notes. Most of this material is standard, see \cite{lurie2009HTT,lurie2016HA}, and much of it is also treated in \cite{Cnossen_StableHomotopy,CCW_SCT}. We give complete proofs of the statements that are less easy to find in the literature or that are used in a specific form in the main text, and we refer to the literature for the foundational results on accessible categories.
 
 	Throughout, \emph{category} means $\infty$-category, and $\An$ denotes the category of animae. We fix a regular cardinal $\kappa$ whenever it appears. For a small category $C$ we write $\PSh(C) = \Fun(C\catop,\An)$ and $y\colon C \hookrightarrow \PSh(C)$ for the Yoneda embedding.
 
@@ -12,7 +12,7 @@
 
 	\begin{definition}
 		\label[definition]{def:Kappa_Filtered}
-		A category $K$ is \emph{$\kappa$-small} if it is equivalent to (the nerve of) a simplicial set with fewer than $\kappa$ non-degenerate simplices. A category $I$ is \emph{$\kappa$-filtered} if every functor $K \to I$ with $K$ a $\kappa$-small category admits a cocone. We say \emph{filtered} for $\omega$-filtered. A colimit indexed by a (small) $\kappa$-filtered category is called a \emph{$\kappa$-filtered colimit}.
+		We use the quasicategory model to specify the size of diagram shapes: a simplicial set is \emph{$\kappa$-small} if it has fewer than $\kappa$ nondegenerate simplices. A category $I$ is \emph{$\kappa$-filtered} if every diagram $K\to I$ indexed by a $\kappa$-small simplicial set extends to a cocone $K^{\triangleright}\to I$. This property is independent of the chosen model of $I$. The phrases \emph{$\kappa$-small limit} and \emph{$\kappa$-small colimit} likewise refer to these diagram shapes. We say \emph{filtered} for $\omega$-filtered. A colimit indexed by a small $\kappa$-filtered category is called a \emph{$\kappa$-filtered colimit}.
 	\end{definition}
 
 	\begin{definition}
@@ -25,6 +25,9 @@
 	\begin{theorem}[{\cite[Proposition~5.3.3.3]{lurie2009HTT}}]
 		\label[theorem]{thm:Filtered_Colimits_Commute_With_Small_Limits}
 		In $\An$, $\kappa$-filtered colimits commute with $\kappa$-small limits.
+		\ifdefined\HCode
+			For $\kappa=\omega$, preservation of finite limits by $\colim_I$ also characterizes filtered indexing categories $I$, see \href{https://animarium.org/tag/01AG/}{\emph{Stable Homotopy Theory and Higher Algebra}, Theorem~22.6.3}.
+		\fi
 	\end{theorem}
 
 	\begin{corollary}
@@ -92,16 +95,16 @@
 
 	\begin{proposition}
 		\label[proposition]{prop:Colimits_Over_Countable_Subposets}
-		Let $P$ be a filtered partially ordered set, and let $\Sigma$ be the set of countable filtered subsets $Q \subseteq P$, ordered by inclusion. Then $\Sigma$ is $\omega_1$-filtered and $P = \bigcup_{Q \in \Sigma} Q$. Moreover, for every functor $F\colon P \to D$ into a category with small colimits, there is a natural equivalence
+		Let $P$ be a filtered partially ordered set, and let $\Sigma$ be the set of countable filtered subsets $Q \subseteq P$, ordered by inclusion. Then $\Sigma$ is $\omega_1$-filtered and $P = \bigcup_{Q \in \Sigma} Q$. Moreover, for every functor $F\colon P \to D$ into a category with filtered colimits, there is a natural equivalence
 		\[
 			\colim_{p \in P} F(p) \simeq \colim_{Q \in \Sigma} \colim_{q \in Q} F(q).
 		\]
 	\end{proposition}
 	\prooffor{prop:Colimits_Over_Countable_Subposets}
 	\begin{proof}
-		Every $p \in P$ lies in the countable filtered subset $\{p\}$. Let $Q_0,Q_1,\dots \in \Sigma$ be countably many elements. Put $U_0 = \bigcup_n Q_n$, and inductively let $U_{k+1} \supseteq U_k$ be obtained by adding a chosen common upper bound in $P$ for every pair of elements of $U_k$. Then $U = \bigcup_k U_k$ is countable, and any two elements of $U$ have an upper bound in $U$; hence $U \in \Sigma$ by \Cref{lem:Kappa_Filtered_Posets}, and $U$ is an upper bound of the $Q_n$. So $\Sigma$ is $\omega_1$-filtered by \Cref{lem:Kappa_Filtered_Posets}.
+		Every $p \in P$ lies in the countable filtered subset $\{p\}$. Let $Q_0,Q_1,\dots \in \Sigma$ be countably many elements. Put $U_0 = \bigcup_n Q_n$ (and add one element of $P$ if the family is empty), and inductively let $U_{k+1} \supseteq U_k$ be obtained by adding a chosen common upper bound in $P$ for every pair of elements of $U_k$. Then $U = \bigcup_k U_k$ is countable, and any two elements of $U$ have an upper bound in $U$; hence $U \in \Sigma$ by \Cref{lem:Kappa_Filtered_Posets}, and $U$ is an upper bound of the $Q_n$. So $\Sigma$ is $\omega_1$-filtered by \Cref{lem:Kappa_Filtered_Posets}.
 
-		Consider the partially ordered set $E = \{(Q,q) \mid Q \in \Sigma, q \in Q\}$, with $(Q,q) \leq (Q',q')$ if $Q \subseteq Q'$ and $q \leq q'$, together with the projections $\pi\colon E \to \Sigma$ and $\rho\colon E \to P$. The map $\rho$ is cofinal by \Cref{lem:Cofinality_Posets}: for $p \in P$, the subset $\{(Q,q) \mid p \leq q\}$ is non-empty, and it is filtered since two elements $(Q,q),(Q',q')$ are bounded by $(Q'',q'')$ where $q''$ is an upper bound of $q,q'$ and $Q'' \in \Sigma$ contains $Q \cup Q' \cup \{q''\}$. Hence $\colim_P F \simeq \colim_E F\rho \simeq \colim_{\Sigma} \pi_!(F\rho)$, where $\pi_!$ denotes left Kan extension along $\pi$. For $Q \in \Sigma$ we have $\pi_!(F\rho)(Q) = \colim_{(Q',q') \in E,\, Q' \subseteq Q} F(q')$, and the map $Q \to \{(Q',q') \in E \mid Q' \subseteq Q\}$, $q \mapsto (Q,q)$, is cofinal by \Cref{lem:Cofinality_Posets}: for $(Q',q')$ with $Q' \subseteq Q$, the subset $\{q \in Q \mid q' \leq q\}$ is non-empty and filtered. Hence $\pi_!(F\rho)(Q) \simeq \colim_{q \in Q} F(q)$, which proves the claim.
+		Consider the partially ordered set $E = \{(Q,q) \mid Q \in \Sigma, q \in Q\}$, with $(Q,q) \leq (Q',q')$ if $Q \subseteq Q'$ and $q \leq q'$, together with the projections $\pi\colon E \to \Sigma$ and $\rho\colon E \to P$. The map $\rho$ is cofinal by \Cref{lem:Cofinality_Posets}: for $p \in P$, the subset $\{(Q,q) \mid p \leq q\}$ is non-empty, and it is filtered since two elements $(Q,q),(Q',q')$ are bounded by $(Q'',q'')$ where $q''$ is an upper bound of $q,q'$ and $Q'' \in \Sigma$ contains $Q \cup Q' \cup \{q''\}$. Hence $\colim_P F \simeq \colim_E F\rho \simeq \colim_{\Sigma} \pi_!(F\rho)$, where $\pi_!$ denotes left Kan extension along $\pi$. All indexing categories in this calculation are filtered, so the assumed filtered colimits suffice. For $Q \in \Sigma$ we have $\pi_!(F\rho)(Q) = \colim_{(Q',q') \in E,\, Q' \subseteq Q} F(q')$, and the map $Q \to \{(Q',q') \in E \mid Q' \subseteq Q\}$, $q \mapsto (Q,q)$, is cofinal by \Cref{lem:Cofinality_Posets}: for $(Q',q')$ with $Q' \subseteq Q$, the subset $\{q \in Q \mid q' \leq q\}$ is non-empty and filtered. Hence $\pi_!(F\rho)(Q) \simeq \colim_{q \in Q} F(q)$, which proves the claim.
 	\end{proof}
 
 	\begin{remark}
@@ -119,6 +122,9 @@
 	\begin{lemma}[Telescopes]
 		\label[lemma]{lem:Retract_As_Telescope}
 		Let $D$ be a category with sequential colimits, and let $X \xrightarrow{s} Y \xrightarrow{r} X$ be maps with $rs \simeq \id_X$. Then $X \simeq \colim(Y \xrightarrow{e} Y \xrightarrow{e} Y \to \dots)$, where $e = sr$.
+		\ifdefined\HCode
+			The same telescope computes $X$ even if $D$ does not admit arbitrary sequential colimits, see \href{https://animarium.org/tag/111G/}{\emph{Synthetic Category Theory}, Lemma~17.4.3}.
+		\fi
 	\end{lemma}
 	\prooffor{lem:Retract_As_Telescope}
 	\begin{proof}
@@ -183,6 +189,9 @@
 			\item For every category $D$ admitting $\kappa$-filtered colimits, restriction along $y$ induces an equivalence between the category of functors $\Ind_{\kappa}(C_0) \to D$ preserving $\kappa$-filtered colimits and $\Fun(C_0,D)$. The inverse is given by left Kan extension along $y$.
 			\item If $C_0$ admits $\kappa$-small colimits, then $\Ind_{\kappa}(C_0)$ admits all small colimits, $y$ preserves $\kappa$-small colimits, and for every category $D$ admitting small colimits, restriction along $y$ induces an equivalence between colimit-preserving functors $\Ind_{\kappa}(C_0) \to D$ and functors $C_0 \to D$ preserving $\kappa$-small colimits.
 		\end{enumerate}
+		\ifdefined\HCode
+			For the equivalence in (3) when $D$ is $\kappa$-presentable, see \href{https://animarium.org/tag/1117/}{\emph{Synthetic Category Theory}, Proposition~17.3.5}.
+		\fi
 	\end{theorem}
 
 	\begin{definition}
@@ -207,6 +216,9 @@
 	\begin{theorem}[Adjoint functor theorem, {\cite[Corollary~5.5.2.9]{lurie2009HTT}}]
 		\label[theorem]{thm:Adjoint_Functor_Theorem}
 		Let $F\colon C \to D$ be a functor between presentable categories. Then $F$ admits a right adjoint if and only if it preserves small colimits, and $F$ admits a left adjoint if and only if it is accessible and preserves small limits.
+		\ifdefined\HCode
+			For the right adjoint criterion, the target need only be locally small and admit small colimits, see \href{https://animarium.org/tag/117F/}{\emph{Synthetic Category Theory}, Proposition~21.2.16}.
+		\fi
 	\end{theorem}
 
 	\begin{lemma}
@@ -239,8 +251,15 @@
 	\section{Idempotent completeness}
 	\label[section]{sec:Idempotent_Completeness}
 
+	\ifdefined\HCode
+		In the proof of \Cref{thm:Compactly_Assembled_Retract}, the colimit functor is a retract of a functor admitting a left adjoint. Idempotent completeness lets us pass that adjointness property to the retract.
+		\par
+	\fi
 	Recall from \cite[Section~4.4.5]{lurie2009HTT} that a category $C$ is \emph{idempotent complete} if every idempotent in $C$ splits. We will use the following characterization, see \cite[Section~5.1.4]{lurie2009HTT}: a locally small category $C$ is idempotent complete if and only if the essential image of the Yoneda embedding $C \hookrightarrow \Fun(C\catop,\widehat{\An})$ is closed under retracts, if and only if the essential image of $C\catop \hookrightarrow \Fun(C,\widehat{\An})$ is closed under retracts. Every category admitting sequential colimits is idempotent complete \cite[Section~4.4.5]{lurie2009HTT} (compare \Cref{lem:Retract_As_Telescope}); this applies in particular to presentable categories and to all categories admitting filtered colimits. Moreover, every accessible category is idempotent complete \cite[Chapter~5]{lurie2009HTT}, and every small category $C_0$ admits an idempotent completion $C_0 \hookrightarrow C_0^{\idem}$, which may be computed as the full subcategory of $\PSh(C_0)$ spanned by retracts of representables.
-
+	\ifdefined\HCode
+		\par
+		For the splitting of idempotents by sequential colimits, see \href{https://animarium.org/tag/111F/}{\emph{Synthetic Category Theory}, Lemma~17.4.2}. For a small category $C_0$ with $\kappa$-small colimits, \href{https://animarium.org/tag/111H/}{Proposition~17.4.4} identifies the retracts of representables with the $\kappa$-compact objects of $\Ind_{\kappa}(C_0)$, and \href{https://animarium.org/tag/111P/}{Remark~17.4.13} describes the resulting idempotent completion. For a small stable category this gives $\Ind(C_0)^{\omega}$, as in \href{https://animarium.org/tag/115B/}{Construction~19.6.14}.
+	\fi
 
 	% Source: Talk 2 (Marc Hoyois, 20.10.2026)
 	\begin{lemma}
@@ -297,27 +316,30 @@
 		\[
 			GU^R \to V^RVGU^R \overset{\alpha}{\simeq} V^RG'UU^R \to V^RG'.
 		\]
+		\ifdefined\HCode
+			For a pullback square, the first formula gives the Beck--Chevalley transformation used in \href{https://animarium.org/tag/010G/}{\emph{Stable Homotopy Theory and Higher Algebra}, Definition~15.1.1}. Left adjointability there requires this mate to be invertible.
+		\fi
 	\end{construction}
 
 	\begin{lemma}[Conjugate transformations]
 		\label[lemma]{lem:Conjugate_Transformations}
-		Let $F_1 \dashv G_1$ and $F_2 \dashv G_2$ be adjunctions between categories $A$ and $B$, with $F_i\colon A \to B$. For every natural transformation $\phi\colon F_1 \to F_2$ there is a unique (up to homotopy) natural transformation $\phi^{\vee}\colon G_2 \to G_1$, its \emph{conjugate}, such that the square
+		Let $F_1 \dashv G_1$ and $F_2 \dashv G_2$ be adjunctions between categories $A$ and $B$, with $F_i\colon A \to B$. For every natural transformation $\phi\colon F_1 \to F_2$ there is a unique natural transformation $\phi^{\vee}\colon G_2 \to G_1$, its \emph{conjugate}, such that the square
 		\[
 			\begin{tikzcd}
 				\Map_B(F_2a,b) \rar["\phi^*"] \dar["\simeq"'] & \Map_B(F_1a,b) \dar["\simeq"] \\
 				\Map_A(a,G_2b) \rar["(\phi^{\vee})_*"] & \Map_A(a,G_1b)
 			\end{tikzcd}
 		\]
-		commutes naturally in $a$ and $b$. Moreover, $\phi$ is an equivalence if and only if $\phi^{\vee}$ is.
+		commutes naturally in $a$ and $b$. Moreover, $\phi$ is an isomorphism if and only if $\phi^{\vee}$ is.
 	\end{lemma}
 	\prooffor{lem:Conjugate_Transformations}
 	\begin{proof}
-		The composite of the top map with the vertical equivalences is a natural transformation $\Map_A(-,G_2(-)) \to \Map_A(-,G_1(-))$, which by the Yoneda lemma is induced by a unique natural transformation $\phi^{\vee}\colon G_2 \to G_1$. Again by the Yoneda lemma, $\phi$ is an equivalence if and only if $\phi^*$ is an equivalence for all $a,b$, if and only if $(\phi^{\vee})_*$ is an equivalence for all $a,b$, if and only if $\phi^{\vee}$ is an equivalence.
+		The composite of the top map with the vertical isomorphisms is a natural transformation $\Map_A(-,G_2(-)) \to \Map_A(-,G_1(-))$, which by the Yoneda lemma is induced by a unique natural transformation $\phi^{\vee}\colon G_2 \to G_1$. Again by the Yoneda lemma, $\phi$ is an isomorphism if and only if $\phi^*$ is an isomorphism for all $a,b$, if and only if $(\phi^{\vee})_*$ is an isomorphism for all $a,b$, if and only if $\phi^{\vee}$ is an isomorphism.
 	\end{proof}
 
 	\begin{lemma}[{\cite[Section~2.2, Propositions~2.1 and~2.2]{KellyStreet1974Mates}}]
 		\label[lemma]{lem:Mates_Conjugates}
-		In the situation of \Cref{constr:Mates}, assume that $G,G'$ admit left adjoints $F,F'$ and that $U,V$ admit right adjoints $U^R,V^R$. Then the mate $\beta\colon F'V \to UF$ (a transformation between left adjoints of $V^RG'$ and $GU^R$) is conjugate to the vertical mate $\gamma\colon GU^R \to V^RG'$. In particular, $\beta$ is an equivalence if and only if $\gamma$ is.
+		In the situation of \Cref{constr:Mates}, assume that $G,G'$ admit left adjoints $F,F'$ and that $U,V$ admit right adjoints $U^R,V^R$. Then the mate $\beta\colon F'V \to UF$ (a transformation between left adjoints of $V^RG'$ and $GU^R$) is conjugate to the vertical mate $\gamma\colon GU^R \to V^RG'$. In particular, $\beta$ is an isomorphism if and only if $\gamma$ is.
 	\end{lemma}
 
 	\begin{lemma}[Adjoint triples]
@@ -326,7 +348,7 @@
 	\end{lemma}
 	\prooffor{lem:Adjoint_Triples}
 	\begin{proof}
-		We have adjunctions $GF \dashv GH$ and $\id_A \dashv \id_A$. The unit $\eta\colon \id_A \to GF$ of $F \dashv G$ is a transformation between the left adjoints, and its conjugate is the counit $\varepsilon\colon GH \to \id_A$ of $G \dashv H$: indeed, under the identifications $\Map_A(GFa,a') \simeq \Map_B(Fa,Ha') \simeq \Map_A(a,GHa')$, precomposition with $\eta_a$ corresponds to postcomposition with $\varepsilon_{a'}$, by the triangle identities. Now $F$ is fully faithful if and only if $\eta$ is an equivalence, and $H$ is fully faithful if and only if $\varepsilon$ is an equivalence, so the claim follows from \Cref{lem:Conjugate_Transformations}.
+		We have adjunctions $GF \dashv GH$ and $\id_A \dashv \id_A$. The unit $\eta\colon \id_A \to GF$ of $F \dashv G$ is a transformation between the left adjoints, and its conjugate is the counit $\varepsilon\colon GH \to \id_A$ of $G \dashv H$: indeed, under the identifications $\Map_A(GFa,a') \simeq \Map_B(Fa,Ha') \simeq \Map_A(a,GHa')$, precomposition with $\eta_a$ corresponds to postcomposition with $\varepsilon_{a'}$, by the triangle identities. Now $F$ is fully faithful if and only if $\eta$ is an isomorphism, and $H$ is fully faithful if and only if $\varepsilon$ is an isomorphism, so the claim follows from \Cref{lem:Conjugate_Transformations}.
 	\end{proof}
 
 	The following was used in the definition of strongly continuous functors between compactly assembled categories, see \Cref{def:Strongly_Continuous_Compactly_Assembled} and \Cref{rem:Strongly_Continuous_Right_Adjoint}.
@@ -337,19 +359,19 @@
 		\[
 			\beta\colon \hat{y}_D f \to \Ind(f)\hat{y}_C
 		\]
-		of the commutative square $\colim_D \circ \Ind(f) \simeq f \circ \colim_C$ is an equivalence if and only if $g$ preserves filtered colimits.
+		of the commutative square $\colim_D \circ \Ind(f) \simeq f \circ \colim_C$ is an isomorphism if and only if $g$ preserves filtered colimits.
 	\end{proposition}
 	\prooffor{prop:Strongly_Continuous_Via_Right_Adjoint}
 	\begin{proof}
-		Applying $\Ind$ to the unit and counit of $f \dashv g$ shows that $\Ind(f) \dashv \Ind(g)$. By \Cref{lem:Mates_Conjugates}, $\beta$ is an equivalence if and only if the vertical mate
+		Applying $\Ind$ to the unit and counit of $f \dashv g$ shows that $\Ind(f) \dashv \Ind(g)$. By \Cref{lem:Mates_Conjugates}, $\beta$ is an isomorphism if and only if the vertical mate
 		\[
 			\gamma\colon \colim_C\Ind(g) \to gf\colim_C\Ind(g) \simeq g\colim_D\Ind(f)\Ind(g) \to g\colim_D
 		\]
-		is an equivalence. Evaluating at an object $\quotcolim_i d_i \in \Ind(D)$, the map $\gamma$ becomes
+		is an isomorphism. Evaluating at an object $\quotcolim_i d_i \in \Ind(D)$, the map $\gamma$ becomes
 		\[
 			\colim_i g(d_i) \to gf\big(\colim_i g(d_i)\big) \simeq g\big(\colim_i fg(d_i)\big) \to g\big(\colim_i d_i\big),
 		\]
-		whose restriction to each $g(d_j)$ is $g(d_j) \to gfg(d_j) \to g(d_j)$ followed by the canonical map $g(d_j) \to g(\colim_i d_i)$. By the triangle identity, $\gamma$ is therefore the canonical comparison map $\colim_i g(d_i) \to g(\colim_i d_i)$. Hence $\gamma$ is an equivalence if and only if $g$ preserves filtered colimits.
+		whose restriction to each $g(d_j)$ is $g(d_j) \to gfg(d_j) \to g(d_j)$ followed by the canonical map $g(d_j) \to g(\colim_i d_i)$. By the triangle identity, $\gamma$ is therefore the canonical comparison map $\colim_i g(d_i) \to g(\colim_i d_i)$. Hence $\gamma$ is an isomorphism if and only if $g$ preserves filtered colimits.
 	\end{proof}
 
 	\section{Tensor products of presentable categories}
@@ -369,6 +391,9 @@
 			C \otimes D \simeq \Fun^{\lim}(C\catop,D),
 		\]
 		where the right-hand side denotes the full subcategory of $\Fun(C\catop,D)$ spanned by the functors preserving small limits.
+		\ifdefined\HCode
+			For a construction of $C\otimes D$ by localizing a presheaf category and verifying the universal property for functors preserving colimits separately, see \href{https://animarium.org/tag/015C/}{\emph{Stable Homotopy Theory and Higher Algebra}, Proposition~18.1.5}.
+		\fi
 	\end{theorem}
 
 	\begin{remark}
@@ -392,6 +417,9 @@
 		\[
 			\Ind(C_0) \otimes D \simeq \Fun^{\ex}(C_0\catop,D) \simeq \Fun^{\colim}(\Ind(C_0\catop),D).
 		\]
+		\ifdefined\HCode
+			Taking $D=\An$ recovers the description of $\Ind(C_0)$ by left exact presheaves in \href{https://animarium.org/tag/1128/}{\emph{Synthetic Category Theory}, Remark~18.2.7}.
+		\fi
 	\end{proposition}
 	\prooffor{prop:Tensor_With_Ind}
 	\begin{proof}

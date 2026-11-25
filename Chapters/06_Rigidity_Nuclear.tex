@@ -1,0 +1,343 @@
+	\chapter{Rigidity and nuclear objects}
+	\label[chapter]{chap:Rigidity_And_Nuclear_Objects}
+
+	This chapter develops the symmetric monoidal counterpart of compact assembly. Trace-class morphisms take the role of compact morphisms, and nuclear objects are built from compact objects along trace-class maps. We first discuss rigidity and self-duality, then construct nuclear categories and examine the analytic examples. The interpolation results of \Cref{chap:Compact_Morphisms_AB6} will be used in the rigidification argument.
+
+	\section{Rigid symmetric monoidal categories}
+	\label[section]{sec:Rigid_Categories}
+
+	% Source: Talk 3 (Max Glaser, 27.10.2026); Clausen, Lecture 3 (19.07.2023); literature (Gaitsgory--Rozenblyum, Ramzi, Efimov), proofs partly completed with generative AI (Claude)
+	A rich source of dualizable categories are \emph{rigid} symmetric monoidal categories, introduced by Gaitsgory--Rozenblyum \cite[Chapter~1, Section~9]{GaitsgoryRozenbluym2017StudyDAG}. We have already met them in \Cref{def:Rigid_Category}; we now give a more detailed treatment.
+
+	\begin{definition}[{\cite[Chapter~1, Definition~9.1.2]{GaitsgoryRozenbluym2017StudyDAG}}]
+		\label[definition]{def:Rigid_Category_Detailed}
+		Let $C \in \CAlg(\PrL_{\st})$ be a presentably symmetric monoidal stable category, with unit $\unit_C$ and multiplication $\mu\colon C \otimes C \to C$. Then $C$ is called \emph{rigid} if
+		\begin{enumerate}
+			\item the unit $\unit_C$ is compact in $C$, or equivalently, the unit functor $u\colon \Sp \to C$, $\S \mapsto \unit_C$, is strongly continuous;
+			\item the right adjoint $\mu^R\colon C \to C \otimes C$ preserves colimits, and its canonical lax $C \otimes C$-linear structure is strict; equivalently, $\mu$ admits a right adjoint in $\Mod_{C \otimes C}(\PrL_{\st})$.
+		\end{enumerate}
+	\end{definition}
+
+	\begin{remark}
+		\label[remark]{rem:Equivalent_Rigidity_Definitions}
+		The equivalence of the two formulations in (2) is a general fact about adjunctions internal to module categories: a right adjoint of a $C \otimes C$-linear functor inherits a lax $C \otimes C$-linear structure, and it is a right adjoint in $\Mod_{C \otimes C}(\PrL_{\st})$ if and only if it preserves colimits and this lax structure is strict. \Cref{def:Rigid_Category_Detailed} is the definition of Gaitsgory--Rozenblyum, and it agrees with Ramzi's definition \cite[Definitions~4.5 and~4.36]{Ramzi_Locally_Rigid} (Ramzi additionally requires $C$ to be dualizable, which is automatic by \Cref{prop:Rigid_Self_Dual_Detailed}). It is also equivalent to \Cref{def:Rigid_Category}, which asks that for every finite set $I$ the multiplication $\mu_I\colon C^{\otimes I} \to C$ admits a right adjoint in $\Mod_{C^{\otimes I}}(\PrL_{\st})$. Indeed, for $I = \emptyset$ the map $\mu_{\emptyset}$ is the unit functor $u\colon \Sp \to C$, and $\Mod_{\Sp}(\PrL_{\st}) = \PrL_{\st}$, so this case is condition (1); the case $|I| = 1$ is vacuous, and the case $|I| = 2$ is condition (2). Conversely, if (2) holds, then by induction $\mu_{I \sqcup \{*\}} = \mu \circ (\mu_I \otimes \id_C)$ is a composite of two functors admitting right adjoints in $\Mod_{C^{\otimes I} \otimes C}(\PrL_{\st})$: for $\mu_I \otimes \id_C$ this follows by tensoring the adjunction for $\mu_I$ with $C$, and for $\mu$ by restricting the $C \otimes C$-linear adjunction along the algebra map $\mu_I \otimes \id_C\colon C^{\otimes I} \otimes C \to C \otimes C$.
+	\end{remark}
+
+	\begin{proposition}[{\cite[Chapter~1, Section~9.2.1]{GaitsgoryRozenbluym2017StudyDAG}}]
+		\label[proposition]{prop:Rigid_Self_Dual_Detailed}
+		Let $C$ be rigid. Then $C$ is self-dual in $\PrL_{\st}$, with evaluation and coevaluation given by
+		\[
+			\ev\colon C \otimes C \xrightarrow{\mu} C \xrightarrow{\Gamma := \hom_C(\unit_C,-)} \Sp, \qquad \coev\colon \Sp \xrightarrow{u} C \xrightarrow{\mu^R} C \otimes C.
+		\]
+		In particular, $C$ is dualizable.
+	\end{proposition}
+	\prooffor{prop:Rigid_Self_Dual_Detailed}
+	\begin{proof}
+		Note first that both functors preserve colimits: $\Gamma$ preserves colimits since $\unit_C$ is compact (and $C$ is stable), and $\mu^R$ preserves colimits by assumption. Moreover, $\Gamma$ is right adjoint to $u$. Write $\eta := \mu^R(\unit_C) \in C \otimes C$, so that $\coev$ is the colimit-preserving functor $\Sp \to C \otimes C$ sending $\S$ to $\eta$. We verify the first triangle identity, i.e.\ that the composite
+		\[
+			C \simeq \Sp \otimes C \xrightarrow{\coev \otimes C} C \otimes C \otimes C \xrightarrow{C \otimes \ev} C \otimes \Sp \simeq C
+		\]
+		is equivalent to the identity; the second one follows by symmetry. Since $C \otimes \ev = (C \otimes \Gamma) \circ (C \otimes \mu)$, the composite sends $c \in C$ to
+		\[
+			(C \otimes \Gamma)\big((C \otimes \mu)(\eta \boxtimes c)\big) \simeq (C \otimes \Gamma)\big(\eta \cdot (\unit_C \boxtimes c)\big),
+		\]
+		where $\cdot$ denotes the multiplication in $C \otimes C$. Now we use the linearity of $\mu^R$: for $a \in C \otimes C$ and $x \in C$ we have $\mu^R(\mu(a) \otimes x) \simeq a \cdot \mu^R(x)$. Taking $a = \unit_C \boxtimes c$ and $x = \unit_C$ gives
+		\[
+			\eta \cdot (\unit_C \boxtimes c) = (\unit_C \boxtimes c) \cdot \mu^R(\unit_C) \simeq \mu^R(c).
+		\]
+		Hence the composite is $(C \otimes \Gamma) \circ \mu^R\colon C \to C$, naturally in $c$ (as all functors involved preserve colimits, it suffices to identify the functors, which the above does naturally in $c$). Since $C \otimes - $ is a functor of $(\infty,2)$-categories, $C \otimes \Gamma$ is right adjoint to $C \otimes u\colon C \to C \otimes C$, $x \mapsto x \boxtimes \unit_C$. Hence $(C \otimes \Gamma) \circ \mu^R$ is right adjoint to $\mu \circ (C \otimes u) \simeq \id_C$, and is therefore equivalent to the identity.
+	\end{proof}
+
+	The linearity of the right adjoint to multiplication is what makes the triangle identity work. Trace-class morphisms express the corresponding duality data for individual morphisms.
+
+	Next, we introduce trace-class morphisms, following Clausen--Scholze \cite{Scholze_Analytic_Geometry}.
+
+	\begin{definition}
+		\label[definition]{def:Trace_Class}
+		Let $C$ be a symmetric monoidal category. A morphism $f\colon x \to y$ in $C$ is called \emph{trace-class} if there exist an object $z \in C$ and maps $\alpha\colon \unit_C \to y \otimes z$ and $\beta\colon z \otimes x \to \unit_C$ such that $f$ is homotopic to the composite
+		\[
+			x \simeq \unit_C \otimes x \xrightarrow{\alpha \otimes x} y \otimes z \otimes x \xrightarrow{y \otimes \beta} y \otimes \unit_C \simeq y.
+		\]
+	\end{definition}
+
+	\begin{lemma}
+		\label[lemma]{lem:Identity_Trace_Class}
+		Let $C$ be a symmetric monoidal category whose homotopy category is idempotent complete; for instance, $C$ stable and idempotent complete \cite[Lemma~1.2.4.6]{lurie2016HA}. Then an object $x \in C$ is dualizable if and only if $\id_x$ is trace-class.
+	\end{lemma}
+	\prooffor{lem:Identity_Trace_Class}
+	\begin{proof}
+		If $x$ is dualizable with dual $x^{\vee}$, then the coevaluation and evaluation are a witness for $\id_x$. Conversely, let $(z,\alpha,\beta)$ be a witness for $\id_x$, so that $\alpha\colon \unit \to x \otimes z$ and $\beta\colon z \otimes x \to \unit$ satisfy the first triangle identity $(x \otimes \beta)(\alpha \otimes x) \simeq \id_x$, but not necessarily the second one. Consider
+		\[
+			e := (\beta \otimes z)(z \otimes \alpha)\colon z \to z \otimes x \otimes z \to z.
+		\]
+		Inserting the first triangle identity in the middle of $e \circ e$ shows that $e \circ e \simeq e$, and similarly $\beta(e \otimes x) \simeq \beta$ and $(x \otimes e)\alpha \simeq \alpha$. As the homotopy category is idempotent complete, $e$ splits: $e \simeq sr$ with $r\colon z \to z'$, $s\colon z' \to z$ and $rs \simeq \id_{z'}$. Put $\alpha' := (x \otimes r)\alpha$ and $\beta' := \beta(s \otimes x)$. Then
+		\[
+			(x \otimes \beta')(\alpha' \otimes x) \simeq (x \otimes \beta)(x \otimes e \otimes x)(\alpha \otimes x) \simeq (x \otimes \beta)(\alpha \otimes x) \simeq \id_x
+		\]
+		and $(\beta' \otimes z')(z' \otimes \alpha') \simeq r e s \simeq rsrs \simeq \id_{z'}$. So $(\alpha',\beta')$ exhibits $z'$ as a dual of $x$; since dualizability can be checked in the homotopy category, $x$ is dualizable.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Trace_Class_Basics}
+		\leavevmode
+		\begin{enumerate}
+			\item If $C$ is closed, write $x^{\vee} := \iHom(x,\unit_C)$ for the \emph{predual} of $x$. Then $f$ is trace-class if and only if the map $\unit_C \to \iHom(x,y)$ classifying $f$ factors through the canonical map $y \otimes x^{\vee} \to \iHom(x,y)$: given $(z,\alpha,\beta)$ as above, $\beta$ is adjoint to a map $z \to x^{\vee}$, and composing $\alpha$ with it gives the desired factorization; conversely, given a factorization $\unit_C \to y \otimes x^{\vee}$, take $z = x^{\vee}$ and $\beta$ the evaluation map.
+			\item Trace-class morphisms form a two-sided ideal: if $f$ is trace-class with witness $(z,\alpha,\beta)$, then $hfk$ is trace-class with witness $(z,(h \otimes z)\alpha,\beta(z \otimes k))$.
+			\item If $C$ is stable and idempotent complete (for instance presentable and stable), then the identity of $x$ is trace-class if and only if $x$ is dualizable, see \Cref{lem:Identity_Trace_Class}.
+			\item A symmetric monoidal functor preserves trace-class morphisms, since it preserves the data $(z,\alpha,\beta)$.
+		\end{enumerate}
+	\end{remark}
+
+	\begin{lemma}
+		\label[lemma]{lem:Trace_Class_Compact}
+		Let $C \in \CAlg(\PrL_{\st})$ be such that $\unit_C$ is compact. Then every trace-class morphism in $C$ is compact in the sense of \Cref{def:Compact_Morphism}.
+	\end{lemma}
+	\prooffor{lem:Trace_Class_Compact}
+	\begin{proof}
+		Let $f\colon x \to y$ be trace-class with witness $(z,\alpha,\beta)$. We construct a factorization of $f^*\colon \Map_C(y,\colim(-)) \to \Map_C(x,\colim(-))$ through $\Map_{\Ind(C)}(y(x),-)$, naturally in $W = \quotcolim_j w_j \in \Ind(C)$. Given $g\colon y \to \colim_j w_j$, consider
+		\[
+			(g \otimes z) \circ \alpha\colon \unit_C \to (\colim_j w_j) \otimes z \simeq \colim_j (w_j \otimes z).
+		\]
+		Since $\unit_C$ is compact, this defines a point of $\colim_j \Map_C(\unit_C,w_j \otimes z)$, and postcomposing with the natural map
+		\[
+			\colim_j \Map_C(\unit_C,w_j \otimes z) \to \colim_j \Map_C(x,w_j), \qquad \gamma \mapsto (w_j \otimes \beta) \circ (\gamma \otimes x),
+		\]
+		we obtain a point of $\colim_j \Map_C(x,w_j) = \Map_{\Ind(C)}(y(x),W)$. All these maps are natural in $W$, and the image of this point in $\Map_C(x,\colim_j w_j)$ is $(\colim_j w_j \otimes \beta) \circ ((g \otimes z)\alpha \otimes x) \simeq g \circ (y \otimes \beta) \circ (\alpha \otimes x) \simeq gf$.
+	\end{proof}
+
+	The converse holds for rigid categories; this is the main structural result about rigid categories. It was formulated in Clausen's lectures as the \emph{definition} of rigidity for dualizable symmetric monoidal categories.
+
+	\begin{theorem}[{Ramzi \cite[Corollaries~2.6, 4.55 and~4.60, Example~2.9]{Ramzi_Locally_Rigid}; see also \cite[Propositions~1.6 and~1.7]{Efimov_Inverse_Limits}}]
+		\label[theorem]{thm:Rigid_Trace_Class}
+		Let $C \in \CAlg(\PrL_{\st})$. Then the following are equivalent:
+		\begin{enumerate}
+			\item $C$ is rigid;
+			\item $\unit_C$ is compact, and $C$ is generated under colimits by objects of the form $\colim(x_0 \to x_1 \to x_2 \to \cdots)$ in which each map $x_n \to x_{n+1}$ is trace-class;
+			\item $C$ is dualizable, and a morphism in $C$ is compact if and only if it is trace-class.
+		\end{enumerate}
+	\end{theorem}
+
+	We will not prove this theorem. Note however that some implications are formal given what we know: (1) $\implies$ the first half of (3) is \Cref{prop:Rigid_Self_Dual_Detailed}, and (3) $\implies$ (2) follows from \Cref{lem:Compact_Morphisms_Yhat}(2), since $\id_{\unit_C}$ is trace-class and hence compact, and \Cref{rem:Omega_1_Compact_Compact_Morphisms}, which shows that a dualizable category is generated by sequential colimits along compact morphisms. The hard part is that in a rigid category every compact morphism is trace-class \cite[Corollary~4.55, Example~2.9 and Corollary~2.6]{Ramzi_Locally_Rigid}, and that (2) implies (1) \cite[Corollary~4.60]{Ramzi_Locally_Rigid}. Note that the dualizability hypothesis in (3) was not stated in the talk.
+
+	\begin{corollary}
+		\label[corollary]{cor:Rigid_Functors_Strongly_Continuous}
+		Let $F\colon C \to D$ be a colimit-preserving symmetric monoidal functor between rigid categories. Then $F$ is strongly continuous. Consequently, the category $\mathrm{Rig}$ of rigid symmetric monoidal categories and colimit-preserving symmetric monoidal functors is a full subcategory of $\CAlg(\Pr^{\dual})$.
+	\end{corollary}
+	\prooffor{cor:Rigid_Functors_Strongly_Continuous}
+	\begin{proof}
+		By \Cref{thm:Rigid_Trace_Class}, the compact morphisms in $C$ are trace-class. Since $F$ is symmetric monoidal, it preserves trace-class morphisms (\Cref{rem:Trace_Class_Basics}(4)), and trace-class morphisms in $D$ are compact by \Cref{lem:Trace_Class_Compact}. So $F$ preserves compact morphisms, and hence is strongly continuous by \Cref{prop:Strongly_Continuous_Compact_Morphisms}.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Strong_Continuity_From_Rigid_Source}
+		The argument shows more generally that a colimit-preserving symmetric monoidal functor $F\colon C \to D$ with $C$ rigid and $D$ dualizable with compact unit is strongly continuous. In fact, the dualizability hypothesis on $D$ can be removed \cite[Proposition~1.9]{Efimov_Inverse_Limits}.
+	\end{remark}
+
+	\begin{example}
+		\label[example]{ex:Rigid_Compactly_Generated}
+		Let $C \in \CAlg(\PrL_{\st})$ be compactly generated. Then $C$ is rigid if and only if $\unit_C$ is compact and every compact object of $C$ is dualizable, if and only if the compact objects of $C$ are precisely the dualizable objects \cite[Chapter~1, Lemma~9.1.5 and Corollary~9.1.7]{GaitsgoryRozenbluym2017StudyDAG}. Indeed, if $\unit_C$ is compact, then dualizable objects are compact (as $\Map(x,-) \simeq \Map(\unit_C,x^{\vee} \otimes -)$), and conversely if all compact objects are dualizable, then $C = \Ind(C^{\omega})$ is generated by objects whose identity is trace-class, so (2) of \Cref{thm:Rigid_Trace_Class} holds. Examples include $\D(R)$ for a commutative ring $R$, more generally $\D_{\mathrm{qc}}(X)$ for a qcqs scheme $X$, and $\Sp$ itself.
+	\end{example}
+
+	\begin{example}
+		\label[example]{ex:Shv_Compact_Hausdorff_Rigid}
+		Let $X$ be a compact Hausdorff space. Then $\Shv(X;\Sp)$ is rigid; this can be seen as a manifestation of Verdier duality, see \cite[Example~1.4]{Efimov_Inverse_Limits}. For instance, the unit (the constant sheaf) is compact since global sections $\Gamma(X;-)$ commute with filtered colimits for compact $X$ \cite[Corollary~7.3.4.12]{lurie2009HTT}. In particular, $\Shv(X;\Sp)$ is dualizable and self-dual. For every presentable stable category $D$ we have $\Shv(X;D) \simeq \Shv(X;\Sp) \otimes D$ \cite[Proposition~2.8.7]{Krause_Nikolaus_Putzstuck_Sheaves}, so $\Shv(X;D)$ is dualizable whenever $D$ is. We will study these categories in detail in \Cref{chap:Sheaves}.
+	\end{example}
+
+	\begin{example}
+		\label[example]{ex:Locally_Rigid_Sheaf_Categories}
+		If $X$ is merely locally compact Hausdorff and not compact, then $\Shv(X;\Sp)$ is not rigid, since the unit is not compact. It is still dualizable, and even \emph{locally rigid} in the sense of Ramzi \cite[Definition~4.5 and Example~4.10]{Ramzi_Locally_Rigid} (see also \cite[Definition~1.36 and Example~1.38]{Efimov_Inverse_Limits} and \cite[Example~4.2.9, Corollary~4.4.13]{Krause_Nikolaus_Putzstuck_Sheaves}): it satisfies condition (2) of \Cref{def:Rigid_Category_Detailed}. Indeed, for $j\colon X \hookrightarrow X^+$ the one-point compactification, $j_!$ identifies $\Shv(X;\Sp)$ with a smashing ideal in the rigid category $\Shv(X^+;\Sp)$.
+	\end{example}
+
+	\section{Nuclear modules and condensed mathematics}
+	\label[section]{sec:Nuclear_Modules}
+
+	% Source: Talk 3 (Max Glaser, 27.10.2026); literature (Clausen--Scholze, Efimov, Ramzi, Andreychev), drafted with generative AI (Claude)
+	The most important examples of dualizable categories which are not compactly generated arise in condensed mathematics, as categories of \emph{nuclear modules}. These are extracted from large compactly generated categories of ``complete'' modules, which are not rigid, via the following general construction due to Clausen and Scholze \cite{Scholze_Analytic_Geometry}.
+
+	Throughout this section, let $C \in \CAlg(\PrL_{\st})$ be compactly generated with compact unit. We write $x^{\vee} = \iHom(x,\unit_C)$ for the predual of $x$.
+
+	\begin{definition}[{\cite[Definition~1.25]{Efimov_Inverse_Limits}; cf.\ \cite[Definition~8.5]{Clausen_Scholze_Complex_Geometry} and \cite[Definitions~13.10 and~13.12]{Scholze_Analytic_Geometry}}]
+		\label[definition]{def:Nuclear}
+		An object $M \in C$ is called \emph{nuclear} if every morphism $P \to M$ from a compact object $P \in C^{\omega}$ is trace-class. We denote by $\Nuc(C) \subseteq C$ the full subcategory of nuclear objects. An object $M$ is called \emph{basic nuclear} if $M \simeq \colim(P_0 \to P_1 \to P_2 \to \cdots)$ with each $P_n$ compact and each map $P_n \to P_{n+1}$ trace-class.
+	\end{definition}
+
+	Note that a compact object $P$ is nuclear if and only if $\id_P$ is trace-class, i.e.\ if and only if $P$ is dualizable (\Cref{rem:Trace_Class_Basics}(3)). So the nuclear objects should be thought of as the objects which are ``locally dualizable''.
+
+	The definition only asks that every morphism $P \to M$ from a compact object be trace-class, i.e.\ that a certain map is surjective on $\pi_0$. We will see that this map is then automatically an equivalence. The key input is the following elementary observation, which says that trace-class morphisms can be ``pulled back'' through the canonical map $y \otimes P^{\vee} \to \iHom(P,y)$. For $x \in C$ and objects $P, Q \in C$ we write
+	\[
+		\lambda_x\colon \Map_C(Q, x \otimes P^{\vee}) \to \Map_C(Q \otimes P, x), \qquad s \mapsto (x \otimes \ev_P)(s \otimes P),
+	\]
+	where $\ev_P\colon P^{\vee} \otimes P \to \unit_C$ is the evaluation. Under the adjunction $\Map_C(Q \otimes P,x) \simeq \Map_C(Q,\iHom(P,x))$, this is the map induced by the canonical map $x \otimes P^{\vee} \to \iHom(P,x)$. It is natural in $x$. For $Q = \unit_C$, a morphism $P \to x$ is trace-class if and only if its homotopy class lies in the image of $\pi_0\lambda_x$, by \Cref{rem:Trace_Class_Basics}(1).
+
+	\begin{lemma}
+		\label[lemma]{lem:Trace_Class_Interleaving}
+		Let $f\colon x \to y$ be a trace-class morphism in $C$, and let $P, Q \in C$. Then there is a map of sets
+		\[
+			\psi_f\colon \pi_0\Map_C(Q \otimes P, x) \to \pi_0\Map_C(Q, y \otimes P^{\vee})
+		\]
+		such that $\lambda_y \circ \psi_f = f \circ (-)$ and $\psi_f \circ \lambda_x = (f \otimes P^{\vee}) \circ (-)$ on homotopy classes.
+	\end{lemma}
+	\prooffor{lem:Trace_Class_Interleaving}
+	\begin{proof}
+		By \Cref{rem:Trace_Class_Basics}(1), there is a map $t\colon \unit_C \to y \otimes x^{\vee}$ such that $f \simeq (y \otimes \ev_x)(t \otimes x)$. For $b\colon Q \otimes P \to x$, let $\tilde{b}\colon x^{\vee} \otimes Q \to P^{\vee}$ be the map adjoint to $\ev_x(x^{\vee} \otimes b)\colon x^{\vee} \otimes Q \otimes P \to \unit_C$, so that $\ev_P(\tilde{b} \otimes P) \simeq \ev_x(x^{\vee} \otimes b)$, and put
+		\[
+			\psi_f(b) := (y \otimes \tilde{b})(t \otimes Q)\colon Q \to y \otimes x^{\vee} \otimes Q \to y \otimes P^{\vee}.
+		\]
+		Here and below we suppress the unit and symmetry isomorphisms. Then
+		\[
+			\lambda_y(\psi_f(b)) = (y \otimes \ev_P)(y \otimes \tilde{b} \otimes P)(t \otimes Q \otimes P) \simeq (y \otimes \ev_x)(y \otimes x^{\vee} \otimes b)(t \otimes Q \otimes P) \simeq (y \otimes \ev_x)(t \otimes x)\,b \simeq f b.
+		\]
+		Conversely, let $s\colon Q \to x \otimes P^{\vee}$ and $b = \lambda_x(s) = (x \otimes \ev_P)(s \otimes P)$. Then $\ev_x(x^{\vee} \otimes b) \simeq (\ev_x \otimes \ev_P)(x^{\vee} \otimes s \otimes P)$, which is also adjoint to $(\ev_x \otimes P^{\vee})(x^{\vee} \otimes s)\colon x^{\vee} \otimes Q \to P^{\vee}$; hence $\tilde{b} \simeq (\ev_x \otimes P^{\vee})(x^{\vee} \otimes s)$. Therefore
+		\[
+			\psi_f(\lambda_x(s)) \simeq (y \otimes \ev_x \otimes P^{\vee})(y \otimes x^{\vee} \otimes s)(t \otimes Q) \simeq (y \otimes \ev_x \otimes P^{\vee})(t \otimes s) \simeq (y \otimes \ev_x \otimes P^{\vee})(t \otimes x \otimes P^{\vee})\,s \simeq (f \otimes P^{\vee})\,s. \qedhere
+		\]
+	\end{proof}
+
+	\begin{lemma}
+		\label[lemma]{lem:Nuclear_Colimit_Interleaving}
+		Let $M \simeq \colim_{i \in I} M_i$ for a directed poset $I$ such that for every $i$ there is $j \geq i$ with $M_i \to M_j$ trace-class. Let $P, Q \in C$ be such that $Q$ and $Q \otimes P$ are compact. Then the map $\hom_C(Q, M \otimes P^{\vee}) \to \hom_C(Q \otimes P, M)$ induced by $M \otimes P^{\vee} \to \iHom(P,M)$ is an equivalence of spectra.
+	\end{lemma}
+	\prooffor{lem:Nuclear_Colimit_Interleaving}
+	\begin{proof}
+		Since $\pi_n\hom_C(Q,-) = \pi_0\Map_C(\Sigma^nQ,-)$ for $n \in \Z$, and $\Sigma^nQ$ satisfies the same hypotheses as $Q$, it suffices to show that $\pi_0\lambda_M\colon \pi_0\Map_C(Q, M \otimes P^{\vee}) \to \pi_0\Map_C(Q \otimes P, M)$ is a bijection. As $Q$ and $Q \otimes P$ are compact and $- \otimes P^{\vee}$ preserves colimits, and as $\pi_0$ commutes with filtered colimits, $\pi_0\lambda_M$ is the colimit over $i \in I$ of the maps $\pi_0\lambda_{M_i}$. Write $t_{ij}\colon M_i \to M_j$ for the transition maps.
+
+		Surjectivity: an element of the target is represented by some $b\colon Q \otimes P \to M_i$. Choose $j \geq i$ such that $t_{ij}$ is trace-class. By \Cref{lem:Trace_Class_Interleaving}, $\lambda_{M_j}(\psi_{t_{ij}}(b)) = t_{ij}b$, which represents the same element.
+
+		Injectivity: let $s,s'\colon Q \to M_i \otimes P^{\vee}$ with the same image in the colimit. Then there is $i' \geq i$ with $t_{ii'}\lambda_{M_i}(s) = t_{ii'}\lambda_{M_i}(s')$, i.e.\ $\lambda_{M_{i'}}(\sigma) = \lambda_{M_{i'}}(\sigma')$ for $\sigma = (t_{ii'} \otimes P^{\vee})s$ and $\sigma' = (t_{ii'} \otimes P^{\vee})s'$. Choose $j \geq i'$ such that $f = t_{i'j}$ is trace-class. By \Cref{lem:Trace_Class_Interleaving}, $(f \otimes P^{\vee})\sigma = \psi_f(\lambda_{M_{i'}}(\sigma)) = \psi_f(\lambda_{M_{i'}}(\sigma')) = (f \otimes P^{\vee})\sigma'$, so $s$ and $s'$ have the same image in $\pi_0\Map_C(Q, M_j \otimes P^{\vee})$.
+	\end{proof}
+
+	\begin{proposition}[Clausen--Scholze; see {\cite[Theorem~8.6]{Clausen_Scholze_Complex_Geometry} and \cite[Propositions~1.27 and~1.28]{Efimov_Inverse_Limits}}]
+		\label[proposition]{prop:Nuclear_Basics}
+		\leavevmode
+		\begin{enumerate}
+			\item For $M \in C$, the following are equivalent:
+			\begin{enumerate}
+				\item[(a)] $M$ is nuclear;
+				\item[(b)] for every compact $P$, the map $\hom_C(\unit_C,P^{\vee} \otimes M) \to \hom_C(P,M)$ is an equivalence of spectra (equivalently, since we may replace $P$ by its shifts, the corresponding map of mapping spaces is an equivalence for every compact $P$);
+				\item[(d)] $M \simeq \colim_{i \in I} M_i$ for a directed poset $I$ and compact objects $M_i$, such that for every $i$ there is $j \geq i$ with $M_i \to M_j$ trace-class.
+			\end{enumerate}
+			Moreover, these conditions are implied by
+			\begin{enumerate}
+				\item[(c)] for every compact $P$, the map $P^{\vee} \otimes M \to \iHom(P,M)$ is an equivalence,
+			\end{enumerate}
+			and if the tensor product of any two compact objects of $C$ is compact, then (c) is equivalent to (a), (b) and (d).
+			\item The subcategory $\Nuc(C) \subseteq C$ is closed under colimits. It is $\omega_1$-presentable, and its $\omega_1$-compact objects are precisely the basic nuclear objects.
+		\end{enumerate}
+	\end{proposition}
+	The main step is to turn the pointwise trace-class condition into a presentation whose transition maps are eventually trace-class. The interleaving lemma then upgrades surjectivity on $\pi_0$ to the isomorphism of mapping spectra in (b). For (2), we decompose these presentations into countable pieces, as in the proof of $\omega_1$-presentability for compactly assembled categories.
+	\prooffor{prop:Nuclear_Basics}
+	\begin{proof}
+		We first prove (1). (b) $\Rightarrow$ (a): Taking $\pi_0$ of the mapping spaces, every morphism $P \to M$ lies in the image of $\pi_0\lambda_M$ (with $Q = \unit_C$), i.e.\ is trace-class.
+
+		(a) $\Rightarrow$ (d): Since $C$ is compactly generated, $M$ is a filtered colimit of compact objects, and by \Cref{thm:Filtered_Posets_Cofinal} we may write $M \simeq \colim_{i \in I} M_i$ with $I$ a directed poset and $M_i$ compact; denote by $t_{ij}$ the transition maps and by $\iota_i\colon M_i \to M$ the canonical maps. Fix $i$. Since $\iota_i$ is trace-class, it is $\lambda_M(w)$ for some $w \in \pi_0\Map_C(\unit_C, M \otimes M_i^{\vee})$. As $\unit_C$ is compact and $M \otimes M_i^{\vee} \simeq \colim_j M_j \otimes M_i^{\vee}$, the class $w$ is the image of some $w' \in \pi_0\Map_C(\unit_C, M_j \otimes M_i^{\vee})$ with $j \geq i$. Then $g := \lambda_{M_j}(w')\colon M_i \to M_j$ is trace-class, and $\iota_j g \simeq \lambda_M(w) \simeq \iota_i$ by naturality of $\lambda$. As $M_i$ is compact, $\pi_0\Map_C(M_i,M) \simeq \colim_k \pi_0\Map_C(M_i,M_k)$, so there is $k \geq j$ with $t_{jk}g \simeq t_{ik}$. Since trace-class morphisms form an ideal (\Cref{rem:Trace_Class_Basics}(2)), $t_{ik}$ is trace-class.
+
+		(d) $\Rightarrow$ (b): This is \Cref{lem:Nuclear_Colimit_Interleaving} with $Q = \unit_C$.
+
+		(c) $\Rightarrow$ (b): Apply $\hom_C(\unit_C,-)$ and use $\hom_C(\unit_C,\iHom(P,M)) \simeq \hom_C(P,M)$.
+
+		(d) $\Rightarrow$ (c), if compact objects are closed under tensor products: For compact $Q$, the map $\hom_C(Q,P^{\vee} \otimes M) \to \hom_C(Q,\iHom(P,M)) \simeq \hom_C(Q \otimes P,M)$ is an equivalence by \Cref{lem:Nuclear_Colimit_Interleaving}. Since $C$ is compactly generated, the compact objects detect equivalences, so $P^{\vee} \otimes M \to \iHom(P,M)$ is an equivalence.
+
+		We now prove (2). By (1), $M$ is nuclear if and only if the maps in (b) are equivalences. Since $\unit_C$ and $P$ are compact, the functors $\hom_C(\unit_C,P^{\vee} \otimes -)$ and $\hom_C(P,-)$ preserve filtered colimits, and being exact they preserve all small colimits. Hence $\Nuc(C)$ is closed under colimits in $C$; in particular, colimits in $\Nuc(C)$ are computed in $C$.
+
+		Basic nuclear objects are nuclear by (d) (with $I = \N$). They are countable colimits of compact objects, hence $\omega_1$-compact in $C$ (\Cref{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}), and hence also in $\Nuc(C)$.
+
+		Next, every nuclear $M$ is an $\omega_1$-filtered colimit of basic nuclear objects. Write $M \simeq \colim_{i \in I} M_i$ as in (d), and choose for every $i$ an element $\sigma(i) \geq i$ such that $M_i \to M_{\sigma(i)}$ is trace-class. Let $\Sigma_{\sigma}$ be the set of countable directed subsets $J \subseteq I$ with $\sigma(J) \subseteq J$, ordered by inclusion. The proof of \Cref{prop:Colimits_Over_Countable_Subposets} applies verbatim to $\Sigma_{\sigma}$ instead of $\Sigma$ (adding in the inductive construction also $\sigma(u)$ for $u \in U_k$), and shows that $\Sigma_{\sigma}$ is $\omega_1$-filtered and that $M \simeq \colim_{J \in \Sigma_{\sigma}} M_J$ with $M_J = \colim_{i \in J} M_i$. Each $M_J$ is basic nuclear: enumerate $J = \{q_0,q_1,\dots\}$, and choose inductively $j_0 = q_0$ and $j_{n+1} \in J$ with $j_{n+1} \geq \sigma(j_n), q_{n+1}$. Then $n \mapsto j_n$ is cofinal (\Cref{lem:Cofinality_Posets}), so $M_J \simeq \colim_n M_{j_n}$, and each $M_{j_n} \to M_{j_{n+1}}$ factors through the trace-class map $M_{j_n} \to M_{\sigma(j_n)}$, hence is trace-class.
+
+		The basic nuclear objects form an essentially small collection, since $C^{\omega}$ is essentially small. Thus $\Nuc(C)$ admits small colimits and is generated under $\omega_1$-filtered colimits by an essentially small collection of $\omega_1$-compact objects, so it is $\omega_1$-accessible by \cite[Proposition~5.4.2.2]{lurie2009HTT}, and hence $\omega_1$-presentable.
+
+		Finally, let $X \in \Nuc(C)$ be $\omega_1$-compact. Writing $X \simeq \colim_{J \in \Sigma_{\sigma}} X_J$ as above, the identity of $X$ factors through some $X_J$, so $X$ is a retract of a basic nuclear object $Y = \colim_n a_n$, where the $a_n$ are compact and the transition maps $a_n \to a_{n+1}$ are trace-class. Now we argue as in the proof of \Cref{prop:Omega_1_Compact_In_Ind}, applied in $C \simeq \Ind(C^{\omega})$: by \Cref{lem:Retract_As_Telescope} and \Cref{lem:Strictification_Sequential_Maps}, we find a strictly increasing $f\colon \N \to \N$ with $f(n) \geq n$ and a natural transformation $\eta\colon a_{\bullet} \to a_{f(\bullet)}$ such that $X \simeq \colim_n \Phi(n,n)$, where $\Phi(k,n) = a_{f^k(n)}$. The transition map $\Phi(n,n) \to \Phi(n+1,n+1)$ is the composite of the transition map $a_{f^n(n)} \to a_{f^n(n+1)}$ of $a_{\bullet}$, which is trace-class as $f^n(n+1) > f^n(n)$, with $\eta_{f^n(n+1)}$. So it is trace-class, and $X$ is basic nuclear.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Nuclear_Definition_Pi0}
+		\Cref{prop:Nuclear_Basics} shows that the condition in \Cref{def:Nuclear}, which only asks that the maps $\pi_0\Map_C(\unit_C,P^{\vee} \otimes M) \to \pi_0\Map_C(P,M)$ be surjective, already implies that $\hom_C(\unit_C,P^{\vee} \otimes M) \to \hom_C(P,M)$ is an equivalence. Clausen--Scholze \cite[Definition~8.5]{Clausen_Scholze_Complex_Geometry} instead define nuclearity by the latter condition (and \cite[Definition~13.10]{Scholze_Analytic_Geometry} by an analogous condition for analytic rings), whereas \Cref{def:Nuclear} follows \cite[Definition~1.25]{Efimov_Inverse_Limits}. The two definitions agree; the injectivity comes from the fact that, by (a) $\Rightarrow$ (d), $M$ is a filtered colimit of compact objects along trace-class maps, for which the two sides become interleaved (\Cref{lem:Nuclear_Colimit_Interleaving}). The hypothesis on compact objects in (1)(c) holds for instance for the derived categories of solid and liquid modules, which are generated by compact objects closed under tensor products.
+	\end{remark}
+
+	In general, $\Nuc(C)$ need not be rigid, or even dualizable. The following criterion is the one that is used in practice.
+
+	\begin{proposition}[{\cite[Propositions~1.23 and~1.29]{Efimov_Inverse_Limits}, \cite[Construction~4.79 and Theorem~4.81]{Ramzi_Locally_Rigid}}]
+		\label[proposition]{prop:Nuclear_Rigid}
+		Suppose that every trace-class morphism between compact objects of $C$ is a composite of two trace-class morphisms between compact objects. Then $\Nuc(C)$ is a rigid symmetric monoidal category. More precisely, $\Nuc(C)$ is equivalent to the \emph{rigidification} $C^{\rig}$ of $C$, the value at $C$ of the right adjoint to the inclusion of rigid categories into $\CAlg(\PrL_{\st,\kappa})$, for an uncountable regular cardinal $\kappa$ for which $C$ belongs to this category. Here the morphisms preserve $\kappa$-compact objects, and the tensor product preserves them separately. This value is independent of the sufficiently large choice of $\kappa$ \cite[Proposition~1.23]{Efimov_Inverse_Limits}.
+	\end{proposition}
+	\prooffor{prop:Nuclear_Rigid}
+	\begin{proof}[Sketch]
+		By \cite[Proposition~1.23 and Remark~1.24(i)]{Efimov_Inverse_Limits}, based on \cite[Theorem~4.81 and Corollary~4.75]{Ramzi_Locally_Rigid}, the rigidification $C^{\rig} \subseteq C$ is the full subcategory generated under colimits by colimits $\colim_{a \in \Q} F(a)$ of diagrams $F\colon (\Q,\leq) \to C^{\omega}$ in which every map $F(a) \to F(b)$, $a < b$, is trace-class. Such colimits are nuclear by \Cref{prop:Nuclear_Basics}(1)(d), so $C^{\rig} \subseteq \Nuc(C)$. Conversely, let $P_0 \to P_1 \to \cdots$ be a sequence of trace-class maps between compact objects. By the assumption and \Cref{lem:Interpolation}(2), applied to $D = C^{\omega}$ and the class of trace-class morphisms (which is closed under composition by \Cref{rem:Trace_Class_Basics}(2)), it extends to a functor $F\colon \Q_{\geq 0} \to C^{\omega}$ with trace-class transition maps and the same colimit. Restricting $F$ to the cofinal subset $\Q_{>0} \cong \Q$, we see that the basic nuclear objects lie in $C^{\rig}$. By \Cref{prop:Nuclear_Basics}(2), these generate $\Nuc(C)$.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Rigidification_Via_Idempotent_Ideals}
+		Compare this with the construction of $(C,S)^{\dual}$ in Clausen's lectures: given a class $S$ of morphisms forming an ideal with $S = S^2$ (and some further closure properties), one obtains a dualizable category generated by colimits along morphisms in $S$. For $S$ the trace-class morphisms of $C$, this gives $C^{\rig}$. The condition $S = S^2$ in \Cref{prop:Nuclear_Rigid} is what allows one to work with sequential colimits instead of $\Q$-indexed ones (\Cref{lem:Interpolation}; for compact morphisms in compactly assembled categories, see \Cref{prop:Compact_Interpolation}), cf.\ also the construction of $C_S$ in Lecture~7 of the Bonn workshop.
+	\end{remark}
+
+	\subsection*{Examples from condensed mathematics}
+
+	We now describe the main examples, without proofs. We refer to \cite{Scholze_Analytic_Geometry} for the solid and liquid theory, to \cite{Clausen_Scholze_Complex_Geometry} for the gaseous theory, and to \cite{Andreychev_Thesis} and \cite[Section~7.2]{Efimov_Inverse_Limits} for the comparison with Efimov's theory.
+
+	\begin{example}[Solid modules and nuclear modules over formal schemes]
+		\label[example]{ex:Nuclear_Solid}
+		Let $\D(\mathrm{Solid}_{\Z})$ be the derived category of light solid abelian groups, as in Efimov's convention in \cite[Section~7.2]{Efimov_Inverse_Limits}. This is a compactly generated symmetric monoidal category, with compact projective generator $\prod_{\N}\Z$ and compact unit $\Z$. It is far from rigid: the compact object $\prod_{\N}\Z$ is not dualizable (its predual is $\bigoplus_{\N}\Z$). In fact, there is a symmetric monoidal equivalence
+		\[
+			\D(\mathrm{Solid}_{\Z}) \simeq \Ind\big(\D^b(\mathrm{Proj}^{\omega_1}\text{-}\Z)\catop\big),
+		\]
+		where $\D^b(\mathrm{Proj}^{\omega_1}\text{-}\Z) \subseteq \D(\Z)$ is the stable subcategory generated by $\bigoplus_{\N}\Z$, under which $\prod_{\N}\Z$ corresponds to $(\bigoplus_{\N}\Z)\catop$ \cite[Section~7.2]{Efimov_Inverse_Limits}.
+
+		More generally, let $R$ be a commutative ring and $I = (a_1,\dots,a_m) \subseteq R$ a finitely generated ideal, and let $R^{\wedge}_I$ denote its derived $I$-adic completion. We use the induced solid analytic structure, with the notation of \cite[Section~7.2]{Efimov_Inverse_Limits}. All completions and tensor products in this example are derived; for Noetherian $R$, the derived completion of $R$ agrees with its ordinary completion. Its category of modules $\D(\mathrm{Solid}_{(R^{\wedge}_I,\Z)}) = \Mod_{R^{\wedge}_I}(\D(\mathrm{Solid}_{\Z}))$ is compactly generated by $R^{\wedge}_I \otimes^{\square} \prod_{\N}\Z$, with compact unit. The category of \emph{nuclear solid modules} is
+		\[
+			\Nuc^{CS}(R^{\wedge}_I) := \Nuc\big(\D(\mathrm{Solid}_{(R^{\wedge}_I,\Z)})\big),
+		\]
+		with respect to this specified solid structure. (For $R = \Z$ and $I = 0$ one recovers $\D(\Z)$: an object of $\D(\mathrm{Solid}_{\Z})$ is nuclear if and only if it is discrete \cite[Lecture~VIII, Exercise~1]{Clausen_Scholze_Complex_Geometry}.) One has $\Nuc^{CS}(R^{\wedge}_I) \simeq \D(\mathrm{Solid}_{(R^{\wedge}_I,\Z)})^{\rig}$.
+
+		The key technical input is that the preduals of compact objects are nuclear, which goes back to Andreychev \cite[Lemma~3.8 and Korollar~3.14]{Andreychev_Thesis}; see \cite[Propositions~7.4 and~7.5]{Efimov_Inverse_Limits} (Efimov deduces the rigidity from this via \cite[Propositions~1.33 and~1.34]{Efimov_Inverse_Limits} rather than via \Cref{prop:Nuclear_Rigid}). Hence:
+		\begin{itemize}
+			\item $\Nuc^{CS}(R^{\wedge}_I)$ is rigid, hence dualizable, but in general not compactly generated.
+			\item Its compact objects are the perfect complexes over $R^{\wedge}_I$.
+			\item Its continuous K-theory is $K^{\cont}(\Nuc^{CS}(R^{\wedge}_I)) \simeq \lim_n K(R \quot (a_1^n,\dots,a_m^n))$, which is $\lim_n K(R/I^n)$ if $R$ is Noetherian (Efimov \cite[Corollary~7.10]{Efimov_Inverse_Limits}, as conjectured by Clausen--Scholze), cf.\ \Cref{thm:Kcont_Nuclear}.
+		\end{itemize}
+
+		% Source: written from the literature (Efimov, Localizing invariants of inverse limits, Corollary 7.20(i) and the discussion after Remark 7.21).
+		Compact generation fails already for $\Nuc^{CS}(\Z_p)$. Indeed, suppose otherwise. Its compact objects are $\Perf(\Z_p)$, so the canonical $\Z$-linear functor $\D(\Z_p) \to \Nuc^{CS}(\Z_p)$ would be an equivalence. But Efimov computes
+		\[
+			\mathrm{HH}^{\cont}(\Nuc^{CS}(\Z_p)/\Z) \simeq \Z_p
+		\]
+		\cite[Corollary~7.20(i)]{Efimov_Inverse_Limits}, whereas
+		\[
+			\mathrm{HH}_1(\Z_p/\Z) \cong \Omega^1_{\Z_p/\Z} \cong \Omega^1_{\Q_p/\Q} \neq 0.
+		\]
+		Here $\mathrm{HH}^{\cont}$ denotes the continuous extension of relative Hochschild homology, which agrees with ordinary Hochschild homology on compactly generated categories. This gives the required contradiction; see also the discussion after \cite[Remark~7.21]{Efimov_Inverse_Limits}.
+
+		% Source: written from the literature (Efimov, Corollary 7.7); moved from the introductory overview.
+		There is also an operator-algebra presentation, analogous to the compact-operator example of \Cref{ex:Compact_Operators_Intro}. Let $R$ be a commutative ring, $I = (f_1,\dots,f_m) \subseteq R$ a finitely generated ideal. In this paragraph all completions and tensor products are derived, following \cite[Section~7.2]{Efimov_Inverse_Limits}. Let $P := (\bigoplus_{\N} R)^{\wedge}_I$ be the $I$-completed countable direct sum, which plays the role of a separable Hilbert space. In place of $B(\Hh)$ we take the endomorphism ring $\End_R(P)$, and in place of the Calkin algebra $B(\Hh)/\Kk$ the $I$-adically completed endomorphism ring
+		\[
+			\Calk^{\mathrm{top}}_R(P) := \End_{\Calk(R)}(P)^{\wedge}_I
+		\]
+		of $P$ in the Calkin category of $\Perf(R)$. The fiber of $\End_R(P) \to \Calk^{\mathrm{top}}_R(P)$ is $\big(\prod_{\N}R \otimes_R \bigoplus_{\N}R\big)^{\wedge}_I$, which one may think of as the $I$-adic completion of the endomorphisms of finite rank, just as $\Kk$ is the norm closure of the operators of finite rank. Efimov shows that $\End_R(P) \to \Calk^{\mathrm{top}}_R(P)$ is a homological epimorphism, whose kernel is the category of \emph{nuclear} modules over $R^{\wedge}_I$ in the sense of Clausen--Scholze \cite[Corollary~7.7]{Efimov_Inverse_Limits}:
+		\[
+			\Nuc^{CS}(R^{\wedge}_I) \simeq \D\big(\End_R(P) \to \Calk^{\mathrm{top}}_R(P)\big).
+		\]
+
+		Efimov also introduced a variant $\Nuc(R^{\wedge}_I)$ \cite[Definition~3.28]{Efimov_Inverse_Limits}, which can be described as $\lim^{\dual}_n \D(R \quot (a_1^n,\dots,a_m^n))$, the limit computed in $\Pr^{\dual}$ \cite[Proposition~5.23]{Efimov_Inverse_Limits}. It receives a fully faithful strongly continuous functor from $\Nuc^{CS}(R^{\wedge}_I)$ \cite[Corollary~7.6]{Efimov_Inverse_Limits}, which induces an equivalence on compact objects, both sides having compact objects $\Perf(R^{\wedge}_I)$ \cite[Proposition~3.29]{Efimov_Inverse_Limits}. It can equivalently be described as the rigidification $\D_{I\text{-}\mathrm{compl}}(R)^{\rig}$ \cite[Proposition~4.3]{Efimov_Inverse_Limits} of the category of derived $I$-complete $R$-modules; the latter need not itself be rigid. For example, for $R = \Z$ and $I = (p)$ its unit $\Z_p$ is not compact.
+	\end{example}
+
+	\begin{example}[Banach spaces as nuclear modules]
+		\label[example]{ex:Nuclear_Banach}
+		Heuristically, nuclear modules are ``Banach-type'' objects, as opposed to the compact objects such as $\prod_{\N}\Z_p$, which are of ``profinite'' or ``compact'' type. For instance, for every profinite set $S$ the module $C(S,\Z_p)$ of continuous functions is nuclear over $\Z_p^{\square}$ \cite[Lemma~3.8]{Andreychev_Thesis}. Taking $S = \N \cup \{\infty\}$, it follows that the $p$-adic Banach space $c_0(\N,\Z_p)$ of null sequences, a direct summand of $C(S,\Z_p)$, is nuclear, and inverting $p$ gives nuclear solid $\Q_p$-vector spaces such as $c_0(\N,\Q_p)$. In contrast, the compact object $\prod_{\N}\Z_p$ of $\D(\mathrm{Solid}_{\Z_p})$ is not nuclear: a compact nuclear object is dualizable, and the dualizable objects of $\D(\mathrm{Solid}_{\Z_p})$ are just the perfect complexes of $\Z_p$-modules \cite[Theorem~14.10]{Scholze_Analytic_Geometry}.
+	\end{example}
+
+	\begin{example}[Liquid and gaseous modules]
+		\label[example]{ex:Nuclear_Liquid_Gaseous}
+		Over the real and complex numbers, the solid theory is replaced by the \emph{liquid} theory: for $0 < p \leq 1$ there is a compactly generated symmetric monoidal category $\D(\mathrm{Liq}_p(\R))$ of $p$-liquid $\R$-vector spaces \cite{Scholze_Analytic_Geometry}, and one can form $\Nuc(\R^{p\text{-}\mathrm{liq}})$. The nuclear objects of $\D(\mathrm{Liq}_p)$ do not depend on $p$ \cite[Corollary~8.18]{Clausen_Scholze_Complex_Geometry}.
+
+		According to Clausen \citep{Clausen_Efimov_K_Theory_Lecture_3}, there is an explicit model for the rigidification of the category of liquid $\C$-vector spaces in terms of operator algebras:
+		\[
+			\D^{\mathrm{liq}}(\C)^{\rig} \simeq \D\big(B(\Hh) \to B(\Hh)/S_{0+}\big),
+		\]
+		Here $S_{0+} = \bigcap_{p > 0} S_p$ is the ideal of operators which are $p$-summable for all $p > 0$. The kernel on the right and its Hilbert-space model are constructed in \Cref{prop:Operator_Ideal_Models}.
+
+		Finally, the gaseous theory of Clausen--Scholze \cite{Clausen_Scholze_Complex_Geometry} provides yet another analytic ring structure on $\C$, with a category of nuclear modules $\Nuc(\C^{\mathrm{gas}})$. Rigidification produces rigid, hence dualizable, categories whose continuous K-theory is a candidate for analytic K-theory, cf.\ \Cref{sec:First_Computations}.
+	\end{example}
+	% CHECK (19.11.2026): The operator kernel is proved in prop:Operator_Ideal_Models. Its identification with liquid rigidification still requires a derived fully faithful realization with the asserted essential image; see Review/lecture-model-proof-checks.md.
+
+	\begin{remark}
+		\label[remark]{rem:Nuclear_Descent}
+		The reason for working with $\Nuc$ rather than with all complete (solid) modules is that the former has much better formal properties: for instance, it is rigid, hence dualizable with a good continuous K-theory, and $\operatorname{Spa}(A,A^+) \mapsto \Nuc(A)$ satisfies descent for the analytic topology on affinoid adic spaces (Andreychev), see \Cref{sec:First_Computations}.
+	\end{remark}

@@ -1,9 +1,11 @@
-param([switch]$SkipPdf, [switch]$VerifySourcePreservation)
+param([switch]$SkipPdf)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $sharedRoot = Join-Path $PSScriptRoot '../../../Animarium/publication/latex-web-v1'
 Push-Location $projectRoot
 try {
+    & node web/test-promote-local.mjs
+    if ($LASTEXITCODE -ne 0) { throw 'Local preview transaction tests failed.' }
     New-Item -ItemType Directory -Path 'tmp/web/pdf' -Force | Out-Null
     if (-not $SkipPdf) {
         & latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=tmp/web/pdf 'Efimov K-theory Notes.tex' *> tmp/web/pdf-build.log
@@ -14,7 +16,7 @@ try {
     $inventory = Get-Content tmp/web/inventory.json -Raw | ConvertFrom-Json
     Push-Location tmp/web
     try {
-        foreach ($chapter in $inventory.chapters) {
+        foreach ($chapter in (@($inventory.frontMatter) + @($inventory.chapters))) {
             $name = $chapter.htmlName
             $digest = ((Get-FileHash -Algorithm SHA256 -LiteralPath "$name.tex").Hash + (Get-FileHash -Algorithm SHA256 -LiteralPath 'preamble-web.tex').Hash + 'mathjax,charset=utf-8')
             $stamp = "$name.converted-hash"
@@ -49,8 +51,7 @@ try {
             }
         }
     } finally { Pop-Location }
-    if ($VerifySourcePreservation) { & node web/finalize.mjs $stage --verify-source-metadata }
-    else { & node web/finalize.mjs $stage }
+    & node web/finalize.mjs $stage
     if ($LASTEXITCODE -ne 0) { throw 'Generated edition validation failed.' }
     # Preserve the previous local preview until the complete candidate validates.
     & node web/promote-local.mjs $stage

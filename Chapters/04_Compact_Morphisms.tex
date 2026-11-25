@@ -1,0 +1,407 @@
+	\chapter{Compact morphisms and the axiom (AB6)}
+	\label[chapter]{chap:Compact_Morphisms_AB6}
+
+	% Source: Talk 4 (Jiapeng Liu, 03.11.2026)
+	In compactly generated categories, compact objects control everything: they generate the category, and maps out of them into filtered colimits factor through a finite stage. In dualizable categories there may be no nonzero compact objects at all, and their role is taken over by \emph{compact morphisms}, which we introduced in \Cref{sec:Compactly_Assembled}. We develop their factorization properties and use them to characterize dualizability.
+
+	The argument proceeds from individual maps to whole categories: the lifting criteria lead to interpolation, compact exhaustions give generators, and (AB6) packages the result as a commutation property of products and filtered colimits. The final section uses these criteria to prove automatic dualizability.
+
+	Throughout, for a category $C$ with filtered colimits we write $\colim\colon \Ind(C) \to C$ for the colimit functor and $\varepsilon\colon \hat{y} \to y$ for the natural transformation of \Cref{sec:Compactly_Assembled}, whenever $C$ is compactly assembled. (In the talk, as in \cite{Krause_Nikolaus_Putzstuck_Sheaves}, the colimit functor was denoted $k$.) The talk mostly worked with dualizable categories. Several of the results below hold more generally for compactly assembled categories, and we state them in this generality whenever the proof is the same; see \cite[Sections~2.2--2.4]{Krause_Nikolaus_Putzstuck_Sheaves} for a systematic treatment of the non-stable case.
+
+	\section{Weakly compact morphisms}
+	\label[section]{sec:Weakly_Compact_Morphisms}
+
+	Our definition of compact morphisms (\Cref{def:Compact_Morphism}) asks for a factorization which is natural in the filtered diagram. In the talk, as in \cite[Definition~2.37]{Efimov_Large_Categories}, compact morphisms were instead defined by asking for such factorizations one map at a time. We now show that the two notions agree in compactly assembled categories, so that both definitions may be used interchangeably in these notes.
+
+	\begin{definition}[{\cite[Definition~2.2.3]{Krause_Nikolaus_Putzstuck_Sheaves}}]
+		\label[definition]{def:Weakly_Compact_Morphism}
+		Let $C$ be a category with filtered colimits. A morphism $f\colon x \to x'$ in $C$ is called \emph{weakly compact} if for every filtered diagram $(z_i)_{i \in I}$ in $C$ and every morphism $g\colon x' \to \colim_i z_i$, the composite $gf\colon x \to \colim_i z_i$ factors through the canonical map $z_i \to \colim_i z_i$ for some $i \in I$.
+	\end{definition}
+
+	\begin{remark}
+		\label[remark]{rem:Weakly_Compact_Lifting}
+		Since $y(x)$ is compact in $\Ind(C)$, maps $y(x) \to \quotcolim_i z_i$ are the same as maps $x \to z_i$ for some $i$, up to the usual identifications. Hence $f$ is weakly compact if and only if for every $Z \in \Ind(C)$, every diagram of solid arrows
+		\[
+			\begin{tikzcd}
+				y(x) \rar[dashed] \dar["y(f)"'] & Z \dar["\eta_Z"] \\
+				y(x') \rar & y(\colim Z)
+			\end{tikzcd}
+		\]
+		admits a dashed arrow making the square commute. Here $\eta_Z$ is the unit of the adjunction $\colim \dashv y$ of \Cref{constr:Ind_Large}, and a map $y(x') \to y(\colim Z)$ is the same as a map $x' \to \colim Z$, since $y$ is fully faithful.
+
+		A compact morphism in the sense of \Cref{def:Compact_Morphism} is weakly compact: the factorization of $f^*$ through $\Map_{\Ind(C)}(y(x),-)$ provides, in particular, a lift of each point. In the terminology of \cite[Definition~2.2.4]{Krause_Nikolaus_Putzstuck_Sheaves}, compact morphisms in our sense are called \emph{strongly compact}.
+	\end{remark}
+
+	\begin{example}
+		\label[example]{ex:Weakly_Compact_Basic}
+		\leavevmode
+		\begin{enumerate}
+			\item If $x$ is compact, then $\id_x$ is weakly compact. The converse holds for stable $C$, see \Cref{cor:Compact_Iff_Identity_Weakly_Compact} below.
+			\item As in \Cref{rem:Compact_Morphisms_Ideal}, weakly compact morphisms form a two-sided ideal: if $f\colon x \to x'$ is weakly compact and $k\colon w \to x$, $h\colon x' \to x''$ are arbitrary, then for every $g\colon x'' \to \colim_i z_i$ the composite $(gh)f$ factors through some $z_i$, and hence so does $ghfk$.
+			\item In particular, every morphism which factors through a compact object is weakly compact.
+		\end{enumerate}
+	\end{example}
+
+	\begin{proposition}[{\cite[Proposition~2.39]{Efimov_Large_Categories}, \cite[Proposition~2.4.1]{Krause_Nikolaus_Putzstuck_Sheaves}}]
+		\label[proposition]{prop:Compact_Morphism_Characterizations}
+		Let $C$ be compactly assembled and let $f\colon x \to x'$ be a morphism in $C$. Then the following are equivalent:
+		\begin{enumerate}
+			\item $f$ is compact (in the sense of \Cref{def:Compact_Morphism});
+			\item $f$ is weakly compact;
+			\item $y(f)\colon y(x) \to y(x')$ factors through $\varepsilon_{x'}\colon \hat{y}(x') \to y(x')$;
+			\item $\hat{y}(f)\colon \hat{y}(x) \to \hat{y}(x')$ factors through $\varepsilon_x\colon \hat{y}(x) \to y(x)$;
+			\item $\hat{y}(f)$ is a weakly compact morphism in $\Ind(C)$.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Compact_Morphism_Characterizations}
+	\begin{proof}
+		We use repeatedly that maps $\hat{y}(w) \to Z$ in $\Ind(C)$ correspond, under the adjunction $\hat{y} \dashv \colim$, to maps $w \to \colim Z$; in particular, two maps $\hat{y}(w) \to Z$ are homotopic as soon as their images under $\colim$ are, where we identify $\colim\hat{y}(w) \simeq w$. Similarly, two maps $y(w) \to y(w')$ are homotopic as soon as their images under $\colim$ are, since $y$ is fully faithful. Recall also that $\colim(\varepsilon_w) \simeq \id_w$.
+
+		(1) $\iff$ (3) is \Cref{lem:Compact_Morphisms_Yhat}(1), and (1) $\implies$ (2) was observed in \Cref{rem:Weakly_Compact_Lifting}.
+
+		(2) $\implies$ (3): Write $\hat{y}(x') \simeq \quotcolim_i z_i$. Then $\colim_i z_i \simeq \colim\hat{y}(x') \simeq x'$. Applying weak compactness to the identity $x' \to \colim_i z_i$, we find a map $h\colon x \to z_i$ for some $i$ such that the composite $x \to z_i \to \colim_i z_i \simeq x'$ is homotopic to $f$. Let $g\colon y(x) \to \hat{y}(x')$ be the composite of $y(h)$ with the canonical map $y(z_i) \to \quotcolim_i z_i$. Then $\colim(\varepsilon_{x'} g) \simeq \colim(g) \simeq f$, and hence $\varepsilon_{x'}g \simeq y(f)$.
+
+		(3) $\implies$ (4): Let $g\colon y(x) \to \hat{y}(x')$ with $\varepsilon_{x'}g \simeq y(f)$. Then $g\varepsilon_x$ and $\hat{y}(f)$ are maps $\hat{y}(x) \to \hat{y}(x')$ with $\colim(g\varepsilon_x) \simeq \colim(g) \simeq f \simeq \colim(\hat{y}(f))$, so $\hat{y}(f) \simeq g\varepsilon_x$.
+
+		(4) $\implies$ (5): The object $y(x)$ is compact in $\Ind(C)$, so this follows from \Cref{ex:Weakly_Compact_Basic}(3).
+
+		(5) $\implies$ (2): Let $g\colon x' \to \colim_i z_i$ be a map in $C$, and let $Z = \quotcolim_i z_i = \colim_i y(z_i)$. By adjunction, $g$ corresponds to a map $\tilde{g}\colon \hat{y}(x') \to Z$ with $\colim(\tilde{g}) \simeq g$. By (5), the composite $\tilde{g}\hat{y}(f)\colon \hat{y}(x) \to \colim_i y(z_i)$ factors through some $y(z_i)$, say as $\hat{y}(x) \xrightarrow{u} y(z_i) \to Z$. Applying $\colim$, we find that $gf \simeq \colim(\tilde{g}\hat{y}(f))$ factors as $x \xrightarrow{\colim(u)} z_i \to \colim_i z_i$.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Weak_Compactness_In_Small_Ind_Categories}
+		In (5), weak compactness in $\Ind(C)$ may be replaced by weak compactness in $\Ind(C^{\kappa})$, for any $\kappa$ such that $\hat{y}$ takes values in $\Ind(C^{\kappa})$, by the same argument. In particular, if $C$ is dualizable we may take $\kappa = \omega_1$ (\Cref{thm:Compactly_Assembled_Omega_1}), and then $\Ind(C^{\omega_1})$ is compactly generated.
+	\end{remark}
+
+	From now on we simply speak of \emph{compact morphisms} in compactly assembled categories, and use the characterizations of \Cref{prop:Compact_Morphism_Characterizations} freely. The following observation is fundamental; it says that compact morphisms can be ``interpolated''.
+
+	\begin{corollary}[{\cite[Corollary~2.40]{Efimov_Large_Categories}, \cite[Proposition~2.4.4]{Krause_Nikolaus_Putzstuck_Sheaves}}]
+		\label[corollary]{cor:Compact_Morphism_Factorization}
+		Let $C$ be compactly assembled. Then every compact morphism $f\colon x \to x'$ factors as a composite $x \xrightarrow{f_1} w \xrightarrow{f_2} x'$ of two compact morphisms.
+	\end{corollary}
+	\prooffor{cor:Compact_Morphism_Factorization}
+	\begin{proof}
+		By \Cref{prop:Compact_Morphism_Characterizations}, there is $g\colon y(x) \to \hat{y}(x')$ with $\varepsilon_{x'}g \simeq y(f)$. Write $\hat{y}(x') \simeq \quotcolim_i w_i$, so that $x' \simeq \colim_i w_i$. Since $\hat{y}$ preserves colimits, also $\hat{y}(x') \simeq \colim_i \hat{y}(w_i)$ in $\Ind(C)$. As $y(x)$ is compact in $\Ind(C)$, the map $g$ factors as
+		\[
+			y(x) \xrightarrow{h} \hat{y}(w_i) \xrightarrow{\hat{y}(f_2)} \hat{y}(x')
+		\]
+		for some $i$, where $f_2\colon w_i \to x'$ is the canonical map. Put $w := w_i$ and $f_1 := \colim(h)\colon x \to w$. Then $\varepsilon_w h$ and $y(f_1)$ have the same image under $\colim$, so $\varepsilon_w h \simeq y(f_1)$, and $f_1$ is compact by \Cref{prop:Compact_Morphism_Characterizations}(3). The map $y(w) \to \quotcolim_j w_j = \hat{y}(x')$ is a lift of $y(f_2)$ along $\varepsilon_{x'}$, since both become $f_2$ after applying $\colim$; so $f_2$ is compact as well. Finally, $f \simeq \colim(g) \simeq \colim(\hat{y}(f_2))\colim(h) \simeq f_2f_1$.
+	\end{proof}
+
+	% Source: written from the literature (Krause--Nikolaus--P\"utzst\"uck, Proposition 2.4.4 and Proposition 2.4.6)
+	By iterating \Cref{cor:Compact_Morphism_Factorization}, a single compact morphism can be ``interpolated'' by a dense family of compact morphisms. Since this is also needed for other classes of morphisms (for instance trace-class morphisms, see \Cref{prop:Nuclear_Rigid}), we formulate it abstractly. We write $\Q_{[0,1]} = \Q \cap [0,1]$ and $\Q_{\geq 0} = \Q \cap [0,\infty)$, regarded as partially ordered sets.
+
+	\begin{lemma}
+		\label[lemma]{lem:Interpolation}
+		Let $D$ be a category, let $S$ be a class of morphisms of $D$ which is closed under homotopy and composition, and let $P$ be a class of objects of $D$. Assume that every morphism in $S$ is homotopic to a composite $x \to p \to x'$ of two morphisms in $S$ with $p \in P$.
+		\begin{enumerate}
+			\item For every morphism $s\colon x \to x'$ in $S$ there is a functor $F\colon \Q_{[0,1]} \to D$ with $F(0) = x$, $F(1) = x'$ and $F(0 \leq 1) \simeq s$, such that $F(a \leq b) \in S$ for all $a < b$ and $F(a) \in P$ for all $0 < a < 1$.
+			\item For every sequence $x_0 \to x_1 \to x_2 \to \cdots$ of morphisms in $S$ there is a functor $F\colon \Q_{\geq 0} \to D$ whose restriction to $\N \subseteq \Q_{\geq 0}$ is equivalent to the given sequence, such that $F(a \leq b) \in S$ for all $a < b$ and $F(a) \in P$ for all $a \notin \N$. If $D$ admits sequential colimits, then $\colim_{\Q_{\geq 0}} F \simeq \colim_n x_n$.
+		\end{enumerate}
+	\end{lemma}
+	\prooffor{lem:Interpolation}
+	\begin{proof}
+		(1) The set $T$ of dyadic rationals in $[0,1]$ is a countable dense totally ordered set with a smallest and a largest element, so it is order-isomorphic to $\Q_{[0,1]}$ by Cantor's back-and-forth argument; we may therefore replace $\Q_{[0,1]}$ by $T$, with $0$ and $1$ preserved. Let $T_k = \{i/2^k \mid 0 \leq i \leq 2^k\}$, so that $T = \bigcup_k T_k$ and hence $N(T) = \bigcup_k N(T_k)$. Thus $\Fun(T,D) \simeq \lim_k \Fun(T_k,D)$, and on cores this is a limit of a tower of animae. So it suffices to construct functors $F_k\colon T_k \to D$, with $F_k(a \leq b) \in S$ for $a < b$ and $F_k(a) \in P$ for $0 < a < 1$, together with equivalences $F_{k+1}|_{T_k} \simeq F_k$. Indeed, a point of the limit of a tower of animae is specified by points at each stage and paths between their successive images; no separate higher compatibility choices are required. As in \Cref{rem:Sequential_Diagrams}, a functor out of a finite totally ordered set amounts to a composable sequence of morphisms, and two such functors are equivalent as soon as they agree on objects and their consecutive morphisms are homotopic. Let $F_0$ be given by $s$. Given $F_k$, factor each morphism $F_k(a \leq a')$ between consecutive elements $a < a'$ of $T_k$ as a composite of two morphisms in $S$ through an object of $P$, and let $F_{k+1}$ be the resulting functor on $T_{k+1}$. Then $F_{k+1}|_{T_k}$ and $F_k$ agree on objects, and their consecutive morphisms are homotopic, so $F_{k+1}|_{T_k} \simeq F_k$. Since $S$ is closed under composition, every $F_{k+1}(a \leq b)$ with $a < b$ is in $S$.
+
+		(2) Apply the construction of (1) simultaneously to all morphisms $x_n \to x_{n+1}$: on the dyadic rationals in $[0,\infty)$, which are the union of the subsets $2^{-k}\N$, we refine the given sequence on $\N = 2^{0}\N$ by factoring consecutive morphisms as before. The set of dyadic rationals in $[0,\infty)$ is order-isomorphic to $\Q_{\geq 0}$ by an isomorphism fixing $\N$ (apply the back-and-forth argument to each interval $[n,n+1]$). Finally, $\N \subseteq \Q_{\geq 0}$ is cofinal, so the colimits agree by \Cref{lem:Cofinality_Posets}.
+	\end{proof}
+
+	\begin{proposition}[{\cite[Propositions~2.4.4 and~2.4.6]{Krause_Nikolaus_Putzstuck_Sheaves}}]
+		\label[proposition]{prop:Compact_Interpolation}
+		Let $C$ be compactly assembled.
+		\begin{enumerate}
+			\item Every compact morphism $f\colon x \to x'$ factors as $x \to w \to x'$ with both morphisms compact and $w$ an $\omega_1$-compact object.
+			\item Every compact morphism $f\colon x \to x'$ extends to a functor $F\colon \Q_{[0,1]} \to C$ with $F(0 \leq 1) \simeq f$, such that $F(a \leq b)$ is compact for all $a < b$ and $F(a)$ is $\omega_1$-compact for $0 < a < 1$.
+			\item An object of $C$ is $\omega_1$-compact if and only if it is the colimit of a functor $F\colon \Q_{\geq 0} \to C$, or equivalently of a functor $F\colon \Q \to C$, such that $F(a \leq b)$ is compact for all $a < b$. Moreover, $F$ can be chosen to take values in $\omega_1$-compact objects.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Compact_Interpolation}
+	\begin{proof}
+		(1) By \Cref{cor:Compact_Morphism_Factorization}, applied twice, $f$ factors as $x \to x_0 \to x_0' \to x'$ with all three maps compact. By \Cref{thm:Compactly_Assembled_Omega_1}(1), $x_0'$ is a filtered colimit of $\omega_1$-compact objects, so the compact (hence weakly compact, by \Cref{prop:Compact_Morphism_Characterizations}) morphism $x_0 \to x_0'$ factors as $x_0 \to w \to x_0'$ with $w$ $\omega_1$-compact. Since compact morphisms form an ideal, $x \to x_0 \to w$ and $w \to x_0' \to x'$ are compact.
+
+		(2) Apply \Cref{lem:Interpolation}(1) to the class $S$ of compact morphisms and the class $P$ of $\omega_1$-compact objects, using (1).
+
+		(3) By \Cref{thm:Compactly_Assembled_Omega_1}(2), \Cref{rem:Omega_1_Compact_Compact_Morphisms} and \Cref{prop:Compact_Morphism_Characterizations}, an object $x$ is $\omega_1$-compact if and only if $x \simeq \colim_n x_n$ for a sequence of compact morphisms $x_n \to x_{n+1}$. By (1), each $x_n \to x_{n+1}$ factors as $x_n \to w_n \to x_{n+1}$ through an $\omega_1$-compact $w_n$, with both maps compact. The sequence $w_0 \to w_1 \to \cdots$ of composites $w_n \to x_{n+1} \to w_{n+1}$ again consists of compact morphisms between $\omega_1$-compact objects, and has colimit $x$ by cofinality. Applying \Cref{lem:Interpolation}(2) to it (with $P$ the $\omega_1$-compact objects) gives a functor $F\colon \Q_{\geq 0} \to C$ with the required properties and colimit $x$. Since $\Q_{> 0} \subseteq \Q_{\geq 0}$ is cofinal and $\Q_{> 0}$ is order-isomorphic to $\Q$ (both are countable dense totally ordered sets without endpoints), we may equivalently use $\Q$. Conversely, the colimit of such a functor is the colimit of its restriction to the cofinal subset $\N$, which is $\omega_1$-compact by \Cref{thm:Compactly_Assembled_Omega_1}(2).
+	\end{proof}
+
+	For stable categories there is a useful reformulation of compactness, which only involves ind-objects with vanishing colimit. This is the definition of compact morphisms used by Clausen and Mathew.
+
+	\begin{proposition}
+		\label[proposition]{prop:Compact_Morphisms_Stable}
+		Let $C$ be a stable category with filtered colimits (e.g.\ $C \in \PrL_{\st}$), and let $f\colon x \to x'$ be a morphism in $C$. Then $f$ is weakly compact if and only if for every $Z \in \Ind(C)$ with $\colim Z \simeq 0$, the map
+		\[
+			f^*\colon \pi_0\Map_{\Ind(C)}(y(x'),Z) \to \pi_0\Map_{\Ind(C)}(y(x),Z)
+		\]
+		is zero. Explicitly, this means: for every filtered diagram $(z_i)_{i \in I}$ with $\colim_i z_i \simeq 0$ and every map $g\colon x' \to z_i$, there is $i' \geq i$ such that the composite $x \xrightarrow{f} x' \xrightarrow{g} z_i \to z_{i'}$ is nullhomotopic.
+	\end{proposition}
+	\prooffor{prop:Compact_Morphisms_Stable}
+	\begin{proof}
+		Note that $\Ind(C)$ is stable, and that filtered colimits in $C$ as well as the colimit functor $\Ind(C) \to C$ are exact.
+
+		Suppose that $f$ is weakly compact, and let $Z = \quotcolim_{i \in I} z_i$ with $\colim_i z_i \simeq 0$; by \Cref{thm:Filtered_Posets_Cofinal} we may assume that $I$ is a filtered partially ordered set. A map $y(x') \to Z$ is represented by some $g\colon x' \to z_{i_0}$. For $i \geq i_0$ write $g_i\colon x' \to z_i$ for the composite with the transition map, and $w_i := \fib(g_i)$. As $\{i \geq i_0\} \subseteq I$ is cofinal and filtered colimits are exact, the canonical map
+		\[
+			\colim_{i \geq i_0} w_i \to \fib\big(x' \to \colim_{i \geq i_0} z_i\big) \simeq x'
+		\]
+		is an equivalence. Applying weak compactness of $f$ to the inverse of this equivalence, we find $i \geq i_0$ and a map $b\colon x \to w_i$ such that $f$ is homotopic to the composite of $b$ with $w_i \to x'$. Hence $g_if$ factors through $g_i \circ (w_i \to x') \simeq 0$, so $g_if \simeq 0$, and the image of our map under $f^*$ vanishes.
+
+		Conversely, suppose the condition holds, and let $g\colon x' \to \colim_i z_i$. Put $Z = \quotcolim_i z_i$, let $\eta_Z\colon Z \to y(\colim Z)$ be the unit of $\colim \dashv y$, and let $W = \cofib(\eta_Z)$. Then $\colim W \simeq \cofib(\colim(\eta_Z)) \simeq 0$, since $\colim(\eta_Z)$ is an equivalence. In the exact sequence of abelian groups
+		\[
+			\pi_0\Map(y(x),Z) \xrightarrow{(\eta_Z)_*} \pi_0\Map(y(x),y(\colim Z)) \to \pi_0\Map(y(x),W),
+		\]
+		the class of $y(gf) = y(g)y(f)$ maps to the image under $f^*$ of the class of the composite $y(x') \xrightarrow{y(g)} y(\colim Z) \to W$, which vanishes by assumption. Hence $y(gf) \simeq \eta_Z\psi$ for some $\psi\colon y(x) \to Z$. Since $y(x)$ is compact, $\psi$ is represented by a map $\psi_0\colon x \to z_i$ for some $i$, and $\eta_Z\psi$ is then $y$ of the composite $x \xrightarrow{\psi_0} z_i \to \colim_i z_i$. As $y$ is fully faithful, $gf$ is homotopic to this composite.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Compact_Morphisms_Other_Definitions}
+		In the literature one also finds weaker, ``elementwise'' definitions of compact morphisms. For instance, Clausen and Mathew call a morphism $f\colon x \to x'$ in a presentable stable category compact if for every filtered diagram $(z_j)_j$ with $\colim_j z_j \simeq 0$, every map $x' \to z_j$ becomes nullhomotopic after precomposition with $f$ and postcomposition with $z_j \to z_{j'}$ for some $j' \geq j$. In compactly assembled categories this agrees with \Cref{def:Compact_Morphism}, by \Cref{prop:Compact_Morphism_Characterizations,prop:Compact_Morphisms_Stable}.
+	\end{remark}
+
+	\begin{remark}
+		\label[remark]{rem:Stable_Compact_Morphism_Definitions}
+		The vanishing-colimit test in \Cref{prop:Compact_Morphisms_Stable} characterizes weak compactness in any stable category with filtered colimits. Compact assembly is used only to identify this with the natural factorization condition of \Cref{def:Compact_Morphism}, via \Cref{prop:Compact_Morphism_Characterizations}.
+	\end{remark}
+
+	\begin{corollary}[{cf.\ \cite[Remark~2.38]{Efimov_Large_Categories}}]
+		\label[corollary]{cor:Compact_Iff_Identity_Weakly_Compact}
+		Let $C$ be a stable category with filtered colimits. Then $x \in C$ is compact if and only if $\id_x$ is weakly compact.
+	\end{corollary}
+	\prooffor{cor:Compact_Iff_Identity_Weakly_Compact}
+	\begin{proof}
+		Suppose that $\id_x$ is weakly compact. By \Cref{prop:Compact_Morphisms_Stable}, we have $\pi_0\Map_{\Ind(C)}(y(x),W) = 0$ for every $W \in \Ind(C)$ with $\colim W \simeq 0$. Applying this to all shifts of $W$, we get $\hom_{\Ind(C)}(y(x),W) \simeq 0$. For $Z = \quotcolim_i z_i$, applying this to the fiber $W$ of the unit $\eta_Z\colon Z \to y(\colim Z)$ shows that
+		\begin{align*}
+			\colim_i \hom_C(x,z_i) &\simeq \hom_{\Ind(C)}(y(x),Z) \\
+			&\to \hom_{\Ind(C)}(y(x),y(\colim Z)) \simeq \hom_C(x,\colim_i z_i)
+		\end{align*}
+		is an equivalence, i.e.\ $x$ is compact. The converse is \Cref{ex:Weakly_Compact_Basic}(1).
+	\end{proof}
+
+	\section{Compactly exhaustible objects}
+	\label[section]{sec:Compactly_Exhaustible}
+
+	In \Cref{sec:Omega_1_Presentability} we saw that the $\omega_1$-compact objects of a compactly assembled category are precisely the sequential colimits along compact morphisms (\Cref{thm:Compactly_Assembled_Omega_1} and \Cref{rem:Omega_1_Compact_Compact_Morphisms}). We now show that, for presentable stable categories, the existence of enough such objects characterizes dualizability.
+
+	\begin{definition}
+		\label[definition]{def:Compactly_Exhaustible}
+		Let $C$ be a category with filtered colimits. A \emph{compact exhaustion} of an object $x \in C$ is a sequence $x_0 \to x_1 \to x_2 \to \cdots$ of weakly compact morphisms together with an equivalence $\colim_n x_n \simeq x$. An object is called \emph{compactly exhaustible} if it admits a compact exhaustion.
+	\end{definition}
+
+	\begin{proposition}[{\cite[Theorem~2.2.15]{Krause_Nikolaus_Putzstuck_Sheaves}}]
+		\label[proposition]{prop:Dualizable_Compactly_Exhaustible}
+		Let $C \in \PrL_{\st}$. Then $C$ is dualizable if and only if $C$ is generated under colimits by compactly exhaustible objects.
+	\end{proposition}
+	\prooffor{prop:Dualizable_Compactly_Exhaustible}
+	\begin{proof}
+		If $C$ is dualizable, then $C$ is generated under colimits by its $\omega_1$-compact objects, which are compactly exhaustible by \Cref{thm:Compactly_Assembled_Omega_1} together with \Cref{prop:Compact_Morphism_Characterizations}.
+
+		Conversely, assume that $C$ is generated under colimits by compactly exhaustible objects. By \Cref{thm:Lurie_Dualizable_Characterization}, it suffices to show that $\colim\colon \Ind(C) \to C$ admits a left adjoint, i.e.\ that for every $x \in C$ the functor $\Map_C(x,\colim(-))\colon \Ind(C) \to \An$ is corepresentable. The category $\Ind(C)$ is stable and admits small colimits (any small diagram lies in some $\Ind(C^{\lambda})$, and the inclusions $\Ind(C^{\lambda}) \subseteq \Ind(C^{\mu})$ are exact and preserve filtered colimits, see \Cref{constr:Ind_Large}). Hence the class of $x$ for which $\Map_C(x,\colim(-))$ is corepresentable is closed under small colimits: if $x \simeq \colim_a x_a$ and $\Map_C(x_a,\colim(-)) \simeq \Map_{\Ind(C)}(X_a,-)$ naturally, then
+		\begin{align*}
+			\Map_C(x,\colim(-)) &\simeq \lim_a \Map_C(x_a,\colim(-)) \\
+			&\simeq \lim_a \Map_{\Ind(C)}(X_a,-) \simeq \Map_{\Ind(C)}(\colim_a X_a,-).
+		\end{align*}
+		So it suffices to treat a compactly exhaustible object $x \simeq \colim_n x_n$, with $x_n \to x_{n+1}$ weakly compact. Put $X := \colim_n y(x_n) \in \Ind(C)$, the colimit being taken in $\Ind(C)$. Then $\colim X \simeq \colim_n x_n \simeq x$, as $\colim$ is a left adjoint and $\colim \circ y \simeq \id$. We claim that the map
+		\[
+			\Map_{\Ind(C)}(X,Z) \to \Map_C(\colim X, \colim Z) \simeq \Map_C(x,\colim Z)
+		\]
+		induced by $\colim$ is an equivalence, naturally in $Z \in \Ind(C)$. Under the adjunction $\colim \dashv y$, it is identified with the map $(\eta_Z)_*\colon \Map(X,Z) \to \Map(X,y(\colim Z))$. Since everything is stable, it suffices to show that $\hom_{\Ind(C)}(X,W) \simeq 0$ for $W = \fib(\eta_Z)$, which satisfies $\colim W \simeq 0$ (as $\colim(\eta_Z)$ is an equivalence).
+
+		Put $h_n := \hom_{\Ind(C)}(y(x_n),W)$. We have $\hom(X,W) \simeq \lim_n h_n$, so there are Milnor short exact sequences
+		\[
+			0 \to {\lim_n}^1 \pi_{m+1}h_n \to \pi_m\hom(X,W) \to \lim_n \pi_m h_n \to 0.
+		\]
+		Now $\pi_m h_n \simeq \pi_0\Map(y(x_n),\Omega^mW)$, and $\colim \Omega^mW \simeq 0$. Since $x_n \to x_{n+1}$ is weakly compact, \Cref{prop:Compact_Morphisms_Stable} shows that all transition maps in the tower $(\pi_m h_n)_n$ are zero, for every $m \in \Z$. A tower of abelian groups with zero transition maps has vanishing $\lim$ and $\lim^1$, so $\pi_m\hom(X,W) = 0$ for all $m$, as desired.
+	\end{proof}
+
+	% Source: written from the literature (Krause--Nikolaus--P\"utzst\"uck)
+	\begin{remark}
+		\label[remark]{rem:Compact_Exhaustions_In_Presentable_Categories}
+		In \Cref{prop:Dualizable_Compactly_Exhaustible}, stability is used to reduce to ind-objects with vanishing colimit. For general presentable categories, the analogous statement holds provided filtered colimits in $C$ are exact, with ``dualizable'' replaced by ``compactly assembled'' \cite[Theorem~2.2.15]{Krause_Nikolaus_Putzstuck_Sheaves}.
+	\end{remark}
+
+	\section{A universal property of \texorpdfstring{$\hat{y}$}{y-hat}}
+	\label[section]{sec:Universal_Property_Yhat}
+
+	For an object $x$ of a compactly assembled category $C$, the functor $\Map_{\Ind(C)}(y(x),\hat{y}(-))$ is a ``filtered-colimit-preserving approximation'' of $\Map_C(x,-)$: if $x$ is compact, the two agree, and in general the former is the best approximation of the latter by a functor that preserves filtered colimits. To make this precise, for categories $C$ and $D$ with filtered colimits we write $\Fun^{\mathrm{filt}}(C,D) \subseteq \Fun(C,D)$ for the full subcategory of functors preserving filtered colimits.
+
+	\begin{proposition}[{\cite[Proposition~2.4.8]{Krause_Nikolaus_Putzstuck_Sheaves}}]
+		\label[proposition]{prop:Filtered_Coreflection}
+		Let $C$ be compactly assembled, and let $D$ be a category with filtered colimits. Then the inclusion $\Fun^{\mathrm{filt}}(C,D) \hookrightarrow \Fun(C,D)$ admits a right adjoint, given by
+		\[
+			F \mapsto \colim_D \circ \Ind(F) \circ \hat{y},
+		\]
+		where $\Ind(F)\colon \Ind(C) \to \Ind(D)$ is the extension of $F$ preserving filtered colimits.
+	\end{proposition}
+	\prooffor{prop:Filtered_Coreflection}
+	\begin{proof}
+		Write $\colim = \colim_C$. The adjunction $\hat{y} \dashv \colim$ induces an adjunction
+		\[
+			\colim^*\colon \Fun(C,D) \rightleftarrows \Fun(\Ind(C),D)\noloc \hat{y}^*
+		\]
+		given by precomposition: a transformation $G\colim \to H$ corresponds to the composite $G \to G\colim\hat{y} \to H\hat{y}$, using the unit $\id \to \colim\hat{y}$. Since $\colim$ and $\hat{y}$ preserve filtered colimits, this restricts to an adjunction between $\Fun^{\mathrm{filt}}(C,D)$ and $\Fun^{\mathrm{filt}}(\Ind(C),D)$. By the universal property of $\Ind(C)$ (the analogue of \Cref{thm:Ind_Kappa_Universal_Property}(2) for large $C$, see \Cref{constr:Ind_Large}), restriction along $y$ is an equivalence $\Fun^{\mathrm{filt}}(\Ind(C),D) \simeq \Fun(C,D)$, with inverse $F \mapsto \colim_D \circ \Ind(F)$. Under this equivalence, the left adjoint $\colim^*$ becomes $G \mapsto G\colim y \simeq G$, i.e.\ the inclusion, and the right adjoint $\hat{y}^*$ becomes $F \mapsto \colim_D \circ \Ind(F) \circ \hat{y}$.
+	\end{proof}
+
+	\begin{corollary}
+		\label[corollary]{cor:Yhat_Universal_Property}
+		Let $C$ be compactly assembled and $x \in C$. Then the natural transformation
+		\[
+			\Map_{\Ind(C)}\big(y(x),\hat{y}(-)\big) \xrightarrow{(\varepsilon)_*} \Map_{\Ind(C)}\big(y(x),y(-)\big) \simeq \Map_C(x,-)
+		\]
+		exhibits $\Map_{\Ind(C)}(y(x),\hat{y}(-))$ as the terminal object of $\Fun^{\mathrm{filt}}(C,\An)_{/\Map_C(x,-)}$. If $C$ is moreover stable, the same holds for the mapping spectra $\hom_{\Ind(C)}(y(x),\hat{y}(-)) \to \hom_C(x,-)$ in $\Fun^{\mathrm{filt}}(C,\Sp)_{/\hom_C(x,-)}$.
+	\end{corollary}
+	\prooffor{cor:Yhat_Universal_Property}
+	\begin{proof}
+		For a right adjoint $R$ of a fully faithful inclusion $i$, the counit $iR(F) \to F$ is a terminal object of the slice over $F$, since $\Map(G,R(F)) \simeq \Map(iG,F)$. Apply this to \Cref{prop:Filtered_Coreflection} with $D = \An$ and $F = \Map_C(x,-)$. For $Z = \quotcolim_j z_j \in \Ind(C)$ we have
+		\[
+			\colim_{\An}\Ind(F)(Z) \simeq \colim_j \Map_C(x,z_j) \simeq \Map_{\Ind(C)}(y(x),Z),
+		\]
+		as $y(x)$ is compact in $\Ind(C)$. Hence the right adjoint sends $F$ to $\Map_{\Ind(C)}(y(x),\hat{y}(-))$. To identify the counit, write $\tilde{F} = \colim_{\An} \circ \Ind(F)$. By construction, the counit at $F$ is obtained by restricting the counit $\tilde{F}\hat{y}\colim \to \tilde{F}$ of the precomposition adjunction along $y$, and the latter is $\tilde{F}$ applied to the counit $\hat{y}\colim \to \id$ of $\hat{y} \dashv \colim$. At $y(c)$, this counit is the map $\hat{y}(c) \simeq \hat{y}(\colim y(c)) \to y(c)$, which is $\varepsilon_c$ by definition of $\varepsilon$. So the counit is $\tilde{F}(\varepsilon)$, i.e.\ the map induced by $\varepsilon$. The stable case is identical, with $D = \Sp$.
+	\end{proof}
+
+	\section{The axiom (AB6)}
+	\label[section]{sec:AB6}
+
+	We finally discuss the characterization of dualizable categories by the axiom (AB6), due to Clausen and Scholze. It expresses the fact that infinite products commute with filtered colimits, in the strongest possible sense. Concretely, (AB6) is the elementwise form of condition (2) of \Cref{prop:Dualizable_Further_Characterizations}, that $\colim\colon \Ind(C) \to C$ preserves products; the translation between the two uses the description of products in $\Ind(C)$ given in \Cref{lem:Products_In_Ind}.
+
+	\begin{definition}
+		\label[definition]{def:AB6}
+		Let $C$ be a category with small products and filtered colimits. We say that $C$ satisfies \emph{(AB6)} if for every set $S$ and every family of functors $F_s\colon J_s \to C$, $s \in S$, with each $J_s$ filtered, the canonical map
+		\[
+			\colim_{(j_s)_s \in \prod_s J_s} \prod_{s \in S} F_s(j_s) \to \prod_{s \in S} \colim_{j \in J_s} F_s(j)
+		\]
+		is an equivalence. Note that $\prod_s J_s$ is again filtered.
+	\end{definition}
+
+	\begin{example}
+		\label[example]{ex:AB6_Sets_And_Animae}
+		The category of sets and the category $\An$ of animae satisfy (AB6) \cite[Section~2.7]{Efimov_Large_Categories}.
+	\end{example}
+	% Source: written from the literature (Efimov, Section 2.7); proof added with AI assistance.
+	\prooffor{ex:AB6_Sets_And_Animae}
+	\begin{proof}
+		For sets, surjectivity follows by choosing, for each $s$, a stage $j_s$ representing the given element of $\colim_{J_s}F_s$. For injectivity, two representatives which agree in each colimit agree at a later stage in each coordinate. Choosing these stages gives equality in the colimit over $\prod_s J_s$. Here we use the axiom of choice.
+
+		For animae, we may replace each $J_s$ by a cofinal directed poset, by \Cref{thm:Filtered_Posets_Cofinal}. The product of these cofinal functors is cofinal. Indeed, if $u\colon P\to J$ is such a functor and $j\in J$, the comma category $P\times_J J_{j/}$ is filtered: any finite diagram in it has an underlying cone in $P$, and the finitely many compatibility data in the animae $\Map_J(j,u(p))$ can be extended at a later stage, since their filtered colimit is contractible by cofinality. Here we use that filtered colimits of animae commute with finite limits. Thus the comma categories for the product functor are products of nonempty filtered categories, which are again nonempty and filtered (using choice), and hence contractible. The set calculation proves that the comparison map induces a bijection on $\pi_0$, since $\pi_0$ commutes with products and filtered colimits of animae.
+
+		Fix a point in the source, represented by points $x_s \in F_s(j_s)$. Restrict to the cofinal product of the tails $J_{s,\geq j_s}$, so that all diagrams are pointed by the images of $x_s$. For $n \geq 1$, homotopy groups commute with products and filtered colimits of pointed animae. Applying the set calculation to these homotopy groups therefore gives
+		\[
+			\colim_{(k_s)_s \geq (j_s)_s}\prod_s \pi_n(F_s(k_s),x_s)
+			\cong \prod_s \colim_{k_s \geq j_s}\pi_n(F_s(k_s),x_s).
+		\]
+		Thus the comparison map induces isomorphisms on all homotopy groups at every basepoint, and is an isomorphism of animae.
+	\end{proof}
+
+	% Source: written when preparing these notes, with AI assistance
+	\begin{remark}
+		\label[remark]{rem:AB6_Versus_Naive_Commutation}
+		Despite its informal description, (AB6) does \emph{not} imply that products commute with filtered colimits in the naive sense: for a set $S$, a filtered category $J$ and a functor $F\colon S \times J \to C$, the canonical map
+		\[
+			\colim_{j \in J} \prod_{s \in S} F(s,j) \to \prod_{s \in S} \colim_{j \in J} F(s,j)
+		\]
+		is in general not an equivalence. Taking $J_s = J$ for all $s$, this map factors as
+		\[
+			\colim_{j \in J} \prod_{s \in S} F(s,j) \to \colim_{(j_s)_s \in J^S} \prod_{s \in S} F(s,j_s) \to \prod_{s \in S} \colim_{j \in J} F(s,j),
+		\]
+		where the first map is induced by the diagonal $J \to J^S$ and the second map is the one from \Cref{def:AB6}. (AB6) says that the second map is an equivalence, but the diagonal is in general not cofinal: a family $(j_s)_s$ need not have a common upper bound in $J$.
+
+		Indeed, the naive statement already fails in $\mathrm{Set}$. Let $S = J = \N$ and $F(s,j) = \{0,\dots,j\}$, with the inclusions as transition maps. Then $\prod_s \colim_j F(s,j) = \N^{\N}$, whereas $\colim_j \prod_s F(s,j)$ is the set of bounded sequences. In the colimit over $J^S$, on the other hand, a sequence $(n_s)_s$ is reached at the stage $(n_s)_s$. Similarly, in $\Sp$, which satisfies (AB6) by \Cref{prop:Dualizable_AB6}, the functor $F(s,j) = \bigoplus_{k \leq j} \Z$ gives the map $\bigoplus_{\N}\prod_{\N}\Z \to \prod_{\N}\bigoplus_{\N}\Z$, which is not surjective on $\pi_0$: the family whose $s$-th component is the $s$-th basis vector does not have uniformly bounded support.
+
+		If $J$ is $\kappa$-filtered for a regular cardinal $\kappa > |S|$, then the diagonal $J \to J^S$ is cofinal, so in this case (AB6) does imply the naive commutation.
+	\end{remark}
+
+	(AB6) in $C$ is equivalent to the statement that the colimit functor $\colim\colon \Ind(C) \to C$ preserves products. This rests on the following description of products in $\Ind(C)$.
+
+	\begin{lemma}[{\cite[Proposition~2.50]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Products_In_Ind}
+		Let $C$ be a locally small category with small products. Then $\Ind(C)$ has small products, and for filtered diagrams $(x_j)_{j \in J_s}$ in $C$, $s \in S$, we have
+		\[
+			\prod_{s \in S} \quotcolim_{j \in J_s} x_j \simeq \quotcolim_{(j_s)_s \in \prod_s J_s} \prod_{s \in S} x_{j_s}.
+		\]
+	\end{lemma}
+	\prooffor{lem:Products_In_Ind}
+	\begin{proof}
+		We show that the right-hand side has the universal property of the product. Since every object of $\Ind(C)$ is a filtered colimit of representables, it suffices to test against $y(c)$, $c \in C$. As $y(c)$ is compact, and using (AB6) in $\An$, we get natural equivalences
+		\begin{align*}
+			\Map\Big(y(c),\quotcolim_{(j_s)_s} \prod_s x_{j_s}\Big) &\simeq \colim_{(j_s)_s} \prod_s \Map_C(c,x_{j_s}) \\
+			&\simeq \prod_s \colim_{j \in J_s} \Map_C(c,x_j) \\
+			&\simeq \prod_s \Map\Big(y(c),\quotcolim_{j \in J_s} x_j\Big). \qedhere
+		\end{align*}
+	\end{proof}
+
+	\begin{proposition}[{Clausen--Scholze, see \cite[Proposition~2.51]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Dualizable_AB6}
+		Let $C \in \PrL_{\st}$. Then $C$ is dualizable if and only if $C$ satisfies (AB6).
+	\end{proposition}
+	\prooffor{prop:Dualizable_AB6}
+	\begin{proof}
+		By \Cref{lem:Products_In_Ind}, and since $\colim$ sends $\quotcolim_{(j_s)_s}\prod_s x_{j_s}$ to $\colim_{(j_s)_s}\prod_s x_{j_s}$, the axiom (AB6) for $C$ says exactly that $\colim\colon \Ind(C) \to C$ preserves products of families of ind-objects. Every family of objects of $\Ind(C)$ is of this form. So (AB6) holds if and only if $\colim$ preserves small products, which is equivalent to dualizability of $C$ by \Cref{prop:Dualizable_Further_Characterizations}.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:AB6_And_Small_Ind_Completions}
+		In the talk, the implication ``(AB6) $\implies$ dualizable'' was argued directly with $\colim\colon \Ind(C^{\kappa}) \to C$. Note that products in $\Ind(C^{\kappa})$ are not computed by the formula of \Cref{lem:Products_In_Ind}, since a product of $\kappa$-compact objects need not be $\kappa$-compact. This is why the argument passes through the large category $\Ind(C)$, as in the proof of (2) $\implies$ (3) in \Cref{prop:Dualizable_Further_Characterizations}.
+	\end{remark}
+
+	\begin{remark}
+		\label[remark]{rem:AB6_And_Compact_Assembly}
+		Since $\Sp$ is compactly generated, hence dualizable, it satisfies (AB6). More generally, by \cite[Remark~2.52]{Efimov_Large_Categories} a presentable, not necessarily stable, category is compactly assembled if and only if it satisfies (AB6) and filtered colimits in it commute with finite limits.
+	\end{remark}
+
+	\section{Automatic dualizability and images}
+	\label[section]{sec:Automatic_Dualizability}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Zakrewski's notes for the talk; Efimov, Section 2.8
+	As an application of the two characterizations of dualizability in terms of compact exhaustions and (AB6), we show that dualizability propagates along strongly continuous functors whose images generate the target. As a consequence, a strongly continuous functor out of a dualizable category has a well-behaved image. These results will be used in \Cref{chap:Calkin_Limits_Colimits} to study colimits and limits of dualizable categories. We begin with a criterion for strong continuity.
+
+	\begin{lemma}[{\cite[Proposition~1.8]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Automatic_Strong_Continuity}
+		Let $G\colon D \to E$ be a colimit-preserving functor between presentable stable categories, and let $F_i\colon C_i \to D$, $i \in I$, be a family of strongly continuous functors from presentable stable categories $C_i$. Assume that $D$ is generated under colimits by the essential images of the $F_i$, and that each composite $G \circ F_i$ is strongly continuous. Then $G$ is strongly continuous.
+	\end{lemma}
+	\prooffor{lem:Automatic_Strong_Continuity}
+	\begin{proof}
+		The right adjoints $F_i^R$ are jointly conservative: if $F_i^R(x) \simeq 0$ for all $i$, then the full subcategory of objects $d \in D$ with $\hom_D(d,x) \simeq 0$ is closed under colimits and contains the essential images of the $F_i$, so it is all of $D$, and in particular $x \simeq 0$. Now let $(e_a)_a$ be a diagram in $E$. Since the functors $F_i^R$ and $F_i^RG^R \simeq (GF_i)^R$ preserve colimits, applying $F_i^R$ to the comparison map $\colim_a G^R(e_a) \to G^R(\colim_a e_a)$ gives the comparison map for $(GF_i)^R$, which is an equivalence. Hence the comparison map is an equivalence, i.e.\ $G^R$ preserves colimits.
+	\end{proof}
+
+	\begin{proposition}[{\cite[Proposition~2.53]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Generation_Dualizable}
+		Let $D$ be a presentable stable category, and let $F_i\colon C_i \to D$, $i \in I$, be a family of strongly continuous functors from dualizable categories $C_i$. If $D$ is generated under colimits by the essential images of the $F_i$, then $D$ is dualizable.
+	\end{proposition}
+	\prooffor{prop:Generation_Dualizable}
+	\begin{proof}
+		As in the proof of \Cref{lem:Automatic_Strong_Continuity}, the right adjoints $F_i^R\colon D \to C_i$ are jointly conservative. They preserve small products, being right adjoints, and filtered colimits, by strong continuity. Let $S$ be a set and let $(x_{s,j})_{j \in J_s}$, $s \in S$, be filtered diagrams in $D$. Applying $F_i^R$ to the comparison map
+		\[
+			\colim_{(j_s)_s \in \prod_s J_s} \prod_{s \in S} x_{s,j_s} \to \prod_{s \in S} \colim_{j \in J_s} x_{s,j}
+		\]
+		yields the corresponding comparison map for the diagrams $(F_i^R x_{s,j})_j$ in $C_i$, which is an equivalence by \Cref{prop:Dualizable_AB6}, as $C_i$ is dualizable. Hence the comparison map in $D$ is an equivalence. So $D$ satisfies (AB6), and is dualizable by \Cref{prop:Dualizable_AB6}.
+	\end{proof}
+
+	% Source: written from the literature (Efimov, Proposition 2.76; Krause--Nikolaus--P\"utzst\"uck, Theorem 2.2.15)
+	\prooffor{prop:Generation_Dualizable}[compact-exhaustion]
+	\begin{proof}[Second proof]
+		A strongly continuous functor $F\colon C \to D$ preserves weakly compact morphisms. Indeed, let $f\colon x \to x'$ be weakly compact in $C$, let $(z_j)_j$ be a filtered diagram in $D$, and let $g\colon F(x') \to \colim_j z_j$. The adjoint map $x' \to F^R(\colim_j z_j) \simeq \colim_j F^R(z_j)$ becomes, after precomposition with $f$, a map factoring through some $F^R(z_j)$. Passing back to adjoints, $gF(f)$ factors through $z_j$. Hence $F$ also preserves compact exhaustions (\Cref{def:Compactly_Exhaustible}).
+
+		By \Cref{prop:Dualizable_Compactly_Exhaustible}, each $C_i$ is generated under colimits by compactly exhaustible objects. Their images under $F_i$ are compactly exhaustible, and they generate $D$ under colimits, since the localizing subcategory they generate contains the essential images of the $F_i$. So $D$ is dualizable by \Cref{prop:Dualizable_Compactly_Exhaustible}.
+	\end{proof}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Efimov, proof of Proposition 2.53
+	\begin{remark}
+		\label[remark]{rem:Products_Dualizable}
+		In \cite{Efimov_Large_Categories}, the proof of \Cref{prop:Generation_Dualizable} is first reduced to the case of a single functor, using the induced functor $\prod_i C_i \to D$. For this, note that the product $\prod_i C_i$, computed in $\widehat{\Cat}$, is also the coproduct of the $C_i$ in $\PrL_{\st}$, as colimits in $\PrL$ are computed as limits along the right adjoints (\Cref{sec:PrL_Tensor_Products}). If each $C_i$ is dualizable, then so is $\prod_i C_i$: products and filtered colimits in $\prod_i C_i$ are computed componentwise, so (AB6) holds in $\prod_i C_i$ since it holds in each $C_i$. Alternatively, if $C_i$ is a retract of a compactly generated category $\widetilde{C}_i$ in $\PrL_{\st}$, then $\prod_i C_i$ is a retract of $\prod_i\widetilde{C}_i$, which is compactly generated by the objects with a single nonzero component, which is compact.
+	\end{remark}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Efimov, Definition 2.54 and Corollary 2.55
+	\begin{definition}[{\cite[Definition~2.54]{Efimov_Large_Categories}}]
+		\label[definition]{def:Image_Functor}
+		Let $F\colon C \to D$ be a colimit-preserving functor between presentable stable categories. The \emph{image} $\Im(F) \subseteq D$ is the smallest full stable subcategory of $D$ which contains the essential image of $F$ and is closed under colimits, i.e.\ the localizing subcategory generated by the essential image of $F$.
+	\end{definition}
+
+	If $C$ is generated under colimits by a set $S$ of objects, then $\Im(F)$ is generated under colimits by the set $F(S)$, and hence is presentable \cite[Section~1.3]{Efimov_Large_Categories}. By \Cref{prop:Localization_Sequences_PrL}(1), the cofiber of $F$ in $\PrL_{\st}$ is $D \to \Im(F)^{\perp}$, whose kernel is $\Im(F)$. So $\Im(F)$ is equivalently the fiber of the cofiber of $F$ in $\PrL_{\st}$.
+
+	\begin{corollary}[{\cite[Corollary~2.55]{Efimov_Large_Categories}}]
+		\label[corollary]{cor:Image_Dualizable}
+		Let $F\colon C \to D$ be a strongly continuous functor between presentable stable categories, and assume that $C$ is dualizable. Then $\Im(F)$ is dualizable, and the inclusion $j\colon \Im(F) \hookrightarrow D$ is strongly continuous.
+	\end{corollary}
+	\prooffor{cor:Image_Dualizable}
+	\begin{proof}
+		Write $F = j \circ F'$ with $F'\colon C \to \Im(F)$. Since $j$ is fully faithful, the right adjoint of $F'$ is $F^R \circ j$, which preserves colimits. So $F'$ is strongly continuous, and its essential image generates $\Im(F)$ under colimits. Hence $\Im(F)$ is dualizable by \Cref{prop:Generation_Dualizable}. Since $j \circ F' = F$ is strongly continuous, \Cref{lem:Automatic_Strong_Continuity} shows that $j$ is strongly continuous.
+	\end{proof}
+
+	The two criteria have different uses. Compact exhaustions describe objects and allow constructions by successive factorizations; (AB6) detects dualizability through jointly conservative right adjoints. The image and generation results above make the latter method available without choosing an exhaustion for each object.

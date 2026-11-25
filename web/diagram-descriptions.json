@@ -15,5 +15,8 @@
   "abb1700940394b440666": "Square comparing the n-th and next objects in two sequences, with vertical components eta_n and eta_(n+1) of a natural transformation.",
   "b35d5e4c2b5b5d268e95": "Retract diagram with rows C to C-prime to C and D to D-prime to D, horizontal functors u, v and their hatted counterparts, and vertical functors g, g-prime, g.",
   "6a07f00d570f5b7980c7": "Square of categories with G from A to B, G-prime from A-prime to B-prime, and vertical functors U and V.",
-  "0404ab2500573f428033": "Square defining conjugate transformations: precomposition by phi on mapping animae in B corresponds under the adjunction isomorphisms to postcomposition by phi-dual on mapping animae in A."
+  "0404ab2500573f428033": "Square defining conjugate transformations: precomposition by phi on mapping animae in B corresponds under the adjunction isomorphisms to postcomposition by phi-dual on mapping animae in A.",
+  "804e626cee150e798e65": "Lifting square with y(x) above y(x-prime) on the left, Z above y(colim Z) on the right, and a dashed lift from y(x) to Z. The vertical maps are y(f) and the adjunction unit.",
+  "2f89f6f80170afe1a215": "Commutative square for Calkin functoriality. The finest-presentation functors map C to Ind(C^kappa) and D to Ind(D^kappa); the vertical functors are F and Ind(F^kappa).",
+  "441c7bff52affa4abeb8": "Three-by-three diagram of continuous Calkin sequences. The rows are C, Ind(C^kappa), Ind(Calk^cont_kappa(C)), and the analogous rows for D and E. The first column is C to D by F and D to E by G; the induced functor in the third column from the C row to the D row is Phi."
 }

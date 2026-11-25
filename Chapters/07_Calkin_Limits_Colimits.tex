@@ -1,0 +1,554 @@
+	\chapter{Calkin categories, colimits and limits of dualizable categories}
+	\label[chapter]{chap:Calkin_Limits_Colimits}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Talk 6 (Jacopo Mazzei, 17.11.2026)
+	In this chapter we study the category $\Pr^{\dual}$ of dualizable categories and strongly continuous functors as a category in its own right. Colimits in $\Pr^{\dual}$ turn out to be computed in $\PrL_{\st}$, and filtered colimits in $\Pr^{\dual}$ are much better behaved than in $\PrL_{\st}$: they preserve fully faithful functors and short exact sequences. Limits in $\Pr^{\dual}$ are more subtle and are in general \emph{not} computed in $\PrL_{\st}$. Kernels and pullbacks exist, but they are given by the largest dualizable subcategories of the corresponding kernels and pullbacks in $\PrL_{\st}$ on which the relevant functors are strongly continuous.
+
+	Along the way we introduce the continuous Calkin category, which is the key ingredient in the definition of localizing invariants of dualizable categories (\Cref{chap:Localizing_Invariants_Dualizable}). The main result about it is that it sends short exact sequences of dualizable categories to short exact sequences of small categories (\Cref{prop:Calkin_Short_Exact}). Its functoriality relies on the description of colimits, which we therefore treat first.
+
+	We follow \cite[Sections~2.9--2.13 and~2.15]{Efimov_Large_Categories}. Recall from \Cref{sec:Localization_Sequences_PrL} that $\Pr^{\mathrm{LL}}_{\st} \subseteq \PrL_{\st}$ denotes the subcategory of presentable stable categories and strongly continuous functors. By \Cref{rem:Compactly_Generated_In_Prdual} and \Cref{rem:Strongly_Continuous_Stable}, we have full subcategories
+	\[
+		\PrL_{\omega,\st} \subseteq \Pr^{\dual} \subseteq \Pr^{\mathrm{LL}}_{\st}.
+	\]
+
+	\section{Colimits of dualizable categories}
+	\label[section]{sec:Colimits_Dualizable}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Zakrewski's notes for the talk; Efimov, Propositions 1.7, 1.13 and 2.63 and Corollary 2.64
+	Colimits in $\PrL_{\st}$ are computed as limits along the right adjoints (\Cref{sec:PrL_Tensor_Products}). If all functors in the diagram are strongly continuous, then the right adjoints preserve colimits, and this allows us to show that colimits in $\Pr^{\mathrm{LL}}_{\st}$ and in $\Pr^{\dual}$ are computed in $\PrL_{\st}$.
+
+	\begin{proposition}[{\cite[Proposition~1.7]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:PrLL_Colimits}
+		Let $I \to \Pr^{\mathrm{LL}}_{\st}$, $i \mapsto C_i$, be a small diagram, let $C := \colim_i C_i$ be its colimit in $\PrL_{\st}$, and let $F_i\colon C_i \to C$ be the structure functors.
+		\begin{enumerate}
+			\item The functors $F_i$ are strongly continuous.
+			\item A colimit-preserving functor $G\colon C \to D$ to a presentable stable category $D$ is strongly continuous if and only if each composite $G \circ F_i$ is strongly continuous.
+		\end{enumerate}
+		In particular, $\Pr^{\mathrm{LL}}_{\st}$ is cocomplete, and the inclusion $\Pr^{\mathrm{LL}}_{\st} \to \PrL_{\st}$ preserves colimits.
+	\end{proposition}
+	\prooffor{prop:PrLL_Colimits}
+	\begin{proof}
+		We identify $C$ with the limit $\lim_i C_i$ in $\widehat{\Cat}$, taken along the right adjoints $F_{ij}^R$ of the transition functors $F_{ij}$. Under this identification, $F_i^R\colon C \to C_i$ is the projection. Since the transition functors $F_{ij}^R$ preserve colimits, colimits in $\lim_i C_i$ exist and are computed pointwise \cite[Remark~5.4.7.13]{lurie2009HTT}. In particular, the projections $F_i^R$ preserve colimits, which proves (1). Similarly, the right adjoint $G^R\colon D \to C \simeq \lim_i C_i$ corresponds to the compatible family of functors $F_i^RG^R \simeq (GF_i)^R$. As colimits in the limit are computed pointwise, $G^R$ preserves colimits if and only if each $(GF_i)^R$ does, which proves (2).
+
+		For the final assertion, note that $\Map_{\Pr^{\mathrm{LL}}_{\st}}(C,D) \subseteq \Map_{\PrL_{\st}}(C,D)$ is a union of path components, and similarly for the $C_i$. By (2), the equivalence $\Map_{\PrL_{\st}}(C,D) \simeq \lim_i \Map_{\PrL_{\st}}(C_i,D)$ restricts to an equivalence $\Map_{\Pr^{\mathrm{LL}}_{\st}}(C,D) \simeq \lim_i \Map_{\Pr^{\mathrm{LL}}_{\st}}(C_i,D)$, so that $C$, together with the cocone of (1), is also a colimit in $\Pr^{\mathrm{LL}}_{\st}$.
+	\end{proof}
+
+	\begin{proposition}[{\cite[Proposition~2.63]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Prdual_Colimits}
+		The full subcategory $\Pr^{\dual} \subseteq \Pr^{\mathrm{LL}}_{\st}$ is closed under small colimits. In particular, $\Pr^{\dual}$ is cocomplete, and the inclusion $\Pr^{\dual} \to \PrL_{\st}$ preserves colimits.
+	\end{proposition}
+	\prooffor{prop:Prdual_Colimits}
+	\begin{proof}
+		Let $I \to \Pr^{\dual}$, $i \mapsto C_i$, be a small diagram, and let $C = \colim_i C_i$ in $\PrL_{\st}$. By \Cref{prop:PrLL_Colimits}, it suffices to show that $C$ is dualizable. The structure functors $F_i\colon C_i \to C$ are strongly continuous by \Cref{prop:PrLL_Colimits}(1). Their right adjoints are the projections $\lim_i C_i \to C_i$, which are jointly conservative. Hence the localizing subcategory $L \subseteq C$ generated by the essential images of the $F_i$, which is generated by a set of objects and hence presentable, satisfies $L^{\perp} = 0$. By \Cref{prop:Localization_Sequences_PrL}(1), we get $L = C$. So $C$ is dualizable by \Cref{prop:Generation_Dualizable}.
+	\end{proof}
+
+	As a first consequence, we can describe the epimorphisms in these categories.
+
+	\begin{proposition}[{\cite[Propositions~1.13 and~1.14 and Corollary~2.64]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Epimorphisms_Localizations}
+		A morphism $F\colon C \to D$ in $\PrL_{\st}$, $\Pr^{\mathrm{LL}}_{\st}$ or $\Pr^{\dual}$ is an epimorphism if and only if it is a localization, i.e.\ $F^R$ is fully faithful.
+	\end{proposition}
+	\prooffor{prop:Epimorphisms_Localizations}
+	\begin{proof}
+		A morphism $F\colon C \to D$ in a category with pushouts is an epimorphism if and only if the codiagonal $\nabla\colon D \sqcup_C D \to D$ is an equivalence. By \Cref{prop:PrLL_Colimits,prop:Prdual_Colimits}, pushouts in $\Pr^{\mathrm{LL}}_{\st}$ and $\Pr^{\dual}$ are computed in $\PrL_{\st}$. So it suffices to treat $\PrL_{\st}$.
+
+		Computing the pushout as a pullback along the right adjoints, we have $D \sqcup_C D \simeq D \times_C D$, where both functors $D \to C$ are $F^R$, and the right adjoint of $\nabla$ is the diagonal $\delta\colon D \to D \times_C D$. So $F$ is an epimorphism if and only if $\delta$ is an equivalence. If $F^R$ is fully faithful, then $F^R$ is a monomorphism in $\widehat{\Cat}$, so $\delta$ is an equivalence. Conversely, suppose that $\delta$ is an equivalence, and let $x,y \in D$. Then the map
+		\begin{align*}
+			\hom_D(x,y) \to \hom_{D \times_C D}(\delta x,\delta y) &\simeq \hom_D(x,y) \times_{\hom_C(F^Rx,F^Ry)} \hom_D(x,y) \\
+			&\simeq \hom_D(x,y) \oplus \fib\big(\hom_D(x,y) \to \hom_C(F^Rx,F^Ry)\big)
+		\end{align*}
+		is the diagonal, and it is an equivalence. Here the splitting of the pullback is induced by the first projection and its section given by the diagonal, so the diagonal corresponds to the inclusion of the first summand. We find that $\hom_D(x,y) \to \hom_C(F^Rx,F^Ry)$ is an equivalence. So $F^R$ is fully faithful.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Monomorphisms_Fully_Faithful}
+		Dually, the monomorphisms in $\PrL_{\st}$, in $\Pr^{\mathrm{LL}}_{\st}$ and in $\Pr^{\dual}$ are precisely the fully faithful functors \cite[Propositions~1.13 and~1.14 and Corollary~2.87]{Efimov_Large_Categories}. For $\Pr^{\dual}$, this requires the description of pullbacks in $\Pr^{\dual}$, see \Cref{cor:Monomorphisms_Prdual} below.
+	\end{remark}
+
+	\section{Continuous Calkin categories}
+	\label[section]{sec:Continuous_Calkin}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Zakrewski's notes for the talk; Efimov, Section 2.9
+	For a small idempotent complete stable category $A$, the Calkin category $\Calk_{\kappa}(A)$ of \Cref{sec:Calkin_Small} fits into a short exact sequence $A \to \Ind(A)^{\kappa} \to \Calk_{\kappa}(A)$. For K-theory, the middle term is invisible: it admits countable coproducts, so its K-theory vanishes by the Eilenberg swindle, and $K(\Calk_{\kappa}(A)) \simeq \Sigma K(A)$. We now extend this construction to dualizable categories, which may have no nonzero compact objects at all. Throughout this section, $\kappa$ denotes an uncountable regular cardinal.
+
+	Let $C$ be dualizable. By \Cref{thm:Compactly_Assembled_Omega_1}(1), $C$ is generated under colimits by $\omega_1$-compact objects, hence by a set of $\kappa$-compact objects, so $C$ is $\kappa$-compactly generated \cite[Lemma~A.21 and Addendum~A.22]{Ramzi_Dualizable_Presentable}. By \Cref{prop:Dualizable_Further_Characterizations}, the functor $\colim\colon \Ind(C^{\kappa}) \to C$ thus admits a fully faithful, strongly continuous left adjoint $\hat{y}\colon C \to \Ind(C^{\kappa})$. As in the proof of \Cref{thm:Lurie_Dualizable_Characterization}, its cofiber in $\PrL_{\st}$ is compactly generated.
+
+	\begin{definition}[{\cite[Definition~2.58]{Efimov_Large_Categories}}]
+		\label[definition]{def:Calkin_Continuous}
+		Let $C$ be a dualizable category. The \emph{continuous $\kappa$-Calkin category} $\Calk^{\cont}_{\kappa}(C)$ is the small idempotent complete stable category of compact objects of the quotient
+		\[
+			\Ind(C^{\kappa})/\hat{y}(C) \simeq \ker\big(\colim\colon \Ind(C^{\kappa}) \to C\big),
+		\]
+		so that we have a strongly continuous localization sequence
+		\[
+			C \xrightarrow{\hat{y}} \Ind(C^{\kappa}) \to \Ind(\Calk^{\cont}_{\kappa}(C)).
+		\]
+	\end{definition}
+
+	Here the identification of the quotient with the kernel comes from \Cref{prop:Localization_Sequences_PrL}: the right orthogonal of $\hat{y}(C)$ consists of those $X$ with $\Map(x,\colim X) \simeq \Map(\hat{y}x,X) \simeq *$ for all $x \in C$.
+
+	% Source: written from the literature (Efimov, Proposition 2.59); moved from the small Calkin discussion.
+	\begin{remark}
+		\label[remark]{rem:Calkin_Small_Vs_Continuous}
+		If $C = \Ind(A)$ is compactly generated, the continuous Calkin category $\Calk^{\cont}_{\kappa}(C)$ of \Cref{def:Calkin_Continuous} agrees with $\Calk_{\kappa}(A)$ \cite[Proposition~2.59]{Efimov_Large_Categories}. Indeed, by \Cref{ex:Compactly_Generated_Compactly_Assembled}, the functor $\hat{y}\colon C \to \Ind(C^{\kappa})$ is $\Ind(j)$ for the inclusion $j\colon A \hookrightarrow C^{\kappa} = \Ind(A)^{\kappa}$, so by \Cref{thm:Thomason_Neeman}(1) its cofiber is $\Ind\big((\Ind(A)^{\kappa}/A)^{\idem}\big) = \Ind(\Calk_{\kappa}(A))$.
+	\end{remark}
+
+	\begin{construction}
+		\label[construction]{constr:Calkin_Functoriality}
+		Let $F\colon C \to D$ be a strongly continuous functor between dualizable categories. Then $F$ preserves $\kappa$-compact objects, since $F^R$ preserves colimits, so it restricts to a functor $F^{\kappa}\colon C^{\kappa} \to D^{\kappa}$. The left adjoint of $\colim\colon \Ind(C) \to C$ is the composite of $\hat{y}\colon C \to \Ind(C^{\kappa})$ with the inclusion $\Ind(C^{\kappa}) \subseteq \Ind(C)$: indeed, by the proof of \Cref{prop:Dualizable_Further_Characterizations}, the colimit functor of $\Ind(C)$ factors as $\colim_{\kappa} \circ r$, where $r$ is the right adjoint of the inclusion $\Ind(C^{\kappa}) \subseteq \Ind(C)$. Since $\Ind(F)$ restricts to $\Ind(F^{\kappa})$ on $\Ind(C^{\kappa})$, \Cref{prop:Strongly_Continuous_Via_Right_Adjoint} gives a commutative square
+		\[
+			\begin{tikzcd}
+				C \rar["\hat{y}_C"] \dar["F"'] & \Ind(C^{\kappa}) \dar["\Ind(F^{\kappa})"] \\
+				D \rar["\hat{y}_D"'] & \Ind(D^{\kappa})
+			\end{tikzcd}
+		\]
+		of strongly continuous functors. Passing to cofibers in $\Pr^{\mathrm{LL}}_{\st}$, which are computed in $\PrL_{\st}$ by \Cref{prop:PrLL_Colimits}, we obtain a strongly continuous functor $\Ind(\Calk^{\cont}_{\kappa}(C)) \to \Ind(\Calk^{\cont}_{\kappa}(D))$. It preserves compact objects, and hence restricts to an exact functor
+		\[
+			\Calk^{\cont}_{\kappa}(F)\colon \Calk^{\cont}_{\kappa}(C) \to \Calk^{\cont}_{\kappa}(D).
+		\]
+		The squares above are coherent in $F$: the colimit functors form a natural transformation $\Ind((-)^{\kappa}) \to \id$, and taking mates along $\hat{y}_C \dashv \colim_C$ gives the natural maps $\hat{y}_D F \to \Ind(F^{\kappa})\hat{y}_C$ used above. These are isomorphisms for strongly continuous $F$, by \Cref{prop:Strongly_Continuous_Via_Right_Adjoint}. The compatibility of mates with composition supplies a natural transformation $\id \to \Ind((-)^{\kappa})$ in $\Pr^{\mathrm{LL}}_{\st}$. Applying the cofiber functor and then taking compact objects therefore defines a functor $\Calk^{\cont}_{\kappa}\colon \Pr^{\dual} \to \Cat_{\perf}$, including its higher coherences.
+
+		Under the identifications of the quotients with kernels, the functor $\Ind(\Calk^{\cont}_{\kappa}(C)) \to \Ind(\Calk^{\cont}_{\kappa}(D))$ is the restriction of $\Ind(F^{\kappa})$. Indeed, the functors $\colim_D \circ \Ind(F^{\kappa})$ and $F \circ \colim_C$ preserve colimits and agree on $C^{\kappa}$, so $\Ind(F^{\kappa})$ maps $\ker(\colim_C)$ into $\ker(\colim_D)$. The left adjoint $q_C$ of the inclusion $\ker(\colim_C) \subseteq \Ind(C^{\kappa})$ is given by $q_C(X) = \cofib(\hat{y}_C\colim_C X \to X)$. Using the square above, we get $\Ind(F^{\kappa})(q_CX) \simeq q_D(\Ind(F^{\kappa})X)$, which identifies the functor induced on the quotients with the restriction of $\Ind(F^{\kappa})$.
+	\end{construction}
+
+	The main property of the continuous Calkin construction is that it preserves short exact sequences. We first fix terminology.
+
+	\begin{definition}
+		\label[definition]{def:Short_Exact_Sequence_Dualizable}
+		A \emph{short exact sequence} of dualizable categories is a strongly continuous localization sequence $C \to D \to E$ in $\PrL_{\st}$ (\Cref{def:Localization_Sequence_PrL}) in which $C$, $D$ and $E$ are dualizable. Equivalently, it is a sequence in $\Pr^{\dual}$ which is both a fiber sequence and a cofiber sequence in $\PrL_{\st}$ (\Cref{prop:Localization_Sequences_PrL}).
+	\end{definition}
+
+	By \Cref{prop:Localization_Sequence_Dualizable}, it suffices to require that $D$ is dualizable. A short exact sequence of dualizable categories is also both a fiber sequence and a cofiber sequence in $\Pr^{\dual}$, see \Cref{rem:Short_Exact_Fiber_Cofiber} below.
+
+	\begin{proposition}[{\cite[Proposition~2.61]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Calkin_Short_Exact}
+		The functor $\Calk^{\cont}_{\kappa}\colon \Pr^{\dual} \to \Cat_{\perf}$ sends short exact sequences of dualizable categories to short exact sequences.
+	\end{proposition}
+	\prooffor{prop:Calkin_Short_Exact}
+	\begin{proof}
+		Let $C \xrightarrow{F} D \xrightarrow{G} E$ be a short exact sequence of dualizable categories. As shown above, $C$ and $D$ are $\kappa$-compactly generated. Since $G$ preserves $\kappa$-compact objects, \cite[Proposition~A.26]{Ramzi_Dualizable_Presentable} shows that $C^{\kappa} \to D^{\kappa} \to E^{\kappa}$ is a short exact sequence. By \Cref{thm:Thomason_Neeman}(1), the sequence $\Ind(C^{\kappa}) \to \Ind(D^{\kappa}) \to \Ind(E^{\kappa})$ is a strongly continuous localization sequence. By \Cref{constr:Calkin_Functoriality}, we obtain a commutative diagram
+		\[
+			\begin{tikzcd}
+				C \rar["\hat{y}"] \dar["F"'] & \Ind(C^{\kappa}) \rar \dar & \Ind(\Calk^{\cont}_{\kappa}(C)) \dar["\Phi"] \\
+				D \rar["\hat{y}"] \dar["G"'] & \Ind(D^{\kappa}) \rar \dar & \Ind(\Calk^{\cont}_{\kappa}(D)) \dar \\
+				E \rar["\hat{y}"'] & \Ind(E^{\kappa}) \rar & \Ind(\Calk^{\cont}_{\kappa}(E))
+			\end{tikzcd}
+		\]
+		in which the rows and the first two columns are cofiber sequences in $\PrL_{\st}$. Since colimits commute with colimits, the third column is a cofiber sequence in $\PrL_{\st}$ as well.
+
+		We claim that $\Phi$ is fully faithful. By \Cref{constr:Calkin_Functoriality}, $\Phi$ is identified with the restriction of $\Ind(F^{\kappa})$ to the kernels of the colimit functors. Since $F$ is fully faithful, so are $F^{\kappa}$ and $\Ind(F^{\kappa})$, and hence so is $\Phi$.
+
+		Since $\Phi$ is fully faithful and colimit-preserving, its essential image is closed under colimits, and the cofiber sequence of the third column is a localization sequence by \Cref{prop:Localization_Sequences_PrL}(1). All functors involved preserve compact objects, so it is strongly continuous. By \Cref{thm:Thomason_Neeman}(2), the sequence $\Calk^{\cont}_{\kappa}(C) \to \Calk^{\cont}_{\kappa}(D) \to \Calk^{\cont}_{\kappa}(E)$ of compact objects is short exact.
+	\end{proof}
+
+	\section{Filtered colimits of dualizable categories}
+	\label[section]{sec:Filtered_Colimits_Dualizable}
+
+	% Source: Talk 5 (Anton Zakrewski, 10.11.2026); Zakrewski's notes for the talk; Efimov, Propositions 2.65, 2.67 and 2.70, Corollary 2.68 and Remark 2.69
+	Filtered colimits in $\Cat_{\perf}$ are exact: they preserve fully faithful functors and short exact sequences. The analogous statement fails in $\PrL_{\st}$ (\Cref{rem:Filtered_Colimits_Fail_PrL}). We now show that it does hold in $\Pr^{\mathrm{LL}}_{\st}$ and in $\Pr^{\dual}$, whose colimits are computed in $\PrL_{\st}$ by \Cref{sec:Colimits_Dualizable}. As a consequence, the functor $C \mapsto C^{\omega}$ on $\Pr^{\dual}$ preserves filtered colimits. By \Cref{thm:Filtered_Posets_Cofinal}, every filtered colimit can be computed as a colimit over a directed poset, so we may restrict attention to directed posets.
+
+	\begin{lemma}[{\cite[Proposition~2.65]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Filtered_Colimits_PrL}
+		Let $I$ be a directed poset, let $I \to \PrL_{\st}$, $i \mapsto C_i$, be a diagram with transition functors $F_{ij}\colon C_i \to C_j$, let $C := \colim_i C_i$ in $\PrL_{\st}$, and let $F_i\colon C_i \to C$ be the structure functors.
+		\begin{enumerate}
+			\item The counits induce an equivalence $\colim_i F_iF_i^R \simeq \id_C$.
+			\item If the functors $F_{ij}$ are strongly continuous, then for all $i,j \in I$ there is a natural equivalence
+			\[
+				\colim_{k \geq i,j} F_{jk}^RF_{ik} \simeq F_j^RF_i.
+			\]
+		\end{enumerate}
+	\end{lemma}
+	\prooffor{lem:Filtered_Colimits_PrL}
+	\begin{proof}
+		We identify $C$ with $\lim_i C_i$, taken along the functors $F_{ij}^R$, so that $F_i^R$ becomes the projection. Mapping spectra in this limit are the limits of the mapping spectra.
+
+		(1) For $i \leq j$, the counit of $F_{ij} \dashv F_{ij}^R$ induces a map $F_iF_i^R \simeq F_jF_{ij}F_{ij}^RF_j^R \to F_jF_j^R$, so the functors $F_iF_i^R$ form an $I$-indexed diagram with a cocone to $\id_C$, given by the counits. For $x,y \in C$ we get natural equivalences
+		\[
+			\hom_C\big(\colim_i F_iF_i^Rx,y\big) \simeq \lim_i \hom_C(F_iF_i^Rx,y) \simeq \lim_i \hom_{C_i}(F_i^Rx,F_i^Ry) \simeq \hom_C(x,y),
+		\]
+		whose composite is induced by the cocone. By the Yoneda lemma, the cocone exhibits $\id_C$ as the colimit.
+
+		(2) By \Cref{prop:PrLL_Colimits}(1), the functors $F_i$ are strongly continuous, so the projections $F_j^R$ preserve colimits, and the transition functors $F_{jj'}^R$ of the limit preserve colimits by assumption. Fix $i$, and for $x \in C_i$ consider the family of objects
+		\[
+			F_i'(x)_j := \colim_{k \geq i,j} F_{jk}^RF_{ik}(x) \in C_j, \qquad j \in I.
+		\]
+		For $k \leq \ell$, the transition map in this colimit is
+		\[
+			F_{jk}^RF_{ik} \longrightarrow F_{jk}^RF_{k\ell}^RF_{k\ell}F_{ik} \simeq F_{j\ell}^RF_{i\ell},
+		\]
+		induced by the unit of $F_{k\ell} \dashv F_{k\ell}^R$. The units for composites give these diagrams coherently. For $j \leq j'$, we have $F_{jj'}^R F_i'(x)_{j'} \simeq \colim_{k \geq i,j'} F_{jk}^RF_{ik}(x) \simeq F_i'(x)_j$, using that $F_{jj'}^R$ preserves colimits and that $\{k \geq i,j'\} \subseteq \{k \geq i,j\}$ is cofinal. These identifications are induced by restriction to common cofinal tails and the composition isomorphisms for right adjoints. Their compatibility for chains of indices follows from that of the units above and the universal property of colimits. Thus they define a functor $F_i'\colon C_i \to \lim_j C_j \simeq C$, and the claim is equivalent to $F_i' \simeq F_i$. We show that $F_i'$ is left adjoint to $F_i^R$. For $x \in C_i$ and $y = (y_j)_j \in C$, we have
+		\begin{align*}
+			\hom_C(F_i'x,y) &\simeq \lim_j \hom_{C_j}\Big(\colim_{k \geq i,j} F_{jk}^RF_{ik}x,\, y_j\Big) \\
+			&\simeq \lim_{(j,k) \in P\catop} \hom_{C_j}(F_{jk}^RF_{ik}x,y_j) \\
+			&\simeq \lim_{j \geq i} \hom_{C_j}(F_{ij}x,y_j) \simeq \lim_{j \geq i} \hom_{C_i}(x,F_{ij}^Ry_j) \\
+			&\simeq \hom_{C_i}(x,y_i) = \hom_{C_i}(x,F_i^Ry).
+		\end{align*}
+		Here $P = \{(j,k) \mid i \leq j \leq k\}$, with the product order. In the second step we first restrict the limit over $j$ to the cofinal subset $I_{\geq i}$. The functor $(j,k) \mapsto \hom_{C_j}(F_{jk}^RF_{ik}x,y_j)$ is contravariant in $(j,k)$. In the third step we restrict along the diagonal $I_{\geq i} \to P$, $j \mapsto (j,j)$, which is cofinal: for $(j,k) \in P$, the poset of $m \geq i$ with $(j,k) \leq (m,m)$ is $I_{\geq k}$, which is directed and hence weakly contractible. Thus the opposite of the diagonal is initial, as required for this limit over $P\catop$. On the diagonal, $F_{jj}^R = \id$. The fourth step is the adjunction $F_{ij} \dashv F_{ij}^R$, and the remaining diagram is constant with value $\hom_{C_i}(x,y_i)$, as $F_{ij}^Ry_j \simeq y_i$. The unit of the resulting adjunction $F_i' \dashv F_i^R$ is the map $x \to F_i'(x)_i$ from the summand $k=i$. To identify the resulting isomorphism with the canonical map, use the cocones
+		\[
+			F_{jk}^RF_{ik} \longrightarrow F_{jk}^RF_k^RF_kF_{ik} \simeq F_j^RF_i,
+		\]
+		induced by the unit of $F_k \dashv F_k^R$. They define $F_i' \to F_i$, and at $j=k=i$ carry the unit just described to the unit of $F_i \dashv F_i^R$. By the adjunction, this map is the isomorphism between the two left adjoints. Evaluating at the $j$-th component proves the claim with its canonical cocone.
+	\end{proof}
+
+	\begin{proposition}[{\cite[Proposition~2.67]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Filtered_Colimits_Fully_Faithful}
+		\leavevmode
+		\begin{enumerate}
+			\item In $\Pr^{\mathrm{LL}}_{\st}$ and in $\Pr^{\dual}$, the class of fully faithful functors is closed under filtered colimits.
+			\item A filtered colimit of strongly continuous localization sequences, formed in $\PrL_{\st}$, is again a strongly continuous localization sequence. In particular, filtered colimits of short exact sequences of dualizable categories are short exact.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Filtered_Colimits_Fully_Faithful}
+	\begin{proof}
+		(1) By \Cref{prop:Prdual_Colimits}, it suffices to treat $\Pr^{\mathrm{LL}}_{\st}$. Let $I$ be a directed poset, let $(C_i)$ and $(D_i)$ be $I$-indexed diagrams in $\Pr^{\mathrm{LL}}_{\st}$ with transition functors $F_{ij}$ and $G_{ij}$, and let $\Phi_i\colon C_i \to D_i$ be a natural transformation whose components are fully faithful and strongly continuous. Let $C = \colim_i C_i$ and $D = \colim_i D_i$, with structure functors $F_i$ and $G_i$, and let $\Phi\colon C \to D$ be the induced functor, which is strongly continuous by \Cref{prop:PrLL_Colimits}. We show that the unit $\id_C \to \Phi^R\Phi$ is an equivalence. Both functors preserve colimits, the essential images of the $F_i$ generate $C$ under colimits, and the functors $F_j^R$ are jointly conservative (see the proof of \Cref{prop:Prdual_Colimits}). So it suffices to show that $F_j^RF_i \to F_j^R\Phi^R\Phi F_i$ is an equivalence for all $i,j \in I$. Using $\Phi F_i \simeq G_i\Phi_i$, \Cref{lem:Filtered_Colimits_PrL}(2), the strong continuity of $\Phi_j$ and the fully faithfulness of $\Phi_k$, we compute
+		\begin{align*}
+			F_j^R\Phi^R\Phi F_i &\simeq \Phi_j^RG_j^RG_i\Phi_i \simeq \Phi_j^R\Big(\colim_{k \geq i,j} G_{jk}^RG_{ik}\Big)\Phi_i \simeq \colim_{k \geq i,j} \Phi_j^RG_{jk}^RG_{ik}\Phi_i \\
+			&\simeq \colim_{k \geq i,j} F_{jk}^R\Phi_k^R\Phi_kF_{ik} \simeq \colim_{k \geq i,j} F_{jk}^RF_{ik} \simeq F_j^RF_i.
+		\end{align*}
+		More precisely, under the canonical cocones in \Cref{lem:Filtered_Colimits_PrL}(2), the map $F_j^RF_i \to F_j^R\Phi^R\Phi F_i$ is the colimit of the maps
+		\[
+			F_{jk}^RF_{ik} \longrightarrow F_{jk}^R\Phi_k^R\Phi_kF_{ik}
+		\]
+		induced by the units of $\Phi_k \dashv \Phi_k^R$. This follows by pasting the adjunction units for the squares $\Phi_kF_{ik} \simeq G_{ik}\Phi_i$ and for the colimit cocones. Each of these maps is an isomorphism because $\Phi_k$ is fully faithful, so their colimit is an isomorphism as required.
+
+		(2) Let $C_i \to D_i \to E_i$ be a filtered diagram of strongly continuous localization sequences, and let $C \to D \to E$ be its colimit in $\PrL_{\st}$. By \Cref{prop:PrLL_Colimits}, it is a sequence of strongly continuous functors. Since colimits commute with colimits, $D \to E$ is the cofiber of $C \to D$ in $\PrL_{\st}$. By (1), $C \to D$ is fully faithful, and it preserves colimits. Hence $C \to D \to E$ is a localization sequence by \Cref{prop:Localization_Sequences_PrL}(1). If the $D_i$ are dualizable, then so is $D$ by \Cref{prop:Prdual_Colimits}.
+	\end{proof}
+
+	\begin{corollary}[{\cite[Corollary~2.68]{Efimov_Large_Categories}}]
+		\label[corollary]{cor:Filtered_Union_Subcategories}
+		Let $C$ be a presentable stable category, and let $(C_i)_{i \in I}$ be a directed family of presentable stable full subcategories $C_i \subseteq C$ whose inclusion functors are strongly continuous. If $C$ is generated under colimits by the $C_i$, then the functor $\colim_i C_i \to C$ is an equivalence, where the colimit is formed in $\PrL_{\st}$.
+	\end{corollary}
+	\prooffor{cor:Filtered_Union_Subcategories}
+	\begin{proof}
+		For $i \leq j$, the right adjoint of $C_i \hookrightarrow C_j$ is the restriction of the right adjoint of $C_i \hookrightarrow C$, so the transition functors are strongly continuous. The colimit of the constant diagram with value $C$ over the weakly contractible poset $I$ is $C$. Applying \Cref{prop:Filtered_Colimits_Fully_Faithful}(1) to the inclusions $C_i \hookrightarrow C$ shows that $\colim_i C_i \to C$ is fully faithful. Its essential image is closed under colimits and contains all $C_i$, so it is all of $C$.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Filtered_Colimits_Fail_PrL}
+		\Cref{prop:Filtered_Colimits_Fully_Faithful} and \Cref{cor:Filtered_Union_Subcategories} fail in $\PrL_{\st}$, i.e.\ without the strong continuity assumptions. Efimov \cite[Remark~2.69]{Efimov_Large_Categories} considers $C = \D(\Z)$ and $C_n = \D(\Z[p_k^{-1} \mid k \geq n]) \subseteq C$, where $p_k$ is the $k$-th prime number. The subcategories $C_1 \subseteq C_2 \subseteq \cdots$ generate $C$ under colimits, but $\colim_n C_n \to C$ is not an equivalence, as one shows using \Cref{lem:Filtered_Colimits_PrL}(1).
+	\end{remark}
+
+	To compute compact objects in filtered colimits, we use the following observation. Let $C \to \Ind(A) \to \Ind(B)$ be a short exact sequence of dualizable categories, where $A, B \in \Cat_{\perf}$ and the second functor is $\Ind(p)$ for a functor $p\colon A \to B$. Then
+	\begin{equation}
+		\label{eq:Compacts_Of_Kernel}
+		C^{\omega} \simeq \ker(p\colon A \to B).
+	\end{equation}
+	Indeed, a fully faithful strongly continuous functor preserves compact objects, and it detects them since it preserves filtered colimits and is fully faithful. So $C^{\omega}$ consists of the compact objects of $\Ind(A)$, i.e.\ the objects of $A$, which lie in $C = \ker(\Ind(p))$.
+
+	% Source: written from the literature (Lurie, Higher Algebra, Theorem 1.1.4.4 and Proposition 1.1.4.6); supplementary arguments added when checking Talk 5.
+	We recall the categorical facts used below. Limits and filtered colimits of stable categories and exact functors are computed in $\Cat$ \cite[Theorem~1.1.4.4 and Proposition~1.1.4.6]{lurie2016HA}. The same holds for $\Cat_{\perf}$: idempotent completeness is closed under limits; in a filtered colimit, an idempotent in the homotopy category is represented by an endomorphism at some stage, and its idempotence holds at a later stage, where it splits. Here we use the characterization of idempotent completeness of a stable category by idempotent completeness of its homotopy category.
+
+	Filtered colimits in $\Cat$ commute with finite limits, and taking the core preserves filtered colimits. One can check these two facts in the quasicategory model: filtered colimits are computed on underlying simplicial sets; an edge is invertible precisely when it has a two-sided inverse in the homotopy category, a condition witnessed by finite data. Thus taking the maximal Kan complex commutes with filtered colimits. Pullbacks of categories can be computed by triples $(x,y,u)$ with $u$ an isomorphism between the two images; this construction, as well as finite products, commutes with filtered colimits. Consequently filtered colimits in $\Cat_{\perf}$ commute with finite limits as well.
+
+	\begin{proposition}[{\cite[Proposition~2.70]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Compact_Objects_Filtered_Colimits}
+		The functor $(-)^{\omega}\colon \Pr^{\dual} \to \Cat_{\perf}$ preserves filtered colimits. In particular, $\Sp$ is a compact object of $\Pr^{\dual}$.
+	\end{proposition}
+	\prooffor{prop:Compact_Objects_Filtered_Colimits}
+	\begin{proof}
+		Let $(C_i)_{i \in I}$ be a filtered diagram in $\Pr^{\dual}$, and put $C := \colim_i C_i$, $A := \colim_i C_i^{\omega_1}$ and $B := \colim_i \Calk^{\cont}_{\omega_1}(C_i)$, the latter two colimits taken in $\Cat_{\perf}$. The functor $\Ind\colon \Cat_{\perf} \to \PrL_{\st}$ preserves colimits: for $T \in \PrL_{\st}$, we have $\Fun^{\colim}(\Ind(A'),T) \simeq \Fun^{\ex}(A',T)$ by \Cref{thm:Ind_Kappa_Universal_Property}(3), and $\Fun^{\ex}(-,T)$ sends colimits in $\Cat_{\perf}$ to limits, since $T$ is idempotent complete. By \Cref{prop:Calkin_Short_Exact,prop:Filtered_Colimits_Fully_Faithful}(2), applied to the Calkin sequences of the $C_i$ for $\kappa = \omega_1$, we therefore obtain a short exact sequence
+		\[
+			C \to \Ind(A) \to \Ind(B).
+		\]
+		By \eqref{eq:Compacts_Of_Kernel}, applied to this sequence and to the Calkin sequences of the $C_i$, we get
+		\[
+			C^{\omega} \simeq \ker(A \to B) \simeq \colim_i \ker\big(C_i^{\omega_1} \to \Calk^{\cont}_{\omega_1}(C_i)\big) \simeq \colim_i C_i^{\omega},
+		\]
+		where the middle equivalence uses the commutation of filtered colimits with finite limits established above.
+
+		Finally, a colimit-preserving functor $\Sp \to C$ is determined by the image $x$ of $\S$, and it is strongly continuous if and only if its right adjoint $\hom_C(x,-)$ preserves colimits, i.e.\ if and only if $x$ is compact. So $\Map_{\Pr^{\dual}}(\Sp,C) \simeq (C^{\omega})^{\simeq}$. Since $(-)^{\simeq}\colon \Cat_{\perf} \to \An$ preserves filtered colimits, $\Sp$ is compact in $\Pr^{\dual}$.
+	\end{proof}
+
+	To see why the core functor is conservative on stable categories and exact functors, observe that $\Map_C(x,y)$ is a retract of the anima of automorphisms of $x \oplus y$: send $f$ to the shear $\left(\begin{smallmatrix}1&0\\f&1\end{smallmatrix}\right)$, and send an automorphism $u$ to $p_yui_x$. These maps are natural under exact functors. A functor inducing an isomorphism on cores therefore induces isomorphisms on these automorphism animae and hence on their retracts $\Map_C(x,y)$; it is also essentially surjective, so it is an equivalence.
+
+	Conversely, compactness of $\Sp$ implies that $(-)^{\omega}$ preserves filtered colimits, since $(-)^{\simeq}\colon \Cat_{\perf} \to \An$ is conservative \cite[Proposition~2.70]{Efimov_Large_Categories}.
+
+	\section{Finite limits of dualizable categories}
+	\label[section]{sec:Finite_Limits_Dualizable}
+
+	% Source: Talk 6 (Jacopo Mazzei, 17.11.2026); Efimov, Section 2.12
+	Limits in $\Pr^{\dual}$ are much more complicated than colimits. In general, the kernel in $\PrL_{\st}$ of a strongly continuous functor between dualizable categories is not dualizable, or its inclusion is not strongly continuous (\Cref{ex:Dualizable_Kernel_DVR}). Instead, the kernel in $\Pr^{\dual}$ is the largest dualizable subcategory of the kernel whose inclusion is strongly continuous. The existence of such a largest subcategory relies on the following refinement of the description of $\omega_1$-compact objects in terms of compact morphisms.
+
+	\begin{proposition}[{\cite[Proposition~2.81]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Q_Exhaustion}
+		Let $C$ be a dualizable category and let $x \in C^{\omega_1}$. Then there exists a functor $\Phi\colon (\Q,\leq) \to C$ such that
+		\begin{enumerate}
+			\item $\colim_{a \in \Q} \Phi(a) \simeq x$;
+			\item for every $a \in \Q$, the canonical map $\colim_{b < a} \Phi(b) \to \Phi(a)$ is an equivalence;
+			\item for all $a < b$ in $\Q$, the morphism $\Phi(a) \to \Phi(b)$ is compact.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Q_Exhaustion}
+	\begin{proof}
+		By \Cref{prop:Compact_Interpolation}(3), there is a functor $F\colon \Q \to C$ with $\colim_{\Q} F \simeq x$ such that $F(a) \to F(b)$ is compact for all $a < b$. Define $\Phi(a) := \colim_{b < a} F(b)$; formally, $\Phi$ is the left Kan extension of $F \circ \mathrm{pr}_1$ along $\mathrm{pr}_2\colon \{(b,a) \in \Q^2 \mid b < a\} \to \Q$. For $a < a'$, choose $c$ with $a < c < a'$. Then $\Phi(a) \to \Phi(a')$ factors as
+		\[
+			\Phi(a) \to F(a) \to F(c) \to \Phi(a'),
+		\]
+		so it is compact, since $F(a) \to F(c)$ is compact and compact morphisms form an ideal (\Cref{rem:Compact_Morphisms_Ideal}). Since $\Q$ is dense, we have $\colim_{b < a}\Phi(b) \simeq \colim_{b < a}\colim_{c < b} F(c) \simeq \colim_{c < a} F(c) = \Phi(a)$, and similarly $\colim_{\Q}\Phi \simeq \colim_{\Q} F \simeq x$.
+	\end{proof}
+
+	\begin{lemma}[{\cite[Lemma~2.82]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Largest_Dualizable_Subcategory}
+		Let $C$ be a dualizable category, and let $D \subseteq C$ be a full stable subcategory closed under colimits. Then there is a largest full subcategory $E \subseteq D$ such that $E$ is dualizable and the inclusion $E \hookrightarrow C$ is strongly continuous. Moreover, $E$ is generated under colimits by the objects $\colim_{\Q} F$, where $F\colon \Q \to D$ is a functor such that $F(a) \to F(b)$ is compact in $C$ for all $a < b$.
+	\end{lemma}
+	\prooffor{lem:Largest_Dualizable_Subcategory}
+	\begin{proof}
+		Let $E' \subseteq D$ be the full stable subcategory generated under colimits by the objects $\colim_{\Q} F$ as in the statement. Each such object is the colimit of the sequence $F(0) \to F(1) \to \cdots$ of compact morphisms, hence is $\omega_1$-compact in $C$ by \Cref{thm:Compactly_Assembled_Omega_1}(2) and \Cref{rem:Omega_1_Compact_Compact_Morphisms}. As $C^{\omega_1}$ is essentially small, $E'$ is generated under colimits by a set of objects, and hence is presentable.
+
+		Let $F\colon \Q \to D$ be as in the statement. Replacing $F$ by $a \mapsto \colim_{b < a} F(b)$ as in the proof of \Cref{prop:Q_Exhaustion}, which does not change $\colim_{\Q} F$ or leave $D$, we may assume that $\colim_{b < a} F(b) \simeq F(a)$ for all $a$. Then each $F(a)$ lies in $E'$, being the colimit of the restriction of $F$ to $\Q_{<a}$, which is order-isomorphic to $\Q$. As in the proof of \Cref{prop:Strongly_Continuous_Compact_Morphisms}, we have
+		\[
+			\hat{y}_C\big(\colim_{\Q} F\big) \simeq \quotcolim\big(F(0) \to F(1) \to F(2) \to \cdots\big),
+		\]
+		since the maps $F(n) \to F(n+1)$ are compact. This lies in the essential image of the fully faithful functor $\Ind(E') \to \Ind(C)$. This essential image is closed under colimits, since $\Ind(E') \to \Ind(C)$ is exact and preserves filtered colimits. Since $\hat{y}_C$ preserves colimits, it follows that $\hat{y}_C$ maps $E'$ into $\Ind(E')$. For $e \in E'$ and $Z \in \Ind(E')$, we then have
+		\[
+			\Map_{\Ind(E')}(\hat{y}_Ce,Z) \simeq \Map_{\Ind(C)}(\hat{y}_Ce,Z) \simeq \Map_C(e,\colim_C Z) \simeq \Map_{E'}(e,\colim_{E'}Z),
+		\]
+		as the inclusion $E' \hookrightarrow C$ preserves colimits. So $\colim_{E'}\colon \Ind(E') \to E'$ admits the left adjoint $\hat{y}_C|_{E'}$, i.e.\ $E'$ is compactly assembled, hence dualizable by \Cref{thm:Lurie_Dualizable_Characterization}. Moreover, the inclusion $E' \hookrightarrow C$ commutes with $\hat{y}$ by construction, so it is strongly continuous (\Cref{def:Strongly_Continuous_Compactly_Assembled} and \Cref{rem:Strongly_Continuous_Right_Adjoint}).
+
+		Now let $E'' \subseteq D$ be any full subcategory such that $E''$ is dualizable and the inclusion $E'' \hookrightarrow C$ is strongly continuous. Let $x \in E''$ be $\omega_1$-compact. By \Cref{prop:Q_Exhaustion}, there is a functor $F\colon \Q \to E''$ with $\colim_{\Q} F \simeq x$ such that $F(a) \to F(b)$ is compact in $E''$ for $a < b$. These maps are compact in $C$ by \Cref{prop:Strongly_Continuous_Compact_Morphisms}, and $\colim_{\Q} F \simeq x$ in $C$ since the inclusion preserves colimits. Hence $x \in E'$. As $E''$ is generated under colimits by its $\omega_1$-compact objects (\Cref{thm:Compactly_Assembled_Omega_1}(1)), we get $E'' \subseteq E'$. So $E := E'$ is the largest such subcategory.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Dualizable_Coreflection}
+		Efimov also shows that the inclusion $\Pr^{\dual} \hookrightarrow \Pr^{\mathrm{LL}}_{\st}$ admits a right adjoint \cite[Remark~2.57]{Efimov_Large_Categories}: for a presentable stable category $C$, the strictly full dualizable subcategories of $C$ with strongly continuous inclusion form a small complete lattice, whose join is given by images of products in the sense of \Cref{def:Image_Functor} (using \Cref{cor:Image_Dualizable} and \Cref{rem:Products_Dualizable}). Its largest element is the value of the right adjoint at $C$.
+	\end{remark}
+
+	\begin{definition}
+		\label[definition]{def:Dualizable_Kernel}
+		Let $F\colon C \to D$ be a strongly continuous functor between dualizable categories, and let $\ker(F) \subseteq C$ be its kernel in $\PrL_{\st}$. The \emph{dualizable kernel} $\ker^{\dual}(F) \subseteq \ker(F)$ is the largest full subcategory of $\ker(F)$ which is dualizable and whose inclusion into $C$ is strongly continuous; it exists by \Cref{lem:Largest_Dualizable_Subcategory}.
+	\end{definition}
+
+	\begin{proposition}[{\cite[Proposition~2.83]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Dualizable_Kernel}
+		Let $F\colon C \to D$ be a strongly continuous functor between dualizable categories. Then $\ker^{\dual}(F) \to C \xrightarrow{F} D$ is a fiber sequence in $\Pr^{\dual}$.
+	\end{proposition}
+	\prooffor{prop:Dualizable_Kernel}
+	\begin{proof}
+		Write $j\colon \ker^{\dual}(F) \hookrightarrow C$ for the inclusion. Let $T$ be dualizable and let $G\colon T \to C$ be strongly continuous with $FG \simeq 0$. Then $\Im(G) \subseteq \ker(F)$, and by \Cref{cor:Image_Dualizable}, $\Im(G)$ is dualizable and its inclusion into $C$ is strongly continuous. By maximality, $\Im(G) \subseteq \ker^{\dual}(F)$, so $G \simeq jG'$ for a colimit-preserving functor $G'\colon T \to \ker^{\dual}(F)$. Its right adjoint $G^Rj$ preserves colimits, so $G'$ is strongly continuous. Since $j$ is fully faithful, $j \circ -$ identifies $\Map_{\Pr^{\dual}}(T,\ker^{\dual}(F))$ with the union of those path components of $\Map_{\Pr^{\dual}}(T,C)$ which consist of functors $G$ with $FG \simeq 0$. Since a nullhomotopy of $FG$ is unique if it exists (\Cref{rem:Nullhomotopies_Property}), the latter is the fiber of $F \circ -\colon \Map_{\Pr^{\dual}}(T,C) \to \Map_{\Pr^{\dual}}(T,D)$ over the zero functor.
+	\end{proof}
+
+	\begin{example}[{\cite[Example~2.84]{Efimov_Large_Categories}}]
+		\label[example]{ex:Dualizable_Kernel_DVR}
+		Let $R$ be a discrete valuation ring with maximal ideal $\mathfrak{m}$ and fraction field $K$, and consider the base change functor $F\colon \D(R) \to \D(R/\mathfrak{m})$, which is strongly continuous. Its kernel in $\PrL_{\st}$ consists of the $R$-modules on which a uniformizer acts invertibly, i.e.\ $\ker(F) \simeq \D(K)$. However, the inclusion $\D(K) \hookrightarrow \D(R)$ is not strongly continuous, since its right adjoint $\hom_R(K,-)$ does not preserve colimits, $K$ not being a compact $R$-module. The only localizing subcategories of $\D(K)$ are $0$ and $\D(K)$, so $\ker^{\dual}(F) = 0$.
+	\end{example}
+
+	Efimov uses a variant of this example to show that sequential colimits in $\Pr^{\dual}$ do not commute with kernels, so that $\Pr^{\dual}$ is not compactly assembled \cite[Corollary~2.85]{Efimov_Large_Categories}.
+
+	% Source: Talk 6 (Jacopo Mazzei, 17.11.2026); Efimov, Proposition 2.86; part (2) and the details of part (1) added from the literature with generative AI (Claude)
+	We now describe pullbacks in $\Pr^{\dual}$. Let $F\colon A \to C$ and $G\colon B \to C$ be strongly continuous functors between dualizable categories. Their \emph{lax pullback} $L$ is the category of triples $(a,b,f)$ with $a \in A$, $b \in B$ and $f\colon F(a) \to G(b)$. By adjunction, it is equivalent to the gluing of \Cref{constr:Semiorthogonal_Gluing} along the colimit-preserving functor $F^RG\colon B \to A$. By \Cref{prop:Gluing_Dualizable}, $L$ is dualizable, and we have a semiorthogonal decomposition $L = \lra{i_A(A),i_B(B)}$ with $i_A(a) = (a,0,0)$ and $i_B(b) = (0,b,0)$, and with projections $\pi_A(a,b,f) = a$ and $\pi_B(a,b,f) = b$. Consider the colimit-preserving functor
+	\[
+		\Phi\colon L \to C, \qquad (a,b,f) \mapsto \cofib\big(f\colon F(a) \to G(b)\big).
+	\]
+	Since $\Phi i_A \simeq \Sigma F$ and $\Phi i_B \simeq G$ are strongly continuous, $\Phi$ is strongly continuous by \Cref{prop:SOD_Functor_Categories}(2). Its kernel $\ker(\Phi)$ is the full subcategory of triples in which $f$ is an equivalence, i.e.\ $\ker(\Phi) \simeq A \times_C B$ is the pullback in $\PrL_{\st}$, which is computed in $\widehat{\Cat}$.
+
+	\begin{proposition}[{\cite[Proposition~2.86]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Dualizable_Pullbacks}
+		Let $F\colon A \to C$ and $G\colon B \to C$ be strongly continuous functors between dualizable categories, and let $A \times_C^{\dual} B := \ker^{\dual}(\Phi)$, with $\Phi$ as above.
+		\begin{enumerate}
+			\item The category $A \times^{\dual}_C B$ is a pullback of $F$ and $G$ in $\Pr^{\dual}$. The functor $A \times^{\dual}_C B \to A \times_C B$ is fully faithful and strongly continuous, and its essential image is the largest full subcategory $E \subseteq A \times_C B$ such that $E$ is dualizable and the functors $E \to A$ and $E \to B$ are strongly continuous.
+			\item If $G$ is a localization, then $A \times^{\dual}_C B \simeq A \times_C B$, and the projection $A \times_C B \to A$ is a localization.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Dualizable_Pullbacks}
+	\begin{proof}
+		(1) Let $T$ be dualizable. By \Cref{prop:Dualizable_Kernel}, $\Map_{\Pr^{\dual}}(T,A \times^{\dual}_C B)$ is the union of the path components of $\Map_{\Pr^{\dual}}(T,L)$ consisting of functors $H$ with $\Phi H \simeq 0$, i.e.\ of strongly continuous functors $T \to L$ landing in $\ker(\Phi) = A \times_C B$. By \Cref{prop:SOD_Functor_Categories}(1), a colimit-preserving functor $H\colon T \to L$ is strongly continuous if and only if $\pi_AH$ and $\pi_BH$ are. So $\Map_{\Pr^{\dual}}(T,A \times^{\dual}_C B)$ is the union of the path components of $\Map_{\PrL_{\st}}(T,A \times_C B)$ consisting of functors whose two components are strongly continuous. As $A \times_C B$ is a pullback in $\PrL_{\st}$, this is
+		\[
+			\Map_{\Pr^{\dual}}(T,A) \times_{\Map_{\Pr^{\dual}}(T,C)} \Map_{\Pr^{\dual}}(T,B),
+		\]
+		naturally in $T$. This proves that $A \times^{\dual}_C B$ is a pullback in $\Pr^{\dual}$.
+
+		Write $k\colon A \times^{\dual}_C B \hookrightarrow A \times_C B$ and $j\colon A \times_C B \hookrightarrow L$ for the inclusions. Then $jk$ is strongly continuous and $j$ preserves colimits, so the right adjoint $k^R \simeq (jk)^R j$ preserves colimits, i.e.\ $k$ is strongly continuous. Finally, colimits in $L$ are computed on the components $a$ and $b$, so a functor $E \to L$ preserves colimits if and only if its composites with $\pi_A$ and $\pi_B$ do. Together with \Cref{prop:SOD_Functor_Categories}(1), this shows that for a full subcategory $E \subseteq A \times_C B$, the functors $E \to A$ and $E \to B$ are strongly continuous if and only if the inclusion $E \to L$ is. So the final assertion follows from the definition of $\ker^{\dual}(\Phi)$.
+
+		(2) Suppose that $G^R$ is fully faithful. For $c \in C$ and $(a,b,f) \in L$, we have
+		\[
+			\Map_L\big((a,b,f),(0,G^Rc,0)\big) \simeq \fib\big(\Map_B(b,G^Rc) \to \Map_C(F(a),GG^Rc)\big) \simeq \Map_C\big(\cofib(f),c\big),
+		\]
+		using $GG^R \simeq \id$. So $\Phi$ has the right adjoint $\Phi^R(c) = (0,G^Rc,0)$, which preserves colimits and satisfies $\Phi\Phi^R \simeq GG^R \simeq \id$. Hence $\Phi$ is a strongly continuous localization. By \Cref{lem:Strong_Continuity_Localization_Sequence} and \Cref{prop:Localization_Sequence_Dualizable}, its kernel $\ker(\Phi) = A \times_C B$ is dualizable and its inclusion into $L$ is strongly continuous. Hence $\ker^{\dual}(\Phi) = \ker(\Phi)$.
+
+		The functor $R\colon A \to A \times_C B$, $a \mapsto (a,G^RF(a),\theta)$, where $\theta\colon F(a) \simeq GG^RF(a)$ is the inverse of the counit, is right adjoint to the projection: for $(a',b',\theta') \in A \times_C B$, the anima of maps $(a',b',\theta') \to R(a)$ is
+		\[
+			\Map_A(a',a) \times_{\Map_C(F(a'),F(a))} \Map_B(b',G^RF(a)) \simeq \Map_A(a',a),
+		\]
+		since $\Map_B(b',G^RF(a)) \simeq \Map_C(G(b'),F(a)) \simeq \Map_C(F(a'),F(a))$ via $\theta'$. The composite of $R$ with the projection is the identity, so $R$ is fully faithful and the projection is a localization.
+	\end{proof}
+
+	\begin{corollary}[{\cite[Corollary~2.87]{Efimov_Large_Categories}}]
+		\label[corollary]{cor:Monomorphisms_Prdual}
+		A strongly continuous functor $F\colon C \to D$ between dualizable categories is a monomorphism in $\Pr^{\dual}$ if and only if it is fully faithful.
+	\end{corollary}
+	\prooffor{cor:Monomorphisms_Prdual}
+	\begin{proof}
+		If $F$ is fully faithful, then $F \circ -$ is fully faithful on functor categories, so it induces monomorphisms on mapping spaces. Conversely, if $F$ is a monomorphism, then the diagonal $C \to C \times^{\dual}_D C$ is an equivalence. Composing with the fully faithful functor $C \times^{\dual}_D C \to C \times_D C$ of \Cref{prop:Dualizable_Pullbacks}(1), we find that the diagonal $C \to C \times_D C$ is fully faithful. As in the proof of \Cref{prop:Epimorphisms_Localizations}, it follows that $\hom_C(x,y) \to \hom_D(Fx,Fy)$ is an equivalence for all $x,y \in C$.
+	\end{proof}
+
+	\begin{remark}
+		\label[remark]{rem:Short_Exact_Fiber_Cofiber}
+		A short exact sequence $C \xrightarrow{i} D \xrightarrow{p} E$ of dualizable categories (\Cref{def:Short_Exact_Sequence_Dualizable}) is both a fiber sequence and a cofiber sequence in $\Pr^{\dual}$. It is a cofiber sequence since colimits in $\Pr^{\dual}$ are computed in $\PrL_{\st}$ (\Cref{prop:Prdual_Colimits}). It is a fiber sequence since $\ker^{\dual}(p) = \ker(p) = C$, as the inclusion $C \hookrightarrow D$ is strongly continuous; alternatively, apply \Cref{prop:Dualizable_Pullbacks}(2) to the functors $0 \to E$ and $p$.
+	\end{remark}
+
+	\section{General limits of dualizable categories}
+	\label[section]{sec:General_Limits_Dualizable}
+
+	% Source: Talk 7 (Christoph Winges, 24.11.2026); Efimov, Proposition 2.89 and Theorem 2.91; proofs completed with generative AI (Claude)
+	We now show that $\Pr^{\dual}$ admits all small limits. The idea is to embed each dualizable category $C$ into the compactly generated category $\Ind(C^{\kappa})$ via its Calkin sequence. Limits of compactly generated categories of this form are easy to compute, and the limit in $\Pr^{\dual}$ is then cut out by the vanishing of the images in the Calkin quotients. Throughout this section, $\kappa$ denotes an uncountable regular cardinal. We write $\PrL_{\st,\kappa}$ for the category of $\kappa$-compactly generated stable categories and colimit-preserving functors which preserve $\kappa$-compact objects. Every dualizable category is $\kappa$-compactly generated (see \Cref{sec:Continuous_Calkin}), and strongly continuous functors preserve $\kappa$-compact objects, so $\Pr^{\dual}$ is a subcategory of $\PrL_{\st,\kappa}$.
+
+	\begin{proposition}[{\cite[Proposition~2.89]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Dualizable_Ind_Adjunction}
+		The inclusion $\Pr^{\dual} \to \PrL_{\st,\kappa}$ admits a right adjoint $R_{\kappa}$, given by $R_{\kappa}(D) = \Ind(D^{\kappa})$ and $R_{\kappa}(F) = \Ind(F^{\kappa})$.
+	\end{proposition}
+	\prooffor{prop:Dualizable_Ind_Adjunction}
+	\begin{proof}
+		The category $\Ind(D^{\kappa})$ is compactly generated, hence dualizable, and $\Ind(F^{\kappa})$ preserves compact objects, hence is strongly continuous. We take as unit the functors $\hat{y}_C\colon C \to \Ind(C^{\kappa})$, which are strongly continuous and natural in $C \in \Pr^{\dual}$ by \Cref{constr:Calkin_Functoriality}. As counit we take the functors $\colim_D\colon \Ind(D^{\kappa}) \to D$, which are natural in $D$. They preserve $\kappa$-compact objects: the $\kappa$-compact objects of $\Ind(D^{\kappa})$ are retracts of $\kappa$-small colimits of objects $y(d)$ with $d \in D^{\kappa}$, which are sent to retracts of $\kappa$-small colimits in $D^{\kappa}$.
+
+		It remains to verify the triangle identities. The composite $C \xrightarrow{\hat{y}} \Ind(C^{\kappa}) \xrightarrow{\colim} C$ is the identity since $\hat{y}$ is fully faithful. For the other one, consider the composite
+		\[
+			\Ind(D^{\kappa}) \xrightarrow{\hat{y}} \Ind\big(\Ind(D^{\kappa})^{\kappa}\big) \xrightarrow{\Ind(\colim_D^{\kappa})} \Ind(D^{\kappa}).
+		\]
+		Both functors preserve colimits, so it suffices to consider its restriction to compact objects $y(d)$, $d \in D^{\kappa}$. By \Cref{lem:Compact_Iff_Yhat_Is_Y}, we have $\hat{y}(y(d)) \simeq y(y(d))$, which is sent to $y(\colim_D y(d)) \simeq y(d)$. So the composite is the identity.
+	\end{proof}
+
+	Explicitly, a functor $F\colon C \to D$ in $\PrL_{\st,\kappa}$ from a dualizable category $C$ corresponds to the strongly continuous functor $\Ind(F^{\kappa}) \circ \hat{y}_C\colon C \to \Ind(D^{\kappa})$ \cite[Remark~2.90]{Efimov_Large_Categories}. For a diagram $i \mapsto C_i$ in $\Pr^{\dual}$ we write $\lim^{\dual}_i C_i$ for its limit in $\Pr^{\dual}$.
+
+	\begin{theorem}[{\cite[Theorem~2.91]{Efimov_Large_Categories}}]
+		\label[theorem]{thm:General_Limits_Dualizable}
+		The category $\Pr^{\dual}$ admits all small limits. More precisely, let $i \mapsto C_i$ be a small diagram in $\Pr^{\dual}$, and put $A_i := C_i^{\kappa}$ and $B_i := \Calk^{\cont}_{\kappa}(C_i)$. Then
+		\[
+			\lim^{\dual}_i C_i \simeq \ker^{\dual}\Big(\Ind\big(\lim_i A_i\big) \to \Ind\big(\lim_i B_i\big)\Big),
+		\]
+		where the limits on the right are computed in $\Cat_{\perf}$, and the functor is induced by the quotient functors $p_i\colon A_i \to B_i$.
+	\end{theorem}
+	\prooffor{thm:General_Limits_Dualizable}
+	\begin{proof}
+		\emph{Step 1: the ambient category.} Passing to $\kappa$-compact objects identifies $\PrL_{\st,\kappa}$ with the category of small idempotent complete stable categories with $\kappa$-small colimits and exact functors preserving them \cite[Proposition~5.5.7.10]{lurie2009HTT}. Limits in the latter category are computed in $\Cat$, so $\lim_i C_i$ in $\PrL_{\st,\kappa}$ is the $\kappa$-compactly generated category with $\kappa$-compact objects $\lim_i A_i$. Since right adjoints preserve limits, \Cref{prop:Dualizable_Ind_Adjunction} shows that $M := \Ind(\lim_i A_i)$ is a limit of the diagram $i \mapsto \Ind(A_i)$ in $\Pr^{\dual}$.
+
+		\emph{Step 2: the limit.} Let $T$ be dualizable. A strongly continuous functor $G\colon T \to \Ind(A_i)$ factors through $\hat{y}\colon C_i \hookrightarrow \Ind(A_i)$ if and only if its composite with $\Ind(p_i)$ vanishes, since $C_i$ is the kernel of $\Ind(p_i)$; in this case, the factorization is strongly continuous, as its right adjoint is $G^R \circ \hat{y}$. Since $\hat{y}$ is fully faithful, $\Map_{\Pr^{\dual}}(T,C_i)$ is therefore the union of the path components of $\Map_{\Pr^{\dual}}(T,\Ind(A_i))$ consisting of functors with vanishing composite to $\Ind(B_i)$. Passing to the limit and using Step 1, we find that $\lim_i \Map_{\Pr^{\dual}}(T,C_i)$ is the union of the path components of $\Map_{\Pr^{\dual}}(T,M)$ consisting of those $H$ for which each composite $T \to M \to \Ind(A_i) \to \Ind(B_i)$ vanishes.
+
+		Let $K \subseteq M$ be the full subcategory of objects whose image in $\Ind(B_i)$ vanishes for every $i$. It is a full stable subcategory closed under colimits, so by \Cref{lem:Largest_Dualizable_Subcategory} it has a largest full subcategory $L$ which is dualizable and whose inclusion into $M$ is strongly continuous. A strongly continuous functor $H\colon T \to M$ satisfies the above condition if and only if $\Im(H) \subseteq K$. By \Cref{cor:Image_Dualizable} and the maximality of $L$, this is the case if and only if $\Im(H) \subseteq L$, i.e.\ if and only if $H$ factors through $L$; the factorization is then strongly continuous, as in the proof of \Cref{prop:Dualizable_Kernel}. Hence $\Map_{\Pr^{\dual}}(T,L) \simeq \lim_i \Map_{\Pr^{\dual}}(T,C_i)$, naturally in $T$, and $L$ is a limit of the diagram $i \mapsto C_i$ in $\Pr^{\dual}$.
+
+		\emph{Step 3: the kernel formula.} Let $\Phi\colon M \to \Ind(\lim_i B_i)$ be the functor induced by the $p_i$. Its composite with $\Ind$ of the projection $\lim_i B_i \to B_i$ agrees with the composite $M \to \Ind(A_i) \to \Ind(B_i)$. We claim that for a strongly continuous functor $H\colon T \to M$ from a dualizable category, $\Phi H \simeq 0$ if and only if all composites $T \to \Ind(B_i)$ vanish. One direction is clear. For the other, apply Step 2 to the diagram $i \mapsto \Ind(B_i)$, whose limit $L' := \lim^{\dual}_i \Ind(B_i)$ is a full subcategory of $M' := \Ind(\lim_i \Ind(B_i)^{\kappa})$. The functor $\Ind(\lim_i B_i) \to L'$ corresponding to the cone of projections is fully faithful: by the explicit description of the adjunction of \Cref{prop:Dualizable_Ind_Adjunction}, and since $\hat{y} = \Ind(y)$ on compactly generated categories by \Cref{lem:Compact_Iff_Yhat_Is_Y}, its composite with $L' \subseteq M'$ is $\Ind$ applied to the limit of the fully faithful functors $y\colon B_i \to \Ind(B_i)^{\kappa}$. So if all composites $T \to \Ind(B_i)$ vanish, then the composite $T \to \Ind(\lim_i B_i) \to L'$ vanishes by the universal property of $L'$, and hence so does $\Phi H$.
+
+		Now let $E \subseteq M$ be a full subcategory which is dualizable and whose inclusion $j$ into $M$ is strongly continuous. Applying the claim to $H = j$, we see that $E \subseteq K$ if and only if $E \subseteq \ker(\Phi)$. Hence $L = \ker^{\dual}(\Phi)$.
+	\end{proof}
+
+	The proof also shows that it suffices to test the vanishing of the composites to the Calkin quotients one $i$ at a time: in Step 2 we only use the limit of the Calkin terms in $\Cat_{\perf}$, not their limit in $\Pr^{\dual}$, which at that point is not yet known to exist.
+
+	\section{Infinite products and exactness}
+	\label[section]{sec:Infinite_Products_Dualizable}
+
+	% Source: Talk 7 (Christoph Winges, 24.11.2026); Efimov, Propositions 2.99--2.106 and Lemma 2.104; proofs completed with generative AI (Claude)
+	We now specialize \Cref{thm:General_Limits_Dualizable} to products. In this case the kernel in the formula turns out to be an ordinary kernel, since products of homological epimorphisms are again homological epimorphisms. As a consequence, products in $\Pr^{\dual}$ preserve short exact sequences, and $\Pr^{\dual}$ satisfies (AB6). We write $\prod^{\dual}_i C_i$ for products in $\Pr^{\dual}$.
+
+	We first compare ind-objects in a product with products of ind-objects. Let $(A_i)_{i \in I}$ be a family of small stable categories and put $A := \prod_i A_i$. The functors $\Ind(\mathrm{pr}_i)\colon \Ind(A) \to \Ind(A_i)$ induce a colimit-preserving functor $\Ind(A) \to \prod_i \Ind(A_i)$. We denote by
+	\[
+		P_A\colon \prod_i \Ind(A_i) \to \Ind(A)
+	\]
+	its right adjoint.
+
+	\begin{lemma}[{\cite[Proposition~2.99 and Corollary~2.100]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Products_Ind_Comparison}
+		\leavevmode
+		\begin{enumerate}
+			\item Under the identification $\Ind(A) \simeq \Fun^{\ex}(A\catop,\Sp)$ of \Cref{cor:Ind_As_Exact_Functors}, we have $P_A((X_i)_i)\big((a_i)_i\big) \simeq \prod_i X_i(a_i)$.
+			\item If $X_i \simeq \quotcolim_{j \in J_i} a_{i,j}$ for filtered categories $J_i$, then $P_A((X_i)_i) \simeq \quotcolim_{(j_i)_i \in \prod_i J_i} (a_{i,j_i})_i$. In particular, $y((a_i)_i) \simeq P_A((y(a_i))_i)$.
+			\item For exact functors $F_i\colon A_i \to B_i$ with product $F := \prod_i F_i$, we have $\Ind(F) \circ P_A \simeq P_B \circ \prod_i \Ind(F_i)$ and $\Ind(F)^R \circ P_B \simeq P_A \circ \prod_i \Ind(F_i)^R$.
+		\end{enumerate}
+	\end{lemma}
+	\prooffor{lem:Products_Ind_Comparison}
+	\begin{proof}
+		(1) The right adjoint of $\Ind(\mathrm{pr}_i)$ is restriction along $\mathrm{pr}_i$, and the right adjoint of a functor into a product is the product of the right adjoints of its components.
+
+		(2) Evaluating at $(b_i)_i \in A$ and using that filtered colimits in $\Fun^{\ex}(A\catop,\Sp)$ are computed pointwise, the claim becomes $\colim_{(j_i)_i} \prod_i \hom_{A_i}(b_i,a_{i,j_i}) \simeq \prod_i \colim_{j \in J_i}\hom_{A_i}(b_i,a_{i,j})$, which is (AB6) in $\Sp$ (\Cref{prop:Dualizable_AB6}). This is also a special case of \Cref{lem:Products_In_Ind}.
+
+		(3) The first equivalence follows from (2), since $\Ind(F)$ and $\Ind(F_i)$ are computed on filtered presentations levelwise. For the second, pass to left adjoints: the left adjoint of $\Ind(F)^R \circ P_B$ is the functor $\Ind(A) \to \prod_i \Ind(B_i)$ with components $\Ind(\mathrm{pr}_i)\Ind(F) \simeq \Ind(F_i)\Ind(\mathrm{pr}_i)$, which is also the left adjoint of $P_A \circ \prod_i \Ind(F_i)^R$.
+	\end{proof}
+
+	\begin{proposition}[{\cite[Proposition~2.102]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Products_Small_Projections}
+		Let $(F_i\colon A_i \to B_i)_{i \in I}$ be a family of exact functors in $\Cat_{\perf}$, and put $F := \prod_i F_i$.
+		\begin{enumerate}
+			\item If each $K_i \to A_i \xrightarrow{F_i} B_i$ is a short exact sequence, then so is $\prod_i K_i \to \prod_i A_i \xrightarrow{F} \prod_i B_i$.
+			\item If each $F_i$ is a homological epimorphism, then so is $F$. Moreover, $\ker(\Ind(F))$ is generated under colimits by the objects $P_A((X_i)_i)$ with $X_i \in \ker(\Ind(F_i))$.
+		\end{enumerate}
+	\end{proposition}
+	\prooffor{prop:Products_Small_Projections}
+	\begin{proof}
+		(1) This is \cite[Lemma~5.2]{Kasprowski_Winges_Products}; we give the argument. Put $A := \prod_i A_i$ and $K := \prod_i K_i$, the kernel of $F$. For $x = (x_i)_i$ and $y = (y_i)_i$ in $A$, the category $K_{/y}$ is the product of the categories $(K_i)_{/y_i}$, which are filtered. By \Cref{rem:Mapping_Spectra_Quotient} and (AB6) in $\Sp$, we get
+		\[
+			\hom_{A/K}(x,y) \simeq \colim_{(k_i \to y_i)_i} \prod_i \hom_{A_i}\big(x_i,\cofib(k_i \to y_i)\big) \simeq \prod_i \hom_{A_i/K_i}(x_i,y_i) \simeq \hom_{\prod_i B_i}(Fx,Fy),
+		\]
+		so $A/K \to \prod_i B_i$ is fully faithful. Every object $(b_i)_i$ of $\prod_i B_i$ is a retract of an object in the image of $F$, choosing retractions componentwise. Hence $(A/K)^{\idem} \simeq \prod_i B_i$.
+
+		(2) By \Cref{lem:Products_Ind_Comparison}(3), we have
+		\[
+			\Ind(F)\Ind(F)^RP_B \simeq \Ind(F)P_A\prod_i\Ind(F_i)^R \simeq P_B\prod_i\Ind(F_i)\Ind(F_i)^R,
+		\]
+		and under these identifications the counit of $\Ind(F) \dashv \Ind(F)^R$ at $P_B((Y_i)_i)$ is $P_B$ applied to the componentwise counits. These are equivalences since the $F_i$ are homological epimorphisms. So the counit is an equivalence on the essential image of $P_B$, which contains all compact objects of $\Ind(B)$ by \Cref{lem:Products_Ind_Comparison}(2). Since $\Ind(F)$ preserves compact objects, $\Ind(F)\Ind(F)^R$ preserves colimits, so the counit is an equivalence, i.e.\ $F$ is a homological epimorphism.
+
+		For the last assertion, note that $P_A((X_i)_i) \in \ker(\Ind(F))$ if each $X_i \in \ker(\Ind(F_i))$, by \Cref{lem:Products_Ind_Comparison}(3). Conversely, the colimit-preserving functor $\fib(\id \to \Ind(F)^R\Ind(F))$ is the identity on $\ker(\Ind(F))$, so $\ker(\Ind(F))$ is generated under colimits by its values on the compact objects $y(a)$, $a = (a_i)_i \in A$. By \Cref{lem:Products_Ind_Comparison}, its value at $y(a) \simeq P_A((y(a_i))_i)$ is $P_A\big((\fib(y(a_i) \to \Ind(F_i)^R\Ind(F_i)y(a_i)))_i\big)$, whose components lie in $\ker(\Ind(F_i))$.
+	\end{proof}
+
+	\begin{corollary}[{\cite[Proposition~2.103]{Efimov_Large_Categories}}]
+		\label[corollary]{cor:Products_Dualizable_Calkin}
+		Let $(C_i)_{i \in I}$ be a family of dualizable categories, and put $A_i := C_i^{\kappa}$ and $B_i := \Calk^{\cont}_{\kappa}(C_i)$. Then there is a short exact sequence
+		\[
+			\prod\nolimits^{\dual}_i C_i \to \Ind\Big(\prod_i A_i\Big) \to \Ind\Big(\prod_i B_i\Big).
+		\]
+		If each $C_i$ is compactly generated, then $\prod^{\dual}_i C_i \simeq \Ind(\prod_i C_i^{\omega})$. In other words, $\Ind\colon \Cat_{\perf} \to \Pr^{\dual}$ preserves products.
+	\end{corollary}
+	\prooffor{cor:Products_Dualizable_Calkin}
+	\begin{proof}
+		The quotient functors $p_i\colon A_i \to B_i$ are homological epimorphisms, since $\Ind(p_i)$ is the localization in the Calkin sequence of $C_i$. By \Cref{prop:Products_Small_Projections}(2), the functor $\Ind(\prod_i p_i)$ is a strongly continuous localization. By \Cref{lem:Strong_Continuity_Localization_Sequence} and \Cref{prop:Localization_Sequence_Dualizable}, its kernel is dualizable with strongly continuous inclusion, so it agrees with the dualizable kernel, which is $\prod^{\dual}_i C_i$ by \Cref{thm:General_Limits_Dualizable}.
+
+		If each $C_i$ is compactly generated, then $C_i^{\omega} \to A_i \to B_i$ is short exact by \Cref{rem:Calkin_Small_Vs_Continuous}. By \Cref{prop:Products_Small_Projections}(1), so is $\prod_i C_i^{\omega} \to \prod_i A_i \to \prod_i B_i$, and applying \Cref{thm:Thomason_Neeman}(1) identifies the kernel of $\Ind(\prod_i p_i)$ with $\Ind(\prod_i C_i^{\omega})$.
+	\end{proof}
+
+	To show that products preserve short exact sequences, we use duality. For a dualizable category $C$ we use the model $C^{\vee} = \Fun^{\colim}(C,\Sp)$ of \Cref{sec:Dualizable_Categories}, and for a colimit-preserving functor $F\colon C \to D$ we write $F^{\vee} := - \circ F\colon D^{\vee} \to C^{\vee}$. For a small stable category $A$ we have $\Ind(A)^{\vee} \simeq \Fun^{\ex}(A,\Sp) \simeq \Ind(A\catop)$ by \Cref{thm:Ind_Kappa_Universal_Property}(3) and \Cref{cor:Ind_As_Exact_Functors}. For an exact functor $f\colon A \to A'$, the functor $\Ind(f)^{\vee}$ is restriction along $f$, i.e.\ the right adjoint of $\Ind(f\catop)$.
+
+	\begin{lemma}[{\cite[Section~2.5]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Duality_Localizations}
+		Let $F\colon C \to D$ be a strongly continuous functor between dualizable categories. Then $(F^R)^{\vee}$ is left adjoint to $F^{\vee}$, and $F$ is a localization if and only if $F^{\vee}$ is fully faithful. If $F$ is fully faithful, then so is $(F^R)^{\vee}$.
+	\end{lemma}
+	\prooffor{lem:Duality_Localizations}
+	\begin{proof}
+		For an adjunction $L \dashv R$, precomposition with $R$ is left adjoint to precomposition with $L$, with unit and counit induced by those of $L \dashv R$. Applied to $F \dashv F^R$, this shows $(F^R)^{\vee} \dashv F^{\vee}$, with counit $\varphi \circ FF^R \to \varphi$ induced by the counit of $F \dashv F^R$. If $F$ is a localization, this counit is an equivalence, so $F^{\vee}$ is fully faithful. Conversely, if $F^{\vee}$ is fully faithful, then $\varphi(FF^Rd) \to \varphi(d)$ is an equivalence for all $\varphi \in D^{\vee}$ and $d \in D$. Since $D$ is dualizable, the functor $D \to \Fun^{\colim}(D^{\vee},\Sp)$, $d \mapsto (\varphi \mapsto \varphi(d))$, is an equivalence, so $FF^Rd \to d$ is an equivalence. Similarly, if $F$ is fully faithful, then the unit $\varphi \to \varphi F^RF$ of $(F^R)^{\vee} \dashv F^{\vee}$ is an equivalence.
+	\end{proof}
+
+	\begin{lemma}[{\cite[Lemma~2.104]{Efimov_Large_Categories}}]
+		\label[lemma]{lem:Dual_Product_Embedding}
+		Let $(C_i)_{i \in I}$ be a family of dualizable categories, let $A_i := C_i^{\kappa}$, and let $j\colon \prod^{\dual}_i C_i \hookrightarrow \Ind(\prod_i A_i)$ be the inclusion of \Cref{cor:Products_Dualizable_Calkin}. Then the functor
+		\[
+			\Phi := (j^R)^{\vee}\colon \Big(\prod\nolimits^{\dual}_i C_i\Big)^{\vee} \to \Ind\Big(\prod_i A_i\Big)^{\vee} \simeq \Ind\Big(\prod_i A_i\catop\Big)
+		\]
+		is fully faithful, and its essential image is generated under colimits by the objects $E_x := P_{A\catop}\big((\ev_{C_i}(-,x_i)|_{A_i})_i\big)$ for $x_i \in C_i^{\vee}$, i.e.\ the functors $(a_i)_i \mapsto \prod_i x_i(a_i)$ on $\prod_i A_i$.
+	\end{lemma}
+	\prooffor{lem:Dual_Product_Embedding}
+	\begin{proof}
+		The functor $\Phi$ is fully faithful by \Cref{lem:Duality_Localizations}. Let $p := \Ind(\prod_i p_i)$ be the localization of \Cref{cor:Products_Dualizable_Calkin}. For $X \in \Ind(\prod_i A_i)$ we have a cofiber sequence $jj^RX \to X \to p^Rp X$. Since $\Phi$ is fully faithful with right adjoint $j^{\vee}$, its essential image consists of those $\varphi$ for which the counit $\varphi jj^R \to \varphi$ is an equivalence, i.e.\ for which $\varphi p^R \simeq 0$. By the discussion preceding \Cref{lem:Duality_Localizations}, $(p^R)^{\vee}$, as the left adjoint of $p^{\vee}$, is identified with $\Ind(\prod_i p_i\catop)$. So the essential image of $\Phi$ is $\ker(\Ind(\prod_i p_i\catop))$. The same argument for a single $C_i$ identifies $C_i^{\vee}$, via $(\hat{y}^R)^{\vee} = - \circ \colim$, with $\ker(\Ind(p_i\catop))$; this sends $x$ to $x \circ \colim$, whose restriction to $A_i$ is $x|_{A_i}$.
+
+		A functor $f$ in $\Cat_{\perf}$ is a homological epimorphism if and only if it is an epimorphism in $\Cat_{\perf}$: indeed, $\Ind\colon \Cat_{\perf} \to \PrL_{\omega,\st}$ is an equivalence, pushouts in $\PrL_{\omega,\st}$ are computed in $\PrL_{\st}$ (as in \Cref{prop:Prdual_Colimits}), and we can apply \Cref{prop:Epimorphisms_Localizations}. Since $(-)\catop$ is an automorphism of $\Cat_{\perf}$, the functors $p_i\catop$ are homological epimorphisms as well \cite[Remark~1.10]{Efimov_Large_Categories}. The claim now follows from \Cref{prop:Products_Small_Projections}(2), applied to the $p_i\catop$.
+	\end{proof}
+
+	\begin{proposition}[{\cite[Propositions~2.105 and~2.106]{Efimov_Large_Categories}}]
+		\label[proposition]{prop:Exact_Products_AB6_Dualizable}
+		Products in $\Pr^{\dual}$ of short exact sequences of dualizable categories are short exact, and $\Pr^{\dual}$ satisfies (AB6): for filtered categories $J_i$, $i \in I$, and functors $J_i \to \Pr^{\dual}$, $j \mapsto C_{i,j}$, the comparison functor
+		\[
+			\colim_{(j_i)_i \in \prod_i J_i} \prod\nolimits^{\dual}_i C_{i,j_i} \to \prod\nolimits^{\dual}_i \colim_{j \in J_i} C_{i,j}
+		\]
+		is an equivalence, where the colimits are computed in $\Pr^{\dual}$.
+	\end{proposition}
+	\prooffor{prop:Exact_Products_AB6_Dualizable}
+	\begin{proof}
+		Let $K_i \to D_i \xrightarrow{F_i} E_i$ be short exact sequences of dualizable categories. Since limits commute with limits, $\prod^{\dual}_i K_i$ is the fiber of $F := \prod^{\dual}_i F_i$ in $\Pr^{\dual}$. So, by \Cref{rem:Short_Exact_Fiber_Cofiber}, it suffices to show that $F$ is a localization; then $\prod^{\dual}_i K_i \simeq \ker^{\dual}(F) = \ker(F)$. By \Cref{lem:Duality_Localizations}, it suffices to show that $F^{\vee}$ is fully faithful.
+
+		Let $j_D$ and $j_E$ be the inclusions of \Cref{cor:Products_Dualizable_Calkin}, with associated fully faithful functors $\Phi_D$ and $\Phi_E$ from \Cref{lem:Dual_Product_Embedding}, and put $G := \Ind(\prod_i F_i^{\kappa})$. By construction of the induced map of limits, $F$ is the restriction of $G$, i.e.\ $j_EF \simeq Gj_D$. The mate of this equivalence is a natural transformation $Fj_D^R \to j_E^RG$, which induces a natural transformation
+		\[
+			\alpha\colon \Phi_DF^{\vee} = - \circ Fj_D^R \longrightarrow - \circ j_E^RG = G^{\vee}\Phi_E
+		\]
+		of colimit-preserving functors. We show that $\alpha$ is an equivalence. By \Cref{lem:Dual_Product_Embedding}, it suffices to check this on objects $\psi$ with $\Phi_E\psi \simeq E_x$ for some $x_i \in E_i^{\vee}$. Then $G^{\vee}\Phi_E\psi \simeq E_x \circ G$ is the functor $(a_i)_i \mapsto \prod_i x_i(F_ia_i)$ on $\prod_i D_i^{\kappa}$, i.e.\ $E_x \circ G \simeq E_{F^{\vee}x}$ with $F^{\vee}x := (x_i \circ F_i)_i$, which lies in the essential image of $\Phi_D$. Unwinding the definition of the mate, $\alpha_{\psi}$ is identified with the map $E_{F^{\vee}x} \circ j_Dj_D^R \to E_{F^{\vee}x}$ induced by the counit, which is an equivalence on the essential image of $\Phi_D$ (see the proof of \Cref{lem:Dual_Product_Embedding}).
+
+		So $\Phi_DF^{\vee} \simeq G^{\vee}\Phi_E$. The functor $G^{\vee}$ is the right adjoint of $\Ind(\prod_i (F_i^{\kappa})\catop)$. As in the proof of \Cref{prop:Calkin_Short_Exact}, the sequences $K_i^{\kappa} \to D_i^{\kappa} \to E_i^{\kappa}$ are short exact \cite[Proposition~A.26]{Ramzi_Dualizable_Presentable}, hence so are their opposites, and their product is short exact by \Cref{prop:Products_Small_Projections}(1). By \Cref{thm:Thomason_Neeman}(1), $\Ind(\prod_i (F_i^{\kappa})\catop)$ is a localization, so $G^{\vee}$ is fully faithful. Since $\Phi_D$ and $\Phi_E$ are fully faithful, so is $F^{\vee}$.
+
+		For (AB6), we first treat the case where all $C_{i,j}$ are compactly generated. The category $\Cat_{\perf}$ satisfies (AB6): it is compactly generated \cite[Proposition~1.4(3)]{Efimov_Large_Categories}, and every compactly generated category $\mathcal{E}$ satisfies (AB6), since mapping out of a compact object $c$ commutes with filtered colimits and products, so the comparison map induces on $\Map(c,-)$ the comparison map for (AB6) in $\An$ (\Cref{ex:AB6_Sets_And_Animae}), and the compact objects jointly detect equivalences. The functor $\Ind\colon \Cat_{\perf} \to \Pr^{\dual}$ preserves products by \Cref{cor:Products_Dualizable_Calkin} and filtered colimits by \Cref{prop:Prdual_Colimits} and the proof of \Cref{prop:Compact_Objects_Filtered_Colimits}. This proves the compactly generated case.
+
+		In general, apply both sides of the comparison functor to the Calkin sequences $C_{i,j} \to \Ind(C_{i,j}^{\kappa}) \to \Ind(\Calk^{\cont}_{\kappa}(C_{i,j}))$, which are functorial by \Cref{constr:Calkin_Functoriality}. By the first part and \Cref{prop:Filtered_Colimits_Fully_Faithful}(2), both resulting sequences are short exact. The comparison functors on the middle and right terms are equivalences by the compactly generated case. Passing to kernels, so is the comparison functor on the left terms.
+	\end{proof}

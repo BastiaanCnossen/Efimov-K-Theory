@@ -1,0 +1,240 @@
+[
+  {
+    "finding": "C01",
+    "labels": [
+      "lem:Localizing_Invariants_Verdier",
+      "rem:Verdier_Localizing_Not_Karoubi"
+    ],
+    "status": "repaired",
+    "note": "Restricted condition (1) to Verdier sequences; specified a reduced functor and stable target; proved the converse via idempotent completions and added the connective-K-theory source location."
+  },
+  {
+    "finding": "C02",
+    "labels": [
+      "ex:Dualizable_Categories"
+    ],
+    "status": "repaired",
+    "note": "Separated rigidity for compact Hausdorff spaces from local rigidity and categorical Verdier self-duality in the general case."
+  },
+  {
+    "finding": "C03, C13",
+    "labels": [
+      "prop:Kernel_Homological_Epi",
+      "prop:Every_Dualizable_Kernel",
+      "rem:Almost_General"
+    ],
+    "status": "repaired",
+    "note": "Corrected base change for left modules throughout; specified the Morita ring map induced on endomorphisms and its action on the generator."
+  },
+  {
+    "finding": "C04",
+    "labels": [
+      "thm:Compactly_Assembled_Omega_1"
+    ],
+    "status": "repaired",
+    "note": "Replaced descent through eventual equality by countable directed subsets closed under chosen successors. Supplied cofinality, compactness and essential-smallness arguments; explained preservation of omega_1-compactness by yhat."
+  },
+  {
+    "finding": "C05",
+    "labels": [
+      "prop:Nuclear_Rigid"
+    ],
+    "status": "repaired",
+    "note": "Restricted the rigidification adjunction to the cardinal-controlled category in Efimov Proposition 1.23; cited Remark 1.24(i) for the compact-object description. Kept the factorization hypothesis."
+  },
+  {
+    "finding": "C06",
+    "labels": [
+      "def:Kappa_Filtered"
+    ],
+    "status": "repaired",
+    "note": "Used the standard small simplicial-diagram formulation, explicitly declaring the quasicategory model for this size convention."
+  },
+  {
+    "finding": "C07",
+    "labels": [
+      "ex:Keller"
+    ],
+    "status": "repaired",
+    "note": "Required I nonzero and explained why the large kernel is nonzero despite the zero small kernel."
+  },
+  {
+    "finding": "C08",
+    "labels": [
+      "thm:Tamme_Excision",
+      "rem:Tamme_Lax_Pullback_Proof"
+    ],
+    "status": "repaired",
+    "note": "Replaced the continuous-invariant proof by the cited lax-pullback proof, valid for arbitrary stable targets. Checked the suspension sign in the split sequence."
+  },
+  {
+    "finding": "C11",
+    "labels": [
+      "thm:Kcont_Sheaves"
+    ],
+    "status": "repaired",
+    "note": "Replaced the unsupported uniqueness sketch with explicitly labelled proof orientation and an external proof reference. Corrected the continuity variance; the external theorem itself is not independently reproved."
+  },
+  {
+    "finding": "C10, C12.1",
+    "labels": [
+      "ex:Compact_Operators_Intro"
+    ],
+    "status": "argument-reviewed",
+    "note": "19 November 2026: The stable Hilbert telescope model and its CAlg(Pr^dual) structure are proved in prop:Operator_Ideal_Models. Corrected missing stable closure. This constructs an E_infinity structure on the underlying KU spectrum; no independent identification with the conventional E_infinity multiplication is asserted. See lecture-model-proof-checks.md."
+  },
+  {
+    "finding": "C12.2",
+    "labels": [
+      "thm:H_Unital"
+    ],
+    "status": "repaired",
+    "note": "Specified unitalization and the nonunital bar convention. Added KNP Section 2.10 references. The converse now requires surjectivity on pi_0, as in Proposition 2.10.7; included the polynomial-localization counterexample from Example 2.10.8."
+  },
+  {
+    "finding": "C12.3",
+    "labels": [
+      "ex:Nuclear_Solid"
+    ],
+    "status": "repaired",
+    "note": "Made completion and tensor conventions derived, fixed the solid analytic structure, and removed the unsupported blanket independence assertion and imprecise tensor formula. Retained exact Efimov references and the prior HH obstruction."
+  },
+  {
+    "finding": "C12.4",
+    "labels": [
+      "ex:Nuclear_Liquid_Gaseous"
+    ],
+    "status": "qualified-source",
+    "note": "19 November 2026: Proved flatness and idempotence of S_0+, the homological epimorphism, the stable Hilbert telescope kernel model and its strongly continuous monoidal structure in prop:Operator_Ideal_Models. The identification with liquid rigidification remains attributed to Clausen: derived full faithfulness and essential image of realization have not been proved. Related written source: Clausen-Scholze, Lecture VIII. See lecture-model-proof-checks.md."
+  },
+  {
+    "finding": "C12.5",
+    "labels": [
+      "def:Mot_Loc",
+      "thm:K_Corepresentable"
+    ],
+    "status": "repaired",
+    "note": "Distinguished the finitary motives universal property from all localizing invariants and specified the universe convention. Corepresentability remains the imported BGT theorem."
+  },
+  {
+    "finding": "C12.5",
+    "labels": [
+      "thm:K_Universal_Property"
+    ],
+    "status": "qualified-source",
+    "note": "Kept the explicit non-finitary assertion with the thesis-footnote source and its stated limitation. It is an imported result, not a new proof or a consequence of finitary motives."
+  },
+  {
+    "finding": "C12.5",
+    "labels": [
+      "thm:K_Unit_Day_Convolution"
+    ],
+    "status": "repaired",
+    "note": "Used Cat_perf consistently and explained the operadic unit directly from the stated non-finitary universal property, without claiming presentability of all invariants."
+  },
+  {
+    "finding": "C13",
+    "labels": [
+      "thm:Lurie_Dualizable_Characterization",
+      "prop:Dualizable_Further_Characterizations"
+    ],
+    "status": "repaired",
+    "note": "Explained colimit preservation of the kernel retraction and constructed the large-Ind right adjoint by restriction of presheaves."
+  },
+  {
+    "finding": "C13",
+    "labels": [
+      "ex:AB6_Sets_And_Animae"
+    ],
+    "status": "repaired",
+    "note": "Added the reason comma categories in the cofinal replacement are filtered, using finite-limit commutation, and retained choice explicitly."
+  },
+  {
+    "finding": "C13",
+    "labels": [
+      "rem:Weakly_Compact_Lifting"
+    ],
+    "status": "repaired",
+    "note": "Described the solid-arrow diagram and the commuting square after adding the lift. The review's proposed triangle wording was itself inaccurate and was not adopted."
+  },
+  {
+    "finding": "C04",
+    "labels": [
+      "prop:Colimits_Over_Countable_Subposets"
+    ],
+    "status": "repaired",
+    "note": "Stated the filtered-colimit-only version used in compact assembly and explained why the Kan-extension indexing categories are filtered; covered the empty family when constructing upper bounds."
+  },
+  {
+    "finding": "C12.1, C12.4",
+    "labels": [
+      "prop:Operator_Ideal_Models"
+    ],
+    "status": "argument-reviewed",
+    "note": "19 November 2026: Added and checked a proof using positive injective principal ideals, root telescopes, the kernel coreflector and the right adjoint of restricted multiplication. Covers K and S_0+. Does not identify the latter kernel with liquid rigidification."
+  },
+  {
+    "finding": "T56-01",
+    "labels": [
+      "lem:Automatic_Strong_Continuity",
+      "prop:Generation_Dualizable",
+      "rem:Products_Dualizable",
+      "def:Image_Functor",
+      "cor:Image_Dualizable",
+      "prop:PrLL_Colimits",
+      "prop:Prdual_Colimits",
+      "prop:Epimorphisms_Localizations",
+      "def:Calkin_Continuous",
+      "prop:Calkin_Short_Exact",
+      "prop:Q_Exhaustion",
+      "lem:Largest_Dualizable_Subcategory",
+      "def:Dualizable_Kernel",
+      "prop:Dualizable_Kernel",
+      "ex:Dualizable_Kernel_DVR",
+      "prop:Dualizable_Pullbacks",
+      "cor:Monomorphisms_Prdual",
+      "rem:Short_Exact_Fiber_Cofiber"
+    ],
+    "status": "argument-reviewed",
+    "note": "19 November 2026: Checked arguments and hypotheses against the cited sources. Ramzi A.21/A.22/A.26 verified in v1, still the only arXiv version. HTT citation sharpened to Remark 5.4.7.13. Pullback shift and localization adjoints checked. See talks-5-6-proof-checks.md."
+  },
+  {
+    "finding": "T56-02",
+    "labels": [
+      "constr:Calkin_Functoriality",
+      "lem:Filtered_Colimits_PrL",
+      "prop:Filtered_Colimits_Fully_Faithful",
+      "cor:Filtered_Union_Subcategories",
+      "prop:Compact_Objects_Filtered_Colimits"
+    ],
+    "status": "repaired",
+    "note": "19 November 2026: Added coherent mates/cofiber construction, unit-induced filtered diagrams and canonical cocones, explicit opposite/initial variance, compatibility with units, and the foundational Cat_perf/core arguments. See talks-5-6-proof-checks.md."
+  },
+  {
+    "finding": "T56-03",
+    "labels": [
+      "def:Semiorthogonal_Decomposition",
+      "prop:Two_Term_SOD",
+      "prop:SOD_Characterization",
+      "rem:SOD_Small",
+      "constr:Semiorthogonal_Gluing",
+      "prop:SOD_Dualizable",
+      "prop:Gluing_Dualizable",
+      "prop:SOD_Functor_Categories"
+    ],
+    "status": "argument-reviewed",
+    "note": "19 November 2026: Checked adjunctions, strong continuity of projections, extension triangles, order of pieces and shifted gluing. Generalized the wording of rem:SOD_Small to arbitrary stable categories; no presentability of Fun^LL is asserted or required. See talks-5-6-proof-checks.md."
+  },
+  {
+    "finding": "T7-01",
+    "labels": [
+      "prop:Dualizable_Ind_Adjunction",
+      "thm:General_Limits_Dualizable",
+      "prop:Products_Small_Projections",
+      "cor:Products_Dualizable_Calkin",
+      "prop:Exact_Products_AB6_Dualizable"
+    ],
+    "status": "argument-reviewed",
+    "note": "24 November 2026. Checked Winges’s general limit and product statements against Efimov 2.89, 2.91 and 2.99–2.106. The limit addendum uses the compact-object embedding, the counit is checked on representable tuples, and the dual square uses Lemma 2.104."
+  }
+]

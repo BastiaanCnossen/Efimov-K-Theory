@@ -1,0 +1,64 @@
+[
+  {
+    "finding": "E01",
+    "labels": [
+      "ex:Compact_Operators_Intro"
+    ],
+    "note": "Shortened the introductory Hilbert-model description; full conventions and construction remain in Chapter 5, with the Clausen attribution unchanged.",
+    "date": "2026-11-19"
+  },
+  {
+    "finding": "E02",
+    "labels": [
+      "thm:Thomason_Neeman",
+      "rem:Calkin_Small_Vs_Continuous",
+      "thm:Tamme_Excision",
+      "warn:Excision_Requires_Ind_Localizations"
+    ],
+    "note": "Added a terminology table and Ind dictionary; moved the continuous Calkin identification to Chapter 7; placed the correct excision proof before the warning about the invalid kernel shortcut.",
+    "date": "2026-11-19"
+  },
+  {
+    "finding": "E03",
+    "labels": [
+      "thm:Lurie_Dualizable_Characterization",
+      "thm:Compactly_Assembled_Omega_1",
+      "rem:Compact_Morphisms_Other_Definitions"
+    ],
+    "note": "Added proof strategies; moved alternative compactness definitions to Chapter 4 after their equivalence has been proved.",
+    "date": "2026-11-19"
+  },
+  {
+    "finding": "E04",
+    "labels": [
+      "prop:Operator_Ideal_Models",
+      "prop:Nuclear_Basics",
+      "ex:Nuclear_Solid",
+      "ex:Nuclear_Liquid_Gaseous",
+      "lem:Identity_Trace_Class",
+      "rem:Trace_Class_Basics"
+    ],
+    "note": "Added proof mechanisms, separated analytic setup/input/consequences into paragraphs, placed the noncompact-generation obstruction next to its claim, and moved the identity criterion before the remark using it. The liquid realization remains deferred.",
+    "date": "2026-11-19"
+  },
+  {
+    "finding": "E05",
+    "labels": [
+      "rem:Stable_Compact_Morphism_Definitions",
+      "prop:Dualizable_AB6"
+    ],
+    "note": "Shortened the opening roadmap, distinguished the hypotheses needed for the compactness tests, and added a closing account of the different uses of exhaustions and AB6.",
+    "date": "2026-11-19"
+  },
+  {
+    "finding": "E06",
+    "labels": [
+      "lem:Conjugate_Transformations",
+      "lem:Mates_Conjugates",
+      "lem:Adjoint_Triples",
+      "prop:Strongly_Continuous_Via_Right_Adjoint"
+    ],
+    "note": "Applied the isomorphism and homotopical uniqueness conventions in the mates discussion; kept the countable-indexing and coherence proofs. Existing mathematical statuses are unchanged.",
+    "date": "2026-11-19"
+  }
+]

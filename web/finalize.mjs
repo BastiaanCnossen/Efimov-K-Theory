@@ -49,11 +49,12 @@ for (const file of pages) {
 let links=0;
 for (const file of pages) {
   const html=fs.readFileSync(file,'utf8');
-  if (/\\HCode|diagram-source|proof-owner|\?\?/.test(html)) throw new Error(`Conversion residue on ${file}`);
+  if (/\\HCode|\\qedhere(?![A-Za-z])|diagram-source|proof-owner|source-table-(?:start|end|cell)|\?\?/.test(html)) throw new Error(`Conversion residue on ${file}`);
   if (!html.includes('name="description"')) throw new Error(`Missing description: ${file}`);
   for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
-    if(match[1]===book.collectionPage)continue;
     if (/^(?:https?:|mailto:|data:)/.test(match[1])) continue;
+    // The collection page belongs to the Animarium, outside this bundle.
+    if(match[1]===book.collectionPage)continue;
     const [url,fragment]=match[1].split('#');
     const target=path.resolve(path.dirname(file),decodeURIComponent(url || 'index.html'));
     if (!fs.existsSync(target)) throw new Error(`Broken asset/link ${match[1]} in ${file}`);
@@ -67,25 +68,10 @@ for (const file of pages) {
 validateReaderShell(output);
 const tamme=fs.readFileSync(path.join(output,'entry/tammes-excision-theorem/index.html'),'utf8');
 const warning=fs.readFileSync(path.join(output,'entry/localization-after-ind-completion/index.html'),'utf8');
-if (!tamme.includes('Proof using continuous K-theory') || warning.includes('<details class="proof"')) throw new Error('Non-adjacent proof ownership is incorrect');
-let sourceProseUnchanged=null;
-const metadata=JSON.parse(fs.readFileSync(path.join(root,'web/source-metadata.json'),'utf8'));
-if(process.argv.includes('--verify-source-metadata')){
-for(const file of metadata.Files){
-  const original=fs.readFileSync(path.join(root,file.Backup),'utf8');
-  if(crypto.createHash('sha256').update(original).digest('hex')!==file.Sha256)throw new Error(`Backup changed: ${file.Source}`);
-  let source=fs.readFileSync(path.join(root,file.Source),'utf8');
-  for(const annotation of file.AddedMetadata){
-    if(source.split(annotation).length!==2)throw new Error(`Metadata annotation missing or repeated: ${file.Source}`);
-    source=source.replace(annotation,'');
-  }
-  if(source!==original)throw new Error(`Source changed beyond metadata: ${file.Source}`);
-}
-sourceProseUnchanged=true;
-}
+if ((tamme.match(/<details class="proof"/g)||[]).length!==1 || !tamme.includes('lax pullback') || warning.includes('<details class="proof"')) throw new Error('Non-adjacent proof ownership is incorrect');
 const theorem=fs.readFileSync(path.join(output,'entry/omega-one-presentability-of-compactly-assembled-categories/index.html'),'utf8');
 if((theorem.match(/<details class="proof"/g)||[]).length!==2)throw new Error('The omega-one presentability theorem must contain both proofs');
-const counts={chapter:inventory.chapters.length,section:inventory.chapters.flatMap(chapter=>chapter.sections).length,entry:inventory.entries.length};
+const counts={frontmatter:(inventory.frontMatter||[]).length,chapter:inventory.chapters.length,section:inventory.chapters.flatMap(chapter=>chapter.sections).length,entry:inventory.entries.length};
 for(const [kind,count] of Object.entries(counts))if(contract.Routes.filter(route=>route.Kind===kind).length!==count)throw new Error(`Incomplete ${kind} coverage`);
 const proofCount=inventory.chapters.flatMap(chapter=>chapter.proofs).length;
 for(const chapter of inventory.chapters){
@@ -100,5 +86,5 @@ for(const chapter of inventory.chapters){
 const sources={};
 for(const name of [book.root,...inventory.chapters.map(chapter=>chapter.source),'preamble.tex','preamble.sty','web/book.json'])sources[name]=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,name))).digest('hex');
 fs.writeFileSync(path.join(output,'_meta/source-build.json'),JSON.stringify({SchemaVersion:1,Sources:sources},null,2));
-fs.writeFileSync(path.join(output,'_meta/pilot-validation.json'),JSON.stringify({pages:pages.length,chapters:counts.chapter,sections:counts.section,entries:counts.entry,proofs:proofCount,diagrams:diagrams.length,checkedLinks:links,sourceProseUnchanged,nonAdjacentProofOwnership:true,multipleProofVariants:true},null,2));
-console.log(`Validated ${pages.length} pages, ${proofCount} proofs, ${diagrams.length} diagrams and ${links} local links.${sourceProseUnchanged?' Mathematical source is unchanged after removing metadata.':''}`);
+fs.writeFileSync(path.join(output,'_meta/pilot-validation.json'),JSON.stringify({pages:pages.length,chapters:counts.chapter,sections:counts.section,entries:counts.entry,proofs:proofCount,diagrams:diagrams.length,checkedLinks:links,nonAdjacentProofOwnership:true,multipleProofVariants:true},null,2));
+console.log(`Validated ${pages.length} pages, ${proofCount} proofs, ${diagrams.length} diagrams and ${links} local links.`);

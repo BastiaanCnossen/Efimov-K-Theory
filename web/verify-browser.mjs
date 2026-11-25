@@ -11,7 +11,7 @@ const report=[];
 // Audit both forms, otherwise an unsupported macro could pass unnoticed.
 const errorSelector='mjx-merror,[data-mml-node="merror"],mjx-mtext[data-semantic-attributes*="color:red"],mjx-mtext[style*="color: red"]';
 try {
-  for (const route of contract.Routes.filter(route=>['chapter','section','references'].includes(route.Kind))) {
+  for (const route of contract.Routes.filter(route=>['frontmatter','chapter','section','references'].includes(route.Kind))) {
     await browser.navigate(`${origin}${route.Path}`);
     await browser.evaluate('window.MathJax.startup.promise.then(()=>true)');
     if(!report.length){
