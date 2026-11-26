@@ -1172,6 +1172,46 @@
       "rem:AB6_Versus_Naive_Commutation",
       "ab6-versus-naive-commutation",
       "(AB6) versus naive commutation of products and filtered colimits"
+    ],
+    [
+      "prop:SOD_As_Gluing",
+      "semiorthogonal-decompositions-are-gluings",
+      "Every semiorthogonal decomposition is a gluing"
+    ],
+    [
+      "prop:Calkin_Mapping_Spectra",
+      "mapping-spectra-in-continuous-calkin-categories",
+      "Mapping spectra in continuous Calkin categories"
+    ],
+    [
+      "prop:Pushouts_Fully_Faithful",
+      "pushouts-of-fully-faithful-functors",
+      "Pushouts of fully faithful functors"
+    ],
+    [
+      "cor:Pushout_Short_Exact",
+      "pushouts-of-short-exact-sequences",
+      "Pushouts of short exact sequences"
+    ],
+    [
+      "prop:Ind_Compact_Adjunction",
+      "ind-and-compact-objects-adjunction",
+      "Ind-completion is left adjoint to compact objects"
+    ],
+    [
+      "cor:Dualizable_Limit_Generators",
+      "generators-of-dualizable-limits",
+      "Generators of limits of dualizable categories"
+    ],
+    [
+      "cor:Finite_Dualizable_Limits_Fully_Faithful",
+      "full-faithfulness-for-finite-dualizable-limits",
+      "Full faithfulness for finite diagrams of dualizable categories"
+    ],
+    [
+      "rem:Dualizable_Limits_Further",
+      "further-remarks-on-dualizable-limits",
+      "Further remarks on limits of dualizable categories"
     ]
   ],
   "overview": "These notes study dualizable categories and Efimov’s extension of algebraic K-theory to large stable categories. They grew out of the research seminar at the University of Regensburg in the winter term 2026/27, with further material from lectures by Dustin Clausen and the Bonn workshop on dualizable categories and continuous K-theory.",

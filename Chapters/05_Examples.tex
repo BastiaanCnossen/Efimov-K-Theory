@@ -356,6 +356,22 @@
 
 	The strong continuity condition in \Cref{prop:Gluing_Dualizable} is essential: a general strongly continuous localization sequence with dualizable outer terms need not have dualizable middle term (\Cref{ex:Extension_Not_Dualizable}).
 
+	% Source: Mathew, Lecture 5 (MPIM Bonn, 11.09.2024); proof drafted with generative AI (Claude)
+	Conversely, every semiorthogonal decomposition arises from a gluing \cite[Propositions~2.2.11(1a) and~2.3.3(a)]{DKSS_Spherical}.
+
+	\begin{proposition}
+		\label[proposition]{prop:SOD_As_Gluing}
+		Let $E = \lra{i_C(C),i_D(D)}$ be a semiorthogonal decomposition of a presentable stable category in the sense of \Cref{def:Semiorthogonal_Decomposition}, and put $F := \Sigma i_C^Ri_D\colon D \to C$, which preserves colimits. Then there is an equivalence $E \simeq C \oplus_F D$ under which $i_C$ and $i_D$ correspond to the inclusions of \Cref{constr:Semiorthogonal_Gluing}. In particular, if $C$ and $D$ are dualizable, then $E$ is the dualizable gluing of \Cref{prop:Gluing_Dualizable}.
+	\end{proposition}
+	\prooffor{prop:SOD_As_Gluing}
+	\begin{proof}[Proof sketch]
+		By \Cref{prop:SOD_Characterization}, the projections $\pi_C := i_C^L$ and $\pi_D := i_D^R$ are strongly continuous, and there is a natural cofiber sequence $i_D\pi_D \to \id_E \to i_C\pi_C$. Its boundary map is a natural transformation $i_C\pi_C \to \Sigma i_D\pi_D$, which by the adjunction $i_C \dashv i_C^R$ corresponds to a natural transformation $u\colon \pi_C \to F\pi_D$. By the definition of $C \oplus_F D$ as a pullback, the pair $(u,\pi_D)$ defines a colimit-preserving functor
+		\[
+			\Phi\colon E \to C \oplus_F D, \qquad e \mapsto (\pi_Ce,\pi_De,u_e).
+		\]
+		Since $\pi_Ci_C \simeq \id$, $\pi_Di_C \simeq 0$, $\pi_Ci_D \simeq 0$ and $\pi_Di_D \simeq \id$, we have $\Phi i_C(c) \simeq (c,0,0)$ and $\Phi i_D(d) \simeq (0,d,0)$. The functor $\Phi$ induces equivalences on mapping spectra between objects of $i_C(C) \cup i_D(D)$: both sides give $\hom(c,c')$, $\hom(d,d')$ and $0$ for maps from the image of $D$ to the image of $C$, while for maps from the image of $C$ to the image of $D$ both sides are identified with $\hom_C(c,\Omega Fd) \simeq \hom_E(i_Cc,i_Dd)$, and a direct check shows that $\Phi$ induces this identification. Since every object on either side is an extension of an object of the image of $C$ by one of the image of $D$, and $\Phi$ is exact, it follows that $\Phi$ is fully faithful and essentially surjective.
+	\end{proof}
+
 	% Source: Talk 6 (Jacopo Mazzei, 17.11.2026); Efimov, Proposition 2.78; proof completed with generative AI (Claude)
 	Semiorthogonal decompositions are inherited by categories of strongly continuous functors. For presentable stable categories $T$ and $E$, we write $\Fun^{\mathrm{LL}}(T,E) \subseteq \Fun^{\colim}(T,E)$ for the full subcategory of strongly continuous functors. It is a stable subcategory: shifts of strongly continuous functors are strongly continuous, and the right adjoint of the cofiber of a map $G \to G'$ of colimit-preserving functors is the fiber of the induced map $G'^R \to G^R$ of right adjoints, which preserves colimits if $G^R$ and $G'^R$ do. In the following, we use the notion of a semiorthogonal decomposition of a (not necessarily presentable) stable category from \Cref{rem:SOD_Small}.
 

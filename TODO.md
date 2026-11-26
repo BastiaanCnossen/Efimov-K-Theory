@@ -2,21 +2,30 @@
 
 Review of 4 November 2026: see `TODO-review.md` for arguments checked, corrections, and remaining author input. Checked boxes record this review, not independent human verification.
 
+The [26 November Codex report](Review/codex-check-2026-11-26-report.md) follows the numbering in the handoff.
+
 ## Talk 7 (24 November 2026)
 
 1. [x] Incorporated Christoph Winges’s lecture in Chapter 7 (Codex). Checked the limit addendum against Efimov, Theorem 2.91, the two product formulas for ind-objects against Proposition 2.99 and Corollary 2.100, and the dual localization argument against Lemma 2.104 and Proposition 2.105.
 2. [x] Style-and-merge pass (Claude, 25.11.2026): cite `lem:Compact_Iff_Yhat_Is_Y` instead of reproving it; notation and spacing as in the rest of the notes; stated the duality facts (`lem:Duality_Localizations`) and Efimov's Lemma 2.104 (`lem:Dual_Product_Embedding`) explicitly; citation of Efimov Prop 2.103 for `cor:Products_Dualizable_Calkin`; added Kasprowski–Winges to the bibliography (publication details checked online); removed "In the talk, ..." remarks that only recorded omissions of a talk.
 3. [ ] AI-drafted proofs in Sections 7.5–7.6 to check (Bastiaan), in particular:
-   - [ ] `prop:Exact_Products_AB6_Dualizable`: the commutation of the square via the mate (Efimov's Lemma 2.104(2) only shows that the image lands in the right place; this resolves the "canonical functor" question from the talk), in particular the identification of `α_ψ` with the counit map.
-   - [ ] `thm:General_Limits_Dualizable`, Step 3: fully faithfulness of `Ind(lim B_i) → lim^dual Ind(B_i)`.
-   - [ ] `lem:Dual_Product_Embedding`: homological epimorphisms are self-dual (`p` homological epi ⇒ `p^op` homological epi) via "homological epi = epi in Cat_perf".
-4. [ ] References from memory, not yet checked against the source: HTT Proposition 5.5.7.10 (PrL_κ ≃ small categories with κ-small colimits) and the claim that limits there are computed in Cat (`thm:General_Limits_Dualizable`, Step 1); Kasprowski–Winges, Lemma 5.2 (number taken from Efimov). (Efimov, Proposition 1.4(3), for compact generation of Cat_perf: checked in v4.)
+   - [ ] `prop:Exact_Products_AB6_Dualizable`: the commutation of the square via the mate (Efimov's Lemma 2.104(2) only shows that the image lands in the right place; this resolves the "canonical functor" question from the talk), in particular the identification of `α_ψ` with the counit map. (checked by Codex, B2).
+   - [ ] `thm:General_Limits_Dualizable`, Step 3: fully faithfulness of `Ind(lim B_i) → lim^dual Ind(B_i)`. (checked by Codex, B4).
+   - [ ] `lem:Dual_Product_Embedding`: homological epimorphisms are self-dual (`p` homological epi ⇒ `p^op` homological epi) via "homological epi = epi in Cat_perf". (checked by Codex, B3).
+4. [ ] References from memory, not yet checked against the source: HTT Proposition 5.5.7.10 (PrL_κ ≃ small categories with κ-small colimits) and the claim that limits there are computed in Cat (`thm:General_Limits_Dualizable`, Step 1); Kasprowski–Winges, Lemma 5.2 (number taken from Efimov). (Efimov, Proposition 1.4(3), for compact generation of Cat_perf: checked in v4.) (checked by Codex, A1–A2).
+
+## Bonn lectures 5 and 7 added to Chapters 5 and 7 (26.11.2026)
+
+- [ ] AI-drafted, to check: `prop:SOD_As_Gluing` (in particular the 'direct check' that Φ induces the identification on maps from the image of C to the image of D); `prop:Calkin_Mapping_Spectra`; `prop:Pushouts_Fully_Faithful` and `cor:Pushout_Short_Exact`; `prop:Ind_Compact_Adjunction`; `cor:Dualizable_Limit_Generators`; `rem:Dualizable_Limits_Further`. (checked by Codex, B1 and B5–B7).
+- [ ] References: DKSS, Section 2.2 for SOD = gluing (section number from the arXiv table of contents; exact statement not checked; journal volume of Math. Z. not recorded). Ramzi, Theorems 3.4 and 3.7 checked in v1. (checked by Codex, A3–A4).
+- [ ] Added Mathew’s rational generators to `cor:Dualizable_Limit_Generators` and full faithfulness for finite diagrams as `cor:Finite_Dualizable_Limits_Fully_Faithful`, both with proofs (checked by Codex, A6–A7).
+- [ ] Item 6 (Clausen's construction (C,S)^dual) deferred.
 
 ## Comments of 25.11.2026
 
-- [ ] `thm:K_Unit_Day_Convolution`: explanation and proof sketch rewritten (Claude, AI-drafted) – please check; uses without reference that tensoring with a fixed object of Cat_perf preserves short exact sequences.
+- [ ] `thm:K_Unit_Day_Convolution`: explanation and proof sketch rewritten (Claude, AI-drafted) – please check; uses without reference that tensoring with a fixed object of Cat_perf preserves short exact sequences. (checked by Codex, B9, conditional on the non-finitary universal property).
 
-- [ ] Prove `thm:Tamme_Excision` in Chapter 8 via `prop:Dualizable_Pullbacks`(2) and the continuous extension (Efimov, Prop 8.11), once the continuous extension is set up there for accessible targets (Efimov, Thm 8.10). Chapter 2 now only sketches this and summarizes Tamme's lax-pullback proof in `rem:Tamme_Lax_Pullback_Proof`; the statement in Chapter 2 is Tamme's general one.
+- [ ] Prove `thm:Tamme_Excision` in Chapter 8 via `prop:Dualizable_Pullbacks`(2) and the continuous extension (Efimov, Prop 8.11), once the continuous extension is set up there for accessible targets (Efimov, Thm 8.10). Chapter 2 now only sketches this and summarizes Tamme's lax-pullback proof in `rem:Tamme_Lax_Pullback_Proof`; the statement in Chapter 2 is Tamme's general one. (checked by Codex, A5, references only).
 
 ## Whole-manuscript review
 
@@ -61,11 +70,12 @@ The consecutive reading is recorded in [Review/README.md](Review/README.md), wit
 - [x] Added Ramzi’s thesis, p. 115, footnote 19, for the non-finitary universal property. This explicitly states the generalization but does not prove it; a self-contained proof remains optional future work.
 
 ## Chapter 3
+- [ ] Alternative kernel proof of `thm:Compactly_Assembled_Omega_1` (checked by Codex, B10).
 - [x] Reviewed the Tate-extension and nondualizable-extension proofs against the cited results. Corrected the preceding setup: ordinary semiorthogonality does not imply that both inclusions are strongly continuous. See `TODO-review.md`.
 
 ## Chapter 5 (Talk 4) – to check
 - [x] Reviewed the four flagged compact-morphism, Milnor-sequence, identity, and counit arguments. No further gap found; details in `TODO-review.md`.
-- [x] Added a proof of (AB6) in sets and animae, including the use of choice and the reduction to homotopy groups.
+- [x] Added a proof of (AB6) in sets and animae, including the use of choice and the reduction to homotopy groups. (checked by Codex, B8, the adjacent diagonal remark).
 - [x] Retained the established notation `\colim` for `Ind(C) → C`; changing it to the talk’s `k` would add no mathematical content.
 - [x] Reviewed rational interpolation and the compact-middle-object hypothesis in `prop:Nuclear_Rigid`; made the sequential-limit coherence argument explicit.
 
@@ -108,8 +118,8 @@ Reviewed on 19 November 2026. See [the proof and reference report](Review/talks-
 
 ## Lecture-model proof checks (19 November 2026)
 
-1. [x] Prove the intrinsic compact-operator model, including stable closure, module handedness and strong continuity of its monoidal structure. The [proof-check report](Review/lecture-model-proof-checks.md) preserves the complete former Chapter 5 argument.
-2. [x] Prove that the all-Schatten ideal is flat and idempotent, and construct its kernel and Hilbert telescope model with strongly continuous multiplication.
+1. [x] Prove the intrinsic compact-operator model, including stable closure, module handedness and strong continuity of its monoidal structure. The [proof-check report](Review/lecture-model-proof-checks.md) preserves the complete former Chapter 5 argument. (checked by Codex, B11, archived argument).
+2. [x] Prove that the all-Schatten ideal is flat and idempotent, and construct its kernel and Hilbert telescope model with strongly continuous multiplication. (checked by Codex, B11, archived argument).
 3. [ ] Prove that realization of the all-Schatten kernel in derived liquid modules is fully faithful with essential image the rigidification. The precise missing statements and an invalid shortcut are recorded in [the proof-check report](Review/lecture-model-proof-checks.md).
 
 - [ ] At the next Animarium release, retire tag 11BC and its former Chapter 5 entry and section anchor with a withdrawal notice pointing readers to the compact-operator example in Chapter 1 (tag 117X) and the liquid example in Chapter 6 (tag 11CM). Refresh any affected Chapter 5 display numbers when adopting the new edition.
