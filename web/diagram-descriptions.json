@@ -1,4 +1,6 @@
 {
+  "d079bdce9eefa4439765": "The vertical maps compare tensors with internal Homs. A trace-class map from x to y gives a diagonal from the lower left to the upper right. Each triangle recovers the corresponding transition.",
+  "7914008bc9058187feb1": "Pullback defining the gluing. The upper map remembers the arrow in C, the left map remembers the object of D, the right map evaluates at the target, and the lower map is F.",
   "5f773ee77961bddbc0e5": "Commutative square with A mapping to B by f, C mapping to D by g, and vertical maps from A to C and B to D.",
   "cec2bd25bc9f44d600bb": "Pullback square of rings with A and A-prime on top and B and B-prime below.",
   "cee4cacfb89ba533dcce": "Square of module categories induced by the ring square: modules over A and A-prime on top, modules over B and B-prime below.",

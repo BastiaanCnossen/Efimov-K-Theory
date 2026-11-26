@@ -1,6 +1,7 @@
 \documentclass[11pt]{book}
 
 \input{preamble}
+\nocite{Hoyois_Cnossen_Lectures_Topos}
 \input{web/proof-ownership}
 
 \usepackage{float}
@@ -28,53 +29,49 @@
 
 	\chapter*{Preface}
 
-	These notes grew out of the research seminar on Efimov K-theory organized by Marc Hoyois at the University of Regensburg in the winter term 2026/27. They are organized by topic rather than by talk and include material from the workshop \emph{Dualizable categories and continuous K-theory} (MPIM Bonn, September 2024) and from lectures by Dustin Clausen (July 2023).
+	These notes grew out of the research seminar on Efimov K-theory organized by Marc Hoyois at the University of Regensburg in the winter term 2026/27. Most of the material is directly based on the participant talks, which in turn are based on Efimov's paper \emph{K-theory and localizing invariants of large categories} \cite{Efimov_Large_Categories}. We have organized the material by topic rather than by talk and include material from the workshop \emph{Dualizable categories and continuous K-theory} (MPIM Bonn, September 2024) and from lectures by Dustin Clausen (July 2023).
+	
+	I wish to thank Marc Hoyois for organizing the seminar and all the speakers whose lectures contributed to these notes.
 
-	I thank Marc Hoyois for organizing the seminar and all the speakers whose lectures contributed to these notes.
+	\section*{AI declaration}
 
-	Generative AI has been used to convert lecture notes into LaTeX, reorganize the material, and draft additional exposition and proofs based on the literature. This includes material not covered in the lectures, as well as completions of arguments that were only sketched or omitted there. The source notes below distinguish lecture-based material from additions from the literature. Both kinds of material have received AI assistance. These remain working notes, and some of the added arguments have not yet been checked in detail.
+	I used generative AI to convert my lecture notes to LaTeX and to reorganize the material by topic. I also used it to draft proofs of results that were only sketched in the lectures and to develop additional exposition and proofs from the literature. Some of these arguments still require a detailed check, including proofs concerning general limits and infinite products in \Cref{chap:Calkin_Limits_Colimits}.
 
 	\section*{Sources by chapter}
 
-	Chapters~1--7 and Appendix~A contain the material written so far. Chapters~8--11 are planned and are visibly marked as such. The following paragraphs record the sources of the written material. References for individual results and proofs also appear throughout the text.
+	Chapters~1--7 and Appendix~A are available in this version. Chapters~8--11 are planned. The guide below identifies the lectures behind each chapter and the main additions made in preparing the notes. References for individual statements and proofs appear in the chapters.
 
-	\subsection*{\Cref{chap:Introduction_And_Overview}}
+	\subsection*{\Cref{chap:Introduction_And_Overview}. Overview}
 
-	This chapter draws on Marc Hoyois's first seminar talk (13 October 2026) and Dustin Clausen's first three lectures (17--19 July 2023).
+	The introduction draws on Marc Hoyois's opening seminar talk and on Dustin Clausen's three lectures on Efimov K-theory.
 
-	\subsection*{\Cref{chap:Localization_Sequences}}
+	\subsection*{\Cref{chap:Localization_Sequences}. Localization sequences}
 
-	Marc Hoyois's first seminar talk (13 October 2026) contributes to \Cref{sec:Localization_Sequences_PrL,sec:Localizing_Invariants}. Akhil Mathew's first Bonn lecture (9 September 2024) is the source for \Cref{sec:Calkin_Small} and parts of \Cref{sec:Karoubi_Sequences,sec:Localization_Sequences_PrL,sec:Semiorthogonal_Decompositions,sec:Localizing_Invariants}.
+	The main lecture sources are Marc Hoyois's opening talk and Akhil Mathew's first Bonn lecture. Jacopo Mazzei's seminar talk supplied the characterization of semiorthogonal decompositions by adjoints. The accounts of Verdier and Karoubi sequences were expanded from the literature. The two arguments for Tamme's excision theorem and the explanation of the universal property of K-theory were added in preparing the notes.
 
-	\Cref{sec:Verdier_Sequences} and most of \Cref{sec:Karoubi_Sequences,sec:Localization_Sequences_PrL,sec:Semiorthogonal_Decompositions} were added from the literature, using~\cite{NikolausScholze2018Cyclic,Hermitian_II,lurie2009HTT,Efimov_Large_Categories}. The characterization of semiorthogonal decompositions in terms of adjoints (\Cref{prop:SOD_Characterization}) comes from Jacopo Mazzei's seminar talk (17 November 2026), supplemented by \cite[Remark~2.75]{Efimov_Large_Categories}. The sketch of the proof of Tamme's excision theorem (\Cref{thm:Tamme_Excision}) via continuous extensions follows \cite[Proposition~8.11]{Efimov_Large_Categories}; Tamme's original argument is summarized in \Cref{rem:Tamme_Lax_Pullback_Proof}. The explanation of \Cref{thm:K_Unit_Day_Convolution} was added from the stated non-finitary universal property of K-theory.
+	\subsection*{\Cref{chap:Compactly_Assembled_Dualizable}. Compact assembly and dualizability}
 
-	\subsection*{\Cref{chap:Compactly_Assembled_Dualizable}}
+	The chapter follows Marc Hoyois's second talk, supplemented by Akhil Mathew's second Bonn lecture and Dustin Clausen's first two lectures, which contribute to the discussions of localization and $\omega_1$-presentability. The example of continuous posets follows Johnstone--Joyal and Gierz et al. The proofs concerning strongly continuous functors and $\omega_1$-presentability were expanded in preparing the notes.
 
-	This chapter is based on Marc Hoyois's second seminar talk (20 October 2026). Akhil Mathew's second Bonn lecture (9 September 2024) contributes to \Cref{sec:Dualizable_Categories,sec:Omega_1_Presentability}. Dustin Clausen's first two lectures (17--18 July 2023) contribute to \Cref{sec:Localization_Sequences_Dualizable,sec:Omega_1_Presentability}.
+	\subsection*{\Cref{chap:Compact_Morphisms_AB6}. Compact morphisms}
 
-	The introductory exposition was expanded with AI assistance. The example on continuous posets (\Cref{ex:Continuous_Posets}) was added from the literature, following Johnstone--Joyal and Gierz et al.~\cite{Johnstone_Joyal_Continuous_Categories,Gierz_Continuous_Lattices}. The proof of \Cref{prop:Strongly_Continuous_Compact_Morphisms} was added using \cite{Efimov_Large_Categories}. The proof of \Cref{thm:Compactly_Assembled_Omega_1} was revised using countable directed subposets, with the indexing lemma in Appendix~A.
+	Jiapeng Liu's talk is the source for compact morphisms and (AB6). The final section, on automatic dualizability, follows Anton Zakrewski's talk and his written notes. The interpolation argument follows Krause--Nikolaus--P\"utzst\"uck. Several proofs were filled in, including the verification of (AB6) for sets and animae and the second proof of the generation criterion.
 
-	\subsection*{\Cref{chap:Compact_Morphisms_AB6}}
+	\subsection*{\Cref{chap:Examples}. Examples and gluing}
 
-	This chapter is based on Jiapeng Liu's seminar talk (3 November 2026). The converse implication in \Cref{prop:Compact_Morphisms_Stable} and the proofs of \Cref{prop:Dualizable_Compactly_Exhaustible,cor:Compact_Iff_Identity_Weakly_Compact,cor:Yhat_Universal_Property,lem:Products_In_Ind} were added using~\cite{Efimov_Large_Categories,Krause_Nikolaus_Putzstuck_Sheaves}. A proof of (AB6) for sets and animae (\Cref{ex:AB6_Sets_And_Animae}) was added when preparing these notes. The interpolation results (\Cref{lem:Interpolation,prop:Compact_Interpolation}) were also added from the literature, following~\cite{Krause_Nikolaus_Putzstuck_Sheaves}. \Cref{sec:Automatic_Dualizability} is based on Anton Zakrewski's seminar talk (10 November 2026) and his notes for it, following \cite[Section~2.8]{Efimov_Large_Categories}; the second proof of \Cref{prop:Generation_Dualizable} was added using compact exhaustions. The alternative compact-morphism definitions are collected in \Cref{rem:Compact_Morphisms_Other_Definitions} after the criteria establishing their agreement.
+	The examples of homological epimorphisms, almost rings and continuous posets draw on Max Glaser's talk, Dustin Clausen's second lecture and Akhil Mathew's third Bonn lecture. The proof that every dualizable category is a kernel was added in preparing the notes. The gluing construction follows Jacopo Mazzei's talk, and the treatment of Tate extensions follows Alexander Efimov's fourth Bonn lecture, with proofs expanded from the literature.
 
-	\subsection*{\Cref{chap:Examples}}
+	\subsection*{\Cref{chap:Rigidity_And_Nuclear_Objects}. Rigidity and nuclear objects}
 
-	Max Glaser's seminar talk (27 October 2026), Dustin Clausen's second lecture (18 July 2023), and Akhil Mathew's third Bonn lecture (10 September 2024) contribute to \Cref{sec:Homological_Epimorphisms,sec:Almost_Ring_Theory,sec:Continuous_Posets}. The proofs and references were supplemented from \cite{Neeman_Chromatic_Tower,Bhatt_Scholze_Witt_Grassmannian,Bhatt_Scholze_Prisms,Krause_Nikolaus_Putzstuck_Sheaves}. The proofs of \Cref{prop:Every_Dualizable_Kernel,prop:Operator_Ideal_Models} were added when preparing these notes. The latter supplies the Hilbert-space models for the compact-operator and $S_{0+}$ kernels, including their symmetric monoidal structures; the identification of the latter with liquid rigidification is still quoted from Clausen.
+	This chapter draws on Max Glaser's talk and Dustin Clausen's second and third lectures. The construction of rigidification from an ideal of maps and the operator model for liquid vector spaces come from Clausen's third lecture. The existence proof follows Ramzi. The compact-unit case and the calculations for nuclear solid modules follow Efimov. The condensed examples also draw on Clausen--Scholze and Andreychev.
 
-	The material on semiorthogonal decompositions and gluing in \Cref{sec:Extensions_And_Gluing} comes from Jacopo Mazzei's seminar talk (17 November 2026), following \cite[Propositions~2.76--2.78]{Efimov_Large_Categories}; parts of the proof of \Cref{prop:SOD_Functor_Categories} were completed when preparing these notes. The Tate-extension material comes from Alexander Efimov's fourth Bonn lecture (10 September 2024); the proofs of \Cref{prop:Extension_Dualizable_Tate} and \Cref{ex:Extension_Not_Dualizable} were completed using \cite{Efimov_Large_Categories,Hennion_Tate,Hermitian_II}.
+	\subsection*{\Cref{chap:Calkin_Limits_Colimits}. Calkin categories, colimits and limits}
 
-	\subsection*{\Cref{chap:Rigidity_And_Nuclear_Objects}}
+	Anton Zakrewski's talk and written notes cover colimits and the continuous Calkin category. Jacopo Mazzei's talk covers finite limits, and Christoph Winges's talk covers general limits and infinite products. The proofs were expanded from Efimov's paper. The proof of exactness of the Calkin sequence also uses Ramzi, and the argument for products of short exact sequences of small categories follows Kasprowski--Winges.
 
-	This chapter draws on Max Glaser's seminar talk (27 October 2026) and Dustin Clausen's second and third lectures (18--19 July 2023). Much of the treatment of rigidity and nuclearity was added from \cite{GaitsgoryRozenbluym2017StudyDAG,Ramzi_Locally_Rigid,Efimov_Inverse_Limits,Scholze_Analytic_Geometry,Andreychev_Thesis}. The operator-algebra presentation and the Hochschild-homology obstruction in \Cref{ex:Nuclear_Solid} were supplied from Efimov's paper. The formula in \Cref{ex:Nuclear_Liquid_Gaseous} remains explicitly attributed to the unpublished lecture notes.
+	\subsection*{\Cref{app:Categorical_Background}. Categorical background}
 
-	\subsection*{\Cref{chap:Calkin_Limits_Colimits}}
-
-	\Cref{sec:Colimits_Dualizable,sec:Continuous_Calkin,sec:Filtered_Colimits_Dualizable} are based on Anton Zakrewski's seminar talk (10 November 2026) and his notes for it. \Cref{sec:Finite_Limits_Dualizable} is based on Jacopo Mazzei's seminar talk (17 November 2026). Christoph Winges's seminar talk (24 November 2026) is the source for \Cref{sec:General_Limits_Dualizable,sec:Infinite_Products_Dualizable}. The proofs in these two sections follow \cite[Sections~2.13 and~2.15]{Efimov_Large_Categories} and were completed when preparing these notes; the products of short exact sequences of small categories are treated as in \cite[Lemma~5.2]{Kasprowski_Winges_Products}. The first two talks follow \cite[Sections~2.9--2.12]{Efimov_Large_Categories}, which was also used to complete the proofs. \Cref{prop:Epimorphisms_Localizations}, \Cref{ex:Dualizable_Kernel_DVR}, \Cref{cor:Monomorphisms_Prdual}, \Cref{rem:Dualizable_Coreflection} and part~(2) of \Cref{prop:Dualizable_Pullbacks} were added from \cite{Efimov_Large_Categories}, and the proof of \Cref{prop:Calkin_Short_Exact} uses \cite[Proposition~A.26]{Ramzi_Dualizable_Presentable}. The categorical facts preceding \Cref{prop:Compact_Objects_Filtered_Colimits} use \cite[Section~1.1.4]{lurie2016HA}; the explanations of coherence, adjunction units and conservativity of the core were added when checking these proofs. \Cref{rem:Calkin_Small_Vs_Continuous} identifies the continuous construction with the small Calkin construction in the compactly generated case, following \cite[Proposition~2.59]{Efimov_Large_Categories}.
-
-	\subsection*{\Cref{app:Categorical_Background}}
-
-	Marc Hoyois's second seminar talk (20 October 2026) contributes to \Cref{sec:Idempotent_Completeness,sec:PrL_Tensor_Products}. \Cref{sec:Filtered_Categories,sec:Accessible_Presentable,sec:Mates} and most of \Cref{sec:Idempotent_Completeness,sec:PrL_Tensor_Products} were added from the literature, using~\cite{lurie2009HTT,lurie2016HA,KellyStreet1974Mates,Riehl_Verity}.
+	Marc Hoyois's second talk supplied part of the material on idempotent completeness and tensor products of presentable categories. The rest of the appendix, including the sections on filtered categories, accessibility and mates, was added from the literature \cite{lurie2009HTT,lurie2016HA,KellyStreet1974Mates,Riehl_Verity}.
 
 	\titlespacing*{\chapter}{0pt}{50pt}{40pt}
 

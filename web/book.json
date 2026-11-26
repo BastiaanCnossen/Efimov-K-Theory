@@ -639,11 +639,6 @@
       "Almost modules over the completed algebraic closure"
     ],
     [
-      "prop:Operator_Ideal_Models",
-      "hilbert-space-models-for-operator-ideals",
-      "Hilbert-space models for operator ideals"
-    ],
-    [
       "lem:Ind_Of_Poset",
       "ind-completion-of-a-poset",
       "Ind-completion of a poset"
@@ -817,6 +812,11 @@
       "rem:Nuclear_Definition_Pi0",
       "comparing-definitions-of-nuclearity",
       "Comparing definitions of nuclearity"
+    ],
+    [
+      "def:Rigidification",
+      "rigidification",
+      "Rigidification"
     ],
     [
       "prop:Nuclear_Rigid",
@@ -1272,11 +1272,6 @@
           "Duality for presentable stable categories and Lurie’s characterization."
         ],
         [
-          "sec:Localization_Sequences_Dualizable",
-          "localization-sequences-of-dualizable-categories",
-          "Dualizability of the outer terms in strongly continuous localization sequences."
-        ],
-        [
           "sec:Omega_1_Presentability",
           "omega-one-presentability",
           "ω₁-compact objects as sequential colimits along compact morphisms.",
@@ -1361,9 +1356,19 @@
           "Rigidity, self-duality, and trace-class morphisms."
         ],
         [
+          "sec:Rigidification",
+          "rigidification",
+          "The universal property and construction by rational trace-class telescopes."
+        ],
+        [
           "sec:Nuclear_Modules",
           "nuclear-modules-and-condensed-mathematics",
-          "Nuclear objects, rigidification, and solid, liquid, and gaseous modules."
+          "Trace-class presentations of nuclear objects and their relation to rigidification."
+        ],
+        [
+          "sec:Condensed_Nuclear_Examples",
+          "examples-from-condensed-mathematics",
+          "Solid modules, Banach spaces, and liquid and gaseous modules."
         ]
       ]
     },

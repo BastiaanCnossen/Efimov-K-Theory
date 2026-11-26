@@ -8,7 +8,7 @@
 2. The same algebraic construction works for the ideal `S_0+`, the intersection of all Schatten classes. In particular, it is flat as a right module over `B(H)`, is idempotent, and its quotient map is a homological epimorphism. It is not a closed C*-ideal, so the closed-ideal theorem was not an adequate justification; the misleading cross-reference in the liquid example was removed.
 3. Both kernels carry the completed Hilbert tensor product as a commutative algebra in `Pr^dual`. Checking closure under tensor products alone would not establish this: the proof also checks the compact unit and gives a colimit-preserving right adjoint to multiplication.
 
-The full proof is in `Chapters/05_Examples.tex`, `prop:Operator_Ideal_Models`. It is a new argument added when preparing these notes, with AI assistance, for descriptions attributed to Clausen's lectures.
+On 25 November 2026 the standalone proposition was withdrawn from Chapter 5. Its statement and full proof are preserved at the end of this report. Chapters 1 and 6 cite Clausen’s second and third lectures, respectively. The archived proof was added when preparing the notes, with AI assistance.
 
 ## Argument and checks
 
@@ -49,3 +49,48 @@ The liquid formula consequently keeps the user's requested direct attribution to
 ## Validation
 
 The PDF compiled successfully with latexmk. The final log has no unresolved citations, unresolved cross-references or multiply defined labels. ChkTeX reported no errors; existing convention and typography warnings remain. `git diff --check` passed. The regenerated ledger covers 222 entries and has no unresolved explicit chapter references; regeneration does not constitute a new mathematical review of unrelated material. The new proposition is registered in `web/book.json`; the web edition has not been rebuilt in this check.
+
+## Archived statement and proof (former Chapter 5 proposition)
+
+```latex
+% Source: Clausen, Lectures 2--3 (18.--19.07.2023); the proof below was added when preparing these notes, with AI assistance.
+	\begin{proposition}
+		\label[proposition]{prop:Operator_Ideal_Models}
+		Let $A = B(\Hh)$ for a separable infinite-dimensional complex Hilbert space, and let $J$ be either $\Kk(\Hh)$ or $S_{0+} = \bigcap_{p>0} S_p(\Hh)$. Let $E$ be the additive category of separable complex Hilbert spaces and bounded linear maps, with the split exact structure, and put $D = \Ind(\D^b(E))$. Then $A \to A/J$ is a homological epimorphism. Under Morita theory, its kernel identifies with the full stable subcategory $C_J \subseteq D$ generated under colimits by sequences of Hilbert spaces whose transition maps belong to $J$. Here membership in $J$ means compactness, respectively membership in every Schatten class, also for operators between different Hilbert spaces.
+
+		The completed Hilbert tensor product restricts to a symmetric monoidal structure on $C_J$ whose unit and multiplication functors are strongly continuous. In particular, $C_J \in \CAlg(\Pr^{\dual})$.
+	\end{proposition}
+	\prooffor{prop:Operator_Ideal_Models}
+	\begin{proof}
+		We use right $A$-modules in this proof. Every separable Hilbert space is a retract of $\Hh$, and every bounded idempotent has closed image. Hence $V \mapsto \Hom_E(\Hh,V)$ identifies $E$ with the finitely generated projective right $A$-modules, and $D$ with their unbounded derived category. To recover our left-module convention, choose a conjugation $c$ on $\Hh$: the complex-linear transpose $a \mapsto ca^*c$ identifies $A\catop$ with $A$ and preserves both ideals. The intrinsic category $C_J$ itself does not require this choice.
+
+		We first record a factorization fact: given countably many $a_n \in J$, there is a positive injective $d \in J$ with $a_n \in dA$ for every $n$. Include a fixed positive injective operator in $J$ among the $a_n$, and choose $\lambda_n > 0$ sufficiently small that
+		\[
+			s = \sum_n \lambda_n a_na_n^*
+		\]
+		converges in operator norm and, when $J = S_{0+}$, in every Schatten quasi-norm $\|{-}\|_{1/m}$, $m \geq 1$. Such a choice is possible by imposing the first $n$ quasi-norm bounds on the $n$th summand, with summable bounds in the corresponding quasi-norm metrics. Then $s$ is positive and injective and belongs to $J$, as does $d=s^{1/2}$. Since $a_na_n^* \leq \lambda_n^{-1}s$, the map $dx \mapsto a_n^*x$ is bounded on the dense image of $d$. Extending it to $\Hh$ and taking adjoints gives $a_n = db_n$ with $b_n \in A$.
+
+		Consequently, $J$ is the directed union of the right ideals $dA$ with $d \in J$ positive and injective. Each $dA$ is a free right module of rank one, so $J$ is flat on the right. Also $J^2=J$: polar decomposition writes $a=u|a|^{1/2}|a|^{1/2}$ with both factors in $J$. Both ideals are closed under positive square roots; for $S_{0+}$ this follows directly from the definition by singular values. The Tor calculation in \Cref{lem:Almost_Restriction_FF} now shows that $A \to A/J$ is a homological epimorphism.
+
+		For a positive injective $d \in J$, put
+		\[
+			T_d = \bigcup_{n\geq 0} d^{1/2^n}A \subseteq J.
+		\]
+		Under the identifications $d^{1/2^n}A \cong A$, this is the sequential colimit of free modules with transition maps given by left multiplication by $d^{1/2^{n+1}} \in J$. The family of submodules $T_d$ is directed: apply the factorization fact to all the roots of two given operators to obtain $e$ with both submodules contained in $eA \subseteq T_e$. It covers $J$, so $J$ is a filtered colimit of such telescopes.
+
+		Let $L = - \otimes_A^{\bL} A/J$, and let $C = \ker(L)$. Its inclusion $i\colon C \to D$ has the colimit-preserving right adjoint $r(M)=M\otimes_A^{\bL}J$. This follows by tensoring the fiber sequence $J \to A \to A/J$ with $M$ and using that $L$ is a localization. Since $D$ is generated as a stable category under colimits by $A$, the category $C$ is generated in the same sense by $r(A)=J$. Every $J$-transition telescope lies in $C$, because applying $L$ gives a sequence with zero transition maps, whose colimit is zero. Conversely, the preceding expression for $J$ as a filtered colimit of the $T_d$ puts $J$ in the stable subcategory generated by these telescopes. Thus $C=C_J$.
+
+		The completed Hilbert tensor product extends to a colimit-preserving multiplication $\mu_D\colon D\otimes D\to D$. It preserves compact objects: it sends pairs of Hilbert spaces to Hilbert spaces, and compact objects are obtained from these by finite stable operations and retracts. Thus $\mu_D^R$ preserves colimits. Tensor products of two $J$-transition telescopes again have $J$-transitions, using the cofinal diagonal in $\N\times\N$. For $S_{0+}$, the relevant assertion follows from
+		\[
+			\sum_{i,j}(s_i(a)s_j(b))^p
+			=\left(\sum_i s_i(a)^p\right)\left(\sum_j s_j(b)^p\right)<\infty
+		\]
+		for every $p>0$; for compact operators it follows by finite-rank approximation. Hence the tensor product restricts to $C_J$. The unit $\C$ belongs to $C_J$, since its identity has finite rank, and is compact there because it is compact in $D$ and the inclusion preserves colimits.
+
+		Finally, $i\otimes i$ has right adjoint $r\otimes r$: the adjunction $i\dashv r$ is an adjunction between colimit-preserving functors, so it can be tensored. The restricted multiplication has right adjoint
+		\[
+			\mu_{C_J}^R = (r\otimes r)\mu_D^R i,
+		\]
+		as follows by applying these adjunctions to mapping spectra. All three functors preserve colimits. The unit functor is strongly continuous by compactness of $\C$, and $C_J$ is dualizable by \Cref{prop:Kernel_Homological_Epi}. This proves the last assertion.
+	\end{proof}
+```

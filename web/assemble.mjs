@@ -42,7 +42,7 @@ const styleStart=preamble.indexOf('\\tikzcdset'),styleEnd=preamble.indexOf('% Cl
 if([macroStart,macroEnd,styleStart,styleEnd].some(index=>index<0))throw new Error('Cannot extract diagram preamble');
 const diagramPreamble=`\\usepackage{amsfonts,amsmath,amssymb,mathtools,dsfont,accents,newtxtext,newtxmath,graphicx,tikz-cd,tikz}\n\\usetikzlibrary{positioning,calc,fit,patterns,decorations.markings,decorations.pathmorphing,backgrounds}\n${preamble.slice(macroStart,macroEnd)}\n${preamble.slice(styleStart,styleEnd)}`;
 const descriptions=JSON.parse(fs.readFileSync(path.join(here,'diagram-descriptions.json'),'utf8'));
-const diagrams=new Map(),cited=new Set();
+const diagrams=new Map();
 function balancedElement(text,start,tag='div'){
  const tokens=new RegExp(`<${tag}\\b[^>]*>|</${tag}>`,'g');tokens.lastIndex=start;let depth=0;
  for(let token;(token=tokens.exec(text));){depth+=token[0].startsWith('</')?-1:1;if(!depth)return {start,end:tokens.lastIndex,html:text.slice(start,tokens.lastIndex)};}
@@ -56,7 +56,6 @@ const convertedFrontMatter=frontMatter.map(item=>{
  html=html.replace(/(\s[\w-]+)='([^']*)'/g,'$1="$2"').replace(/<!--[^]*?-->/g,'');
  html=restoreTabularHtml(html);
  html=html.replace(/<h2\b[^>]*class="(?:likechapterHead|chapterHead)"[^>]*>[^]*?<\/h2>/g,'');
- for(const match of html.matchAll(/data-key="([^"]+)"/g))cited.add(match[1]);
  html=html.replace(/<table\b[^]*?<\/table>/g,table=>`<div class="source-table" tabindex="0" role="region" aria-label="Sources of the chapters">${table}</div>`);
  return {...item,html};
 });
@@ -86,7 +85,6 @@ for(const chapter of chapters){
  });
  for(const label of labels.keys())html=html.replaceAll(`id="${label.replaceAll(':','_')}"`,`id="${label}"`);
  html=html.replace(/<!--[^]*?-->/g,'');
- for(const match of html.matchAll(/data-key="([^"]+)"/g))cited.add(match[1]);
  const headers=[...html.matchAll(/<h[23]\b[^>]*class="sectionHead"[^>]*>[^]*?<\/h[23]>/g)];
  if(headers.length!==chapter.sections.length)throw new Error(`Section heading count differs in ${chapter.id}`);
  const introduction=html.slice(0,headers[0]?.index??html.length).replace(/<h2\b[^>]*class="chapterHead"[^>]*>[^]*?<\/h2>/g,'');
@@ -179,7 +177,7 @@ for(const chapter of convertedChapters){
  for(const section of chapter.bodies)write(sectionPage(section),section.title,'section',section.html,{chapter,section});
  for(const entry of chapter.entries){const section=chapter.sections.find(section=>section.id===entry.sectionId);write(entryPage(entry),entry.title,'entry',statementBlocks.get(entry.label)+(proofBlocks.get(entry.label)||[]).map(proof=>proof.html).join(''),{chapter,section,entry});}
 }
-write('references/index.html','References','references',`<ol class="reference-list">${[...cited].sort().map(key=>`<li id="bib-${key}"><span class="reference-label">[${esc(alphabeticLabel(bibliography.get(key)))}]</span><div class="reference-body">${renderReferenceHtml(bibliography.get(key))}</div></li>`).join('')}</ol>`);
+write('references/index.html','References','references',`<ol class="reference-list">${[...bibliography.keys()].sort().map(key=>`<li id="bib-${key}"><span class="reference-label">[${esc(alphabeticLabel(bibliography.get(key)))}]</span><div class="reference-body">${renderReferenceHtml(bibliography.get(key))}</div></li>`).join('')}</ol>`);
 for(const name of ['style.css','proofs.js'])fs.copyFileSync(path.join(shared,'latex-web-v1',name),path.join(output,'_assets',name==='style.css'?'content.css':name));
 fs.copyFileSync(path.join(root,`${book.pdfBase}.pdf`),path.join(output,'book.pdf'));reader.installReaderShell(output,'_assets');
 fs.writeFileSync(path.join(output,'_meta/public-contract.json'),JSON.stringify({SchemaVersion:1,WorkId:book.workId,CanonicalBase:book.canonicalBase,Routes:routes},null,2));

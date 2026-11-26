@@ -11,17 +11,19 @@ const workAbbreviations = new Map([
  ['synthetic-category-theory', 'SCT'],
  ['stable-homotopy-higher-algebra', 'SHT'],
  ['topos-theory', 'Topos'],
- ['efimov-k-theory', 'Efimov'],
+ ['efimov-k-theory', 'EKT'],
 ]);
 
-function shortenWorkCitations(source) {
- const citation = /\\href\{https:\/\/animarium\.org\/tag\/([0-9A-Z]{4})\/\}\{(?:\\emph\{[^{}]+\},\s*)?([A-Z][a-z]+)~([A-Z0-9]+(?:\.[0-9]+)+)\}/g;
- return source.replace(citation, (_, tag, kind, number) => {
+function checkWorkCitations(source) {
+ const citation = /\\href\{https:\/\/animarium\.org\/tag\/([0-9A-Z]{4})\/\}\{/g;
+ for (const match of source.matchAll(citation)) {
+  const tag = match[1];
   const route = tagRoutes.get(tag);
   const abbreviation = typeof route === 'string' && workAbbreviations.get(route.split('/')[1]);
   if (!abbreviation) throw new Error('Unknown work for Animarium citation ' + tag);
-  return '\\href{https://animarium.org/tag/' + tag + '/}{[' + abbreviation + ', ' + kind + '~' + number + ']}';
- });
+  if (!source.startsWith('[' + abbreviation + ', ', match.index + match[0].length))
+   throw new Error('Expected ' + abbreviation + ' in the citation for ' + tag);
+ }
 }
 const book=readManifest(path.join(root,'web/book.json'));
 const labels=parseAux(fs.readFileSync(path.join(root,`${book.pdfBase}.aux`),'utf8'));
@@ -32,7 +34,7 @@ const chapters=[];
 const frontMatter=[];
 const kinds='theorem|lemma|proposition|corollary|definition|remark|example|warning|observation|construction|claim|convention|notation|exercise|fact|question';
 function sourceReferences(text) {
- text = shortenWorkCitations(text);
+ checkWorkCitations(text);
  return text.replace(/\\(?:Cref|cref|eqref|ref)\{([^}]+)\}/g,(match,keys)=>keys.split(',').map(label=>{
   label=label.trim();const ref=labels.get(label);
   if(!ref?.anchor||!ref.number||ref.number.includes('?'))throw new Error(`Unresolved source reference ${label}`);

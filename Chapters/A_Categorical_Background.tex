@@ -26,7 +26,7 @@
 		\label[theorem]{thm:Filtered_Colimits_Commute_With_Small_Limits}
 		In $\An$, $\kappa$-filtered colimits commute with $\kappa$-small limits.
 		\ifdefined\HCode
-			For $\kappa=\omega$, preservation of finite limits by $\colim_I$ also characterizes filtered indexing categories $I$, see \href{https://animarium.org/tag/01AG/}{\emph{Stable Homotopy Theory and Higher Algebra}, Theorem~22.6.3}.
+			For $\kappa=\omega$, preservation of finite limits by $\colim_I$ also characterizes filtered indexing categories $I$, see \href{https://animarium.org/tag/01AG/}{[SHT, Theorem~22.6.3]}.
 		\fi
 	\end{theorem}
 
@@ -123,7 +123,7 @@
 		\label[lemma]{lem:Retract_As_Telescope}
 		Let $D$ be a category with sequential colimits, and let $X \xrightarrow{s} Y \xrightarrow{r} X$ be maps with $rs \simeq \id_X$. Then $X \simeq \colim(Y \xrightarrow{e} Y \xrightarrow{e} Y \to \dots)$, where $e = sr$.
 		\ifdefined\HCode
-			The same telescope computes $X$ even if $D$ does not admit arbitrary sequential colimits, see \href{https://animarium.org/tag/111G/}{\emph{Synthetic Category Theory}, Lemma~17.4.3}.
+			The same telescope computes $X$ even if $D$ does not admit arbitrary sequential colimits, see \href{https://animarium.org/tag/111G/}{[SCT, Lemma~17.4.3]}.
 		\fi
 	\end{lemma}
 	\prooffor{lem:Retract_As_Telescope}
@@ -190,7 +190,7 @@
 			\item If $C_0$ admits $\kappa$-small colimits, then $\Ind_{\kappa}(C_0)$ admits all small colimits, $y$ preserves $\kappa$-small colimits, and for every category $D$ admitting small colimits, restriction along $y$ induces an equivalence between colimit-preserving functors $\Ind_{\kappa}(C_0) \to D$ and functors $C_0 \to D$ preserving $\kappa$-small colimits.
 		\end{enumerate}
 		\ifdefined\HCode
-			For the equivalence in (3) when $D$ is $\kappa$-presentable, see \href{https://animarium.org/tag/1117/}{\emph{Synthetic Category Theory}, Proposition~17.3.5}.
+			For the equivalence in (3) when $D$ is $\kappa$-presentable, see \href{https://animarium.org/tag/1117/}{[SCT, Proposition~17.3.5]}.
 		\fi
 	\end{theorem}
 
@@ -217,7 +217,7 @@
 		\label[theorem]{thm:Adjoint_Functor_Theorem}
 		Let $F\colon C \to D$ be a functor between presentable categories. Then $F$ admits a right adjoint if and only if it preserves small colimits, and $F$ admits a left adjoint if and only if it is accessible and preserves small limits.
 		\ifdefined\HCode
-			For the right adjoint criterion, the target need only be locally small and admit small colimits, see \href{https://animarium.org/tag/117F/}{\emph{Synthetic Category Theory}, Proposition~21.2.16}.
+			For the right adjoint criterion, the target need only be locally small and admit small colimits, see \href{https://animarium.org/tag/117F/}{[SCT, Proposition~21.2.16]}.
 		\fi
 	\end{theorem}
 
@@ -258,7 +258,7 @@
 	Recall from \cite[Section~4.4.5]{lurie2009HTT} that a category $C$ is \emph{idempotent complete} if every idempotent in $C$ splits. We will use the following characterization, see \cite[Section~5.1.4]{lurie2009HTT}: a locally small category $C$ is idempotent complete if and only if the essential image of the Yoneda embedding $C \hookrightarrow \Fun(C\catop,\widehat{\An})$ is closed under retracts, if and only if the essential image of $C\catop \hookrightarrow \Fun(C,\widehat{\An})$ is closed under retracts. Every category admitting sequential colimits is idempotent complete \cite[Section~4.4.5]{lurie2009HTT} (compare \Cref{lem:Retract_As_Telescope}); this applies in particular to presentable categories and to all categories admitting filtered colimits. Moreover, every accessible category is idempotent complete \cite[Chapter~5]{lurie2009HTT}, and every small category $C_0$ admits an idempotent completion $C_0 \hookrightarrow C_0^{\idem}$, which may be computed as the full subcategory of $\PSh(C_0)$ spanned by retracts of representables.
 	\ifdefined\HCode
 		\par
-		For the splitting of idempotents by sequential colimits, see \href{https://animarium.org/tag/111F/}{\emph{Synthetic Category Theory}, Lemma~17.4.2}. For a small category $C_0$ with $\kappa$-small colimits, \href{https://animarium.org/tag/111H/}{Proposition~17.4.4} identifies the retracts of representables with the $\kappa$-compact objects of $\Ind_{\kappa}(C_0)$, and \href{https://animarium.org/tag/111P/}{Remark~17.4.13} describes the resulting idempotent completion. For a small stable category this gives $\Ind(C_0)^{\omega}$, as in \href{https://animarium.org/tag/115B/}{Construction~19.6.14}.
+		For the splitting of idempotents by sequential colimits, see \href{https://animarium.org/tag/111F/}{[SCT, Lemma~17.4.2]}. For a small category $C_0$ with $\kappa$-small colimits, \href{https://animarium.org/tag/111H/}{[SCT, Proposition~17.4.4]} identifies the retracts of representables with the $\kappa$-compact objects of $\Ind_{\kappa}(C_0)$, and \href{https://animarium.org/tag/111P/}{[SCT, Remark~17.4.13]} describes the resulting idempotent completion. For a small stable category this gives $\Ind(C_0)^{\omega}$, as in \href{https://animarium.org/tag/115B/}{[SCT, Construction~19.6.14]}.
 	\fi
 
 	% Source: Talk 2 (Marc Hoyois, 20.10.2026)
@@ -317,7 +317,7 @@
 			GU^R \to V^RVGU^R \overset{\alpha}{\simeq} V^RG'UU^R \to V^RG'.
 		\]
 		\ifdefined\HCode
-			For a pullback square, the first formula gives the Beck--Chevalley transformation used in \href{https://animarium.org/tag/010G/}{\emph{Stable Homotopy Theory and Higher Algebra}, Definition~15.1.1}. Left adjointability there requires this mate to be invertible.
+			For a pullback square, the first formula gives the Beck--Chevalley transformation used in \href{https://animarium.org/tag/010G/}{[SHT, Definition~15.1.1]}. Left adjointability there requires this mate to be invertible.
 		\fi
 	\end{construction}
 
@@ -392,7 +392,7 @@
 		\]
 		where the right-hand side denotes the full subcategory of $\Fun(C\catop,D)$ spanned by the functors preserving small limits.
 		\ifdefined\HCode
-			For a construction of $C\otimes D$ by localizing a presheaf category and verifying the universal property for functors preserving colimits separately, see \href{https://animarium.org/tag/015C/}{\emph{Stable Homotopy Theory and Higher Algebra}, Proposition~18.1.5}.
+			For a construction of $C\otimes D$ by localizing a presheaf category and verifying the universal property for functors preserving colimits separately, see \href{https://animarium.org/tag/015C/}{[SHT, Proposition~18.1.5]}.
 		\fi
 	\end{theorem}
 
@@ -418,7 +418,7 @@
 			\Ind(C_0) \otimes D \simeq \Fun^{\ex}(C_0\catop,D) \simeq \Fun^{\colim}(\Ind(C_0\catop),D).
 		\]
 		\ifdefined\HCode
-			Taking $D=\An$ recovers the description of $\Ind(C_0)$ by left exact presheaves in \href{https://animarium.org/tag/1128/}{\emph{Synthetic Category Theory}, Remark~18.2.7}.
+			Taking $D=\An$ recovers the description of $\Ind(C_0)$ by left exact presheaves in \href{https://animarium.org/tag/1128/}{[SCT, Remark~18.2.7]}.
 		\fi
 	\end{proposition}
 	\prooffor{prop:Tensor_With_Ind}

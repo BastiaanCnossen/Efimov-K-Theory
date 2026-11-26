@@ -104,10 +104,13 @@ Reviewed on 19 November 2026. See [the proof and reference report](Review/talks-
 - [x] Andreychev's thesis: checked. Efimov's "Satz 3.8" is Lemma 3.8 (C(S,R) nuclear); Korollar 3.14 correct. Rational descent in Chapter 1 now cites Satz 4.2 (Nuk) and Satz 5.12 (Nisnevich descent for F^cont), with the sheafy analytic hypothesis added.
 - [x] Added the Hochschild-homology obstruction to compact generation for `Nuc^CS(Z_p)`, following Efimov, Corollary 7.20(i) and the discussion after Remark 7.21.
 - [x] `ex:Nuclear_Banach`: rewritten with references (Andreychev Lemma 3.8; Clausen–Scholze, *Analytic geometry*, Thm 14.10).
-- [ ] Liquid operator-algebra formula in `ex:Nuclear_Liquid_Gaseous`: confirmed in the raw notes of Clausen’s third lecture (19 July 2023), but no published proof located. The text now states explicitly that this is a lecture claim without a proof here. Author decision: keep this attribution, supply another source, or omit the formula.
+- [x] Keep the liquid operator-algebra formula in Chapter 6 with direct attribution to Clausen’s third lecture (19 July 2023). The independent proof question is recorded below.
 
 ## Lecture-model proof checks (19 November 2026)
 
-1. [x] Prove the intrinsic compact-operator model, including stable closure, module handedness and strong continuity of its monoidal structure. See `prop:Operator_Ideal_Models`.
+1. [x] Prove the intrinsic compact-operator model, including stable closure, module handedness and strong continuity of its monoidal structure. The [proof-check report](Review/lecture-model-proof-checks.md) preserves the complete former Chapter 5 argument.
 2. [x] Prove that the all-Schatten ideal is flat and idempotent, and construct its kernel and Hilbert telescope model with strongly continuous multiplication.
 3. [ ] Prove that realization of the all-Schatten kernel in derived liquid modules is fully faithful with essential image the rigidification. The precise missing statements and an invalid shortcut are recorded in [the proof-check report](Review/lecture-model-proof-checks.md).
+
+- [ ] At the next Animarium release, retire tag 11BC and its former Chapter 5 entry and section anchor with a withdrawal notice pointing readers to the compact-operator example in Chapter 1 (tag 117X) and the liquid example in Chapter 6 (tag 11CM). Refresh any affected Chapter 5 display numbers when adopting the new edition.
+- [ ] When publishing the Chapter 6 split, preserve the four former Section 6.2 fragment links for `ex:Nuclear_Solid`, `ex:Nuclear_Banach`, `ex:Nuclear_Liquid_Gaseous`, and `rem:Nuclear_Descent` as aliases to the corresponding anchors in the condensed examples section (now 6.4). Redirect the former section fragment for `rem:Rigidification_Via_Idempotent_Ideals` to the rigidification section (now 6.2).

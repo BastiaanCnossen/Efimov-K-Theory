@@ -411,21 +411,29 @@
 
 	\begin{theorem}[{\cite[Theorem~2.91]{Efimov_Large_Categories}}]
 		\label[theorem]{thm:General_Limits_Dualizable}
-		The category $\Pr^{\dual}$ admits all small limits. More precisely, let $i \mapsto C_i$ be a small diagram in $\Pr^{\dual}$, and put $A_i := C_i^{\kappa}$ and $B_i := \Calk^{\cont}_{\kappa}(C_i)$. Then
+		The category $\Pr^{\dual}$ admits all small limits. More precisely, let $i \mapsto C_i$ be a small diagram in $\Pr^{\dual}$. Then
 		\[
-			\lim^{\dual}_i C_i \simeq \ker^{\dual}\Big(\Ind\big(\lim_i A_i\big) \to \Ind\big(\lim_i B_i\big)\Big),
+			\lim^{\dual}_i C_i \simeq \ker^{\dual}\Big(\Ind\big(\lim_i C_i^{\kappa}\big) \to \Ind\big(\lim_i \Calk^{\cont}_{\kappa}(C_i)\big)\Big),
 		\]
-		where the limits on the right are computed in $\Cat_{\perf}$, and the functor is induced by the quotient functors $p_i\colon A_i \to B_i$.
+		where the limits on the right are computed in $\Cat_{\perf}$, and the functor is induced by the quotient functors $p_i\colon C_i^{\kappa} \to \Calk^{\cont}_{\kappa}(C_i)$.
 	\end{theorem}
 	\prooffor{thm:General_Limits_Dualizable}
 	\begin{proof}
-		\emph{Step 1: the ambient category.} Passing to $\kappa$-compact objects identifies $\PrL_{\st,\kappa}$ with the category of small idempotent complete stable categories with $\kappa$-small colimits and exact functors preserving them \cite[Proposition~5.5.7.10]{lurie2009HTT}. Limits in the latter category are computed in $\Cat$, so $\lim_i C_i$ in $\PrL_{\st,\kappa}$ is the $\kappa$-compactly generated category with $\kappa$-compact objects $\lim_i A_i$. Since right adjoints preserve limits, \Cref{prop:Dualizable_Ind_Adjunction} shows that $M := \Ind(\lim_i A_i)$ is a limit of the diagram $i \mapsto \Ind(A_i)$ in $\Pr^{\dual}$.
+		\emph{Step 1: the ambient category.} Passing to $\kappa$-compact objects identifies $\PrL_{\st,\kappa}$ with the category of small idempotent complete stable categories with $\kappa$-small colimits and exact functors preserving them \cite[Proposition~5.5.7.10]{lurie2009HTT}. Limits in the latter category are computed in $\Cat$, so $\lim_i C_i$ in $\PrL_{\st,\kappa}$ is the $\kappa$-compactly generated category with $\kappa$-compact objects $\lim_i C_i^{\kappa}$. Since right adjoints preserve limits, \Cref{prop:Dualizable_Ind_Adjunction} shows that $M := \Ind(\lim_i C_i^{\kappa})$ is a limit of the diagram $i \mapsto \Ind(C_i^{\kappa})$ in $\Pr^{\dual}$.
 
-		\emph{Step 2: the limit.} Let $T$ be dualizable. A strongly continuous functor $G\colon T \to \Ind(A_i)$ factors through $\hat{y}\colon C_i \hookrightarrow \Ind(A_i)$ if and only if its composite with $\Ind(p_i)$ vanishes, since $C_i$ is the kernel of $\Ind(p_i)$; in this case, the factorization is strongly continuous, as its right adjoint is $G^R \circ \hat{y}$. Since $\hat{y}$ is fully faithful, $\Map_{\Pr^{\dual}}(T,C_i)$ is therefore the union of the path components of $\Map_{\Pr^{\dual}}(T,\Ind(A_i))$ consisting of functors with vanishing composite to $\Ind(B_i)$. Passing to the limit and using Step 1, we find that $\lim_i \Map_{\Pr^{\dual}}(T,C_i)$ is the union of the path components of $\Map_{\Pr^{\dual}}(T,M)$ consisting of those $H$ for which each composite $T \to M \to \Ind(A_i) \to \Ind(B_i)$ vanishes.
+		\emph{Step 2: the limit.} Let $T$ be dualizable. A strongly continuous functor $G\colon T \to \Ind(C_i^{\kappa})$ factors through $\hat{y}\colon C_i \hookrightarrow \Ind(C_i^{\kappa})$ if and only if its composite with $\Ind(p_i)$ vanishes, since $C_i$ is the kernel of $\Ind(p_i)$; in this case, the factorization is strongly continuous, as its right adjoint is $G^R \circ \hat{y}$. Full faithfulness of $\hat{y}$ identifies $\Map_{\Pr^{\dual}}(T,C_i)$ with the union of components cut out by this vanishing condition. Passing to the limit and using Step 1, we see that $\lim_i \Map_{\Pr^{\dual}}(T,C_i)$ consists of the components of $\Map_{\Pr^{\dual}}(T,M)$ whose projection to each $\Ind(C_i^\kappa)$ is killed by $\Ind(p_i)$.
 
-		Let $K \subseteq M$ be the full subcategory of objects whose image in $\Ind(B_i)$ vanishes for every $i$. It is a full stable subcategory closed under colimits, so by \Cref{lem:Largest_Dualizable_Subcategory} it has a largest full subcategory $L$ which is dualizable and whose inclusion into $M$ is strongly continuous. A strongly continuous functor $H\colon T \to M$ satisfies the above condition if and only if $\Im(H) \subseteq K$. By \Cref{cor:Image_Dualizable} and the maximality of $L$, this is the case if and only if $\Im(H) \subseteq L$, i.e.\ if and only if $H$ factors through $L$; the factorization is then strongly continuous, as in the proof of \Cref{prop:Dualizable_Kernel}. Hence $\Map_{\Pr^{\dual}}(T,L) \simeq \lim_i \Map_{\Pr^{\dual}}(T,C_i)$, naturally in $T$, and $L$ is a limit of the diagram $i \mapsto C_i$ in $\Pr^{\dual}$.
+		Let $K \subseteq M$ be the full subcategory of objects whose projection to $\Ind(C_i^\kappa)$ is killed by $\Ind(p_i)$ for every $i$. It is a full stable subcategory closed under colimits, so by \Cref{lem:Largest_Dualizable_Subcategory} it has a largest full subcategory $L$ which is dualizable and whose inclusion into $M$ is strongly continuous. A strongly continuous functor $H\colon T \to M$ satisfies the above condition if and only if $\Im(H) \subseteq K$. By \Cref{cor:Image_Dualizable} and the maximality of $L$, this is the case if and only if $\Im(H) \subseteq L$, i.e.\ if and only if $H$ factors through $L$; the factorization is then strongly continuous, as in the proof of \Cref{prop:Dualizable_Kernel}. Hence $\Map_{\Pr^{\dual}}(T,L) \simeq \lim_i \Map_{\Pr^{\dual}}(T,C_i)$, naturally in $T$, and $L$ is a limit of the diagram $i \mapsto C_i$ in $\Pr^{\dual}$.
 
-		\emph{Step 3: the kernel formula.} Let $\Phi\colon M \to \Ind(\lim_i B_i)$ be the functor induced by the $p_i$. Its composite with $\Ind$ of the projection $\lim_i B_i \to B_i$ agrees with the composite $M \to \Ind(A_i) \to \Ind(B_i)$. We claim that for a strongly continuous functor $H\colon T \to M$ from a dualizable category, $\Phi H \simeq 0$ if and only if all composites $T \to \Ind(B_i)$ vanish. One direction is clear. For the other, apply Step 2 to the diagram $i \mapsto \Ind(B_i)$, whose limit $L' := \lim^{\dual}_i \Ind(B_i)$ is a full subcategory of $M' := \Ind(\lim_i \Ind(B_i)^{\kappa})$. The functor $\Ind(\lim_i B_i) \to L'$ corresponding to the cone of projections is fully faithful: by the explicit description of the adjunction of \Cref{prop:Dualizable_Ind_Adjunction}, and since $\hat{y} = \Ind(y)$ on compactly generated categories by \Cref{lem:Compact_Iff_Yhat_Is_Y}, its composite with $L' \subseteq M'$ is $\Ind$ applied to the limit of the fully faithful functors $y\colon B_i \to \Ind(B_i)^{\kappa}$. So if all composites $T \to \Ind(B_i)$ vanish, then the composite $T \to \Ind(\lim_i B_i) \to L'$ vanishes by the universal property of $L'$, and hence so does $\Phi H$.
+		\emph{Step 3: the kernel formula.} Let $\Phi\colon M \to \Ind(\lim_i \Calk^{\cont}_{\kappa}(C_i))$ be the functor induced by the $p_i$. We must show that a strongly continuous functor $H\colon T\to M$ from a dualizable category satisfies $\Phi H\simeq 0$ precisely when it satisfies the componentwise vanishing condition of Step 2.
+
+		To see why we can test vanishing componentwise here, consider any small diagram $i\mapsto D_i$ in $\Cat_{\perf}$. Its projections induce a fully faithful functor
+		\[
+			\Ind(\lim_i D_i)\longrightarrow \lim\nolimits^{\dual}_i\Ind(D_i).
+		\]
+		Indeed, Step 2 embeds the target fully faithfully in $\Ind(\lim_i \Ind(D_i)^\kappa)$. By the explicit adjunction of \Cref{prop:Dualizable_Ind_Adjunction} and the formula $\hat y=\Ind(y)$ for compactly generated categories (\Cref{lem:Compact_Iff_Yhat_Is_Y}), the composite is $\Ind$ applied to the limit of the Yoneda embeddings $D_i\to\Ind(D_i)^\kappa$. Limits of fully faithful functors are fully faithful, and $\Ind$ preserves full faithfulness.
+
+		Apply this observation to the small Calkin categories $\Calk^{\cont}_{\kappa}(C_i)$. After composing $\Phi H$ with the displayed functor, its $i$th component is the projection of $H$ to $\Ind(C_i^\kappa)$ followed by $\Ind(p_i)$. These components vanish for all $i$ precisely when the functor to the limit vanishes. Full faithfulness then gives the desired criterion for $\Phi H$.
 
 		Now let $E \subseteq M$ be a full subcategory which is dualizable and whose inclusion $j$ into $M$ is strongly continuous. Applying the claim to $H = j$, we see that $E \subseteq K$ if and only if $E \subseteq \ker(\Phi)$. Hence $L = \ker^{\dual}(\Phi)$.
 	\end{proof}
@@ -489,17 +497,17 @@
 
 	\begin{corollary}[{\cite[Proposition~2.103]{Efimov_Large_Categories}}]
 		\label[corollary]{cor:Products_Dualizable_Calkin}
-		Let $(C_i)_{i \in I}$ be a family of dualizable categories, and put $A_i := C_i^{\kappa}$ and $B_i := \Calk^{\cont}_{\kappa}(C_i)$. Then there is a short exact sequence
+		Let $(C_i)_{i \in I}$ be a family of dualizable categories. Then there is a short exact sequence
 		\[
-			\prod\nolimits^{\dual}_i C_i \to \Ind\Big(\prod_i A_i\Big) \to \Ind\Big(\prod_i B_i\Big).
+			\prod\nolimits^{\dual}_i C_i \to \Ind\Big(\prod_i C_i^{\kappa}\Big) \to \Ind\Big(\prod_i \Calk^{\cont}_{\kappa}(C_i)\Big).
 		\]
 		If each $C_i$ is compactly generated, then $\prod^{\dual}_i C_i \simeq \Ind(\prod_i C_i^{\omega})$. In other words, $\Ind\colon \Cat_{\perf} \to \Pr^{\dual}$ preserves products.
 	\end{corollary}
 	\prooffor{cor:Products_Dualizable_Calkin}
 	\begin{proof}
-		The quotient functors $p_i\colon A_i \to B_i$ are homological epimorphisms, since $\Ind(p_i)$ is the localization in the Calkin sequence of $C_i$. By \Cref{prop:Products_Small_Projections}(2), the functor $\Ind(\prod_i p_i)$ is a strongly continuous localization. By \Cref{lem:Strong_Continuity_Localization_Sequence} and \Cref{prop:Localization_Sequence_Dualizable}, its kernel is dualizable with strongly continuous inclusion, so it agrees with the dualizable kernel, which is $\prod^{\dual}_i C_i$ by \Cref{thm:General_Limits_Dualizable}.
+		The quotient functors $p_i\colon C_i^{\kappa} \to \Calk^{\cont}_{\kappa}(C_i)$ are homological epimorphisms, since $\Ind(p_i)$ is the localization in the Calkin sequence of $C_i$. By \Cref{prop:Products_Small_Projections}(2), the functor $\Ind(\prod_i p_i)$ is a strongly continuous localization. By \Cref{lem:Strong_Continuity_Localization_Sequence} and \Cref{prop:Localization_Sequence_Dualizable}, its kernel is dualizable with strongly continuous inclusion, so it agrees with the dualizable kernel, which is $\prod^{\dual}_i C_i$ by \Cref{thm:General_Limits_Dualizable}.
 
-		If each $C_i$ is compactly generated, then $C_i^{\omega} \to A_i \to B_i$ is short exact by \Cref{rem:Calkin_Small_Vs_Continuous}. By \Cref{prop:Products_Small_Projections}(1), so is $\prod_i C_i^{\omega} \to \prod_i A_i \to \prod_i B_i$, and applying \Cref{thm:Thomason_Neeman}(1) identifies the kernel of $\Ind(\prod_i p_i)$ with $\Ind(\prod_i C_i^{\omega})$.
+		If each $C_i$ is compactly generated, then $C_i^{\omega} \to C_i^{\kappa} \to \Calk^{\cont}_{\kappa}(C_i)$ is short exact by \Cref{rem:Calkin_Small_Vs_Continuous}. By \Cref{prop:Products_Small_Projections}(1), their product is short exact, and applying \Cref{thm:Thomason_Neeman}(1) identifies the kernel of $\Ind(\prod_i p_i)$ with $\Ind(\prod_i C_i^{\omega})$.
 	\end{proof}
 
 	To show that products preserve short exact sequences, we use duality. For a dualizable category $C$ we use the model $C^{\vee} = \Fun^{\colim}(C,\Sp)$ of \Cref{sec:Dualizable_Categories}, and for a colimit-preserving functor $F\colon C \to D$ we write $F^{\vee} := - \circ F\colon D^{\vee} \to C^{\vee}$. For a small stable category $A$ we have $\Ind(A)^{\vee} \simeq \Fun^{\ex}(A,\Sp) \simeq \Ind(A\catop)$ by \Cref{thm:Ind_Kappa_Universal_Property}(3) and \Cref{cor:Ind_As_Exact_Functors}. For an exact functor $f\colon A \to A'$, the functor $\Ind(f)^{\vee}$ is restriction along $f$, i.e.\ the right adjoint of $\Ind(f\catop)$.
@@ -515,17 +523,20 @@
 
 	\begin{lemma}[{\cite[Lemma~2.104]{Efimov_Large_Categories}}]
 		\label[lemma]{lem:Dual_Product_Embedding}
-		Let $(C_i)_{i \in I}$ be a family of dualizable categories, let $A_i := C_i^{\kappa}$, and let $j\colon \prod^{\dual}_i C_i \hookrightarrow \Ind(\prod_i A_i)$ be the inclusion of \Cref{cor:Products_Dualizable_Calkin}. Then the functor
+		Let $(C_i)_{i \in I}$ be a family of dualizable categories, and let $j\colon \prod^{\dual}_i C_i \hookrightarrow \Ind(\prod_i C_i^{\kappa})$ be the inclusion of \Cref{cor:Products_Dualizable_Calkin}. Then the functor
 		\[
-			\Phi := (j^R)^{\vee}\colon \Big(\prod\nolimits^{\dual}_i C_i\Big)^{\vee} \to \Ind\Big(\prod_i A_i\Big)^{\vee} \simeq \Ind\Big(\prod_i A_i\catop\Big)
+			\Phi := (j^R)^{\vee}\colon \Big(\prod\nolimits^{\dual}_i C_i\Big)^{\vee} \to \Ind\Big(\prod_i C_i^{\kappa}\Big)^{\vee} \simeq \Ind\Big(\prod_i (C_i^{\kappa})\catop\Big)
 		\]
-		is fully faithful, and its essential image is generated under colimits by the objects $E_x := P_{A\catop}\big((\ev_{C_i}(-,x_i)|_{A_i})_i\big)$ for $x_i \in C_i^{\vee}$, i.e.\ the functors $(a_i)_i \mapsto \prod_i x_i(a_i)$ on $\prod_i A_i$.
+		is fully faithful. Its essential image is generated under colimits by the exact functors $E_x\colon \prod_i C_i^{\kappa}\to\Sp$ given by
+		\[
+			E_x((a_i)_i) = \prod_i x_i(a_i), \qquad x=(x_i)_i,\quad x_i\in C_i^{\vee}.
+		\]
 	\end{lemma}
 	\prooffor{lem:Dual_Product_Embedding}
 	\begin{proof}
-		The functor $\Phi$ is fully faithful by \Cref{lem:Duality_Localizations}. Let $p := \Ind(\prod_i p_i)$ be the localization of \Cref{cor:Products_Dualizable_Calkin}. For $X \in \Ind(\prod_i A_i)$ we have a cofiber sequence $jj^RX \to X \to p^Rp X$. Since $\Phi$ is fully faithful with right adjoint $j^{\vee}$, its essential image consists of those $\varphi$ for which the counit $\varphi jj^R \to \varphi$ is an equivalence, i.e.\ for which $\varphi p^R \simeq 0$. By the discussion preceding \Cref{lem:Duality_Localizations}, $(p^R)^{\vee}$, as the left adjoint of $p^{\vee}$, is identified with $\Ind(\prod_i p_i\catop)$. So the essential image of $\Phi$ is $\ker(\Ind(\prod_i p_i\catop))$. The same argument for a single $C_i$ identifies $C_i^{\vee}$, via $(\hat{y}^R)^{\vee} = - \circ \colim$, with $\ker(\Ind(p_i\catop))$; this sends $x$ to $x \circ \colim$, whose restriction to $A_i$ is $x|_{A_i}$.
+		The functor $\Phi$ is fully faithful by \Cref{lem:Duality_Localizations}. Let $p := \Ind(\prod_i p_i)$ be the localization of \Cref{cor:Products_Dualizable_Calkin}. For $X \in \Ind(\prod_i C_i^{\kappa})$ we have a cofiber sequence $jj^RX \to X \to p^Rp X$. Since $\Phi$ is fully faithful with right adjoint $j^{\vee}$, its essential image consists of those $\varphi$ for which the counit $\varphi jj^R \to \varphi$ is an equivalence, i.e.\ for which $\varphi p^R \simeq 0$. By the discussion preceding \Cref{lem:Duality_Localizations}, $(p^R)^{\vee}$, as the left adjoint of $p^{\vee}$, is identified with $\Ind(\prod_i p_i\catop)$. So the essential image of $\Phi$ is $\ker(\Ind(\prod_i p_i\catop))$. The same argument for a single $C_i$ identifies $C_i^{\vee}$, via $(\hat{y}^R)^{\vee} = - \circ \colim$, with $\ker(\Ind(p_i\catop))$; this sends $x$ to $x \circ \colim$, whose restriction to $C_i^{\kappa}$ is $x|_{C_i^{\kappa}}$.
 
-		A functor $f$ in $\Cat_{\perf}$ is a homological epimorphism if and only if it is an epimorphism in $\Cat_{\perf}$: indeed, $\Ind\colon \Cat_{\perf} \to \PrL_{\omega,\st}$ is an equivalence, pushouts in $\PrL_{\omega,\st}$ are computed in $\PrL_{\st}$ (as in \Cref{prop:Prdual_Colimits}), and we can apply \Cref{prop:Epimorphisms_Localizations}. Since $(-)\catop$ is an automorphism of $\Cat_{\perf}$, the functors $p_i\catop$ are homological epimorphisms as well \cite[Remark~1.10]{Efimov_Large_Categories}. The claim now follows from \Cref{prop:Products_Small_Projections}(2), applied to the $p_i\catop$.
+		A functor $f$ in $\Cat_{\perf}$ is a homological epimorphism if and only if it is an epimorphism in $\Cat_{\perf}$: indeed, $\Ind\colon \Cat_{\perf} \to \PrL_{\omega,\st}$ is an equivalence, pushouts in $\PrL_{\omega,\st}$ are computed in $\PrL_{\st}$ (as in \Cref{prop:Prdual_Colimits}), and we can apply \Cref{prop:Epimorphisms_Localizations}. Since $(-)\catop$ is an automorphism of $\Cat_{\perf}$, the functors $p_i\catop$ are homological epimorphisms as well \cite[Remark~1.10]{Efimov_Large_Categories}. By \Cref{prop:Products_Small_Projections}(2), the kernel of $\Ind(\prod_i p_i\catop)$ is generated by applying the product comparison functor of \Cref{lem:Products_Ind_Comparison} to families of these restrictions $x_i|_{C_i^{\kappa}}$. Its pointwise formula gives exactly the functors $E_x$.
 	\end{proof}
 
 	\begin{proposition}[{\cite[Propositions~2.105 and~2.106]{Efimov_Large_Categories}}]

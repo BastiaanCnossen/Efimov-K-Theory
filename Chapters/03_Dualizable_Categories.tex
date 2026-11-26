@@ -98,7 +98,7 @@
 		\[
 			\hat{y} = \Ind(y_{C_0})\colon \Ind(C_0) \to \Ind(\Ind(C_0)),
 		\]
-		where $y_{C_0}\colon C_0 \hookrightarrow \Ind(C_0) = C$ is the Yoneda embedding. When $C$ is cocomplete, we may take $C_0=C^{\omega}$ by \href{https://animarium.org/tag/01BJ/}{\emph{Stable Homotopy Theory and Higher Algebra}, Proposition~23.3.7}.
+		where $y_{C_0}\colon C_0 \hookrightarrow \Ind(C_0) = C$ is the Yoneda embedding. When $C$ is cocomplete, we may take $C_0=C^{\omega}$ by \href{https://animarium.org/tag/01BJ/}{[SHT, Proposition~23.3.7]}.
 	\end{example}
 
 	% Source: written from the literature (Johnstone--Joyal; Gierz et al.)
@@ -329,13 +329,10 @@
 		\end{itemize}
 	\end{remark}
 
-	\section{Localization sequences of dualizable categories}
-	\label[section]{sec:Localization_Sequences_Dualizable}
-
 	Localization sequences are the main tool for computing continuous K-theory, so we need to understand how dualizability behaves in them. One direction is easy: dualizability passes from the middle term of a strongly continuous localization sequence to the two outer terms. The converse fails; the gluing criterion and a counterexample are developed in \Cref{sec:Extensions_And_Gluing}, after the compact-morphism criteria needed for their proofs.
 
 	% Source: Clausen, Lecture 1 (17.07.2023)
-	\begin{proposition}
+	\begin{proposition}[Localization sequences of dualizable categories]
 		\label[proposition]{prop:Localization_Sequence_Dualizable}
 		Let $K \xrightarrow{i} D \xrightarrow{p} E$ be a strongly continuous localization sequence in $\PrL_{\st}$ (\Cref{def:Localization_Sequence_PrL}). If $D$ is dualizable, then so are $K$ and $E$, and the sequence is a sequence in $\Pr^{\dual}$.
 	\end{proposition}
@@ -386,11 +383,11 @@
 
 		For $\implies$, consider $x \in C$.
 
-		\emph{Observation:} We may write $\hat{y}(x) = \colim_{i \in I} y(x_i)$ for $I$ a filtered poset. (Any filtered category admits a cofinal map from a filtered poset, see \Cref{thm:Filtered_Posets_Cofinal}.) By applying $\colim\colon \Ind(C) \to C$, we get $x = \colim_{i \in I} x_i$. Since $\hat{y}$ preserves colimits, we get $\hat{y}(x) = \colim_{i \in I} \hat{y}(x_i)$. Since each $y(x_i)$ is compact, it follows that for each $i \in I$ there exists some $j \geq i$ such that the map $y(x_i) \to y(x_j)$ factors through $\hat{y}(x_j) \to y(x_j)$.
+		\emph{Observation:} Write $\hat{y}(x) = \colim_{i \in I} y(x_i)$ for a filtered category $I$. By applying $\colim\colon \Ind(C) \to C$, we get $x = \colim_{i \in I} x_i$. Since $\hat{y}$ preserves colimits, we get $\hat{y}(x) = \colim_{i \in I} \hat{y}(x_i)$. Since each $y(x_i)$ is compact, it follows that for each $i \in I$ there exists a morphism $i \to j$ in $I$ such that the map $y(x_i) \to y(x_j)$ factors through $\hat{y}(x_j) \to y(x_j)$.
 
 		Now, assume $x$ is $\omega_1$-compact. Then also $\hat{y}(x)$ is $\omega_1$-compact in $\Ind(C)$: by adjunction this follows because its right adjoint $\colim$ preserves $\omega_1$-filtered colimits. Thus we may write $\hat{y}(x) = \colim_n y(x_n)$ by \Cref{prop:Omega_1_Compact_In_Ind} (applied to $\Ind(C^{\lambda}) \subseteq \Ind(C)$ for $\lambda$ large enough that $\hat{y}(x) \in \Ind(C^{\lambda})$, see \Cref{constr:Ind_Large}). By the previous observation we see that for each $n$ there exists some $k \geq n$ such that the map $y(x_n) \to y(x_k)$ factors through $\hat{y}(x_k)$. By reindexing, we may assume $k = n+1$, giving the claim.
 
-		Finally, we prove (1). As in the proof of \Cref{thm:Compactly_Assembled_Retract}, choose a regular cardinal $\lambda$ such that $\hat{y}(C) \subseteq \Ind(C^{\lambda})$, with $C^{\lambda}$ essentially small. For $x \in C$, choose a presentation $\hat{y}(x) = \colim_{i\in I}y(x_i)$ with $I$ a small filtered poset and $x_i \in C^{\lambda}$. By the observation above, choose for each $i$ an element $s(i) \geq i$ such that $y(x_i) \to y(x_{s(i)})$ factors through $\hat{y}(x_{s(i)})$.
+		Finally, we prove (1). As in the proof of \Cref{thm:Compactly_Assembled_Retract}, choose a regular cardinal $\lambda$ such that $\hat{y}(C) \subseteq \Ind(C^{\lambda})$, with $C^{\lambda}$ essentially small. For $x \in C$, choose a presentation $\hat{y}(x) = \colim_{i\in I}y(x_i)$ with $I$ a small filtered category and $x_i \in C^{\lambda}$. Since every filtered category admits a cofinal functor from a filtered poset (\Cref{thm:Filtered_Posets_Cofinal}), we may assume that $I$ is a filtered poset. By the observation above, choose for each $i$ an element $s(i) \geq i$ such that $y(x_i) \to y(x_{s(i)})$ factors through $\hat{y}(x_{s(i)})$.
 
 		Let $\Sigma_s$ be the poset of nonempty countable directed subsets $Q \subseteq I$ closed under $s$, ordered by inclusion. Every countable subset of $I$ is contained in such a $Q$: start with that subset and one element of $I$, and repeatedly add the chosen successors and upper bounds for every pair. The union after countably many steps has the required properties. Applying this to countable unions shows that $\Sigma_s$ is $\omega_1$-filtered and cofinal in the poset of all countable directed subsets. By \Cref{prop:Colimits_Over_Countable_Subposets},
 		\[
@@ -412,7 +409,7 @@
 		\[
 			x \simeq \colim_{Q \in \Sigma'} x_Q, \qquad x_Q := \colim_{q \in Q} d_q.
 		\]
-		For $Q \in \Sigma'$ we have $L(x_Q) \simeq \colim_{q \in Q} L(d_q) \simeq 0$, since every transition map is eventually nullhomotopic, so $x_Q \in C$. Moreover, $x_Q$ is a countable colimit of compact objects, hence $\omega_1$-compact in $D$ (\Cref{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}), and hence in $C$. So every object of $C$ is an $\omega_1$-filtered colimit of $\omega_1$-compact objects.
+		For $Q \in \Sigma'$ we claim that $L(x_Q) \simeq \colim_{q \in Q} L(d_q)$ vanishes, so that $x_Q \in C$. Since $E$ is compactly generated and its compact objects are closed under shifts, it suffices to show that $\pi_0\Map_E(c,L(x_Q)) = 0$ for every compact object $c \in E$. As $c$ is compact and $Q$ is filtered, $\pi_0\Map_E(c,L(x_Q)) \cong \colim_{q \in Q} \pi_0\Map_E(c,L(d_q))$. An element of this colimit is represented by some $f\colon c \to L(d_q)$, and choosing $q' \geq q$ in $Q$ with $L(d_q) \to L(d_{q'})$ nullhomotopic shows that its image in $\pi_0\Map_E(c,L(d_{q'}))$ vanishes. Hence the colimit is zero. Moreover, $x_Q$ is a countable colimit of compact objects, hence $\omega_1$-compact in $D$ (\Cref{cor:Kappa_Small_Colimits_Of_Kappa_Compacts}), and hence in $C$. So every object of $C$ is an $\omega_1$-filtered colimit of $\omega_1$-compact objects.
 	\end{proof}
 
 	% Source: Clausen, Lecture 2 (18.07.2023)

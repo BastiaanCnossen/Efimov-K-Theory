@@ -31,7 +31,6 @@
   {
     "finding": "E04",
     "labels": [
-      "prop:Operator_Ideal_Models",
       "prop:Nuclear_Basics",
       "ex:Nuclear_Solid",
       "ex:Nuclear_Liquid_Gaseous",
@@ -60,5 +59,36 @@
     ],
     "note": "Applied the isomorphism and homotopical uniqueness conventions in the mates discussion; kept the countable-indexing and coherence proofs. Existing mathematical statuses are unchanged.",
     "date": "2026-11-19"
+  },
+  {
+    "finding": "E07",
+    "labels": [
+      "constr:Semiorthogonal_Gluing",
+      "prop:Extension_Dualizable_Tate",
+      "rem:Tate_Classification_Of_Extensions",
+      "ex:Extension_Not_Dualizable"
+    ],
+    "note": "Restored the gluing notation from Talk 6 and displayed the target-evaluation pullback. Separated the two lifting criteria. The pro-object T_b corepresents connecting maps into suspended kernel objects; this desuspends the former pro-object and leaves the Tate criterion unchanged.",
+    "date": "2026-11-25"
+  },
+  {
+    "finding": "E08",
+    "labels": [
+      "lem:Trace_Class_Interleaving",
+      "lem:Nuclear_Colimit_Interleaving",
+      "prop:Nuclear_Basics"
+    ],
+    "note": "The trace-class diagonal is constructed by tensoring with a chosen representative of f and composing internal Homs. Its two triangles are used separately for surjectivity and injectivity after passage to a filtered colimit.",
+    "date": "2026-11-25"
+  },
+  {
+    "finding": "E09",
+    "labels": [
+      "def:Rigidification",
+      "prop:Nuclear_Rigid",
+      "rem:Rigidification_Via_Idempotent_Ideals"
+    ],
+    "note": "Moved rigidification ahead of nuclearity. Checked Clausen's Lecture 3 ideal axioms, Ramzi v2 Construction 4.79 and Theorem 4.81, and Efimov 1.23–1.24 against the sources. Distinguished rational telescopes from the sequential model under factorization. The condensed examples now occupy their own section.",
+    "date": "2026-11-26"
   }
 ]

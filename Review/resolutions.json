@@ -37,10 +37,11 @@
   {
     "finding": "C05",
     "labels": [
-      "prop:Nuclear_Rigid"
+      "prop:Nuclear_Rigid",
+      "def:Rigidification"
     ],
     "status": "repaired",
-    "note": "Restricted the rigidification adjunction to the cardinal-controlled category in Efimov Proposition 1.23; cited Remark 1.24(i) for the compact-object description. Kept the factorization hypothesis."
+    "note": "The definition uses Ramzi v2 Theorem 4.81 for all colimit-preserving symmetric monoidal functors from rigid sources. The telescope construction uses a cardinal cutoff, with the compact-unit specialization from Efimov 1.23. The criterion keeps the compact intermediate object; the proof uses Remark 1.24(i)."
   },
   {
     "finding": "C06",
@@ -80,8 +81,8 @@
     "labels": [
       "ex:Compact_Operators_Intro"
     ],
-    "status": "argument-reviewed",
-    "note": "19 November 2026: The stable Hilbert telescope model and its CAlg(Pr^dual) structure are proved in prop:Operator_Ideal_Models. Corrected missing stable closure. This constructs an E_infinity structure on the underlying KU spectrum; no independent identification with the conventional E_infinity multiplication is asserted. See lecture-model-proof-checks.md."
+    "status": "qualified-source",
+    "note": "25 November 2026. Chapter 1 cites Clausen’s second lecture for the stable Hilbert-space model and its multiplication. The full operator-ideal argument is archived in lecture-model-proof-checks.md."
   },
   {
     "finding": "C12.2",
@@ -105,7 +106,7 @@
       "ex:Nuclear_Liquid_Gaseous"
     ],
     "status": "qualified-source",
-    "note": "19 November 2026: Proved flatness and idempotence of S_0+, the homological epimorphism, the stable Hilbert telescope kernel model and its strongly continuous monoidal structure in prop:Operator_Ideal_Models. The identification with liquid rigidification remains attributed to Clausen: derived full faithfulness and essential image of realization have not been proved. Related written source: Clausen-Scholze, Lecture VIII. See lecture-model-proof-checks.md."
+    "note": "25 November 2026. Chapter 6 cites Clausen’s third lecture for the liquid identification. The archived operator-kernel argument does not prove derived full faithfulness or identify the essential image; see lecture-model-proof-checks.md."
   },
   {
     "finding": "C12.5",
@@ -164,14 +165,6 @@
     ],
     "status": "repaired",
     "note": "Stated the filtered-colimit-only version used in compact assembly and explained why the Kan-extension indexing categories are filtered; covered the empty family when constructing upper bounds."
-  },
-  {
-    "finding": "C12.1, C12.4",
-    "labels": [
-      "prop:Operator_Ideal_Models"
-    ],
-    "status": "argument-reviewed",
-    "note": "19 November 2026: Added and checked a proof using positive injective principal ideals, root telescopes, the kernel coreflector and the right adjoint of restricted multiplication. Covers K and S_0+. Does not identify the latter kernel with liquid rigidification."
   },
   {
     "finding": "T56-01",

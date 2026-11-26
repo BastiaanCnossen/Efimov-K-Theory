@@ -68,7 +68,8 @@ for (const file of pages) {
 validateReaderShell(output);
 const tamme=fs.readFileSync(path.join(output,'entry/tammes-excision-theorem/index.html'),'utf8');
 const warning=fs.readFileSync(path.join(output,'entry/localization-after-ind-completion/index.html'),'utf8');
-if ((tamme.match(/<details class="proof"/g)||[]).length!==1 || !tamme.includes('lax pullback') || warning.includes('<details class="proof"')) throw new Error('Non-adjacent proof ownership is incorrect');
+const laxPullback=fs.readFileSync(path.join(output,'entry/tammes-lax-pullback-proof/index.html'),'utf8');
+if (tamme.includes('<details class="proof"') || warning.includes('<details class="proof"') || !laxPullback.includes('lax pullback')) throw new Error('The Tamme proof discussion must appear in its own remark');
 const theorem=fs.readFileSync(path.join(output,'entry/omega-one-presentability-of-compactly-assembled-categories/index.html'),'utf8');
 if((theorem.match(/<details class="proof"/g)||[]).length!==2)throw new Error('The omega-one presentability theorem must contain both proofs');
 const counts={frontmatter:(inventory.frontMatter||[]).length,chapter:inventory.chapters.length,section:inventory.chapters.flatMap(chapter=>chapter.sections).length,entry:inventory.entries.length};
